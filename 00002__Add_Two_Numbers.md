@@ -38,13 +38,13 @@ class Solution {
         curr : ListNode? = result
         
         while l1 != nil || l2 != nil {
-
-        	// Compute sum & carry
+        
+            // Compute sum & carry
             let sum = (l1?.val ?? 0) + (l2?.val ?? 0) + carry
             carry = sum/10
             curr?.next = ListNode(sum%10)
 
-            // Advance l1, l2 & iter
+            // Advance l1, l2 & curr
             l1 = l1?.next
             l2 = l2?.next
             curr = curr?.next
