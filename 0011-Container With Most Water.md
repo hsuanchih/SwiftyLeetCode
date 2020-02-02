@@ -7,6 +7,8 @@ Find two lines, which together with x-axis forms a container, such that the cont
 
 __Note:__ You may not slant the container and n is at least 2.
 
+![images/question_11.jpg](images/question_11.jpg)
+
 __Example:__
 ```
 Input: [1,8,6,2,5,4,8,3,7]
