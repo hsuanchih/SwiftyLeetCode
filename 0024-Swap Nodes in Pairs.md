@@ -35,3 +35,37 @@ class Solution {
     }
 }
 ```
+__Iterative O(n):__
+```Swift
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public var val: Int
+ *     public var next: ListNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.next = nil
+ *     }
+ * }
+ */
+class Solution {
+    func swapPairs(_ head: ListNode?) -> ListNode? {
+        let result = ListNode(0)
+        result.next = head
+        
+        // Use 3 references to traverse the list
+        var prev : ListNode? = result,
+        curr : ListNode? = head,
+        next : ListNode? = curr?.next
+        
+        while let _ = next {
+            curr?.next = next?.next
+            next?.next = curr
+            prev?.next = next
+            prev = curr
+            curr = curr?.next
+            next = curr?.next
+        }
+        return result.next
+    }
+```
