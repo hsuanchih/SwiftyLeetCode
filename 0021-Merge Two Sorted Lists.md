@@ -24,7 +24,6 @@ __O(min(m,n)):__
  * }
  */
 class Solution {
-    
     func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
         let result = ListNode(0)
         var iter : ListNode? = result, l1 = l1, l2 = l2
