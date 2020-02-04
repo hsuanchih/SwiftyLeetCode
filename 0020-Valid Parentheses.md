@@ -35,7 +35,7 @@ Output: true
 ```
 
 ### Solution
-__O(3^m*4^n):__
+__O(n):__
 ```Swift
 class Solution {
     func isValid(_ s: String) -> Bool {
