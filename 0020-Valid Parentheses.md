@@ -6,6 +6,7 @@ Given a string containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` 
 An input string is valid if:</br>
 1. Open brackets must be closed by the same type of brackets.
 2. Open brackets must be closed in the correct order.
+
 Note that an empty string is also considered valid.
 
 __Example 1:__
