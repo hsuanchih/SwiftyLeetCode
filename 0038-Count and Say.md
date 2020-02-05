@@ -57,3 +57,28 @@ class Solution {
     }
 }
 ```
+__Iterative:__
+```Swift
+class Solution {
+    func countAndSay(_ n: Int) -> String {
+        var count: Int = 1, result : String = "1"
+        for _ in stride(from: 1, to: n, by: 1) {
+            var count : Int = 0, curr : Character = Character("X"), temp : String = ""
+            for char in result {
+                if char == curr {
+                    count+=1
+                } else {
+                    if curr != "X" {
+                        temp.append("\(count)\(curr)")
+                    }
+                    curr = char
+                    count = 1
+                }
+            }
+            temp.append("\(count)\(curr)")
+            result = temp
+        }
+        return result
+    }
+}
+```
