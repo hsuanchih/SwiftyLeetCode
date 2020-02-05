@@ -28,7 +28,7 @@ Output: 0
 ```
 
 ### Solution
-__O(n):__
+__O(logn):__
 ```Swift
 class Solution {
     func searchInsert(_ nums: [Int], _ target: Int) -> Int {
