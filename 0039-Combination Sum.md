@@ -35,26 +35,25 @@ A solution set is:
 __O(2^n):__
 ```Swift
 class Solution {
-    func searchInsert(_ nums: [Int], _ target: Int) -> Int {
-        var start = 0, end = nums.count-1
-        while start+1 < end {
-            let mid = start + (end-start)/2
-            switch nums[mid] - target {
-                case 0:
-                return mid
-                case Int.min..<0:
-                start = mid
-                default:
-                end = mid
+    func combinationSum(_ candidates: [Int], _ target: Int) -> [[Int]] {
+        var temp : [Int] = [], result : [[Int]] = []
+        findSum(candidates, 0, target, &temp, &result)
+        return result
+    }
+    
+    func findSum(_ candidates: [Int], _ index: Int, _ target: Int, _ temp: inout [Int], _ result: inout [[Int]]) {
+        if target == 0 {
+            result.append(temp)
+            return
+        }
+        for i in stride(from: index, to: candidates.count, by: 1) {
+            let num = candidates[i]
+            if target >= num {
+                temp.append(num)
+                findSum(candidates, i, target-num, &temp, &result)
+                temp.removeLast()
             }
         }
-        if nums[end] < target {
-            return end+1
-        }
-        if nums[start] < target {
-            return start+1
-        }
-        return start
     }
 }
 ```
