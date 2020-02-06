@@ -28,6 +28,22 @@ Output: 0
 ```
 
 ### Solution
+__O(n):__
+```Swift
+class Solution {
+    func searchInsert(_ nums: [Int], _ target: Int) -> Int {
+        for index in stride(from: 0, to: nums.count, by: 1) {
+            switch nums[index] {
+                case target...Int.max:
+                return index
+                default:
+                break
+            }
+        }
+        return nums.count
+    }
+}
+```
 __O(logn):__
 ```Swift
 class Solution {
