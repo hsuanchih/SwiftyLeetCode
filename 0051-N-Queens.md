@@ -3,6 +3,8 @@
 
 The *n*-queens puzzle is the problem of placing *n* queens on an *n×n* chessboard such that no two queens attack each other.
 
+![One solution to the 8 queens puzzle](images/question_51.png)
+
 Given an integer *n*, return all distinct solutions to the *n*-queens puzzle.
 
 Each solution contains a distinct board configuration of the *n*-queens' placement,</br> 
