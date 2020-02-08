@@ -10,6 +10,9 @@ A sudoku solution must satisfy __all of the following rules__:
 3. Each of the the digits `1-9` must occur exactly once in each of the 9 `3x3` sub-boxes of the grid.
 Empty cells are indicated by the character `'.'`.
 
+![A sudoku puzzle...](images/question_37-0.png)
+![...and its solution numbers marked in red.](images/question_37-1.png)
+
 __Note:__
 
 * The given board contain only digits 1-9 and the character '.'.
