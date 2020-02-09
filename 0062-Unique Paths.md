@@ -28,7 +28,7 @@ Output: 28
 ```
 
 ### Solution
-__O(2^n):__
+__O(2^(m*n)):__
 ```Swift
 class Solution {
     func uniquePaths(_ m: Int, _ n: Int) -> Int {
@@ -46,6 +46,20 @@ class Solution {
             default:
             return solve(n, m, row, col+1) + solve(n, m, row+1, col)
         }
+    }
+}
+```
+__O(m*n):__
+```Swift
+class Solution {
+    func uniquePaths(_ m: Int, _ n: Int) -> Int {
+        var memo : [[Int]] = Array(repeating: Array(repeating: 1, count: m), count: n)
+        for row in stride(from: 1, to: n, by: 1) {
+            for col in stride(from: 1, to: m, by: 1) {
+                memo[row][col] = memo[row-1][col] + memo[row][col-1]
+            }
+        }
+        return memo.last?.last ?? 1
     }
 }
 ```
