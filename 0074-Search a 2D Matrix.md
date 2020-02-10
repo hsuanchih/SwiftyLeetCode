@@ -73,39 +73,3 @@ class Solution {
     }
 }
 ```
-__O(n*m) Time, O(1) Space:__
-```Swift
-class Solution {
-    func setZeroes(_ matrix: inout [[Int]]) {
-        var colZero = false
-        for row in stride(from: 0, to: matrix.count, by: 1) {
-            if matrix[row][0] == 0 {
-                colZero = true
-            }
-            for col in stride(from: 1, to: matrix.first!.count, by: 1) {
-                if matrix[row][col] == 0 {
-                    matrix[0][col] = 0
-                    matrix[row][0] = 0
-                }
-            }
-        }
-        for row in stride(from: 1, to: matrix.count, by: 1) {
-            for col in stride(from: 1, to: matrix.first!.count, by: 1) {
-                if matrix[row][0] == 0 || matrix[0][col] == 0 {
-                    matrix[row][col] = 0
-                }
-            }
-        }
-        if matrix[0][0] == 0 {
-            for col in stride(from: 0, to: matrix.first?.count ?? 0, by: 1) {
-                matrix[0][col] = 0
-            }
-        }
-        if colZero {
-            for row in stride(from: 0, to: matrix.count, by: 1) {
-                matrix[row][0] = 0
-            }
-        }
-    }
-}
-```
