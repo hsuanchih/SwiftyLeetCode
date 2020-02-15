@@ -22,21 +22,20 @@ __Iterative:__
 class Solution {
     func isHappy(_ n: Int) -> Bool {
         var n = n, seen : Set<Int> = []
-        while n != 1 {
-            if seen.contains(n) {
-                return false
-            } else {
-                seen.insert(n)
-                var temp = 0
-                while n > 0 {
-                    let digit = n%10
-                    temp+=digit*digit
-                    n/=10
-                }
-                n = temp
+        while !seen.contains(n) {
+            if n == 1 {
+                return true
             }
+            seen.insert(n)
+            var temp = 0
+            while n > 0 {
+                let digit = n%10
+                temp+=digit*digit
+                n/=10
+            }
+            n = temp
         }
-        return true
+        return false
     }
 }
 ```
