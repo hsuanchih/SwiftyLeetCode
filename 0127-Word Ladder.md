@@ -52,7 +52,7 @@ extension Character {
 class Solution {
     func ladderLength(_ beginWord: String, _ endWord: String, _ wordList: [String]) -> Int {
         let beginWord = Array(beginWord), endWord = Array(endWord)
-        var wordList = Set(wordList.map { Array($0) }), queue = [beginWord], result = 0
+        var wordList = Set(wordList.map(Array.init)), queue = [beginWord], result = 0
         while !queue.isEmpty {
             result+=1
             let size = queue.count
@@ -106,7 +106,7 @@ class Solution {
         let beginWord = Array(beginWord), endWord = Array(endWord)
         var wordList = wordList
             .lazy
-            .map { Array($0) }
+            .map(Array.init)
             .reduce(into: [[Character] : Set<[Character]>]()) { (result, word) in
                 word.transforms.forEach {
                     result[$0, default: Set<[Character]>()].insert(word)
