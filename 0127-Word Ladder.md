@@ -86,3 +86,52 @@ class Solution {
     }
 }
 ```
+__O(n*k):__
+```Swift
+extension Array where Element == Character {
+    var transforms : Set<[Character]> {
+        var array = self, transforms : Set<[Character]> = []
+        for index in 0..<count {
+            let original = array[index]
+            array[index] = "*"
+            transforms.insert(array)
+            array[index] = original
+        }
+        return transforms
+    }
+}
+
+class Solution {
+    func ladderLength(_ beginWord: String, _ endWord: String, _ wordList: [String]) -> Int {
+        let beginWord = Array(beginWord), endWord = Array(endWord)
+        var wordList = wordList
+            .lazy
+            .map { Array($0) }
+            .reduce(into: [[Character] : Set<[Character]>]()) { (result, word) in
+                word.transforms.forEach {
+                    result[$0, default: Set<[Character]>()].insert(word)
+                }
+            },
+        queue = [beginWord],
+        result = 0
+        
+        while !queue.isEmpty {
+            result+=1
+            let size = queue.count
+            for _ in stride(from: 0, to: size, by: 1) {
+                let curr = queue.removeFirst()
+                if curr == endWord {
+                    return result
+                }
+                curr.transforms.forEach {
+                    if let nextWords = wordList[$0] {
+                        queue.append(contentsOf: Array(nextWords))
+                        wordList.removeValue(forKey: $0)
+                    }
+                }
+            }
+        }
+        return 0
+    }
+}
+```
