@@ -10,6 +10,7 @@ For all leaves in the tree, consider the numbers represented by the path from th
 Return the sum of these numbers.
 
 __Example 1:__
+![question_1022.png](./images/question_1022.png)
 ```
 Input: [1,0,1,0,1,0,1]
 Output: 22
