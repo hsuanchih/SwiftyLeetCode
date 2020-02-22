@@ -25,6 +25,15 @@ __Note:__
 ### Solution
 __O(n*(k+26)):__
 ```Swift
+extension Character {
+    var offset : Int {
+        return Int(asciiValue!-Character("a").asciiValue!)
+    }
+    init(offset: Int) {
+        self = Character(UnicodeScalar(Character("a").asciiValue!+UInt8(offset)))
+    }
+}
+
 class Solution {
     func commonChars(_ A: [String]) -> [String] {
 
