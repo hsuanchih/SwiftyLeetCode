@@ -6,11 +6,15 @@ A binary tree is *univalued* if every node in the tree has the same value.
 Return `true` if and only if the given tree is univalued.
 
 __Example 1:__
+
+![Example 1](images/question_965-0.png)
 ```
 Input: [1,1,1,1,1,null,1]
 Output: true
 ```
 __Example 2:__
+
+![Example 2](images/question_965-1.png)
 ```
 Input: [2,2,2,5,2]
 Output: false
