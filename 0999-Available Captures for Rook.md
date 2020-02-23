@@ -9,7 +9,7 @@ Return the number of pawns the rook can capture in one move.
 
 __Example 1:__
 
-
+![Example 1](images/question_999-0.png)
 ```
 Input: [
 [".",".",".",".",".",".",".","."],
@@ -27,7 +27,7 @@ In this example the rook is able to capture all the pawns.
 ```
 __Example 2:__
 
-
+![Example 2](images/question_999-1.png)
 ```
 Input: [
 [".",".",".",".",".",".",".","."],
@@ -45,7 +45,7 @@ Bishops are blocking the rook to capture any pawn.
 ```
 __Example 3:__
 
-
+![Example 3](images/question_999-2.png)
 ```
 Input: [
 [".",".",".",".",".",".",".","."],
