@@ -10,16 +10,22 @@ We are given the `root` of a binary tree with unique values, and the values `x` 
 Return `true` if and only if the nodes corresponding to the values `x` and `y` are cousins.
 
 __Example 1:__
+
+![Example 1](images/question_993-0.png)
 ```
 Input: root = [1,2,3,4], x = 4, y = 3
 Output: false
 ```
 __Example 2:__
+
+![Example 2](images/question_993-1.png)
 ```
 Input: root = [1,2,3,null,4,null,5], x = 5, y = 4
 Output: true
 ```
 __Example 3:__
+
+![Example 3](images/question_993-2.png)
 ```
 Input: root = [1,2,3,null,4], x = 2, y = 3
 Output: false
