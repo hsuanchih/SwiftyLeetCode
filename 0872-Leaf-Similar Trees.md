@@ -3,7 +3,7 @@
 
 Consider all the leaves of a binary tree.  From left to right order, the values of those leaves form a *leaf value sequence*.
 
-
+![Example](images/question_872.png)
 
 For example, in the given tree above, the leaf value sequence is `(6, 7, 4, 9, 8)`.
 
