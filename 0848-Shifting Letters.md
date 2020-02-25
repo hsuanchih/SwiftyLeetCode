@@ -36,6 +36,7 @@ extension Character {
         return Character(UnicodeScalar(result + a)!)
     }
 }
+
 class Solution {
     func shiftingLetters(_ S: String, _ shifts: [Int]) -> String {
         var S = Array(S), shift = 0
