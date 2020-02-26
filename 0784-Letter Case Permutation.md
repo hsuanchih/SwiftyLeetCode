@@ -15,9 +15,8 @@ Input: S = "12345"
 Output: ["12345"]
 ```
 __Note:__
-
-`S` will be a string with length between `1` and `12`.
-`S` will consist only of letters or digits.
+* `S` will be a string with length between `1` and `12`.
+* `S` will consist only of letters or digits.
 
 ### Solution
 __O(2^n):__
