@@ -47,23 +47,31 @@ __Note:__
 ### Solution
 __O(log(n)):__
 ```Swift
+extension Character {
+    var offset : Int {
+        return Int(asciiValue!-Character("a").asciiValue!)
+    }
+}
 class Solution {
     func nextGreatestLetter(_ letters: [Character], _ target: Character) -> Character {
-        var start : Int = 0, end : Int = letters.count-1
+        let targetOffset = target.offset
+        var start = 0, end = letters.count-1
         while start+1 < end {
             let mid = start + (end-start)/2
-            switch Int(letters[mid].asciiValue!) - Int(target.asciiValue!) {
-                case Int.min ... 0:
+            switch letters[mid].offset {
+            case 0...targetOffset:
                 start = mid
-                default:
+            default:
                 end = mid
             }
         }
-        switch Int(letters[end].asciiValue!)-Int(target.asciiValue!) {
-            case Int.min ... 0:
-            return letters[(end+1)%letters.count]
-            default:
-            return letters[start].asciiValue! > target.asciiValue! ? letters[start] : letters[end]
+        switch (letters[start].offset, letters[end].offset) {
+        case (targetOffset+1...26, _):
+            return letters[start]
+        case (_, targetOffset+1...26):
+            return letters[end]
+        default:
+            return letters.first!
         }
     }
 }
