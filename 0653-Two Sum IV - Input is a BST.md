@@ -32,7 +32,7 @@ Output: False
 ```
 
 ### Solution
-__O(n+log(n)):__
+__O(n+log(n)) Time, O(n) Space:__
 ```Swift
 /**
  * Definition for a binary tree node.
@@ -70,6 +70,37 @@ class Solution {
         inOrder(node.left, &result)
         result.append(node.val)
         inOrder(node.right, &result)
+    }
+}
+```
+__O(n) Time, O(n) Space:__
+```Swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.left = nil
+ *         self.right = nil
+ *     }
+ * }
+ */
+class Solution {
+    func findTarget(_ root: TreeNode?, _ k: Int) -> Bool {
+        var set : Set<Int> = []
+        return preOrder(root, k, &set)
+    }
+    
+    func preOrder(_ node: TreeNode?, _ k: Int, _ set: inout Set<Int>) -> Bool {
+        guard let node = node else { return false }
+        if set.contains(k-node.val) {
+            return true
+        }
+        set.insert(node.val)
+        return preOrder(node.left, k, &set) || preOrder(node.right, k, &set)
     }
 }
 ```
