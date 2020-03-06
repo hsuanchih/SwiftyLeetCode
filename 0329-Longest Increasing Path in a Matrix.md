@@ -29,7 +29,7 @@ Explanation: The longest increasing path is [3, 4, 5, 6]. Moving diagonally is n
 ```
 
 ### Solution
-__O((n\*m)\*(n*m)):__
+__O((n*m)^2):__
 ```Swift
 class Solution {
     func longestIncreasingPath(_ matrix: [[Int]]) -> Int {
@@ -64,7 +64,7 @@ class Solution {
     }
 }
 ```
-__Amortized O(n*m):__
+__Amortized O((n\*m)*2):__
 ```Swift
 class Solution {
     func longestIncreasingPath(_ matrix: [[Int]]) -> Int {
