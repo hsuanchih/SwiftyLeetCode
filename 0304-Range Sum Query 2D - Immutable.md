@@ -3,7 +3,8 @@
 
 Given a 2D matrix *matrix*, find the sum of the elements inside the rectangle defined by its upper left corner (row1, col1) and lower right corner (row2, col2).
 
-Range Sum Query 2D
+![Range Sum Query 2D](images/question_304.png)
+
 The above rectangle (with the red border) is defined by (row1, col1) = __(2, 1)__ and (row2, col2) = __(4, 3)__, which contains sum = __8__.
 
 __Example:__
@@ -40,7 +41,10 @@ class NumMatrix {
         memo = Array(repeating: Array(repeating: 0, count: cols+1), count: rows+1)
         for row in 1...rows {
             for col in 1...cols {
-                memo[row][col] = sumRegion(0, 0, row-1, col-2) + sumRegion(0, 0, row-2, col-1) - sumRegion(0, 0, row-2, col-2) + matrix[row-1][col-1]
+                memo[row][col] = matrix[row-1][col-1] + 
+                sumRegion(0, 0, row-1, col-2) + 
+                sumRegion(0, 0, row-2, col-1) - 
+                sumRegion(0, 0, row-2, col-2)
             }
         }
     }
