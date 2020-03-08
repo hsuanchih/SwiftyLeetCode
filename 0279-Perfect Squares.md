@@ -18,7 +18,7 @@ Explanation: 13 = 4 + 9.
 ```
 
 ### Solution
-__Exponential Time:__
+__Exponential Time Recursive Top-Down:__
 ```Swift
 class Solution {
     func numSquares(_ n: Int) -> Int {
@@ -28,17 +28,14 @@ class Solution {
         var min = n
         for num in 1...n/2 {
             let square = num*num
-            if n-square >= 0 {
-                min = Swift.min(min, numSquares(n-square))
-            } else {
-                break
-            }
+            if n-square < 0 { break }
+            min = Swift.min(min, numSquares(n-square))
         }
         return min+1
     }
 }
 ```
-__Polynomial Time:__
+__Polynomial Time Recursive Top-Down:__
 ```Swift
 class Solution {
     func numSquares(_ n: Int) -> Int {
@@ -56,14 +53,31 @@ class Solution {
         var min = n
         for num in 1...n/2 {
             let square = num*num
-            if n-square >= 0 {
-                min = Swift.min(min, numSquares(n-square, &memo))
-            } else {
-                break
-            }
+            if n-square < 0 { break }
+            min = Swift.min(min, numSquares(n-square, &memo))
         }
         memo[n] = min+1
         return memo[n]!
+    }
+}
+```
+__Polynomial Time Iterative Bottom-Up:__
+```Swift
+class Solution {
+    func numSquares(_ n: Int) -> Int {
+        var memo : [Int] = Array(repeating: n+1, count: n+1)
+        for i in 0...n {
+            if i <= 1 {
+                memo[i] = i
+                continue
+            }
+            for num in 1...i/2 {
+                let square = num*num
+                if i-square < 0 { break }
+                memo[i] = min(memo[i], memo[i-square]+1)
+            }
+        }
+        return memo.last!
     }
 }
 ```
