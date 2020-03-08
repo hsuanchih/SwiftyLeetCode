@@ -65,13 +65,9 @@ __Polynomial Time Iterative Bottom-Up:__
 ```Swift
 class Solution {
     func numSquares(_ n: Int) -> Int {
-        var memo : [Int] = Array(repeating: n+1, count: n+1)
+        var memo : [Int] = Array(0...n)
         for i in 0...n {
-            if i <= 1 {
-                memo[i] = i
-                continue
-            }
-            for num in 1...i/2 {
+            for num in 0...i/2 {
                 let square = num*num
                 if i-square < 0 { break }
                 memo[i] = min(memo[i], memo[i-square]+1)
