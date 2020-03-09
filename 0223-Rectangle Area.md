@@ -5,7 +5,7 @@ Find the total area covered by two __rectilinear__ rectangles in a __2D__ plane.
 
 Each rectangle is defined by its bottom left corner and top right corner as shown in the figure.
 
-Rectangle Area
+![Rectangle Area](images/question_223.png)
 
 __Example:__
 ```
