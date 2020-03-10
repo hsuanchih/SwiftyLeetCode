@@ -6,6 +6,8 @@ Implement an iterator over a binary search tree (BST). Your iterator will be ini
 Calling `next()` will return the next smallest number in the BST.
 
 __Example:__
+
+![Example](images/question_173.png)
 ```
 BSTIterator iterator = new BSTIterator(root);
 iterator.next();    // return 3
