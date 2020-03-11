@@ -55,20 +55,20 @@ __O(n):__
  */
 class Solution {
     func sumNumbers(_ root: TreeNode?) -> Int {
-        var result : Int = 0
-        sum(root, 0, &result)
+        var result = 0
+        sumNumbers(root, 0, &result)
         return result
     }
     
-    func sum(_ node: TreeNode?, _ temp: Int, _ result: inout Int) {
+    func sumNumbers(_ node: TreeNode?, _ sum: Int, _ result: inout Int) {
         guard let node = node else { return }
-        let curr = temp*10 + node.val
+        let sum = sum*10+node.val
         switch (node.left, node.right) {
             case (.none, .none):
-            result += curr
+            result += sum
             default:
-            sum(node.left, curr, &result)
-            sum(node.right, curr, &result)
+            sumNumbers(node.left, sum, &result)
+            sumNumbers(node.right, sum, &result)
         }
     }
 }
