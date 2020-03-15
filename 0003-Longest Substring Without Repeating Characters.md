@@ -24,63 +24,91 @@ Explanation: The answer is "wke", with the length of 3.
 ```
 
 ### Solution
-__O(n^2):__
+__O(s^3) Time, Constant (26) Space:__
 ```Swift
 class Solution {
     func lengthOfLongestSubstring(_ s: String) -> Int {
         let s = Array(s)
-        
-        var seen : Set<Character> = [], 
-        result : Int = 0
-        
-        // Evaluate each substring starting at every "start"
-        for start in stride(from: 0, to: s.count, by: 1) {
-            seen.removeAll()
-            for index in stride(from: start, through: s.count, by: 1) {
-                
-                // If we've reached the end of the substring or if duplicate is found, update result & go to the next "start" 
-                if index == s.count || seen.contains(s[index]) {
-                    result = max(result, index-start)
-                    break
+        var result = 0
+        for start in 0..<s.count {
+            for end in start...s.count {
+                var seen : Set<Character> = []
+
+                // Evaluate every subset of s
+                // ie, from every start to every end
+                // to find the longest subset without repeating characters
+                for i in start...end { 
+                    if i == end || seen.contains(s[i]) {
+                        result = max(result, i-start)
+                        break
+                    }
+                    seen.insert(s[i])
                 }
-                
-                // Otherwise mark the current character as seen
-                seen.insert(s[index])
             }
         }
         return result
     }
 }
 ```
-__O(n):__
+__O(s^2) Time, Constant (26) Space:__
 ```Swift
 class Solution {
     func lengthOfLongestSubstring(_ s: String) -> Int {
         let s = Array(s)
+        var result = 0
         
-        var seen : Set<Character> = [], 
-        longest : Int = 0,
-        start : Int = 0, 
-        end : Int = 0
-        
-        while end < s.count {
-            
-            // If a duplicate is found: 
-            // update result, mark character s[start] as un-seen & advance start
-            // Otherwise:
-            // mark the current character as seen & continue with traversal 
-            if seen.contains(s[end]) {
-                longest = max(longest, end-start)
-                seen.remove(s[start])
-                start+=1
-            } else {
-                seen.insert(s[end])
-                end+=1
+        // Evaluate each substring starting at every "start"
+        for start in 0..<s.count {
+            var seen : Set<Character> = []
+            for i in start...s.count {
+                
+                // Evaluate each substring starting at every "start"
+                if i == s.count || seen.contains(s[i]) {
+                    result = max(result, i-start)
+                    break
+                }
+                
+                // Otherwise mark the current character as seen
+                seen.insert(s[i])
             }
         }
+        return result
+    }
+}
+```
+__O(s) Time, Constant (26) Space:__
+```Swift
+class Solution {
+    func lengthOfLongestSubstring(_ s: String) -> Int {
+        let s = Array(s)
+        var seen : Set<Character> = [], result = 0
+        var start = 0, end = 0
         
-        // Update result for the last time in case we reach end without running into duplicates again
-        return max(longest, end-start)
+        
+        // Sliding window
+        while end <= s.count {
+            
+            // If a duplicate is found or if end has reached the end of s
+            if end == s.count || seen.contains(s[end]) {
+                
+                // Update result
+                result = max(result, end-start)
+                
+                // If the end of s is reached, break out of the loop
+                if end == s.count { break }
+                
+                // Otherwise mark character at s[start] as un-seen & advance start
+                seen.remove(s[start])
+                start+=1
+                continue
+            }
+            
+            // Duplicate is not found, 
+            // mark the current character as seen & continue with traversal
+            seen.insert(s[end])
+            end+=1
+        }
+        return result
     }
 }
 ```
