@@ -22,7 +22,43 @@ __Note:__
 Your algorithm should run in O(*n*) time and uses constant extra space.
 
 ### Solution
-__O(nlogn+n) Time, O(1) Space:__
+__O(nums) Time, O(nums) Space - Boolean Array:__
+```Swift
+class Solution {
+    func firstMissingPositive(_ nums: [Int]) -> Int {
+        var lookup : [Bool] = Array(repeating: false, count: nums.count)
+        for num in nums {
+            if num >= 1 && num <= lookup.count {
+                lookup[num-1] = true
+            }
+        }
+        for index in 0..<lookup.count {
+            if lookup[index] == false {
+                return index+1
+            }
+        }
+        return lookup.count+1
+    }
+}
+```
+__O(nums) Time, O(nums) Space - HashSet:__
+```Swift
+class Solution {
+    func firstMissingPositive(_ nums: [Int]) -> Int {
+        var seen : Set<Int> = []
+        for num in nums {
+            seen.insert(num)
+        }
+        for index in stride(from: 1, through: nums.count, by: 1) {
+            if !seen.contains(index) {
+                return index
+            }
+        }
+        return nums.count+1
+    }
+}
+```
+__O(nums*log(nums)+nums) Time, O(1) Space - Sorted Input:__
 ```Swift
 class Solution {
     func firstMissingPositive(_ nums: [Int]) -> Int {
@@ -40,24 +76,7 @@ class Solution {
     }
 }
 ```
-__O(n) Time, O(n) Space:__
-```Swift
-class Solution {
-    func firstMissingPositive(_ nums: [Int]) -> Int {
-        var seen : Set<Int> = []
-        for num in nums {
-            seen.insert(num)
-        }
-        for index in stride(from: 1, through: nums.count, by: 1) {
-            if !seen.contains(index) {
-                return index
-            }
-        }
-        return nums.count+1
-    }
-}
-```
-__O(n) Time, O(1) Space:__
+__O(nums) Time, O(1) Space:__
 ```Swift
 class Solution {
     func firstMissingPositive(_ nums: [Int]) -> Int {
