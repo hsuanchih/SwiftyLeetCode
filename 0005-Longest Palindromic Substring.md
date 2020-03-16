@@ -17,16 +17,18 @@ Output: "bb"
 ```
 
 ### Solution
-__O(n^3):__
+__O(n^3) Time, O(1) Space - Exhaustive Search:__
 ```Swift
 class Solution {
+
+    // Exhaustive search of every subarray to see if each subarray is a palindrome
     func longestPalindrome(_ s: String) -> String {
         let s = Array(s)
         var result : Range<Int> = 0..<0
 
         // Evaluate substrings of different lengths
-        for start in stride(from: 0, to: s.count, by: 1) {
-            for end in stride(from: start, to: s.count, by: 1) {
+        for start in 0..<s.count {
+            for end in start..<s.count {
 
                 // Check whether Characters on both ends of the substring match
                 // Iterate inwards to the center
@@ -43,11 +45,11 @@ class Solution {
                 }
             }
         }
-        return result.isEmpty ? "" : String(s[result])
+        return String(s[result])
     }
 }
 ```
-__O(n^2):__
+__O(n^2) Time, O(n^2) Space - Bottom-Up:__
 ```Swift
 class Solution {
     func longestPalindrome(_ s: String) -> String {
@@ -79,47 +81,56 @@ class Solution {
                 }
             }
         }
-        return result.isEmpty ? "" : String(s[result])
+        return String(s[result])
     }
 }
 ```
-__O(n^2):__
+__O((2n+1)*n) Time, O(1) Space - Middle-Out:__
 ```Swift
 class Solution {
+
     func longestPalindrome(_ s: String) -> String {
+
+        // If length of s is less than or equal to 1, return s
+        if s.count <= 1 { return s }
         let s = Array(s)
         var result : Range<Int> = 0..<0
 
-        // Recursive solution that checks for substrings expanding from each of 2n+1 centers
-        for index in stride(from: 0, to: s.count, by: 1) {
-            
-            // A single character is a palindrome
-            if result.isEmpty {
-                result = index..<index+1
+        // Iterate through each character of s & expand out from s[i]
+        // to find the range of the longest palindrome extending from s[i]
+        for i in 0..<s.count-1 {
+
+            // A single character is by definition a palindrome
+            // Find longest palindrome extending from s[i]
+            let longest = longestPalindrome(s, i-1, i+1)
+            if longest.count > result.count {
+                result = longest
             }
 
-            // Check for longest palindrome expanding from (index, index+1)
-            solve(s, index, index+1, &result)
-
-            // Check for longest palindrome expanding from index
-            solve(s, index-1, index+1, &result)
+            // If s[i] == s[i+1], then we also need to check the longest palindrome
+            // extending from s[i...i+1]
+            if s[i] == s[i+1] {
+                let longest = longestPalindrome(s, i-1, i+2)
+                if longest.count > result.count {
+                    result = longest
+                }
+            }
         }
-        return result.isEmpty ? "" : String(s[result])
+        return String(s[result])
     }
     
-    func solve(_ s: [Character], _ start: Int, _ end: Int, _ result: inout Range<Int>) {
-        
-        // Abort when indices go out of bounds
-        guard start >= 0 && end < s.count else {
-            return
-        }
+    // Helper method to check longest palindrome extending from indices (start, end)
+    func longestPalindrome(_ s: [Character], _ start: Int, _ end: Int) -> Range<Int> {
+        switch (start, end) {
 
-        // If characters on both ends match, update result accordingly & extend search range
-        if s[start] == s[end] {
-            if end-start+1 > result.count {
-                result = start..<end+1
-            }
-            solve(s, start-1, end+1, &result)
+            // If start & end are within bounds of s and s[start] == s[end], 
+            // we want to continue explore the longest palindrome
+            case (0..<s.count, 0..<s.count) where s[start] == s[end]:
+            return longestPalindrome(s, start-1, end+1)
+
+            // Otherwise the longest palindrome ended at [start+1...end-1]
+            default:
+            return start+1..<end
         }
     }
 }
