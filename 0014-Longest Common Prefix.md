@@ -21,7 +21,7 @@ __Note:__
 All given inputs are in lowercase letters `a-z`.
 
 ### Solution
-__O(k*n):__
+__O((strs\*k)+(strs)+(strs\*k)):__
 ```Swift
 class Solution {
     func longestCommonPrefix(_ strs: [String]) -> String {
@@ -41,6 +41,38 @@ class Solution {
             }
         }
         return String(strs.first![0..<minLength])
+    }
+}
+```
+__O((strs\*k)+(strs\*k)):__
+```Swift
+class Solution {
+    func longestCommonPrefix(_ strs: [String]) -> String {
+        let strs = strs.map { Array($0) }
+        var index = 0, result : String = ""
+        while true {
+            var curr : Character?
+            for str in strs {
+                if index == str.count {
+                    return result
+                }
+                switch curr {
+                    case .none:
+                    curr = str[index]
+                    case .some(str[index]):
+                    break
+                    default:
+                    return result
+                }
+            }
+            if let curr = curr {
+                result.append(curr)
+            } else {
+                return result
+            }
+            index+=1
+        }
+        return result
     }
 }
 ```
