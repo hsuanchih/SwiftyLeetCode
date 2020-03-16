@@ -50,6 +50,7 @@ Explanation: The number "-91283472332" is out of the range of a 32-bit signed in
 ```
 
 ### Solution
+__O(str):__
 ```Swift
 class Solution {
     func myAtoi(_ str: String) -> Int {
@@ -88,6 +89,80 @@ class Solution {
             }
         }
         return isNegative ? -(1<<31) : (1<<31)-1
+    }
+}
+```
+__O(str) - Alternative Solution:__
+```Swift
+extension Int {
+    var converted : Int {
+        switch self {
+            case (1<<31)...Int.max:
+            return (1<<31)-1
+            case Int.min..<(-(1<<31)):
+            return -(1<<31)
+            default:
+            return self
+        }
+    }
+}
+
+class Solution {
+    func myAtoi(_ str: String) -> Int {
+        let str = Array(str)
+        
+        // Parse each character in str
+        // Use i to traverse str
+        // Use j to track the state of the parser
+        // j == -1: parser hasn't encountered any signs or numbers
+        // j gets updated either a sign or number is encountered
+        var i = 0, j = -1, sign = 1, result = 0
+        while i < str.count {
+            switch str[i] {
+                
+                // Character is a space & j == -1
+                // Ignore leading spaces
+                case " " where j == -1:
+                break
+                
+                // Character is a sign & j == -1
+                // Update the sign of the number,
+                // and update j with the index of the sign
+                case "-" where j == -1:
+                sign = -1
+                fallthrough
+                case "+" where j == -1:
+                j = i
+                
+                // Character is a numeric digit
+                // Update j with the index of the first numeric digit of str
+                // Update result calculation & early return if result has reached 
+                // 32-bit range
+                case let char where char.isNumber:
+                if j == -1 || str[j] == "+" || str[j] == "-" {
+                    j = i
+                }
+                result = result*10+Int(String(str[i]))!
+                if result >= (1<<31)+1 {
+                    return (sign*result).converted
+                }
+                
+                // Character is anything other than a numeric digit
+                // ie, a " ", "+", "-", or any other random Character
+                default:
+                // If we've not yet reached a numeric Character, this is
+                // an invalid numeric string, return 0
+                // Otherwise, we've reached the end of a valid numeric string
+                // return result
+                if j == -1 || !str[j].isNumber {
+                    return 0
+                } else {
+                    return (sign*result).converted
+                }
+            }
+            i+=1
+        }
+        return j == -1 ? 0 : (sign*result).converted
     }
 }
 ```
