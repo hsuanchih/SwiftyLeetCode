@@ -26,41 +26,71 @@ For the purpose of this problem, assume that your function returns 0 when the re
 ### Solution
 __String Manipulation:__
 ```Swift
-class Solution {
-    func reverse(_ x: Int) -> Int {
-        let num = abs(x), result = Int(String(String(num).reversed()))!
-        
-        // Account for 32-bit signed integer restriction
-        switch (x, result) {
-            case (Int.min..<0, (1<<31)+1...Int.max), (0...Int.max, (1<<31)...Int.max):
+extension Int {
+    var converted : Int {
+        switch self {
+            case (1<<31)...Int.max, Int.min..<(-(1<<31)):
             return 0
-            case (Int.min..<0, _):
-            return -result
             default:
-            return result
+            return self
         }
     }
 }
-```
-__Iterative:__
-```Swift
+
 class Solution {
     func reverse(_ x: Int) -> Int {
-        var num = abs(x), result = 0
-        while num > 0 {
-            result = result*10 + num%10
-            num/=10
-        }
-
-        // Account for 32-bit signed integer restriction
-        switch (x, result) {
-            case (Int.min..<0, (1<<31)+1...Int.max), (0...Int.max, (1<<31)...Int.max):
+        let sign = x < 0 ? -1 : 1
+        return (sign*Int(String(String(abs(x)).reversed()))!).converted
+    }
+}
+```
+__O(log\[base 10\](x) Time, O(1) Space - Iterative:__
+```Swift
+extension Int {
+    var converted : Int {
+        switch self {
+            case (1<<31)...Int.max, Int.min..<(-(1<<31)):
             return 0
-            case (Int.min..<0, _):
-            return -result
             default:
-            return result
+            return self
         }
+    }
+}
+
+class Solution {
+    func reverse(_ x: Int) -> Int {
+        let sign = x < 0 ? -1: 1
+        var x = abs(x), result = 0
+        while x > 0 {
+            result = result*10+x%10
+            x/=10
+        }
+        return sign*result.converted
+    }
+}
+```
+__O(log\[base 10\](x) Time, O(1) Space - Recursive:__
+```Swift
+extension Int {
+    var converted : Int {
+        switch self {
+            case (1<<31)...Int.max, Int.min..<(-(1<<31)):
+            return 0
+            default:
+            return self
+        }
+    }
+}
+
+class Solution {
+    func reverse(_ x: Int) -> Int {
+        let sign = x < 0 ? -1 : 1
+        return (sign*Int(reversing(abs(x)))!).converted
+    }
+    
+    func reversing(_ x: Int) -> String {
+        guard x >= 10 else { return String(x) }
+        return String(x%10).appending(reversing(x/10))
     }
 }
 ```
