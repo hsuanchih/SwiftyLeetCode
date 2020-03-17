@@ -104,3 +104,31 @@ class Solution {
     }
 }
 ```
+__O(word1\*word2) Time, O(word1\*word2) Space - Bottom-Up Iterative:__
+```Swift
+class Solution {
+    func minDistance(_ word1: String, _ word2: String) -> Int {
+        let word1 = Array(word1), word2 = Array(word2)
+        var memo : [[Int]] = Array(repeating: Array(repeating: 0, count: word2.count+1), count: word1.count+1)
+        for i in 0...word1.count {
+            for j in 0...word2.count {
+                switch (i, j) {
+                    case (0, 0):
+                    break
+                    case (0, _):
+                    memo[i][j] = j
+                    case (_, 0):
+                    memo[i][j] = i
+                    default:
+                    if word1[i-1] == word2[j-1] {
+                        memo[i][j] = memo[i-1][j-1]
+                    } else {
+                        memo[i][j] = 1 + min(memo[i-1][j-1], min(memo[i][j-1], memo[i-1][j]))
+                    }
+                }
+            }
+        }
+        return memo.last?.last ?? 0
+    }
+}
+```
