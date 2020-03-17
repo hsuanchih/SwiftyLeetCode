@@ -21,7 +21,7 @@ The median is (2 + 3)/2 = 2.5
 ```
 
 ### Solution
-__O((m+n) * log(m+n)) Time, O(m+n) Space:__
+__O((nums1+nums2)*log(nums1+nums2)) Time, O(nums1+nums2) Space:__
 ```Swift
 class Solution {
     func findMedianSortedArrays(_ nums1: [Int], _ nums2: [Int]) -> Double {
@@ -38,7 +38,50 @@ class Solution {
     }
 }
 ```
-__O((m+n)/2) Time, O((m+n)/2) Space:__
+__O((nums1+nums2)+(nums1+nums2)/2) Time, O(nums1+nums2) Space:__
+```Swift
+class Solution {
+    func findMedianSortedArrays(_ nums1: [Int], _ nums2: [Int]) -> Double {
+        
+        // Reverse nums1 & nums2
+        var nums1 = Array(nums1.reversed()), nums2 = Array(nums2.reversed())
+        
+        // Get the size of the arrays combined
+        let size = nums1.count+nums2.count
+        
+        // Determine how many items we need to pop from nums1 & nums2 combined
+        // to get the medium
+        var itemsToPop = size/2, curr : Int?
+        while itemsToPop > 0 {
+            curr = nextSmaller(&nums1, &nums2)
+            itemsToPop-=1
+        }
+        
+        // If the number of elements is odd, the median is the middle element
+        // Otherwise the median is the average of the middle 2 elements
+        if size%2 == 1 {
+            return Double(nextSmaller(&nums1, &nums2))
+        } else {
+            return (Double(curr!)+Double(nextSmaller(&nums1, &nums2)))/2
+        }
+    }
+    
+    // Helper method to remove the next smallest element from nums1 & nums2
+    func nextSmaller(_ nums1: inout [Int], _ nums2: inout [Int]) -> Int {
+        switch (nums1.last, nums2.last) {
+            case (.some(_), .none):
+            return nums1.removeLast()
+            case (.none, .some(_)):
+            return nums2.removeLast()
+            case let (.some(num1), .some(num2)):
+            return num1 < num2 ? nums1.removeLast() : nums2.removeLast()
+            default:
+            fatalError()
+        }
+    }
+}
+```
+__O((nums1+nums2)/2) Time, O((nums1+nums2)/2) Space:__
 ```Swift
 class Solution {
     func findMedianSortedArrays(_ nums1: [Int], _ nums2: [Int]) -> Double {
