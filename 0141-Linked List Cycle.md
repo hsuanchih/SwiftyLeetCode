@@ -12,18 +12,23 @@ Input: head = [3,2,0,-4], pos = 1
 Output: true
 Explanation: There is a cycle in the linked list, where tail connects to the second node.
 ```
+![example1](images/question_141-0.png)
+
 __Example 2:__
 ```
 Input: head = [1,2], pos = 0
 Output: true
 Explanation: There is a cycle in the linked list, where tail connects to the first node.
 ```
+![example2](images/question_141-1.png)
+
 __Example 3:__
 ```
 Input: head = [1], pos = -1
 Output: false
 Explanation: There is no cycle in the linked list.
 ```
+![example3](images/question_141-2.png)
 
 __Follow up:__
 Can you solve it using O(1) (i.e. constant) memory?
