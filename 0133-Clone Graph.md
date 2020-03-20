@@ -25,6 +25,8 @@ The given node will always be the first node with `val = 1`.</br>
 You must return the copy of the given node as a reference to the cloned graph.
 
 __Example 1:__
+
+![example1](images/question_133-0.png)
 ```
 Input: adjList = [[2,4],[1,3],[2,4],[1,3]]
 Output: [[2,4],[1,3],[2,4],[1,3]]
@@ -35,6 +37,8 @@ Explanation: There are 4 nodes in the graph.
 4th node (val = 4)'s neighbors are 1st node (val = 1) and 3rd node (val = 3).
 ```
 __Example 2:__
+
+![example2](images/question_133-1.png)
 ```
 Input: adjList = [[]]
 Output: [[]]
@@ -47,6 +51,8 @@ Output: []
 Explanation: This an empty graph, it does not have any nodes.
 ```
 __Example 4:__
+
+![example4](images/question_133-2.png)
 ```
 Input: adjList = [[2],[1]]
 Output: [[2],[1]]
