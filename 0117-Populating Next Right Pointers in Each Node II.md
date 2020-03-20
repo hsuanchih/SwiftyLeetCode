@@ -20,6 +20,8 @@ __Follow up:__
 * Recursive approach is fine, you may assume implicit stack space does not count as extra space for this problem.
 
 __Example 1:__
+
+![example](images/question_117.png)
 ```
 Input: root = [1,2,3,4,5,null,7]
 Output: [1,#,2,3,#,4,5,7,#]
