@@ -19,6 +19,17 @@ Output: 2->3
 ### Solution
 __O(n):__
 ```Swift
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public var val: Int
+ *     public var next: ListNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.next = nil
+ *     }
+ * }
+ */
 class Solution {
     func deleteDuplicates(_ head: ListNode?) -> ListNode? {
         
