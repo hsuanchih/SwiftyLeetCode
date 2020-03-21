@@ -22,18 +22,19 @@ Explanation: In this case, no transaction is done, i.e. max profit = 0.
 ```
 
 ### Solution
-__O(n^2):__
+__O(prices^2):__
 ```Swift
 class Solution {
     func maxProfit(_ prices: [Int]) -> Int {
-        var result = Int.min
-        for buy in stride(from: 0, to: prices.count, by: 1) {
-            var profit = -prices[buy]
-            for sell in stride(from: buy+1, to: prices.count, by: 1) {
-                result = max(result, profit+prices[sell])
+        var result = 0
+
+        // Compute the maximum profit that can be made from each buy
+        for buy in 0..<prices.count {
+            for sell in buy..<prices.count {
+                result = max(prices[sell]-prices[buy], result)
             }
         }
-        return max(result, 0)
+        return result
     }
 }
 ```
@@ -42,6 +43,10 @@ __O(n):__
 class Solution {
     func maxProfit(_ prices: [Int]) -> Int {
         var lowest = Int.max, maxProfit = 0
+
+        // Update the lowest buying price as we iterate through prices
+        // We can sell on the same day or any day later, so we can safely
+        // assume that any price minus the lowest buying price is a valid transaction
         for price in prices {
             lowest = min(price, lowest)
             maxProfit = max(maxProfit, price-lowest)
