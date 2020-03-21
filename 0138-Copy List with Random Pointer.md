@@ -12,18 +12,21 @@ The Linked List is represented in the input/output as a list of n nodes. Each no
 
 __Example 1:__
 
+![example1](images/question_138-0.png)
 ```
 Input: head = [[7,null],[13,0],[11,4],[10,2],[1,0]]
 Output: [[7,null],[13,0],[11,4],[10,2],[1,0]]
 ```
 __Example 2:__
 
+![example2](images/question_138-1.png)
 ```
 Input: head = [[1,1],[2,1]]
 Output: [[1,1],[2,1]]
 ```
 __Example 3:__
 
+![example3](images/question_138-2.png)
 ```
 Input: head = [[3,null],[3,0],[3,null]]
 Output: [[3,null],[3,0],[3,null]]
