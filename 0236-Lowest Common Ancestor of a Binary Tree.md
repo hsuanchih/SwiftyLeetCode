@@ -8,6 +8,8 @@ According to the definition of LCA on Wikipedia:</br>
 
 Given the following binary tree:  root = [3,5,1,6,2,0,8,null,null,7,4]
 
+![example](images/question_236.png)
+
 __Example 1:__
 ```
 Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
