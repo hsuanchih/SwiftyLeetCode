@@ -5,11 +5,13 @@ Write a program to find the node at which the intersection of two singly linked 
 
 For example, the following two linked lists:
 
+![example](images/question_160-0.png)
 
 begin to intersect at node c1.
 
 __Example 1:__
 
+![example1](images/question_160-1.png)
 ```
 Input: intersectVal = 8, listA = [4,1,8,4,5], listB = [5,0,1,8,4,5], skipA = 2, skipB = 3
 Output: Reference of the node with value = 8
@@ -17,6 +19,7 @@ Input Explanation: The intersected node's value is 8 (note that this must not be
 ```
 __Example 2:__
 
+![example2](images/question_160-2.png)
 ```
 Input: intersectVal = 2, listA = [0,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
 Output: Reference of the node with value = 2
@@ -24,6 +27,7 @@ Input Explanation: The intersected node's value is 2 (note that this must not be
 ```
 __Example 3:__
 
+![example3](images/question_160-3.png)
 ```
 Input: intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
 Output: null
