@@ -59,3 +59,57 @@ class Solution {
     }
 }
 ```
+__O(n) Iterative - Level-Order Traversal:__
+```Swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.left = nil
+ *         self.right = nil
+ *     }
+ * }
+ */
+
+extension TreeNode : Hashable {
+    public static func == (lhs: TreeNode, rhs: TreeNode) -> Bool {
+        return lhs === rhs
+    }
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(ObjectIdentifier(self))
+    }
+}
+
+class Solution {
+    func lowestCommonAncestor(_ root: TreeNode?, _ p: TreeNode?, _ q: TreeNode?) -> TreeNode? {
+        guard let root = root else { return nil }
+        var stack : [TreeNode] = [root], parent : [TreeNode:TreeNode] = [:]
+        while (parent[p!] == nil || parent[q!] == nil) && !stack.isEmpty {
+            let node = stack.removeLast()
+            if let left = node.left {
+                stack.append(left)
+                parent[left] = node
+            }
+            if let right = node.right {
+                stack.append(right)
+                parent[right] = node
+            }
+        }
+        var parents : Set<TreeNode> = [], p = p
+        while let curr = p {
+            parents.insert(curr)
+            p = parent[curr]
+        }
+        
+        var q = q
+        while let curr = q, !parents.contains(curr) {
+            q = parent[curr]
+        }
+        return q
+    }
+}
+```
