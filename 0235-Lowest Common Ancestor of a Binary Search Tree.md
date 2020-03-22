@@ -9,6 +9,7 @@ According to the definition of LCA on Wikipedia:</br>
 
 Given binary search tree:  root = [6,2,8,0,4,7,9,null,null,3,5]
 
+![example](images/question_235.png)
 
 __Example 1:__
 ```
