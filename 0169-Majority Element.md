@@ -60,3 +60,24 @@ class Solution {
     }
 }
 ```
+__O(n*64) Time, O(1) Space - Bit Voting:__
+```Swift
+class Solution {
+    func majorityElement(_ nums: [Int]) -> Int {
+        var result = 0
+        for shift in 0..<64 {
+            var count = 0
+            for num in nums {
+                if num >> shift & 1 == 1 {
+                    count+=1
+                }
+                if count > nums.count/2 {
+                    result |= 1 << shift
+                    break
+                }
+            }
+        }
+        return result
+    }
+}
+```
