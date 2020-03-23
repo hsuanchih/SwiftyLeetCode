@@ -17,7 +17,7 @@ Output: 2
 ```
 
 ### Solution
-__O(n) Time, O(n) Space:__
+__O(n) Time, O(n) Space - HashMap:__
 ```Swift
 class Solution {
     func majorityElement(_ nums: [Int]) -> Int {
@@ -32,11 +32,31 @@ class Solution {
     }
 }
 ```
-__O(nlogn) Time, O(1) Space:__
+__O(nlogn) Time, O(1) Space - Sorted:__
 ```Swift
 class Solution {
     func majorityElement(_ nums: [Int]) -> Int {
         return nums.sorted()[nums.count/2]
+    }
+}
+```
+__O(n*2) Time, O(1) Space - Randomization:__
+```Swift
+class Solution {
+    func majorityElement(_ nums: [Int]) -> Int {
+        while true {
+            let majority = nums[Int.random(in: 0..<nums.count)]
+            var count = 0
+            for num in nums {
+                if num == majority {
+                    count+=1
+                }
+                if count > nums.count/2 {
+                    return majority
+                }
+            }
+        }
+        fatalError()
     }
 }
 ```
