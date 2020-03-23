@@ -81,3 +81,24 @@ class Solution {
     }
 }
 ```
+__O(n) Time, O(1) Space - Boyer-Moore Voting:__
+```Swift
+class Solution {
+    func majorityElement(_ nums: [Int]) -> Int {
+        guard var majority = nums.first else { fatalError() }
+        var count = 0
+        for num in nums {
+            if num == majority {
+                count+=1
+            } else {
+                count-=1
+            }
+            if count <= 0 {
+                majority = num
+                count = 1
+            }
+        }
+        return majority
+    }
+}
+```
