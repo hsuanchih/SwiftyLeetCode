@@ -1,5 +1,5 @@
 
-### Insert Delete GetRandom O(1)
+### Linked List Random Node
 
 Given a singly linked list, return a random node's value from the linked list.</br> 
 Each node must have the __same probability__ of being chosen.
