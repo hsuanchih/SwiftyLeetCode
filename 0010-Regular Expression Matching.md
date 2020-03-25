@@ -53,7 +53,7 @@ Output: false
 ```
 
 ### Solution
-__O(3^max(s,p)+(s+p)) Time, O(1) Space - Bottom-Up Recursion:__
+__O(3^max(s,p)+(s+p)) Time, O(1) Space - Bottom-Up Recursive:__
 ```Swift
 class Solution {
     func isMatch(_ s: String, _ p: String) -> Bool {
@@ -111,7 +111,7 @@ class Solution {
     }
 }
 ```
-__O(s\*p) Time, O(s\*p) Space - Bottom-Up Recursion, Top-Down Memoization:__
+__O(s\*p) Time, O(s\*p) Space - Bottom-Up Recursive, Top-Down Memoization:__
 ```Swift
 class Solution {
     func isMatch(_ s: String, _ p: String) -> Bool {
@@ -143,7 +143,7 @@ class Solution {
         if let result = memo[i][j] {
             return result
         }
-        
+
         switch p[j] {
             
             // If s[i] matches p[j]: same character or ".", check the following cases:
@@ -169,6 +169,44 @@ class Solution {
             memo[i][j] = (j+1<p.count && p[j+1] == "*") && match(s,p,i,j+2,&memo)
         }
         return memo[i][j]!
+    }
+}
+```
+__O(s\*p) Time, O(s\*p) Space - Bottom-Up Iterative, Bottom-Up Memoization:__
+```Swift
+class Solution {
+    func isMatch(_ s: String, _ p: String) -> Bool {
+        let s = Array(s), p = Array(p)
+        var memo : [[Bool]] = Array(repeating: Array(repeating: false, count: p.count+1), count: s.count+1)
+        for j in 0...p.count {
+            switch j {
+                case 0:
+                memo[0][j] = true
+                case let j where j >= 2 && p[j-1] == "*":
+                memo[0][j] = memo[0][j-2]
+                default:
+                break
+            }
+        }
+        for i in stride(from: 1, through: s.count, by: 1) {
+            for j in stride(from: 1, through: p.count, by: 1) {
+                switch p[j-1] {
+                    case s[i-1], ".":
+                    memo[i][j] = memo[i-1][j-1]
+                    case "*":
+                    if memo[i][j-2] {
+                        memo[i][j] = true
+                        break
+                    }
+                    if s[i-1] == p[j-2] || p[j-2] == "." {
+                        memo[i][j] = memo[i-1][j]
+                    }
+                    default:
+                    break
+                }
+            }
+        }
+        return memo.last?.last ?? false
     }
 }
 ```
