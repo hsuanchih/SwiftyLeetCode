@@ -111,7 +111,7 @@ class Solution {
     }
 }
 ```
-__O(s\*p) Time, O(s\*p) Space - Bottom-Up Recursive, Top-Down Memoization:__
+__O((s\*p)+(s+p)) Time, O(s\*p) Space - Bottom-Up Recursive, Top-Down Memoization:__
 ```Swift
 class Solution {
     func isMatch(_ s: String, _ p: String) -> Bool {
@@ -120,22 +120,13 @@ class Solution {
     }
     
     func match(_ s: [Character], _ p: [Character], _ i: Int, _ j: Int, _ memo: inout [[Bool?]]) -> Bool {
-        // Base case
         switch (i, j) {
-            // If s & p both reach the end, then we have a match
             case (s.count, p.count):
             return true
-            
-            // Process trailing wildcard in p if s reaches the end.
-            // s: ""
-            // p: "c*c*"
             case (s.count, _):
             return (j+1 < p.count && p[j+1] == "*") && match(s,p,i,j+2,&memo) 
-            
-            // If p reaches the end before s, it's definitely not a match
             case (_, p.count...Int.max):
             return false
-            
             default:
             break
         }
@@ -145,26 +136,12 @@ class Solution {
         }
 
         switch p[j] {
-            
-            // If s[i] matches p[j]: same character or ".", check the following cases:
             case s[i], ".":
-            // If the next character in p is a wildcard "*", there are 3 cases to consider:
-            // 1. Wildcard represents 0 occurence of p[j], match(s,p,i,j+2)
-            // 2. Wildcard represents 1 occurence of p[j], match(s,p,i+1,j+2)
-            // 3. Wildcard represents multiple occurences of p[j], match(s,p,i+1,j)
             if (j+1<p.count && p[j+1] == "*") {
                 memo[i][j] = match(s,p,i,j+2,&memo) || match(s,p,i+1,j+2,&memo) || match(s,p,i+1,j,&memo)
                 break
             }
-            // If the next character in p is not a wildcard "*", 
-            // continue to match the next characters
             memo[i][j] = match(s,p,i+1,j+1,&memo)
-            
-            // If the characters do not match:
-            // If the next character in p is a wildcard, 
-            // it can represent 0 occurence of the current character in p, match(s,p,i,j+2)
-            // Otherwise return false
-            // Note: the mismatch will not be a wildcard as they are taken care of separately
             default:
             memo[i][j] = (j+1<p.count && p[j+1] == "*") && match(s,p,i,j+2,&memo)
         }
@@ -172,7 +149,7 @@ class Solution {
     }
 }
 ```
-__O(s\*p) Time, O(s\*p) Space - Bottom-Up Iterative, Bottom-Up Memoization:__
+__O((s\*p)+(s+p)) Time, O(s\*p) Space - Bottom-Up Iterative, Bottom-Up Memoization:__
 ```Swift
 class Solution {
     func isMatch(_ s: String, _ p: String) -> Bool {
