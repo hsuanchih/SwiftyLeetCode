@@ -60,7 +60,6 @@ class Solution {
             
             // The water that can trapped at height[i] is:
             // min(tallest bar to the left of i, tallest bar to the right of i) - height[i]
-            // This computation is O(height)
             let heightOfWater = min(maxHeightSoFar, height[i+1..<height.count].max() ?? 0)
             
             // If we cannot find a pair of bars to the left & right of height[i] that are both taller than
@@ -103,7 +102,6 @@ class Solution {
             
             // The water that can trapped at height[i] is:
             // min(tallest bar to the left of i, tallest bar to the right of i) - height[i]
-            // This computation is O(height)
             let heightOfWater = min(maxHeightSoFar, maxHeightAfterIndex[i])
             
             // If we cannot find a pair of bars to the left & right of height[i] that are both taller than
