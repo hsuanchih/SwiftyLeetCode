@@ -40,7 +40,7 @@ class Solution {
     }
 }
 ```
-__O((height^2)/2) Time, O(1) Space - Brute Force Optimized:__
+__O((height^2)/2) Time, O(1) Space - Prefix Maximum:__
 ```Swift
 class Solution {
     func trap(_ height: [Int]) -> Int {
@@ -70,7 +70,7 @@ class Solution {
     }
 }
 ```
-__O(height*2) Time, O(height) Space:__
+__O(height*2) Time, O(height) Space - Prefix Maximum + Memoized Postfix Maximum:__
 ```Swift
 class Solution {
     func trap(_ height: [Int]) -> Int {
@@ -107,6 +107,38 @@ class Solution {
             // If we cannot find a pair of bars to the left & right of height[i] that are both taller than
             // height[i], then the amount of water height[i] can trap is 0
             result += max(heightOfWater-height[i], 0)
+        }
+        return result
+    }
+}
+```
+__O(height) Time, O(1) Space - Two Pointer:__
+```Swift
+class Solution {
+    func trap(_ height: [Int]) -> Int {
+        guard !height.isEmpty else { return 0 }
+        
+        // Use left & right indices to track the left & right pointers
+        var left = 0, right = height.count-1
+        
+        // Use maxHeightLeft & maxHeightRight to track the max bar heights up to 
+        // indices left & right from both ends
+        var maxHeightLeft = height[left], maxHeightRight = height[right]
+        
+        var result = 0
+        
+        // We're interested the minimum of maxHeightLeft & maxHeightRight,
+        // as the current height[i] only depends on the smaller of the two
+        while left < right {
+            if maxHeightLeft < maxHeightRight {
+                result += maxHeightLeft-height[left]
+                maxHeightLeft = max(maxHeightLeft, height[left+1])
+                left+=1
+            } else {
+                result += maxHeightRight-height[right]
+                maxHeightRight = max(maxHeightRight, height[right-1])
+                right-=1
+            }
         }
         return result
     }
