@@ -5,6 +5,7 @@ Given *n* non-negative integers representing an elevation map where the width of
 compute how much water it is able to trap after raining.
 
 ![example](images/question_42.png)
+
 The above elevation map is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped. __Thanks Marcos__ for contributing this image!
 
 __Example:__
