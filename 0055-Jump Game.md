@@ -22,7 +22,7 @@ Explanation: You will always arrive at index 3 no matter what. Its maximum
 ```
 
 ### Solution
-__O(n^2):__
+__O(2^nums) Time, O(1) Space - Bottom-Up Recursive, Brute-Force:__
 ```Swift
 class Solution {
     func canJump(_ nums: [Int]) -> Bool {
@@ -42,7 +42,7 @@ class Solution {
     }
 }
 ```
-__O(n) Time, O(n) Space:__
+__O(nums^2) Time, O(nums) Space - Bottom-Up Recursive + Memoization:__
 ```Swift
 class Solution {
     func canJump(_ nums: [Int]) -> Bool {
@@ -68,18 +68,56 @@ class Solution {
     }
 }
 ```
-__O(n) Time, O(1) Space:__
+__O(nums^2) Time, O(nums) Space - Bottom-Up Iterative + Memoization:__
 ```Swift
 class Solution {
     func canJump(_ nums: [Int]) -> Bool {
-        let numsCount = nums.count
-        var lastReachable = numsCount-1
-        for i in stride(from: numsCount-2, through: 0, by: -1) {
-            if i + nums[i] >= lastReachable {
-                lastReachable = i
+        var memo : [Bool?] = Array(repeating: nil, count: nums.count)
+        return canJump(nums, from: 0, &memo)
+    }
+    
+    func canJump(_ nums: [Int], from index: Int, _ memo: inout [Bool?]) -> Bool {
+        if index >= nums.count-1 {
+            return true
+        }
+        if let result = memo[index] {
+            return result
+        }
+        for i in stride(from: 1, through: nums[index], by: 1) {
+            if canJump(nums, from: index+i, &memo) {
+                memo[index] = true
+                return true
             }
         }
-        return lastReachable == 0
+        memo[index] = false
+        return false
+    }
+}
+```
+__O(nums) Time, O(1) Space - Bottom-Up Iterative Greedy:__
+```Swift
+class Solution {
+    func canJump(_ nums: [Int]) -> Bool {
+        
+        // Use maxReachableIndex to track the highest index that can be reached
+        var maxReachableIndex = 0
+        
+        // Iterate through nums
+        // keep in mind that if maxReachableIndex is less than i, then i cannot be reached
+        // from previous jumps
+        for i in 0..<nums.count where i <= maxReachableIndex {
+            
+            // If maxReachableIndex exceeds nums.count-1, 
+            // then for sure we can reach the end of nums & early return
+            // In worst case i reaches nums.count-1, and we can reach the end of nums anyway
+            if i == nums.count-1 || maxReachableIndex >= nums.count-1 {
+                return true
+            }
+            
+            // Keep updating maxReachableIndex along the way
+            maxReachableIndex = max(i+nums[i], maxReachableIndex)
+        }
+        return false
     }
 }
 ```
