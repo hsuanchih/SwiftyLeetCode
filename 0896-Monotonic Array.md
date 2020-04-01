@@ -38,32 +38,22 @@ __Note:__
 2. `-100000 <= A[i] <= 100000`
 
 ### Solution
-__O(n):__
+__O(A) Time, O(1) Space:__
 ```Swift
 class Solution {
     func isMonotonic(_ A: [Int]) -> Bool {
-
-        // Check if A is strictly increasing
-        var isIncreasing = true
-        for i in 0..<A.count-1 {
-            if A[i] > A[i+1] {
-                isIncreasing = false
-                break
+        return isIncreasing(A) || isIncreasing(A.reversed())
+    }
+    
+    // Helper method to check if an array is monotone increasing
+    func isIncreasing(_ input: [Int]) -> Bool {
+        guard input.count > 1 else { return true }
+        for i in 0..<input.count-1 {
+            if input[i] > input[i+1] {
+                return false
             }
         }
-        if isIncreasing {
-            return true
-        }
-
-        // Check if A is strictly decreasing
-        isIncreasing = false
-        for i in 0..<A.count-1 {
-            if A[i] < A[i+1] {
-                isIncreasing = true
-                break
-            }
-        }
-        return !isIncreasing
+        return true
     }
 }
 ```
