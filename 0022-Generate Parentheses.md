@@ -25,16 +25,23 @@ class Solution {
     }
     
     func generate(_ open: Int, _ close: Int, _ temp: String, _ result: inout [String]) {
-        switch (open, close) {
-            case (0, 0):
+        
+        // If there are no more close brackets, then we have a possible solution
+        // assuming that open <= close 
+        if close == 0 {
             result.append(temp)
-            case (0...Int.max, 0...Int.max):
-            if close > open {
-                generate(open, close-1, temp+")", &result)
-            }
-            generate(open-1, close, temp+"(", &result)
-            default:
-            break
+            return
+        }
+        
+        // If we haven't exhausted all open brackets, use another open bracket
+        if open > 0 {
+            generate(open-1, close, temp.appending("("), &result)
+        }
+        
+        // We can't have more close brackets than open brackets at any point
+        // Use a close bracket only if there's more of them than opens used 
+        if close > open {
+            generate(open, close-1, temp.appending(")"), &result)
         }
     }
 }
