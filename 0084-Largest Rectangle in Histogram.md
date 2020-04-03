@@ -64,29 +64,48 @@ __O(heights) Time, O(heights) Space - Stack:__
 ```Swift
 class Solution {
     func largestRectangleArea(_ heights: [Int]) -> Int {
-        var stack : [Int] = [], maxArea = 0, i = 0
-        while i < heights.count {
-            guard let last = stack.last, heights[i] < heights[last] else {
-                stack.append(i)
-                i+=1
-                continue
+        
+        // Use stack to store the indices of a monotonic increasing bar height
+        var stack: [Int] = [], result = 0
+        for i in 0..<heights.count {
+            
+            // We want to continue popping from the stack as long as:
+            // 1. The stack is not empty, and
+            // 2. The height of the bar at the end of the stack is taller than the bar at index i
+            // than the last bar on the stack
+            while let last = stack.last, heights[last] > heights[i] {
+                let index = stack.removeLast(), height = heights[index]
+                
+                // There are 2 scenarios of computing the area under the bar at index
+                // 1. There is a bar to the left of index on the stack, ie, stack not empty
+                // width = i-left-1, area = height*width
+                // 2. There are no bars left on the stack, ie, stack is empty
+                // width = i-0, area = height*i
+                if let left = stack.last {
+                    result = max(result, height*(i-left-1))
+                } else {
+                    result = max(result, height*i)
+                }
             }
-            let curr = stack.removeLast()
-            if let top = stack.last {
-                maxArea = max(maxArea, heights[curr]*(i-top-1))
-            } else {
-                maxArea = max(maxArea, heights[curr]*i)
-            }
+            
+            // We are ready to push the bar at the current index onto the stack, now
+            // that there are no bars on the stack that are taller than the bar at i
+            stack.append(i)
         }
+        
+        // Empty the indices from the stack while computing the area for each bar on the stack
         while !stack.isEmpty {
-            let curr = stack.removeLast()
-            if let top = stack.last {
-                maxArea = max(maxArea, heights[curr]*(i-top-1))
+            let index = stack.removeLast(), height = heights[index]
+            
+            // We simulate a hypothetical bar of height 0 at index heights.count
+            // to compute the area of each remaining bar that's still on the stack
+            if let left = stack.last {
+                result = max(result, height*(heights.count-left-1))
             } else {
-                maxArea = max(maxArea, heights[curr]*i)
+                result = max(result, height*(heights.count))
             }
         }
-        return maxArea
+        return result
     }
 }
 ```
