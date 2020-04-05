@@ -22,6 +22,7 @@ return its bottom-up level order traversal as:
 ```
 
 ### Solution
+__O(n) Time, O(n/2) Space - Iterative:__
 ```Swift
 /**
  * Definition for a binary tree node.
@@ -56,6 +57,39 @@ class Solution {
             result.append(temp)
         }
         return result.reversed()
+    }
+}
+```
+__O(n) Time, O(1) Space - Recursive Pre-Order:__
+```Swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.left = nil
+ *         self.right = nil
+ *     }
+ * }
+ */
+class Solution {
+    func levelOrderBottom(_ root: TreeNode?) -> [[Int]] {
+        var result : [[Int]] = []
+        preOrder(root, 0, &result)
+        return result.reversed()
+    }
+    
+    func preOrder(_ node: TreeNode?, _ level: Int, _ result: inout [[Int]]) {
+        guard let node = node else { return }
+        if level == result.count {
+            result.append([])
+        }
+        result[level].append(node.val)
+        preOrder(node.left, level+1, &result)
+        preOrder(node.right, level+1, &result)
     }
 }
 ```
