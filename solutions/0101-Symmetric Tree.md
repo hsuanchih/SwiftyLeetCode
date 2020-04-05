@@ -24,7 +24,7 @@ __Note:__
 Bonus points if you could solve it both recursively and iteratively.
 
 ### Solution
-__Recursive O(n):__
+__O(n) Time, O(1) Space - Recursive:__
 ```Swift
 /**
  * Definition for a binary tree node.
@@ -41,15 +41,15 @@ __Recursive O(n):__
  */
 class Solution {
     func isSymmetric(_ root: TreeNode?) -> Bool {
-        return isSameTree(root?.left, root?.right)
+        return isMirror(root?.left, root?.right)
     }
     
-    func isSameTree(_ lhs: TreeNode?, _ rhs: TreeNode?) -> Bool {
-        switch (lhs, rhs) {
+    func isMirror(_ lhs: TreeNode?, _ rhs: TreeNode?) -> Bool {
+        switch (lhs?.val, rhs?.val) {
             case (.none, .none):
             return true
-            case let (.some(l), .some(r)):
-            return l.val == r.val && isSameTree(l.left, r.right) && isSameTree(l.right, r.left)
+            case let (left, right) where left == right:
+            return isMirror(lhs?.left, rhs?.right) && isMirror(lhs?.right, rhs?.left)
             default:
             return false
         }
