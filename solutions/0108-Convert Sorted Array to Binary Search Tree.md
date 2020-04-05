@@ -39,9 +39,7 @@ class Solution {
     }
     
     func convert(_ nums: [Int], _ start: Int, _ end: Int) -> TreeNode? {
-        if start > end {
-            return nil
-        }
+        guard start <= end else { return nil }
         let mid = start + (end-start)/2, node = TreeNode(nums[mid])
         node.left = convert(nums, start, mid-1)
         node.right = convert(nums, mid+1, end)
