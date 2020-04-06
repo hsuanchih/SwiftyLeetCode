@@ -21,3 +21,4 @@ starting each problem with a brute force approach & optimize along the way.
 [437. Path Sum III](solutions/0437-Path%20Sum%20III.md)</br>
 [501. Find Mode in Binary Search Tree](solutions/0501-Find%20Mode%20in%20Binary%20Search%20Tree.md)</br>
 [530. Minimum Absolute Difference in BST](solutions/0530-Minimum%20Absolute%20Difference%20in%20BST.md)</br>
+[538. Convert BST to Greater Tree](solutions/0538-Convert%20BST%20to%20Greater%20Tree.md)</br>
