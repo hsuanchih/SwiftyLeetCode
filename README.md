@@ -15,3 +15,4 @@ starting each problem with a brute force approach & optimize along the way.
 [111. Minimum Depth of Binary Tree](solutions/0111-Minimum%20Depth%20of%20Binary%20Tree.md)</br>
 [112. Path Sum](solutions/0112-Path%20Sum.md)</br>
 [226. Invert Binary Tree](solutions/0226-Invert%20Binary%20Tree.md)</br>
+[235. Lowest Common Ancestor of a Binary Search Tree](solutions/0235-Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.md)</br>
