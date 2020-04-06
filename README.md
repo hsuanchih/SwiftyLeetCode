@@ -14,3 +14,4 @@ starting each problem with a brute force approach & optimize along the way.
 [110. Balanced Binary Tree](solutions/0110-Balanced%20Binary%20Tree.md)</br>
 [111. Minimum Depth of Binary Tree](solutions/0111-Minimum%20Depth%20of%20Binary%20Tree.md)</br>
 [112. Path Sum](solutions/0112-Path%20Sum.md)</br>
+[226. Invert Binary Tree](solutions/0226-Invert%20Binary%20Tree.md)</br>
