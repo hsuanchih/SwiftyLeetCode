@@ -28,7 +28,7 @@ __Note:__
 * p and q are different and both values will exist in the BST.
 
 ### Solution
-__O(log\[base2\](n)) Recursive:__
+__O(log\[base2\](n)) Time, O(1) Space - Recursive:__
 ```Swift
 /**
  * Definition for a binary tree node.
@@ -43,7 +43,6 @@ __O(log\[base2\](n)) Recursive:__
  *     }
  * }
  */
-
 class Solution {
     func lowestCommonAncestor(_ root: TreeNode?, _ p: TreeNode?, _ q: TreeNode?) -> TreeNode? {
         guard let node = root else { return root }
@@ -58,7 +57,7 @@ class Solution {
     }
 }
 ```
-__O(log\[base2\](n)) Iterative:__
+__O(log\[base2\](n)) Time, O(1) Space - Iterative:__
 ```Swift
 /**
  * Definition for a binary tree node.
@@ -73,7 +72,6 @@ __O(log\[base2\](n)) Iterative:__
  *     }
  * }
  */
-
 class Solution {
     func lowestCommonAncestor(_ root: TreeNode?, _ p: TreeNode?, _ q: TreeNode?) -> TreeNode? {
         var curr = root
