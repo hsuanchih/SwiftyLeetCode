@@ -22,7 +22,7 @@ Output:
 ```
 
 ### Solution
-__O(n):__
+__O(n) Time, O(1) Space - Recursive:__
 ```Swift
 /**
  * Definition for a binary tree node.
@@ -44,6 +44,40 @@ class Solution {
         node.left = right
         node.right = left
         return node
+    }
+}
+```
+__O(n) Time, O(n/2) Space - Iterative:__
+```Swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.left = nil
+ *         self.right = nil
+ *     }
+ * }
+ */
+class Solution {
+    func invertTree(_ root: TreeNode?) -> TreeNode? {
+        guard let root = root else { return nil }
+        var queue = [root]
+        while !queue.isEmpty {
+            let curr = queue.removeLast(), right = curr.right
+            curr.right = curr.left
+            curr.left = right
+            if let left = curr.left {
+                queue.append(left)
+            }
+            if let right = curr.right {
+                queue.append(right)
+            }
+        }
+        return root
     }
 }
 ```
