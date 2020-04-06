@@ -21,7 +21,7 @@ Explanation: All root-to-leaf paths are: 1->2->5, 1->3
 ```
 
 ### Solution
-__Recursive O(n):__
+__O(n) Time - Recursive:__
 ```Swift
 /**
  * Definition for a binary tree node.
@@ -53,6 +53,37 @@ class Solution {
             [node.left, node.right].forEach {
                 traverse($0, curr.appending("->"), &result)
             }
+        }
+    }
+}
+```
+__O(n) Time - Recursive (Alternative Solution):__
+```Swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.left = nil
+ *         self.right = nil
+ *     }
+ * }
+ */
+class Solution {
+    func binaryTreePaths(_ root: TreeNode?) -> [String] {
+        guard let node = root else { return [] }
+        switch (node.left, node.right) {
+            case (.none, .none):
+            return ["\(node.val)"]
+            default:
+            var result = binaryTreePaths(node.left) + binaryTreePaths(node.right)
+            for i in 0..<result.count {
+                result[i] = "\(node.val)->" + result[i]
+            }
+            return result
         }
     }
 }
