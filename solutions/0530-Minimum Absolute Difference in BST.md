@@ -21,7 +21,7 @@ The minimum absolute difference is 1, which is the difference between 2 and 1 (o
 ```
 
 ### Solution
-__O(n+n) Time, O(n) Space:__
+__O(n+n) Time, O(n) Space - In-Order Montonic Array Construction:__
 ```Swift
 /**
  * Definition for a binary tree node.
@@ -52,6 +52,39 @@ class Solution {
         inOrder(node.left, &result)
         result.append(node.val)
         inOrder(node.right, &result)
+    }
+}
+```
+__O(n) Time, O(1) Space - In-Order Traversal + Update:__
+```Swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.left = nil
+ *         self.right = nil
+ *     }
+ * }
+ */
+class Solution {
+    func getMinimumDifference(_ root: TreeNode?) -> Int {
+        var prev : Int?, result = Int.max
+        inOrder(root, &prev, &result)
+        return result
+    }
+    
+    func inOrder(_ node: TreeNode?, _ prev: inout Int?, _ result: inout Int) {
+        guard let node = node else { return }
+        inOrder(node.left, &prev, &result)
+        if let prev = prev {
+            result = min(result, abs(node.val-prev))
+        }
+        prev = node.val
+        inOrder(node.right, &prev, &result)
     }
 }
 ```
