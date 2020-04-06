@@ -17,3 +17,4 @@ starting each problem with a brute force approach & optimize along the way.
 [226. Invert Binary Tree](solutions/0226-Invert%20Binary%20Tree.md)</br>
 [235. Lowest Common Ancestor of a Binary Search Tree](solutions/0235-Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree.md)</br>
 [257. Binary Tree Paths](solutions/0257-Binary%20Tree%20Paths.md)</br>
+[404. Sum of Left Leaves](solutions/0404-Sum%20of%20Left%20Leaves.md)</br>
