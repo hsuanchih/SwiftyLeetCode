@@ -54,3 +54,48 @@ class Solution {
     }
 }
 ```
+__O(n) Time, O(1) Space - In-Order Frequency Calculation + Mode Update:__
+```Swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.left = nil
+ *         self.right = nil
+ *     }
+ * }
+ */
+class Solution {
+    func findMode(_ root: TreeNode?) -> [Int] {
+        var result : [Int] = [], maxFreq = 0, count = 0, prev : Int?
+        inOrder(root, &result, &maxFreq, &count, &prev)
+        return result
+    }
+    
+    func inOrder(_ node: TreeNode?, _ result: inout [Int], _ maxFreq: inout Int, _ count: inout Int, _ prev: inout Int?) {
+        guard let node = node else { return }
+        inOrder(node.left, &result, &maxFreq, &count, &prev)
+        if let prev = prev, prev == node.val { 
+            count += 1 
+        } else {
+            count = 1
+        }
+        prev = node.val
+        switch count {
+            case maxFreq+1:
+            maxFreq = count
+            result.removeAll()
+            fallthrough
+            case maxFreq:
+            result.append(node.val)
+            default:
+            break
+        }
+        inOrder(node.right, &result, &maxFreq, &count, &prev)
+    }
+}
+```
