@@ -20,6 +20,7 @@ Given the below binary tree and `sum = 22`,
 return true, as there exist a root-to-leaf path `5->4->11->2` which sum is 22.
 
 ### Solution
+__O(n) Time, O(1) Space - Recursive:__
 ```Swift
 /**
  * Definition for a binary tree node.
