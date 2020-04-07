@@ -25,7 +25,7 @@ __Note:__
 2. Each node's value will be an integer in the range `[0, 99]`.
 
 ### Solution
-__O(n):__
+__O(n) Time, O(1) Space - Recursive:__
 ```Swift
 /**
  * Definition for a binary tree node.
@@ -52,6 +52,41 @@ class Solution {
             return false
         }
         return univalue(node.left, value) && univalue(node.right, value)
+    }
+}
+```
+__O(n) Time, O(n/2) Space - Iterative:__
+```Swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.left = nil
+ *         self.right = nil
+ *     }
+ * }
+ */
+class Solution {
+    func isUnivalTree(_ root: TreeNode?) -> Bool {
+        guard let root = root else { return false }
+        var queue = [root]
+        while !queue.isEmpty {
+            let curr = queue.removeFirst()
+            if curr.val != root.val {
+                return false
+            }
+            if let left = curr.left {
+                queue.append(left)
+            }
+            if let right = curr.right {
+                queue.append(right)
+            }
+        }
+        return true
     }
 }
 ```
