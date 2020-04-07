@@ -23,7 +23,7 @@ __Note:__
 3. The answer will not exceed `2^31 - 1`.
 
 ### Solution
-__O(n):__
+__O(n) Time, O(1) Space - Recursive:__
 ```Swift
 /**
  * Definition for a binary tree node.
