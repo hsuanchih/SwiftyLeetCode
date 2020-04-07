@@ -42,7 +42,7 @@ Output:
 ```
 
 ### Solution
-__O(n):__
+__O(log\[base 2\](n)) Time - Recursive:__
 ```Swift
 /**
  * Definition for a binary tree node.

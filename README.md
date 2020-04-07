@@ -29,3 +29,4 @@ starting each problem with a brute force approach & optimize along the way.
 [617. Merge Two Binary Trees](solutions/0617-Merge%20Two%20Binary%20Trees.md)</br>
 [637. Average of Levels in Binary Tree](solutions/0637-Average%20of%20Levels%20in%20Binary%20Tree.md)</br>
 [653. Two Sum IV - Input is a BST](solutions/0653-Two%20Sum%20IV%20-%20Input%20is%20a%20BST.md)</br>
+[669. Trim a Binary Search Tree](solutions/0669-Trim%20a%20Binary%20Search%20Tree.md)</br>
