@@ -1,5 +1,4 @@
 ## Tree
----
 
 #### Easy:
 [100. Same Tree](solutions/0100-Same%20Tree.md)</br>
