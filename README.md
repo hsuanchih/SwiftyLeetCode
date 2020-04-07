@@ -23,6 +23,7 @@ starting each problem with a brute force approach & optimize along the way.
 [530. Minimum Absolute Difference in BST](solutions/0530-Minimum%20Absolute%20Difference%20in%20BST.md)</br>
 [538. Convert BST to Greater Tree](solutions/0538-Convert%20BST%20to%20Greater%20Tree.md)</br>
 [543. Diameter of Binary Tree](solutions/0543-Diameter%20of%20Binary%20Tree.md)</br>
+[559. Maximum Depth of N-ary Tree](solutions/0559-Maximum%20Depth%20of%20N-ary%20Tree.md)</br>
 [563. Binary Tree Tilt](solutions/0563-Binary%20Tree%20Tilt.md)</br>
 [572. Subtree of Another Tree](solutions/0572-Subtree%20of%20Another%20Tree.md)</br>
 [606. Construct String from Binary Tree](solutions/0606-Construct%20String%20from%20Binary%20Tree.md)</br>
