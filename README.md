@@ -26,6 +26,7 @@ starting each problem with a brute force approach & optimize along the way.
 [559. Maximum Depth of N-ary Tree](solutions/0559-Maximum%20Depth%20of%20N-ary%20Tree.md)</br>
 [563. Binary Tree Tilt](solutions/0563-Binary%20Tree%20Tilt.md)</br>
 [572. Subtree of Another Tree](solutions/0572-Subtree%20of%20Another%20Tree.md)</br>
+[589. N-ary Tree Preorder Traversal](solutions/0589-N-ary%20Tree%20Preorder%20Traversal.md)</br>
 [606. Construct String from Binary Tree](solutions/0606-Construct%20String%20from%20Binary%20Tree.md)</br>
 [617. Merge Two Binary Trees](solutions/0617-Merge%20Two%20Binary%20Trees.md)</br>
 [637. Average of Levels in Binary Tree](solutions/0637-Average%20of%20Levels%20in%20Binary%20Tree.md)</br>
