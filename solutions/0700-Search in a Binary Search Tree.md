@@ -27,7 +27,7 @@ In the example above, if we want to search the value `5`, since there is no node
 Note that an empty tree is represented by `NULL`, therefore you would see the expected output (serialized tree format) as `[]`, not `null`.
 
 ### Solution
-__O(log(n)~n):__
+__O(log\[base 2\](n)) - Recursive:__
 ```Swift
 class Solution {
     func searchBST(_ root: TreeNode?, _ val: Int) -> TreeNode? {
