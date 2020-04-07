@@ -29,6 +29,7 @@ Merged tree:
 __Note:__ The merging process must start from the root nodes of both trees.
 
 ### Solution
+__O(max(t1,t2)) Time - Recursive:__
 ```Swift
 /**
  * Definition for a binary tree node.
