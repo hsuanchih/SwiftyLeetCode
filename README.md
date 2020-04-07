@@ -33,6 +33,7 @@ starting each problem with a brute force approach & optimize along the way.
 [653. Two Sum IV - Input is a BST](solutions/0653-Two%20Sum%20IV%20-%20Input%20is%20a%20BST.md)</br>
 [669. Trim a Binary Search Tree](solutions/0669-Trim%20a%20Binary%20Search%20Tree.md)</br>
 [671. Second Minimum Node In a Binary Tree](solutions/0671-Second%20Minimum%20Node%20In%20a%20Binary%20Tree.md)</br>
+[687. Longest Univalue Path](solutions/0687-Longest%20Univalue%20Path.md)</br>
 [700. Search in a Binary Search Tree](solutions/0700-Search%20in%20a%20Binary%20Search%20Tree.md)</br>
 [783. Minimum Distance Between BST Nodes](solutions/0783-Minimum%20Distance%20Between%20BST%20Nodes.md)</br>
 [872. Leaf-Similar Trees](solutions/0872-Leaf-Similar%20Trees.md)</br>
