@@ -15,7 +15,7 @@ __Note:__
 * Both of the given trees will have between `1` and `100` nodes.
 
 ### Solution
-__O(n1+n2):__
+__O(Tree1+Tree2) Time, O((Tree1+Tree2)/2) Space - Recursive:__
 ```Swift
 /**
  * Definition for a binary tree node.
