@@ -25,3 +25,4 @@ starting each problem with a brute force approach & optimize along the way.
 [543. Diameter of Binary Tree](solutions/0543-Diameter%20of%20Binary%20Tree.md)</br>
 [563. Binary Tree Tilt](solutions/0563-Binary%20Tree%20Tilt.md)</br>
 [572. Subtree of Another Tree](solutions/0572-Subtree%20of%20Another%20Tree.md)</br>
+[606. Construct String from Binary Tree](solutions/0606-Construct%20String%20from%20Binary%20Tree.md)</br>
