@@ -21,7 +21,7 @@ __Note:__
 2. The final answer is guaranteed to be less than `2^31`.
 
 ### Solution
-__O(n):__
+__O(log\[base 2\](n)) Time - Recursive:__
 ```Swift
 /**
  * Definition for a binary tree node.
