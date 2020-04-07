@@ -42,7 +42,41 @@ __Note:__
 2. Each node will have a unique integer value from 0 to 1000.
 
 ### Solution
-__O(n):__
+__O(n+n) Time, O(n) Space - Recursive In-Order + Construct Monotonic Array:__
+```Swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.left = nil
+ *         self.right = nil
+ *     }
+ * }
+ */
+class Solution {
+    func increasingBST(_ root: TreeNode?) -> TreeNode? {
+        var result : [TreeNode] = []
+        inOrder(root, &result)
+        for i in 0..<result.count {
+            result[i].left = nil
+            result[i].right = i == result.count-1 ? nil : result[i+1]
+        }
+        return result.first
+    }
+    
+    func inOrder(_ node: TreeNode?, _ result: inout [TreeNode]) {
+        guard let node = node else { return }
+        inOrder(node.left, &result)
+        result.append(node)
+        inOrder(node.right, &result)
+    }
+}
+```
+__O(n) Time, O(1) Space - Recursive In-Order + In-Place Re-link:__
 ```Swift
 /**
  * Definition for a binary tree node.
@@ -62,7 +96,8 @@ class Solution {
     // Start with an empty tree that has only right subtree (result)
     // Traverse the BST in-order, adding each node to the result tree
     func increasingBST(_ root: TreeNode?) -> TreeNode? {
-        var result = TreeNode(0), curr = result
+        let result = TreeNode(0)
+        var curr = result
         inOrder(root, &curr)
         return result.right
     }
