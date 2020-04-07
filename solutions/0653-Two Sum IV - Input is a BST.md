@@ -32,7 +32,7 @@ Output: False
 ```
 
 ### Solution
-__O(n+log(n)) Time, O(n) Space:__
+__O(n+log(n)) Time, O(n) Space - In-Order + Binary Search:__
 ```Swift
 /**
  * Definition for a binary tree node.
@@ -73,7 +73,7 @@ class Solution {
     }
 }
 ```
-__O(n) Time, O(n) Space:__
+__O(n) Time, O(n) Space - Pre-Order + HashSet:__
 ```Swift
 /**
  * Definition for a binary tree node.

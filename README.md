@@ -28,3 +28,4 @@ starting each problem with a brute force approach & optimize along the way.
 [606. Construct String from Binary Tree](solutions/0606-Construct%20String%20from%20Binary%20Tree.md)</br>
 [617. Merge Two Binary Trees](solutions/0617-Merge%20Two%20Binary%20Trees.md)</br>
 [637. Average of Levels in Binary Tree](solutions/0637-Average%20of%20Levels%20in%20Binary%20Tree.md)</br>
+[653. Two Sum IV - Input is a BST](solutions/0653-Two%20Sum%20IV%20-%20Input%20is%20a%20BST.md)</br>
