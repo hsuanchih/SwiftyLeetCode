@@ -20,6 +20,7 @@ __Note:__
 1. The range of node's value is in the range of 32-bit signed integer.
 
 ### Solution
+__O(n) Time, O(1) Space - Iterative:__
 ```Swift
 /**
  * Definition for a binary tree node.
@@ -54,6 +55,41 @@ class Solution {
             result.append(Double(sum)/Double(size))
         }
         return result
+    }
+}
+```
+__O(n) Time, O(n) Space - Pre-Order Recursive:__
+```Swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.left = nil
+ *         self.right = nil
+ *     }
+ * }
+ */
+class Solution {
+    func averageOfLevels(_ root: TreeNode?) -> [Double] {
+        var result : [[Int]] = []
+        preOrder(root, 0, &result)
+        return result.map { level in
+            Double(level.reduce(0) { $0+$1 })/Double(level.count)
+        }
+    }
+    
+    func preOrder(_ node: TreeNode?, _ level: Int, _ result: inout [[Int]]) {
+        guard let node = node else { return }
+        if level == result.count {
+            result.append([Int]())
+        }
+        result[level].append(node.val)
+        preOrder(node.left, level+1, &result)
+        preOrder(node.right, level+1, &result)
     }
 }
 ```

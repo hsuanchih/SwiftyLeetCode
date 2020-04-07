@@ -27,3 +27,4 @@ starting each problem with a brute force approach & optimize along the way.
 [572. Subtree of Another Tree](solutions/0572-Subtree%20of%20Another%20Tree.md)</br>
 [606. Construct String from Binary Tree](solutions/0606-Construct%20String%20from%20Binary%20Tree.md)</br>
 [617. Merge Two Binary Trees](solutions/0617-Merge%20Two%20Binary%20Trees.md)</br>
+[637. Average of Levels in Binary Tree](solutions/0637-Average%20of%20Levels%20in%20Binary%20Tree.md)</br>
