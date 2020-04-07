@@ -33,3 +33,4 @@ starting each problem with a brute force approach & optimize along the way.
 [669. Trim a Binary Search Tree](solutions/0669-Trim%20a%20Binary%20Search%20Tree.md)</br>
 [671. Second Minimum Node In a Binary Tree](solutions/0671-Second%20Minimum%20Node%20In%20a%20Binary%20Tree.md)</br>
 [700. Search in a Binary Search Tree](solutions/0700-Search%20in%20a%20Binary%20Search%20Tree.md)</br>
+[783. Minimum Distance Between BST Nodes](solutions/0783-Minimum%20Distance%20Between%20BST%20Nodes.md)</br>

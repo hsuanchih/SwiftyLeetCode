@@ -27,7 +27,7 @@ __Note:__
 2. The BST is always valid, each node's value is an integer, and each node's value is different.
 
 ### Solution
-__O(n):__
+__O(n+n) Time, O(n) Space - In-Order Montonic Array Construction:__
 ```Swift
 /**
  * Definition for a binary tree node.
@@ -43,14 +43,14 @@ __O(n):__
  * }
  */
 class Solution {
-    func minDiffInBST(_ root: TreeNode?) -> Int {
-        var result : [Int] = []
-        inOrder(root, &result)
-        var minDiff = Int.max
-        for i in stride(from: 0, to: result.count-1, by: 1) {
-            minDiff = min(minDiff, abs(result[i]-result[i+1]))
+    func getMinimumDifference(_ root: TreeNode?) -> Int {
+        var input : [Int] = []
+        inOrder(root, &input)
+        var result = Int.max
+        for i in stride(from: 0, to: input.count-1, by: 1) {
+            result = min(result, abs(input[i]-input[i+1]))
         }
-        return minDiff
+        return result
     }
     
     func inOrder(_ node: TreeNode?, _ result: inout [Int]) {
@@ -58,6 +58,39 @@ class Solution {
         inOrder(node.left, &result)
         result.append(node.val)
         inOrder(node.right, &result)
+    }
+}
+```
+__O(n) Time, O(1) Space - In-Order Traversal + Update:__
+```Swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.left = nil
+ *         self.right = nil
+ *     }
+ * }
+ */
+class Solution {
+    func getMinimumDifference(_ root: TreeNode?) -> Int {
+        var prev : Int?, result = Int.max
+        inOrder(root, &prev, &result)
+        return result
+    }
+    
+    func inOrder(_ node: TreeNode?, _ prev: inout Int?, _ result: inout Int) {
+        guard let node = node else { return }
+        inOrder(node.left, &prev, &result)
+        if let prev = prev {
+            result = min(result, abs(node.val-prev))
+        }
+        prev = node.val
+        inOrder(node.right, &prev, &result)
     }
 }
 ```
