@@ -39,7 +39,7 @@ except we can't omit the first parenthesis pair to break the one-to-one mapping 
 ```
 
 ### Solution
-__O(n):__
+__O(n) Time - Recursive:__
 ```Swift
 /**
  * Definition for a binary tree node.
