@@ -18,7 +18,7 @@ Output:
 ```
 
 ### Solution
-__O(n!*n):__
+__O(nums!*nums) Time - Exhaustive Search:__
 ```Swift
 class Solution {
     func permute(_ nums: [Int]) -> [[Int]] {
@@ -42,7 +42,7 @@ class Solution {
     }
 }
 ```
-__O(n!):__
+__O(nums!) Time - Exhaustive Search + HashSet:__
 ```Swift
 class Solution {
     func permute(_ nums: [Int]) -> [[Int]] {

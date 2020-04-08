@@ -6,6 +6,7 @@
 [22. Generate Parentheses](solutions/0022-Generate%20Parentheses.md)</br>
 [39. Combination Sum](solutions/0039-Combination%20Sum.md)</br>
 [40. Combination Sum II](solutions/0040-Combination%20Sum%20II.md)</br>
+[46. Permutations](solutions/0046-Permutations.md)</br>
 
 ### Hard
 ---
