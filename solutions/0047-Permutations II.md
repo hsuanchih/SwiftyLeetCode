@@ -15,7 +15,7 @@ Output:
 ```
 
 ### Solution
-__O(n!*n):__
+__O(nums!) Time - Result is a HashSet:__
 ```Swift
 class Solution {
     func permuteUnique(_ nums: [Int]) -> [[Int]] {
@@ -29,7 +29,7 @@ class Solution {
             result.insert(temp)
             return
         }
-        for index in stride(from: 0, to: nums.count, by: 1) {
+        for index in 0..<nums.count {
             if !used.contains(index) {
                 used.insert(index)
                 temp.append(nums[index])
@@ -41,7 +41,7 @@ class Solution {
     }
 }
 ```
-__O(nlogn+n!):__
+__O(nums*log\[\base 2]nums+nums!) Time - Sort Input:__
 ```Swift
 class Solution {
     func permuteUnique(_ nums: [Int]) -> [[Int]] {
