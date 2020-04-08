@@ -55,7 +55,7 @@ class Solution {
             result.insert(temp.sorted())
             return
         }
-        for i in stride(from: index, to: candidates.count, by: 1) {
+        for i in index..<candidates.count {
             let num = candidates[i]
             if num <= target {
                 temp.append(num)
