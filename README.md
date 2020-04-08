@@ -6,5 +6,5 @@ starting each problem with a brute force approach & optimize along the way.
 ---
 ## Solutions
 
-* [Backtracking](Backtracking.md)
+* [Combination/Permutation](Combination-Permutation.md)
 * [Tree](Tree.md)
