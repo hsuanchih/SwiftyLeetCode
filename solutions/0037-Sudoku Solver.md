@@ -28,37 +28,56 @@ class Solution {
         solve(&board, 0, 0)
     }
     
+    // Helper method to solve each cell of the sudoku
     func solve(_ board: inout [[Character]], _ row: Int, _ col: Int) -> Bool {
         switch (row, col) {
 
-            // Reached the end of the board
+            // If we've reached the end of the board,
+            // there is a solution to the sudoku
             case (board.count, _):
             return true
 
-            // Reached the end of the current row, solve the next row
+            // If we've reached the end of the current row, 
+            // continue to solve the next row
             case (_, board.count):
             return solve(&board, row+1, 0)
 
-            // Validate numbers 1...9 if element is '.', otherwise move on to the next column
+            // If the current cell is already filled, continue to the next column
+            // Otherwise, validate numbers 1...9 to see if it fits the cell
             default:
             if board[row][col] == "." {
+
+                // Check each of numbers from 1...9
                 for i in 1...board.count {
                     let num = Character(String(i))
+
+                    // If the number is valid, use this number as a tentative solution
+                    // to solve the rest of the board
                     if isValid(board, row, col, num) {
                         board[row][col] = num
+
+                        // If we can solve the rest of the board with this number
+                        // then we've got a solution
                         if solve(&board, row, col+1) {
                             return true
                         }
-                        board[row][col] = "."
                     }
                 }
+
+                // Otherwise reset the cell to ".", as we might need to backtrack
+                // to a previous cell to solve the board
+                board[row][col] = "."
             } else {
+
+                // The current cell has already been filled,
+                // continue to the next column
                 return solve(&board, row, col+1)
             }
             return false
         }
     }
     
+    // Helper method to validate whether a number fits a given cell
     func isValid(_ board: [[Character]], _ row: Int, _ col: Int, _ num: Character) -> Bool {
 
         // Check if there are duplicates in each row & col
