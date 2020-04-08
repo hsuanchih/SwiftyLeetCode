@@ -7,4 +7,5 @@ starting each problem with a brute force approach & optimize along the way.
 ## Solutions
 
 * [Combination/Permutation](Combination-Permutation.md)
+* [Depth-First-Search](Depth-First-Search.md)
 * [Tree](Tree.md)
