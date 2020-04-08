@@ -22,7 +22,7 @@ Output:
 ```
 
 ### Solution
-__Recursive:__
+__O(nums*2^nums) Time, Recursive:__
 ```Swift
 class Solution {
     func subsets(_ nums: [Int]) -> [[Int]] {

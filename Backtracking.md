@@ -9,6 +9,7 @@
 [46. Permutations](solutions/0046-Permutations.md)</br>
 [47. Permutations II](solutions/0047-Permutations%20II.md)</br>
 [77. Combinations](solutions/0077-Combinations.md)</br>
+[78. Subsets](solutions/0078-Subsets.md)</br>
 
 ### Hard
 ---
