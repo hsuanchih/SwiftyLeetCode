@@ -32,7 +32,7 @@ A solution set is:
 ```
 
 ### Solution
-__O(2^n):__
+__O(2^candidates):__
 ```Swift
 class Solution {
     func combinationSum(_ candidates: [Int], _ target: Int) -> [[Int]] {
