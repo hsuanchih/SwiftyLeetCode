@@ -13,7 +13,7 @@ Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
 ```
 
 ### Solution
-__O(3^m*4^n):__
+__O(3^(key with 3 letters)*4^(key with 4 letters)):__
 ```Swift
 class Solution {
     
@@ -30,6 +30,8 @@ class Solution {
     ]
     
     func letterCombinations(_ digits: String) -> [String] {
+        guard !digits.isEmpty else { return [] }
+
         var temp : String = "", result : [String] = []
         generate(Array(digits), 0, &temp, &result)
         return result
@@ -40,11 +42,7 @@ class Solution {
         // If index reaches digit count, we know we've reached a possible solution,
         // add the solution to result
         if index == digits.count {
-
-            // if input is empty String, result is an empty set
-            if !digits.isEmpty {
-                result.append(temp)
-            }
+            result.append(temp)
             return
         }
 
@@ -52,8 +50,8 @@ class Solution {
         let letters = Array(lettersForKey[digits[index]]!)
 
         // Exhaust all combinations of letters for a particular key
-        for i in stride(from: 0, to: letters.count, by: 1) {
-            temp.append(letters[i])
+        for letter in letters {
+            temp.append(letter)
             generate(digits, index+1, &temp, &result)
             temp.removeLast()
         }
