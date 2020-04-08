@@ -18,7 +18,7 @@ Output:
 ```
 
 ### Solution
-__O(C(4,2)):__
+__O(C(n,k)):__
 ```Swift
 class Solution {
     func combine(_ n: Int, _ k: Int) -> [[Int]] {

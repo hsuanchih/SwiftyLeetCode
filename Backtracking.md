@@ -8,6 +8,7 @@
 [40. Combination Sum II](solutions/0040-Combination%20Sum%20II.md)</br>
 [46. Permutations](solutions/0046-Permutations.md)</br>
 [47. Permutations II](solutions/0047-Permutations%20II.md)</br>
+[77. Combinations](solutions/0077-Combinations.md)</br>
 
 ### Hard
 ---
