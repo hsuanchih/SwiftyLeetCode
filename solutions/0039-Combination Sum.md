@@ -36,22 +36,33 @@ __O(2^n):__
 ```Swift
 class Solution {
     func combinationSum(_ candidates: [Int], _ target: Int) -> [[Int]] {
-        var temp : [Int] = [], result : [[Int]] = []
-        findSum(candidates, 0, target, &temp, &result)
+        var result : [[Int]] = []
+        findSum(candidates, 0, target, [], &result)
         return result
     }
     
-    func findSum(_ candidates: [Int], _ index: Int, _ target: Int, _ temp: inout [Int], _ result: inout [[Int]]) {
+    func findSum(_ candidates: [Int], _ index: Int, _ target: Int, _ temp: [Int], _ result: inout [[Int]]) {
+        
+        // Base case: we have a solution
+        // add the current combination to result
         if target == 0 {
             result.append(temp)
             return
         }
-        for i in stride(from: index, to: candidates.count, by: 1) {
+
+        // For each number in candidates starting at index
+        // exhaustively search of a solution
+        var curr = temp
+        for i in index..<candidates.count {
             let num = candidates[i]
+
+            // Pruning the search space:
+            // We only want to continue the search if the current number is less than or equal
+            // to the remaining sum
             if target >= num {
-                temp.append(num)
-                findSum(candidates, i, target-num, &temp, &result)
-                temp.removeLast()
+                curr.append(num)
+                findSum(candidates, i, target-num, curr, &result)
+                curr.removeLast()
             }
         }
     }
