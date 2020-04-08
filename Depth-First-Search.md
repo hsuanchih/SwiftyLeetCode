@@ -3,6 +3,7 @@
 ### Medium
 ---
 [22. Generate Parentheses](solutions/0022-Generate%20Parentheses.md)</br>
+[79. Word Search](solutions/0079-Word%20Search.md)</br>
 
 ### Hard
 ---
