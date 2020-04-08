@@ -51,7 +51,7 @@ class Solution {
     func isValid(_ placement: [Int], _ row: Int, _ col: Int) -> Bool {
         for r in stride(from: row-1, through: 0, by: -1) {
             switch placement[r] {
-                case col, col-(row-r), col+row-r:
+                case col, col-(row-r), col+(row-r):
                 return false
                 default:
                 break
