@@ -37,17 +37,10 @@ class Solution {
         return result
     }
     
+    // Helper method to solve for queen placement in each row
     func solve(_ placement: inout [Int], _ row: Int, _ result: inout [[String]]) {
         if row == placement.count {
-            result.append(
-                placement.map {
-                    var temp : String = ""
-                    for col in 0..<placement.count {
-                        temp.append(col == $0 ? "Q":".")
-                    }
-                    return temp
-                }
-            )
+            result.append(constructResult(placement))
             return
         }
         for col in 0..<placement.count {
@@ -58,16 +51,34 @@ class Solution {
         }
     }
     
+    // Helper method to validate placement of a queue
     func isValid(_ placement: [Int], _ row: Int, _ col: Int) -> Bool {
         for r in stride(from: row-1, through: 0, by: -1) {
             switch placement[r] {
-                case col, col-(row-r), col+row-r:
+                case col, col-(row-r), col+(row-r):
                 return false
                 default:
                 break
             }
         }
         return true
+    }
+    
+    // Helper method to construct the board given placement
+    func constructResult(_ placement: [Int]) -> [String] {
+        var result : [String] = []
+        for row in 0..<placement.count {
+            var temp = ""
+            for col in 0..<placement.count {
+                if col == placement[row] {
+                    temp.append("Q")
+                } else {
+                    temp.append(".")
+                }
+            }
+            result.append(temp)
+        }
+        return result
     }
 }
 ```

@@ -12,3 +12,4 @@
 ### Hard
 ---
 [37. Sudoku Solver](solutions/0037-Sudoku%20Solver.md)</br>
+[51. N-Queens](solutions/0051-N-Queens.md)</br>
