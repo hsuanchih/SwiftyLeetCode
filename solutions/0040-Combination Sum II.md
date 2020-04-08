@@ -31,7 +31,17 @@ A solution set is:
 ```
 
 ### Solution
-__O(2^n) Unsorted Input:__
+```
+Condition to watch out for is duplicated results.
+
+For example:
+[1,2,7,6,1,5], target = 8 will yield results: 
+[1,2,5] = [2,1,5]
+[1,7] = [7,1]
+[1,1,6]
+[2,6]
+```
+__O(2^candidates) Time - Unsorted Input + Sorted Output + HashSet:__
 ```Swift
 class Solution {
     func combinationSum2(_ candidates: [Int], _ target: Int) -> [[Int]] {
@@ -56,7 +66,7 @@ class Solution {
     }
 }
 ```
-__O(2^n) Sorted Input:__
+__O(2^candidates) Time - Sorted Input + Skip Repeating Consecutive Input:__
 ```Swift
 class Solution {
     func combinationSum2(_ candidates: [Int], _ target: Int) -> [[Int]] {

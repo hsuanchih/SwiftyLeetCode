@@ -5,6 +5,7 @@
 [17. Letter Combinations of a Phone Number](solutions/0017-Letter%20Combinations%20of%20a%20Phone%20Number.md)</br>
 [22. Generate Parentheses](solutions/0022-Generate%20Parentheses.md)</br>
 [39. Combination Sum](solutions/0039-Combination%20Sum.md)</br>
+[40. Combination Sum II](solutions/0040-Combination%20Sum%20II.md)</br>
 
 ### Hard
 ---
