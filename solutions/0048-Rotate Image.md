@@ -46,7 +46,7 @@ rotate the input matrix in-place such that it becomes:
 ```
 
 ### Solution
-__O(n^2):__
+__O(matrix) Time, O(1) Space:__
 ```Swift
 class Solution {
     func rotate(_ matrix: inout [[Int]]) {
