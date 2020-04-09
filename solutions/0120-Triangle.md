@@ -26,7 +26,7 @@ __Follow up:__
 Could you optimize your algorithm to use only O(k) extra space?
 
 ### Solution
-__O(Input) Time, O(Input) Space:__
+__O(triangle) Time, O(triangle) Space:__
 ```Swift
 class Solution {
     func minimumTotal(_ triangle: [[Int]]) -> Int {
@@ -47,7 +47,7 @@ class Solution {
     }
 }
 ```
-__O(Input) Time, O(n) Space:__
+__O(triangle) Time, O(rows) Space:__
 ```Swift
 class Solution {
     func minimumTotal(_ triangle: [[Int]]) -> Int {
