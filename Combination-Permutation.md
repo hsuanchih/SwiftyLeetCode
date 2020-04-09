@@ -1,5 +1,9 @@
 # Combination/Permutation
 
+### Easy
+---
+[784. Letter Case Permutation](solutions/0784-Letter%20Case%20Permutation.md)</br>
+
 ### Medium
 ---
 [17. Letter Combinations of a Phone Number](solutions/0017-Letter%20Combinations%20of%20a%20Phone%20Number.md)</br>
