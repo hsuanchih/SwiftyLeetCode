@@ -31,7 +31,7 @@ A robot is located at the top-left corner of a *m* x *n* grid (marked 'Start' in
 ```
 
 ### Solution
-__O(2^(m*n)):__
+__O(2^(m*n)) Time - Brute-Force:__
 ```Swift
 class Solution {
     func uniquePathsWithObstacles(_ obstacleGrid: [[Int]]) -> Int {
@@ -55,7 +55,7 @@ class Solution {
     }
 }
 ```
-__O(m*n):__
+__O(m*n) Time - Memoization:__
 ```Swift
 class Solution {
     func uniquePathsWithObstacles(_ obstacleGrid: [[Int]]) -> Int {
