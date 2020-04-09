@@ -8,4 +8,6 @@ starting each problem with a brute force approach & optimize along the way.
 
 * [Combination/Permutation](Combination-Permutation.md)
 * [Depth-First-Search](Depth-First-Search.md)
+* [Design](Design.md)
 * [Tree](Tree.md)
+* [Trie](Trie.md)
