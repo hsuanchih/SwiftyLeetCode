@@ -10,5 +10,6 @@ starting each problem with a brute force approach & optimize along the way.
 * [Depth-First-Search](Depth-First-Search.md)
 * [Dynamic Programming](Dynamic-Programming.md)
 * [Design](Design.md)
+* [Math](Math.md)
 * [Tree](Tree.md)
 * [Trie](Trie.md)
