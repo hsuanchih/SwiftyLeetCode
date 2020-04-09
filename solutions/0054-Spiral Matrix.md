@@ -25,7 +25,7 @@ Output: [1,2,3,4,8,12,11,10,9,5,6,7]
 ```
 
 ### Solution
-__O(n*m):__
+__O(matrix):__
 ```Swift
 class Solution {
     func spiralOrder(_ matrix: [[Int]]) -> [Int] {

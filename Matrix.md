@@ -8,4 +8,5 @@
 ### Medium
 ---
 [48. Rotate Image](solutions/0048-Rotate%20Image.md)</br>
+[54. Spiral Matrix](solutions/0054-Spiral%20Matrix.md)</br>
 [59. Spiral Matrix II](solutions/0059-Spiral%20Matrix%20II.md)</br>
