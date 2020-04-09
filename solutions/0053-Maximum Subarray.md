@@ -14,7 +14,7 @@ __Follow up:__
 If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
 
 ### Solution
-__O(n^3):__
+__O(nums^3) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func maxSubArray(_ nums: [Int]) -> Int {
@@ -32,7 +32,7 @@ class Solution {
     }
 }
 ```
-__O(n^2):__
+__O(nums^2) Time, O(1) Space - Improved Brute-Force:__
 ```Swift
 class Solution {
     func maxSubArray(_ nums: [Int]) -> Int {
@@ -48,7 +48,7 @@ class Solution {
     }
 }
 ```
-__O(n) Time, O(n) Space:__
+__O(nums) Time, O(nums) Space - Memoization:__
 ```Swift
 class Solution {
     func maxSubArray(_ nums: [Int]) -> Int {
@@ -61,7 +61,7 @@ class Solution {
     }
 }
 ```
-__O(n) Time, O(1) Space:__
+__O(nums) Time, O(1) Space - Improved Memoization:__
 ```Swift
 class Solution {
     func maxSubArray(_ nums: [Int]) -> Int {
