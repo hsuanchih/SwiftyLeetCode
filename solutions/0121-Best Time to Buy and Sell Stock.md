@@ -22,7 +22,7 @@ Explanation: In this case, no transaction is done, i.e. max profit = 0.
 ```
 
 ### Solution
-__O(prices^2):__
+__O(prices^2) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func maxProfit(_ prices: [Int]) -> Int {
@@ -38,7 +38,7 @@ class Solution {
     }
 }
 ```
-__O(n):__
+__O(prices) Time, O(1) Space - Memoization:__
 ```Swift
 class Solution {
     func maxProfit(_ prices: [Int]) -> Int {
