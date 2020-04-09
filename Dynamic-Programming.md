@@ -15,3 +15,4 @@
 
 ### Hard
 ---
+[10. Regular Expression Matching](solutions/0010-Regular%20Expression%20Matching.md)</br>
