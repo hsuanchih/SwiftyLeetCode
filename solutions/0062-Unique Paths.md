@@ -28,7 +28,7 @@ Output: 28
 ```
 
 ### Solution
-__O(2^(m*n)):__
+__O(2^(m*n)) Time, Brute-Force:__
 ```Swift
 class Solution {
     func uniquePaths(_ m: Int, _ n: Int) -> Int {
@@ -49,7 +49,7 @@ class Solution {
     }
 }
 ```
-__O(m*n):__
+__O(m*n) Time, Memoization:__
 ```Swift
 class Solution {
     func uniquePaths(_ m: Int, _ n: Int) -> Int {
