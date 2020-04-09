@@ -71,7 +71,7 @@ class Solution {
     }
 }
 ```
-__O(word1\*word2) Time, O(word1\*word2) Space - Bottom-Up Recursive:__
+__O(word1\*word2) Time, O(word1\*word2) Space - Bottom-Up Recursive, Top-Down Memoization:__
 ```Swift
 class Solution {
     func minDistance(_ word1: String, _ word2: String) -> Int {
@@ -104,7 +104,7 @@ class Solution {
     }
 }
 ```
-__O(word1\*word2) Time, O(word1\*word2) Space - Bottom-Up Iterative:__
+__O(word1\*word2) Time, O(word1\*word2) Space - Bottom-Up Iterative, Bottom-Up Memoization:__
 ```Swift
 class Solution {
     func minDistance(_ word1: String, _ word2: String) -> Int {
