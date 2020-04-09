@@ -28,7 +28,7 @@ class Solution {
     }
     
     func solve(_ k: Int, _ n: Int, _ index: Int, _ temp: inout [Int], _ result: inout [[Int]]) {
-        if k == 0 {
+        guard k > 0 else {
             if n == 0 {
                 result.append(temp)
             }

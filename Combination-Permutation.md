@@ -9,4 +9,5 @@
 [47. Permutations II](solutions/0047-Permutations%20II.md)</br>
 [77. Combinations](solutions/0077-Combinations.md)</br>
 [78. Subsets](solutions/0078-Subsets.md)</br>
-[90. Subsets II](solutions/0090-Subsets%20II)</br>
+[90. Subsets II](solutions/0090-Subsets%20II.md)</br>
+[216. Combination Sum III](solutions/0216-Combination%20Sum%20III.md)</br>
