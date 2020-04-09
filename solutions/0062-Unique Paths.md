@@ -28,7 +28,7 @@ Output: 28
 ```
 
 ### Solution
-__O(2^(m*n)) Time, Brute-Force:__
+__O(2^(m*n)) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func uniquePaths(_ m: Int, _ n: Int) -> Int {
@@ -49,7 +49,7 @@ class Solution {
     }
 }
 ```
-__O(m*n) Time, Memoization:__
+__O(m\*n) Time, O(m\*n) - Memoization:__
 ```Swift
 class Solution {
     func uniquePaths(_ m: Int, _ n: Int) -> Int {
