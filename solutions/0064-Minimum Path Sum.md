@@ -18,7 +18,7 @@ Explanation: Because the path 1→3→1→1→1 minimizes the sum.
 ```
 
 ### Solution
-__O(2^(m*n)):__
+__O(2^(m*n)) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func minPathSum(_ grid: [[Int]]) -> Int {
@@ -39,7 +39,7 @@ class Solution {
     }
 }
 ```
-__O(m*n):__
+__O(m\*n) Time, O(1) Space - Memoization:__
 ```Swift
 class Solution {
     func minPathSum(_ grid: [[Int]]) -> Int {
