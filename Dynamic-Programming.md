@@ -3,6 +3,7 @@
 ### Easy
 ---
 [121. Best Time to Buy and Sell Stock](solutions/0121-Best%20Time%20to%20Buy%20and%20Sell%20Stock.md)</br>
+[198. House Robber](solutions/0198-House%20Robber.md)</br>
 
 ### Medium
 ---

@@ -21,7 +21,7 @@ Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (m
 ```
 
 ### Solution
-__O(2^n):__
+__O(2^nums) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func rob(_ nums: [Int]) -> Int {
@@ -36,7 +36,7 @@ class Solution {
     }
 }
 ```
-__Recursive O(n):__
+__O(nums) Time, O(nums) Space - Bottom-Up Recursive, Top-Down Memoization:__
 ```Swift
 class Solution {
     func rob(_ nums: [Int]) -> Int {
@@ -56,7 +56,7 @@ class Solution {
     }
 }
 ```
-__Iterative O(n):__
+__O(nums) Time, O(nums) Space - Bottom-Up Iterative, Bottom-Up Memoization:__
 ```Swift
 class Solution {
     func rob(_ nums: [Int]) -> Int {
