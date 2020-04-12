@@ -38,3 +38,7 @@
 [965. Univalued Binary Tree](solutions/0965-Univalued%20Binary%20Tree.md)</br>
 [993. Cousins in Binary Tree](solutions/0993-Cousins%20in%20Binary%20Tree.md)</br>
 [1022. Sum of Root To Leaf Binary Numbers](solutions/1022-Sum%20of%20Root%20To%20Leaf%20Binary%20Numbers.md)</br>
+
+### Medium
+---
+[98. Validate Binary Search Tree](solutions/0098-Validate%20Binary%20Search%20Tree.md)</br>
