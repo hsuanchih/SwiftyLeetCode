@@ -1,5 +1,5 @@
 
-### Search a 2D Matrix
+### Sort Colors
 
 Given an array with *n* objects colored red, white or blue, sort them __in-place__</br>
 so that objects of the same color are adjacent, with the colors in the order red, white and blue.
@@ -19,7 +19,7 @@ __Follow up:__
 * Could you come up with a one-pass algorithm using only constant space?
 
 ### Solution
-__O(n) Time, O(range) Space:__
+__O(n) Time, O(range) Space - Counting Sort:__
 ```Swift
 class Solution {
     func sortColors(_ nums: inout [Int]) {
@@ -36,7 +36,7 @@ class Solution {
     }
 }
 ```
-__O(n) Time, O(1) Space:__
+__O(n) Time, O(1) Space - 2 Pointers:__
 ```Swift
 class Solution {
     func sortColors(_ nums: inout [Int]) {
