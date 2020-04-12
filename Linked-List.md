@@ -1,5 +1,9 @@
 # Linked List
 
+### Easy
+---
+[21. Merge Two Sorted Lists](solutions/0021-Merge%20Two%20Sorted%20Lists.md)</br>
+
 ### Medium
 ---
 [2. Add Two Numbers](solutions/0002-Add%20Two%20Numbers.md)</br>
