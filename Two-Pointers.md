@@ -1,5 +1,9 @@
 # Two-Pointers
 
+### Easy
+---
+[27. Remove Element](solutions/0027-Remove%20Element.md)</br>
+
 ### Medium
 ---
 [11. Container With Most Water](solutions/0011-Container%20With%20Most%20Water.md)</br>
