@@ -4,6 +4,7 @@
 ---
 [26. Remove Duplicates from Sorted Array](solutions/0026-Remove%20Duplicates%20from%20Sorted%20Array.md)</br>
 [27. Remove Element](solutions/0027-Remove%20Element.md)</br>
+[58. Length of Last Word](solutions/0058-Length%20of%20Last%20Word.md)</br>
 
 ### Medium
 ---

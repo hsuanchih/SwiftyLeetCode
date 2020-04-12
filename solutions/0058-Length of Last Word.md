@@ -14,7 +14,7 @@ Output: 5
 ```
 
 ### Solution
-__O(n):__
+__O(s) Time, O(1) Space:__
 ```Swift
 class Solution {
     func lengthOfLastWord(_ s: String) -> Int {
@@ -24,8 +24,12 @@ class Solution {
             switch s[start] {
                 case " ":
                 if end == start {
+
+                    // Process trailing spaces
                     end-=1
                 } else {
+                    
+                    // Return length of last word
                     return end-start
                 }
                 default:
