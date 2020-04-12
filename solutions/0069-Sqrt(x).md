@@ -21,7 +21,7 @@ Explanation: The square root of 8 is 2.82842..., and since
 ```
 
 ### Solution
-__O(x):__
+__O(x) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func mySqrt(_ x: Int) -> Int {
@@ -39,7 +39,7 @@ class Solution {
     }
 }
 ```
-__O(logx):__
+__O(log\[\base 2](x)) Time, O(1) Space - Binary Search:__
 ```Swift
 class Solution {
     func mySqrt(_ x: Int) -> Int {

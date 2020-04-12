@@ -1,8 +1,9 @@
 # Binary Search
 
-### Medium
+### Easy
 ---
 [35. Search Insert Position](solutions/0035-Search%20Insert%20Position.md)</br>
+[69. Sqrt(x)](solutions/0069-Sqrt(x).md)</br>
 
 ### Medium
 ---
