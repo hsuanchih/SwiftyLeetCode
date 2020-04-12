@@ -57,7 +57,7 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 ```
 
 ### Solution
-__O(n):__
+__O(s) Time, O(1) Space:__
 ```Swift
 class Solution {
     
