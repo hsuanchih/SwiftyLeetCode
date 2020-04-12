@@ -20,7 +20,7 @@ Output: [-1,-1]
 ```
 
 ### Solution
-__O(n):__
+__O(nums) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func searchRange(_ nums: [Int], _ target: Int) -> [Int] {
@@ -40,7 +40,7 @@ class Solution {
     }
 }
 ```
-__O(2*logn):__
+__O(2*log\[base 2\](nums)) Time, O(1) Space - Binary Search:__
 ```Swift
 class Solution {
     func searchRange(_ nums: [Int], _ target: Int) -> [Int] {
