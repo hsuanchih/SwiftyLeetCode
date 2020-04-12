@@ -28,7 +28,7 @@ Output: 0
 ```
 
 ### Solution
-__O(n):__
+__O(nums) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func searchInsert(_ nums: [Int], _ target: Int) -> Int {
@@ -44,7 +44,7 @@ class Solution {
     }
 }
 ```
-__O(logn):__
+__O(log\[base 2\](nums)) Time, O(1) Space - Binary Search:__
 ```Swift
 class Solution {
     func searchInsert(_ nums: [Int], _ target: Int) -> Int {
