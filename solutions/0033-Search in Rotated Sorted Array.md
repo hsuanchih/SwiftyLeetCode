@@ -23,7 +23,7 @@ Output: -1
 ```
 
 ### Solution
-__O(log(n)):__
+__O(log\[base 2\](nums)) Time, O(1) Space:__
 ```Swift
 // Array Extension
 extension Array where Element == Int {
