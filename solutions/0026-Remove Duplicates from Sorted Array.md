@@ -18,7 +18,7 @@ It doesn't matter what values are set beyond the returned length.
 ```
 
 ### Solution
-__O(n):__
+__O(nums) Time, O(1) Space:__
 ```Swift
 class Solution {
     func removeDuplicates(_ nums: inout [Int]) -> Int {
