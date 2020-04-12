@@ -17,7 +17,7 @@ Explanation: Intervals [1,4] and [4,5] are considered overlapping.
 ```
 
 ### Solution
-__O(nlogn+n):__
+__O(intervals*log\[base 2\](intervals)+intervals) Time, O(intervals) Space:__
 ```Swift
 class Solution {
     func merge(_ intervals: [[Int]]) -> [[Int]] {
