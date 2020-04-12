@@ -14,3 +14,4 @@ starting each problem with a brute force approach & optimize along the way.
 * [Matrix](Matrix.md)
 * [Tree](Tree.md)
 * [Trie](Trie.md)
+* [Two-Pointers](Two-Pointers.md)
