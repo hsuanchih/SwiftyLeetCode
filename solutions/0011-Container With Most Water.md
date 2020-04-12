@@ -16,7 +16,7 @@ Output: 49
 ```
 
 ### Solution
-__O(n^2):__
+__O(height^2) Time, O(1) Space - Maximize Container Capacity at Each Start/End Pair:__
 ```Swift
 class Solution {
     func maxArea(_ height: [Int]) -> Int {
@@ -32,7 +32,7 @@ class Solution {
     }
 }
 ```
-__O(n):__
+__O(height) Time, O(1) Space - 2 Pointers:__
 ```Swift
 class Solution {
     func maxArea(_ height: [Int]) -> Int {
