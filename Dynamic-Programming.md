@@ -13,6 +13,7 @@
 [64. Minimum Path Sum](solutions/0064-Minimum%20Path%20Sum.md)</br>
 [70. Climbing Stairs](solutions/0070-Climbing%20Stairs.md)</br>
 [120. Triangle](solutions/0120-Triangle.md)</br>
+[931. Minimum Falling Path Sum](solutions/0931-Minimum%20Falling%20Path%20Sum.md)</br>
 
 ### Hard
 ---

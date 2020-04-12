@@ -22,7 +22,7 @@ __Note:__
 2. `-100 <= A[i][j] <= 100`
 
 ### Solution
-__O(n^2):__
+__O(A) Time, O(1) Space:__
 ```Swift
 class Solution {
     func minFallingPathSum(_ A: [[Int]]) -> Int {
