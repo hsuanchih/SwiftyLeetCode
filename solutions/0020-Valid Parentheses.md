@@ -36,7 +36,7 @@ Output: true
 ```
 
 ### Solution
-__O(n):__
+__O(s) Time, O(s) Space:__
 ```Swift
 class Solution {
     func isValid(_ s: String) -> Bool {

@@ -14,6 +14,7 @@ starting each problem with a brute force approach & optimize along the way.
 * [Math](Math.md)
 * [Matrix](Matrix.md)
 * [Sliding Window](Sliding-Window.md)
+* [Stack](Stack.md)
 * [Tree](Tree.md)
 * [Trie](Trie.md)
 * [Two Pointers](Two-Pointers.md)
