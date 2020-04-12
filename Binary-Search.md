@@ -4,6 +4,7 @@
 ---
 [35. Search Insert Position](solutions/0035-Search%20Insert%20Position.md)</br>
 [69. Sqrt(x)](solutions/0069-Sqrt(x).md)</br>
+[374. Guess Number Higher or Lower](solutions/0374-Guess%20Number%20Higher%20or%20Lower.md)</br>
 
 ### Medium
 ---
