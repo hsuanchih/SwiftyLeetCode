@@ -12,7 +12,7 @@ The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
 ```
 
 ### Solution
-__O(n^3):__
+__O(nums^3) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func threeSumClosest(_ nums: [Int], _ target: Int) -> Int {
@@ -34,7 +34,7 @@ class Solution {
     }
 }
 ```
-__O(nlogn)+O(n^2):__
+__O(nums*log\[base 2\](nums)+nums^2) Time, O(1) Space - Sorted Input + 2 Pointers:__
 ```Swift
 class Solution {
     func threeSumClosest(_ nums: [Int], _ target: Int) -> Int {
