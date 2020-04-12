@@ -14,7 +14,7 @@ Output: 7 -> 0 -> 8
 Explanation: 342 + 465 = 807.
 ```
 ### Solution
-__O(n):__
+__O(n) Time, O(n) Space:__
 ```Swift
 /**
  * Definition for singly-linked list.
