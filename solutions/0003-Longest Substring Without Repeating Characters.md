@@ -24,7 +24,7 @@ Explanation: The answer is "wke", with the length of 3.
 ```
 
 ### Solution
-__O(s^3) Time, Constant (26) Space:__
+__O(s^3) Time, Constant (26) Space - Brute-Force:__
 ```Swift
 class Solution {
     func lengthOfLongestSubstring(_ s: String) -> Int {
@@ -50,7 +50,7 @@ class Solution {
     }
 }
 ```
-__O(s^2) Time, Constant (26) Space:__
+__O(s^2) Time, Constant (26) Space - Improved Brute-Force:__
 ```Swift
 class Solution {
     func lengthOfLongestSubstring(_ s: String) -> Int {
@@ -76,7 +76,7 @@ class Solution {
     }
 }
 ```
-__O(s) Time, Constant (26) Space:__
+__O(s) Time, Constant (26) Space - Sliding Window:__
 ```Swift
 class Solution {
     func lengthOfLongestSubstring(_ s: String) -> Int {
