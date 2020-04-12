@@ -23,7 +23,7 @@ __Note:__
 2. `1 <= A[0].length <= 1000`
 
 ### Solution
-__O(n):__
+__O(A) Time, O(A) Space:__
 ```Swift
 class Solution {
     func transpose(_ A: [[Int]]) -> [[Int]] {
