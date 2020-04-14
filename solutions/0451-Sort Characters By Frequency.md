@@ -41,7 +41,7 @@ Note that 'A' and 'a' are treated as two different characters.
 ```
 
 ### Solution
-__O(s+s*log(s)+s) Time, O(s) Space:__
+__O(s+s*log\[base 2\](s)+s) Time, O(s) Space:__
 ```Swift
 class Solution {
     func frequencySort(_ s: String) -> String {
