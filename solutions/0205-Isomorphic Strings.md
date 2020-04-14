@@ -27,7 +27,7 @@ __Note:__
 You may assume both s and t have the same length.
 
 ### Solution
-__O(n):__
+__O(s+t) Time, O(s+t) Space:__
 ```Swift
 class Solution {
     class Solution {
