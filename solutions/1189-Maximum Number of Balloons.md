@@ -27,7 +27,7 @@ __Constraints:__
 * `text` consists of lower case English letters only.
 
 ### Solution
-__O(n):__
+__O(text) Time, O(text) Space:__
 ```Swift
 class Solution {
     func maxNumberOfBalloons(_ text: String) -> Int {
