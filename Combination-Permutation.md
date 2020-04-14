@@ -2,6 +2,7 @@
 
 ### Easy
 ---
+[401. Binary Watch](solutions/0401-Binary%20Watch.md)</br>
 [784. Letter Case Permutation](solutions/0784-Letter%20Case%20Permutation.md)</br>
 
 ### Medium
