@@ -3,6 +3,7 @@
 ### Medium
 ---
 [705. Design HashSet](solutions/0705-Design%20HashSet.md)</br>
+[706. Design HashMap](solutions/0706-Design%20HashMap.md)</br>
 
 ### Medium
 ---
