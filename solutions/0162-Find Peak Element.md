@@ -27,7 +27,7 @@ __Note:__
 Your solution should be in logarithmic complexity.
 
 ### Solution
-__O(n):__
+__O(nums) Time - Brute-Force:__
 ```Swift
 class Solution {
     func findPeakElement(_ nums: [Int]) -> Int {
@@ -59,7 +59,7 @@ class Solution {
     }
 }
 ```
-__O(log(n)):__
+__O(log\[base 2\](nums)) Time - Binary Search:__
 ```Swift
 class Solution {
     func findPeakElement(_ nums: [Int]) -> Int {
