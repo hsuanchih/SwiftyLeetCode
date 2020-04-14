@@ -11,7 +11,7 @@ Because nums[0] + nums[1] = 2 + 7 = 9,
 return [0, 1].
 ```
 ### Solution
-__O(n^2):__
+__O(nums^2) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
 
@@ -28,7 +28,7 @@ class Solution {
     }
 }
 ```
-__O(n):__
+__O(nums) Time, O(nums) Space - HashMap:__
 ```Swift
 class Solution {
 
