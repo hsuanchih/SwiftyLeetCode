@@ -23,7 +23,7 @@ __Note:__
 3. The value of each element in `nums` will be in the range `[-9999, 9999]`.
 
 ### Solution
-__O(log(n)):__
+__O(log\[base 2\](nums)) Time:__
 ```Swift
 class Solution {
     func search(_ nums: [Int], _ target: Int) -> Int {
