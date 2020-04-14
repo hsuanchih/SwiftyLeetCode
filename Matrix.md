@@ -4,6 +4,7 @@
 ---
 [118. Pascal's Triangle](solutions/0118-Pascal's%20Triangle.md)</br>
 [119. Pascal's Triangle II](solutions/0119-Pascal's%20Triangle%20II.md)</br>
+[766. Toeplitz Matrix](solutions/0766-Toeplitz%20Matrix.md)</br>
 [867. Transpose Matrix](solutions/0867-Transpose%20Matrix.md)</br>
 
 ### Medium

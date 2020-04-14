@@ -41,7 +41,7 @@ __Follow up:__
 2. What if the matrix is so large that you can only load up a partial row into the memory at once?
 
 ### Solution
-__O(m*n) Recursive:__
+__O(matrix) Time - Recursive:__
 ```Swift
 class Solution {
     func isToeplitzMatrix(_ matrix: [[Int]]) -> Bool {
@@ -71,7 +71,7 @@ class Solution {
     }
 }
 ```
-__O(m*n) Iterative:__
+__O(matrix) Time - Iterative:__
 ```Swift
 class Solution {
     func isToeplitzMatrix(_ matrix: [[Int]]) -> Bool {
