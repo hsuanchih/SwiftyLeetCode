@@ -45,7 +45,7 @@ __Note:__
 3. `target` is a lowercase letter.
 
 ### Solution
-__O(log(n)):__
+__O(log\[base 2\](letters)) Time - Binary-Search:__
 ```Swift
 extension Character {
     var offset : Int {
