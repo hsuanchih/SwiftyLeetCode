@@ -15,7 +15,7 @@ __Note:__
 2. Minimize the total number of operations.
 
 ### Solution
-__O(nums):__
+__O(nums) Time, O(1) Space:__
 ```Swift
 class Solution {
     func moveZeroes(_ nums: inout [Int]) {

@@ -8,6 +8,7 @@
 [88. Merge Sorted Array](solutions/0088-Merge%20Sorted%20Array.md)</br>
 [125. Valid Palindrome](solutions/0125-Valid%20Palindrome.md)</br>
 [167. Two Sum II - Input array is sorted](solutions/0167-Two%20Sum%20II%20-%20Input%20array%20is%20sorted.md)</br>
+[283. Move Zeroes](solutions/0283-Move%20Zeroes.md)</br>
 [344. Reverse String](solutions/0344-Reverse%20String.md)</br>
 
 ### Medium
