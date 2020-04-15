@@ -17,7 +17,7 @@ Output: false
 ```
 
 ### Solution
-__O(num):__
+__O(num) Time - Brute-Force:__
 ```Swift
 class Solution {
     func isPerfectSquare(_ num: Int) -> Bool {
@@ -35,7 +35,7 @@ class Solution {
     }
 }
 ```
-__O(log(num)):__
+__O(log\[\base 2\](num)) Time - Binary-Search:__
 ```Swift
 class Solution {
     func isPerfectSquare(_ num: Int) -> Bool {
