@@ -1,7 +1,8 @@
 # Design
 
-### Medium
+### Easy
 ---
+[155. Min Stack](solutions/0155-Min%20Stack.md)</br>
 [705. Design HashSet](solutions/0705-Design%20HashSet.md)</br>
 [706. Design HashMap](solutions/0706-Design%20HashMap.md)</br>
 
