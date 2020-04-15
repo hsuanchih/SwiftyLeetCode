@@ -18,7 +18,7 @@ __Note:__
 * The order of your output does not matter.
 
 ### Solution
-__O(clogc*n):__
+__O(c\*log\[base 2\](c)*str) Time, O(str) Space - Lexicographic Sorted Input:__
 ```Swift
 class Solution {
     func groupAnagrams(_ strs: [String]) -> [[String]] {
@@ -30,16 +30,21 @@ class Solution {
     }
 }
 ```
-__O(c*n):__
+__O(c*str) Time, Constant O(26) Space - Frequency Map + HashMap:__
 ```Swift
+extension Character {
+    var offset : Int {
+        return Int(asciiValue!-Character("a").asciiValue!)
+    }
+}
+
 class Solution {
     func groupAnagrams(_ strs: [String]) -> [[String]] {
         var result : [[Int]: [String]] = [:]
         for str in strs {
             var count = Array(repeating: 0, count: 26)
             for char in str {
-                let index = Int(char.asciiValue! - Character("a").asciiValue!)
-                count[index] += 1
+                count[char.offset] += 1
             }
             result[count, default: []].append(str)
         }
