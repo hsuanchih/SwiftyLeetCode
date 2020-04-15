@@ -16,6 +16,7 @@ starting each problem with a brute force approach & optimize along the way.
 * [Linked List](Linked-List.md)
 * [Math](Math.md)
 * [Matrix](Matrix.md)
+* [Pigeon Hole](Pigeon-Hole.md)
 * [Sliding Window](Sliding-Window.md)
 * [Stack](Stack.md)
 * [Tree](Tree.md)

@@ -26,7 +26,7 @@ class Solution {
     }
 }
 ```
-__O(nums*2) Time, O(1) Space - Counting Sort:__
+__O(nums*2) Time, O(1) Space - Pigeon-Hole:__
 ```Swift
 class Solution {
     func findDuplicates(_ nums: [Int]) -> [Int] {
@@ -48,7 +48,7 @@ class Solution {
     }
 }
 ```
-__O(nums+result) Time, O(1) Space - Counting Sort Optimized:__
+__O(nums+result) Time, O(1) Space - Pigeon-Hole Optimized:__
 ```Swift
 class Solution {
     func findDuplicates(_ nums: [Int]) -> [Int] {
