@@ -23,7 +23,7 @@ __Note:__
 * The characters in `J` are distinct.
 
 ### Solution
-__O(S+J) Recursive:__
+__O(S+J) Time:__
 ```Swift
 class Solution {
     func numJewelsInStones(_ J: String, _ S: String) -> Int {

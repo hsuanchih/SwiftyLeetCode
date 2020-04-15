@@ -9,6 +9,7 @@
 [500. Keyboard Row](solutions/0500-Keyboard%20Row.md)</br>
 [705. Design HashSet](solutions/0705-Design%20HashSet.md)</br>
 [706. Design HashMap](solutions/0706-Design%20HashMap.md)</br>
+[771. Jewels and Stones](solutions/0771-Jewels%20and%20Stones.md)</br>
 [1189. Maximum Number of Balloons](solutions/1189-Maximum%20Number%20of%20Balloons.md)</br>
 
 ### Easy
