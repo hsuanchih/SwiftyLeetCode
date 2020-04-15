@@ -6,6 +6,7 @@
 [119. Pascal's Triangle II](solutions/0119-Pascal's%20Triangle%20II.md)</br>
 [766. Toeplitz Matrix](solutions/0766-Toeplitz%20Matrix.md)</br>
 [867. Transpose Matrix](solutions/0867-Transpose%20Matrix.md)</br>
+[999. Available Captures for Rook](solutions/0999-Available%20Captures%20for%20Rook.md)</br>
 
 ### Medium
 ---
