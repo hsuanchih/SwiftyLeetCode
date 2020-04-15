@@ -18,7 +18,7 @@ Output: [1,2,2,3,5,6]
 ```
 
 ### Solution
-__O(m+n):__
+__O(m+n) Time, O(1) Space:__
 ```Swift
 class Solution {
     func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
