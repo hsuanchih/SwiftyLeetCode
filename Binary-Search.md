@@ -8,6 +8,7 @@
 [374. Guess Number Higher or Lower](solutions/0374-Guess%20Number%20Higher%20or%20Lower.md)</br>
 [441. Arranging Coins](solutions/0441-Arranging%20Coins.md)</br>
 [704. Binary Search](solutions/0704-Binary%20Search.md)</br>
+[852. Peak Index in a Mountain Array](solutions/0852-Peak%20Index%20in%20a%20Mountain%20Array.md)</br>
 
 ### Medium
 ---

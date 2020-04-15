@@ -25,7 +25,7 @@ __Note:__
 3. `A` is a mountain, as defined above.
 
 ### Solution
-__O(n):__
+__O(A) Time - Brute-Force:__
 ```Swift
 class Solution {
     func peakIndexInMountainArray(_ A: [Int]) -> Int {
@@ -38,15 +38,15 @@ class Solution {
     }
 }
 ```
-__O(log(n)):__
+__O(log\[base 2\](A)) Time - Binary-Search:__
 ```Swift
 class Solution {
     func peakIndexInMountainArray(_ A: [Int]) -> Int {
         var start = 0, end = A.count-1
         while start+1 < end {
             let mid = start + (end-start)/2
-            if mid > 0 && A[mid] > A[mid-1] {
-                if mid < A.count-1 && A[mid] > A[mid+1] {
+            if A[mid] > A[mid-1] {
+                if A[mid] > A[mid+1] {
                     return mid
                 }
                 start = mid
