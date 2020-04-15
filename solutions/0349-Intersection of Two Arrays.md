@@ -19,7 +19,7 @@ __Note:__
 * The result can be in any order.
 
 ### Solution
-__O(nums1+nums2):__
+__O(nums1+nums2) Time, O(max(nums1, nums2)) Space:__
 ```Swift
 class Solution {
     func intersection(_ nums1: [Int], _ nums2: [Int]) -> [Int] {
