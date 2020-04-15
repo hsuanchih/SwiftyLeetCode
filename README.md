@@ -7,6 +7,7 @@ starting each problem with a brute force approach & optimize along the way.
 ## Solutions
 
 * [Binary Search](Binary-Search.md)
+* [Breadth-First-Search](Breadth-First-Search.md)
 * [Combination/Permutation](Combination-Permutation.md)
 * [Depth-First-Search](Depth-First-Search.md)
 * [Dynamic Programming](Dynamic-Programming.md)
