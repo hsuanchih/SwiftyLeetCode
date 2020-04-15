@@ -22,7 +22,7 @@ __Follow up:__
 * Would this affect the run-time complexity? How and why?
 
 ### Solution
-__O(n):__
+__O(nums) Time:__
 ```Swift
 class Solution {
     func search(_ nums: [Int], _ target: Int) -> Bool {
