@@ -24,7 +24,7 @@ __Follow up:__
 * What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load all elements into the memory at once?
 
 ### Solution
-__O(nums1+nums2):__
+__O(nums1+nums2) Time, O(max(nums1,nums2)) Space:__
 ```Swift
 class Solution {
     func intersect(_ nums1: [Int], _ nums2: [Int]) -> [Int] {
