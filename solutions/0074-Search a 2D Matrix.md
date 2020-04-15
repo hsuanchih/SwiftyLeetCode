@@ -31,7 +31,7 @@ Output: false
 ```
 
 ### Solution
-__O(n*m):__
+__O(matrix) Time - Brute-Force:__
 ```Swift
 class Solution{
     func searchMatrix(_ matrix: [[Int]], _ target: Int) -> Bool {
@@ -46,7 +46,7 @@ class Solution{
     }
 }
 ```
-__O(log(n*m)):__
+__O(log\[base 2\](matrix)) Time - Binary-Search:__
 ```Swift
 class Solution {
     func searchMatrix(_ matrix: [[Int]], _ target: Int) -> Bool {
