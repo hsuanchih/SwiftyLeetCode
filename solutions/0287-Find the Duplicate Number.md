@@ -21,7 +21,7 @@ __Note:__
 4. There is only one duplicate number in the array, but it could be repeated more than once.
 
 ### Solution
-__O(n^2) Time, O(1) Space:__
+__O(nums^2) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func findDuplicate(_ nums: [Int]) -> Int {
@@ -36,7 +36,7 @@ class Solution {
     }
 }
 ```
-__O(n) Time, O(n) Space:__
+__O(nums) Time, O(nums) Space - HashSet:__
 ```Swift
 class Solution {
     func findDuplicate(_ nums: [Int]) -> Int {
@@ -51,7 +51,7 @@ class Solution {
     }
 }
 ```
-__O(n) Time, O(1) Space:__
+__O(nums) Time, O(1) Space - Pigoen-Hole:__
 ```Swift
 class Solution {
     func findDuplicate(_ nums: [Int]) -> Int {
