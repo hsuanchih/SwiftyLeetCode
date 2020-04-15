@@ -15,7 +15,7 @@ __Follow up:__
 If you have figured out the O(*n*) solution, try coding another solution of which the time complexity is O(*n* log *n*). 
 
 ### Solution
-__O(n^2):__
+__O(nums^2) Time - Brute-Force:__
 ```Swift
 class Solution {
     func minSubArrayLen(_ s: Int, _ nums: [Int]) -> Int {
@@ -33,7 +33,7 @@ class Solution {
     }
 }
 ```
-__O(2*n):__
+__O(nums) Time - Sliding-Window:__
 ```Swift
 class Solution {
     func minSubArrayLen(_ s: Int, _ nums: [Int]) -> Int {
