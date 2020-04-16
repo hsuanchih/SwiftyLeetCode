@@ -54,3 +54,4 @@
 [173. Binary Search Tree Iterator](solutions/0173-Binary%20Search%20Tree%20Iterator.md)</br>
 [199. Binary Tree Right Side View](solutions/0199-Binary%20Tree%20Right%20Side%20View.md)</br>
 [230. Kth Smallest Element in a BST](solutions/0230-Kth%20Smallest%20Element%20in%20a%20BST.md)</br>
+[236. Lowest Common Ancestor of a Binary Tree](solutions/0236-Lowest%20Common%20Ancestor%20of%20a%20Binary%20Tree.md)</br>
