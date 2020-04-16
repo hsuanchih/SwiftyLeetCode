@@ -53,3 +53,4 @@
 [144. Binary Tree Preorder Traversal](solutions/0144-Binary%20Tree%20Preorder%20Traversal.md)</br>
 [173. Binary Search Tree Iterator](solutions/0173-Binary%20Search%20Tree%20Iterator.md)</br>
 [199. Binary Tree Right Side View](solutions/0199-Binary%20Tree%20Right%20Side%20View.md)</br>
+[230. Kth Smallest Element in a BST](solutions/0230-Kth%20Smallest%20Element%20in%20a%20BST.md)</br>
