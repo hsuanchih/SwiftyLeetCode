@@ -51,4 +51,5 @@
 [117. Populating Next Right Pointers in Each Node II](solutions/0117-Populating%20Next%20Right%20Pointers%20in%20Each%20Node%20II.md)</br>
 [129. Sum Root to Leaf Numbers](solutions/0129-Sum%20Root%20to%20Leaf%20Numbers.md)</br>
 [144. Binary Tree Preorder Traversal](solutions/0144-Binary%20Tree%20Preorder%20Traversal.md)</br>
+[173. Binary Search Tree Iterator](solutions/0173-Binary%20Search%20Tree%20Iterator.md)</br>
 [199. Binary Tree Right Side View](solutions/0199-Binary%20Tree%20Right%20Side%20View.md)</br>
