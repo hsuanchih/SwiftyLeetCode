@@ -27,7 +27,7 @@ __Note:__
 * The size of the given array will be in the range `[1,1000]`.
 
 ### Solution
-__O(n*log(n)~n^2):__
+__O(n*log\[\base 2](n)~n^2) Time:__
 ```Swift
 /**
  * Definition for a binary tree node.
