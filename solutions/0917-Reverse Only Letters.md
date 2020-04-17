@@ -25,7 +25,7 @@ __Note:__
 3. `S` doesn't contain `\` or `"`
 
 ### Solution
-__O(n):__
+__O(S) Time:__
 ```Swift
 class Solution {
     func reverseOnlyLetters(_ S: String) -> String {
