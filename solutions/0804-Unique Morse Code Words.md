@@ -32,7 +32,7 @@ __Note:__
 * `words[i]` will only consist of lowercase letters.
 
 ### Solution
-__O(words*(length of word)):__
+__O(words*(length of word)) Time:__
 ```Swift
 extension Character {
     var offset : Int {
