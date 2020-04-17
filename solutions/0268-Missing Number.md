@@ -17,7 +17,7 @@ __Note:__
 Your algorithm should run in linear runtime complexity. Could you implement it using only constant extra space complexity?
 
 ### Solution
-__O(n) Time, O(n) Space:__
+__O(nums) Time, O(nums) Space - HashMap:__
 ```Swift
 class Solution {
     func missingNumber(_ nums: [Int]) -> Int {
@@ -27,7 +27,7 @@ class Solution {
     }
 }
 ```
-__O(n) Time, O(1) Space:__
+__O(n) Time, O(1) Space - Arithmetic Sequence:__
 ```Swift
 class Solution {
     func missingNumber(_ nums: [Int]) -> Int {
