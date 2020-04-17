@@ -12,6 +12,7 @@ starting each problem with a brute force approach & optimize along the way.
 * [Depth-First-Search](Depth-First-Search.md)
 * [Dynamic Programming](Dynamic-Programming.md)
 * [Design](Design.md)
+* [Greedy](Greedy.md)
 * [HashMap/HashSet](HashMap-HashSet.md)
 * [Linked List](Linked-List.md)
 * [Math](Math.md)
