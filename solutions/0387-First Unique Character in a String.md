@@ -15,7 +15,7 @@ return 2.
 __Note:__ You may assume the string contain only lowercase letters.
 
 ### Solution
-__O(s):__
+__O(s*2) Time, O(s) Space:__
 ```Swift
 class Solution {
     func firstUniqChar(_ s: String) -> Int {
