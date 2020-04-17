@@ -29,7 +29,7 @@ __Notes:__
 * `0 <= A[i][j] <= 1`
 
 ### Solution
-__O(A):__
+__O(A) Time:__
 ```Swift
 extension Int {
     mutating func invert() {
