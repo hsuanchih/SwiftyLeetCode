@@ -16,13 +16,13 @@ Output: 4
 ```
 
 ### Solution
-__O(n^2):__
+__O(matrix) Time, O(matrix) Space:__
 ```Swift
 class Solution {
     func maximalSquare(_ matrix: [[Character]]) -> Int {
         var memo : [[Int]] = Array(repeating: Array(repeating: 0, count: matrix.first?.count ?? 0), count: matrix.count), result = 0
-        for row in stride(from: 0, to: matrix.count, by: 1) {
-            for col in stride(from: 0, to: matrix.first?.count ?? 0, by: 1) {
+        for row in 0..<matrix.count {
+            for col in 0..<(matrix.first?.count ?? 0) {
                 if matrix[row][col] == "1" {
                     switch (row, col) {
                     case (0, _), (_, 0):
