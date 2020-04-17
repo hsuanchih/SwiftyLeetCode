@@ -26,7 +26,7 @@ __Constraints:__
 * `1 <= n <= 10^5`
 
 ### Solution
-__O(1):__
+__O(5) Time:__
 ```Swift
 class Solution {
     func subtractProductAndSum(_ n: Int) -> Int {

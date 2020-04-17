@@ -9,6 +9,7 @@
 [263. Ugly Number](solutions/0263-Ugly%20Number.md)</br>
 [412. Fizz Buzz](solutions/0412-Fizz%20Buzz.md)</br>
 [657. Robot Return to Origin](solutions/0657-Robot%20Return%20to%20Origin.md)</br>
+[1281. Subtract the Product and Sum of Digits of an Integer](solutions/1281-Subtract%20the%20Product%20and%20Sum%20of%20Digits%20of%20an%20Integer.md.md)</br>
 [1295. Find Numbers with Even Number of Digits](solutions/1295-Find%20Numbers%20with%20Even%20Number%20of%20Digits.md)</br>
 
 ### Medium
