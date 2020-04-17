@@ -23,7 +23,7 @@ __Follow up:__
 * Can you do it like a boss? Do it without using any builtin function like __builtin_popcount__ in c++ or in any other language.
 
 ### Solution
-__O(num*32):__
+__O(num*32) Time - Brute-Force:__
 ```Swift
 class Solution {
     func countBits(_ num: Int) -> [Int] {
@@ -37,7 +37,7 @@ class Solution {
     }
 }
 ```
-__O(num):__
+__O(num) Time - Bit-Manipulation + Memoization:__
 ```Swift
 class Solution {
     func countBits(_ num: Int) -> [Int] {
