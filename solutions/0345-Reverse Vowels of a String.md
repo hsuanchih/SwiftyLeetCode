@@ -18,7 +18,7 @@ __Note:__
 The vowels does not include the letter `"y"`.
 
 ### Solution
-__O(s):__
+__O(s) Time:__
 ```Swift
 class Solution {
     let vowels : Set<Character> = ["A", "E", "I", "O", "U", "a", "e", "i", "o", "u"]
