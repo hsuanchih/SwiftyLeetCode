@@ -28,7 +28,7 @@ __Constraints:__
 * `1 <= nums[i] <= 10^5`
 
 ### Solution
-__O(5*n):__
+__O(5*n) Time - Math:__
 ```Swift
 class Solution {
     func findNumbers(_ nums: [Int]) -> Int {
@@ -45,7 +45,7 @@ class Solution {
     }
 }
 ```
-__O(5*n):__
+__O(5*n) Time - String Length:__
 ```Swift
 class Solution {
     func findNumbers(_ nums: [Int]) -> Int {
