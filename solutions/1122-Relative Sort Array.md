@@ -20,7 +20,7 @@ __Constraints:__
 * Each `arr2[i]` is in `arr1`.
 
 ### Solution
-__O(n):__
+__O(arr1+arr2+1001) Time - Counting Sort:__
 ```Swift
 class Solution {
     func relativeSortArray(_ arr1: [Int], _ arr2: [Int]) -> [Int] {
