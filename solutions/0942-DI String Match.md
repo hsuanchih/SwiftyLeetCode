@@ -29,7 +29,7 @@ Note:
 2. `S` only contains characters `"I"` or `"D"`.
 
 ### Solution
-__O(n):__
+__O(S) Time:__
 ```Swift
 class Solution {
     func diStringMatch(_ S: String) -> [Int] {
