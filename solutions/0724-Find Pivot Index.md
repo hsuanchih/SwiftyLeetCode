@@ -31,7 +31,7 @@ __Note:__
 * Each element `nums[i]` will be an integer in the range `[-1000, 1000]`.
 
 ### Solution
-__O(n):__
+__O(nums) Time:__
 ```Swift
 class Solution {
     func pivotIndex(_ nums: [Int]) -> Int {
@@ -39,7 +39,7 @@ class Solution {
         var sum = 0
         for (index, value) in nums.enumerated() {
             if total-value-sum == sum {
-                return index < nums.count ? index : -1
+                return index
             }
             sum+=value
         }
