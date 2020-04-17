@@ -17,7 +17,7 @@ __Note:__
 2. `0 <= A[i] <= 5000`
 
 ### Solution
-__O(n) Time, O(n) Space:__
+__O(A) Time, O(A) Space:__
 ```Swift
 class Solution {
     func sortArrayByParity(_ A: [Int]) -> [Int] {
@@ -35,7 +35,7 @@ class Solution {
     }
 }
 ```
-__O(n) Time, In-place:__
+__O(A) Time, In-place:__
 ```Swift
 class Solution {
     func sortArrayByParity(_ A: [Int]) -> [Int] {
