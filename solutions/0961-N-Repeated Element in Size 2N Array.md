@@ -22,7 +22,7 @@ Output: 5
 ```
 
 ### Solution
-__O(n):__
+__O(A) Time, O(A/2) Space:__
 ```Swift
 class Solution {
     func repeatedNTimes(_ A: [Int]) -> Int {
