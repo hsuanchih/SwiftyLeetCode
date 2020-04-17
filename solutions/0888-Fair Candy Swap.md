@@ -43,7 +43,7 @@ __Note:__
 * It is guaranteed there exists an answer.
 
 ### Solution
-__O(n+m) Time, O(m) Space:__
+__O(A+B) Time, O(B) Space:__
 ```Swift
 extension Array where Element == Int {
     var sum : Int {
