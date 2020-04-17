@@ -33,7 +33,7 @@ Explanation: The 1st 1 in friend's guess is a bull, the 2nd or 3rd 1 is a cow.
 __Note:__ You may assume that the secret number and your friend's guess only contain digits, and their lengths are always equal.
 
 ### Solution
-__O(secret+guess):__
+__O(secret+guess) Time, O(secret) Space:__
 ```Swift
 class Solution {
     func getHint(_ secret: String, _ guess: String) -> String {
