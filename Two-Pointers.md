@@ -10,6 +10,7 @@
 [167. Two Sum II - Input array is sorted](solutions/0167-Two%20Sum%20II%20-%20Input%20array%20is%20sorted.md)</br>
 [283. Move Zeroes](solutions/0283-Move%20Zeroes.md)</br>
 [344. Reverse String](solutions/0344-Reverse%20String.md)</br>
+[443. String Compression](solutions/0443-String%20Compression.md)</br>
 [905. Sort Array By Parity](solutions/0905-Sort%20Array%20By%20Parity.md)</br>
 [917. Reverse Only Letters](solutions/0917-Reverse%20Only%20Letters.md)</br>
 [977. Squares of a Sorted Array](solutions/0977-Squares%20of%20a%20Sorted%20Array.md)</br>
