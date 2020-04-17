@@ -31,7 +31,7 @@ __Note:__
 * Words only consist of letters, never apostrophes or other punctuation symbols.
 
 ### Solution
-__O(paragraph+banned):__
+__O(paragraph+banned) Time:__
 ```Swift
 class Solution {
     func mostCommonWord(_ paragraph: String, _ banned: [String]) -> String {
