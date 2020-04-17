@@ -20,7 +20,7 @@ __Note:__
 3. `A` is sorted in non-decreasing order.
 
 ### Solution
-__O(n*log(n)+n):__
+__O(A*log\[base 2\](A)+A) Time - Sorted Output:__
 ```Swift
 class Solution {
     func sortedSquares(_ A: [Int]) -> [Int] {
@@ -28,7 +28,7 @@ class Solution {
     }
 }
 ```
-__O(n):__
+__O(A) Time - 2 Pointers:__
 ```Swift
 class Solution {
     func sortedSquares(_ A: [Int]) -> [Int] {
