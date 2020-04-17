@@ -20,3 +20,7 @@
 [81. Search in Rotated Sorted Array II](solutions/0081-Search%20in%20Rotated%20Sorted%20Array%20II.md)</br>
 [153. Find Minimum in Rotated Sorted Array](solutions/0153-Find%20Minimum%20in%20Rotated%20Sorted%20Array.md)</br>
 [162. Find Peak Element](solutions/0162-Find%20Peak%20Element.md)</br>
+
+### Hard
+---
+[154. Find Minimum in Rotated Sorted Array II](solutions/0154-Find%20Minimum%20in%20Rotated%20Sorted%20Array%20II.md)</br>

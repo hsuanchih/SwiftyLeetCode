@@ -25,7 +25,7 @@ __Note:__
 * Would allow duplicates affect the run-time complexity? How and why?
 
 ### Solution
-__O(n):__
+__O(nums) Time:__
 ```Swift
 class Solution {
     func findMin(_ nums: [Int]) -> Int {
