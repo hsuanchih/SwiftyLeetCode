@@ -21,7 +21,7 @@ Output: 0
 ```
 
 ### Solution
-__O(n):__
+__O(nums) Time - Brute-Force:__
 ```Swift
 class Solution {
     func findMin(_ nums: [Int]) -> Int {
@@ -29,7 +29,7 @@ class Solution {
     }
 }
 ```
-__O(log(n)):__
+__O(log\[base 2\](nums)) Time - Binary Search:__
 ```Swift
 extension Array {
     func binarySearch(_ start: Int, _ end: Int, _ transform: (Int, inout Int, inout Int)->Void) -> (start: Int, end: Int) {
