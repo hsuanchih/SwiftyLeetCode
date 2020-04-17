@@ -25,7 +25,7 @@ __Note:__
 * n is a 32-bit signed integer, within the range [−231, 231 − 1]
 
 ### Solution
-__O(n):__
+__O(n) Time - Brute-Force:__
 ```Swift
 class Solution {
     func myPow(_ x: Double, _ n: Int) -> Double {
@@ -41,11 +41,11 @@ class Solution {
     }
 }
 ```
-__O(logn):__
+__O(log\[base 2\](n)) Time - Even-Odd:__
 ```Swift
 class Solution {
     func myPow(_ x: Double, _ n: Int) -> Double {
-        return n >= 0 ? pow(x, n) : 1/pow(x, n)
+        return n >= 0 ? pow(x, abs(n)) : 1/pow(x, abs(n))
     }
     
     func pow(_ x: Double, _ n: Int) -> Double {

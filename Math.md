@@ -13,3 +13,4 @@
 ### Medium
 ---
 [6. ZigZag Conversion](solutions/0006-ZigZag%20Conversion.md)</br>
+[50. Pow(x, n)](solutions/0050-Pow(x,%20n).md)</br>
