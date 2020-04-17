@@ -7,6 +7,7 @@
 [349. Intersection of Two Arrays](solutions/0349-Intersection%20of%20Two%20Arrays.md)</br>
 [350. Intersection of Two Arrays II](solutions/0350-Intersection%20of%20Two%20Arrays%20II.md)</br>
 [383. Ransom Note](solutions/0383-Ransom%20Note.md)</br>
+[389. Find the Difference](solutions/0389-Find%20the%20Difference.md)</br>
 [451. Sort Characters By Frequency](solutions/0451-Sort%20Characters%20By%20Frequency.md)</br>
 [500. Keyboard Row](solutions/0500-Keyboard%20Row.md)</br>
 [705. Design HashSet](solutions/0705-Design%20HashSet.md)</br>
