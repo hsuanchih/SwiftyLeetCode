@@ -17,7 +17,7 @@ __Iterative:__
 ```Swift
 class Solution {
     func reverseList(_ head: ListNode?) -> ListNode? {
-        var prev : ListNode?, curr = node
+        var prev : ListNode?, curr = head
         while let node = curr {
             let next = node.next
             node.next = prev
@@ -32,7 +32,7 @@ __Recursive:__
 ```Swift
 class Solution {
     func reverseList(_ head: ListNode?) -> ListNode? {
-        guard let curr = node, let next = curr.next else { return node }
+        guard let curr = head, let next = curr.next else { return head }
         let reversed = recursive(next)
         next.next = curr
         curr.next = nil
