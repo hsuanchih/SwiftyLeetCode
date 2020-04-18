@@ -4,6 +4,7 @@
 ---
 [1. Two Sum](solutions/0001-Two%20Sum.md)</br>
 [205. Isomorphic Strings](solutions/0205-Isomorphic%20Strings.md)</br>
+[242. Valid Anagram](solutions/0242-Valid%20Anagram.md)</br>
 [299. Bulls and Cows](solutions/0299-Bulls%20and%20Cows.md)</br>
 [349. Intersection of Two Arrays](solutions/0349-Intersection%20of%20Two%20Arrays.md)</br>
 [350. Intersection of Two Arrays II](solutions/0350-Intersection%20of%20Two%20Arrays%20II.md)</br>
