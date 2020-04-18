@@ -25,7 +25,7 @@ Explanation: No such pair of words.
 ```
 
 ### Solution
-__O(words*k+words^2*(unique(k)^2), where k is the number of characters in a word:__
+__O(words*k+words^2*(unique(k)^2) Time, where k is the number of characters in a word:__
 ```Swift
 class Solution {
     func maxProduct(_ words: [String]) -> Int {
@@ -44,7 +44,7 @@ class Solution {
     }
 }
 ```
-__O(words*k+words^2):__
+__O(words*k+words^2) Time:__
 ```Swift
 extension Character {
     var offset : Int {
