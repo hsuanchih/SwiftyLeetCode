@@ -25,6 +25,7 @@
 [1122. Relative Sort Array](solutions/1122-Relative%20Sort%20Array.md)</br>
 [1189. Maximum Number of Balloons](solutions/1189-Maximum%20Number%20of%20Balloons.md)</br>
 
-### Easy
+### Medium
 ---
 [49. Group Anagrams](solutions/0049-Group%20Anagrams.md)</br>
+[438. Find All Anagrams in a String](solutions/0438-Find%20All%20Anagrams%20in%20a%20String.md)</br>
