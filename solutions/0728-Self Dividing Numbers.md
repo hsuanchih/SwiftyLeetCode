@@ -20,7 +20,7 @@ __Note:__
 * The boundaries of each input argument are `1 <= left <= right <= 10000`.
 
 ### Solution
-__O((right-left+1)*digits):__
+__O((right-left+1)*digits) Time:__
 ```Swift
 class Solution {
     func selfDividingNumbers(_ left: Int, _ right: Int) -> [Int] {
