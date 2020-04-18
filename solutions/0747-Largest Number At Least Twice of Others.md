@@ -26,7 +26,7 @@ __Note:__
 2. Every `nums[i]` will be an integer in the range `[0, 99]`.
 
 ### Solution
-__O(nums):__
+__O(nums) Time:__
 ```Swift
 class Solution {
     func dominantIndex(_ nums: [Int]) -> Int {
