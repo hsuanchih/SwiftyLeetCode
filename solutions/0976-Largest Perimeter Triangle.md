@@ -31,7 +31,7 @@ __Note:__
 2. `1 <= A[i] <= 10^6`
 
 ### Solution
-__O(n*log(n)+n):__
+__O(A*log\[base 2\](A)+A) Time:__
 ```Swift
 class Solution {
     func largestPerimeter(_ A: [Int]) -> Int {

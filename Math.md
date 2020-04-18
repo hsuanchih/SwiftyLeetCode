@@ -16,6 +16,7 @@
 [728. Self Dividing Numbers](solutions/0728-Self%20Dividing%20Numbers.md)</br>
 [888. Fair Candy Swap](solutions/0888-Fair%20Candy%20Swap.md)</br>
 [942. DI String Match](solutions/0942-DI%20String%20Match.md)</br>
+[976. Largest Perimeter Triangle](solutions/0976-Largest%20Perimeter%20Triangle.md)</br>
 [1281. Subtract the Product and Sum of Digits of an Integer](solutions/1281-Subtract%20the%20Product%20and%20Sum%20of%20Digits%20of%20an%20Integer.md.md)</br>
 [1295. Find Numbers with Even Number of Digits](solutions/1295-Find%20Numbers%20with%20Even%20Number%20of%20Digits.md)</br>
 
