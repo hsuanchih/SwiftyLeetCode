@@ -30,7 +30,7 @@ Output: [[3,5],[6,9],[12,14]]
 __Note:__  `1 <= S.length <= 1000`
 
 ### Solution
-__O(S):__
+__O(S) Time:__
 ```Swift
 class Solution {
     func largeGroupPositions(_ S: String) -> [[Int]] {
