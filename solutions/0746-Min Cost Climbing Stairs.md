@@ -25,7 +25,7 @@ __Note:__
 2. Every `cost[i]` will be an integer in the range `[0, 999]`.
 
 ### Solution
-__O(cost):__
+__O(cost) Time:__
 ```Swift
 class Solution {
     func minCostClimbingStairs(_ cost: [Int]) -> Int {

@@ -7,6 +7,7 @@
 [198. House Robber](solutions/0198-House%20Robber.md)</br>
 [485. Max Consecutive Ones](solutions/0485-Max%20Consecutive%20Ones.md)</br>
 [509. Fibonacci Number](solutions/0509-Fibonacci%20Number.md)</br>
+[746. Min Cost Climbing Stairs](solutions/0746-Min%20Cost%20Climbing%20Stairs.md)</br>
 
 ### Medium
 ---
