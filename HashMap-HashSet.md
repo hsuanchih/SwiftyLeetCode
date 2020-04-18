@@ -14,6 +14,7 @@
 [500. Keyboard Row](solutions/0500-Keyboard%20Row.md)</br>
 [705. Design HashSet](solutions/0705-Design%20HashSet.md)</br>
 [706. Design HashMap](solutions/0706-Design%20HashMap.md)</br>
+[748. Shortest Completing Word](solutions/0748-Shortest%20Completing%20Word.md)</br>
 [771. Jewels and Stones](solutions/0771-Jewels%20and%20Stones.md)</br>
 [804. Unique Morse Code Words](solutions/0804-Unique%20Morse%20Code%20Words.md)</br>
 [819. Most Common Word](solutions/0819-Most%20Common%20Word.md)</br>
