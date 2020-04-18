@@ -10,3 +10,4 @@
 ---
 [56. Merge Intervals](solutions/0056-Merge%20Intervals.md)</br>
 [402. Remove K Digits](solutions/0402-Remove%20K%20Digits.md)</br>
+[1019. Next Greater Node In Linked List](solutions/1019-Next%20Greater%20Node%20In%20Linked%20List.md)</br>
