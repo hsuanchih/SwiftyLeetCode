@@ -29,7 +29,7 @@ __Notes:__
 You may assume pattern contains only lowercase letters, and str contains lowercase letters that may be separated by a single space.
 
 ### Solution
-__O(n):__
+__O(pattern+str) Time, O(pattern+str) Space:__
 ```Swift
 class Solution {
     func wordPattern(_ pattern: String, _ str: String) -> Bool {
