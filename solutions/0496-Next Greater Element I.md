@@ -29,41 +29,39 @@ __Note:__
 2. The length of both `nums1` and `nums2` would not exceed 1000.
 
 ### Solution
-__O(m*n) Time, O(1) Space:__
+__O(nums1*nums2) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func nextGreaterElement(_ nums1: [Int], _ nums2: [Int]) -> [Int] {
-        var nums1 = nums1
+        var result = Array(repeating: -1, count: nums1.count)
 
         // For each element in nums1
-        for index1 in stride(from: 0, to: nums1.count, by: 1) {
+        for i in 0..<nums1.count {
 
-            // First find the corresponding value in nums2,
-            // then find the next value in nums2 that's greater than such value
-            var found = false
-            for index2 in stride(from: 0, to: nums2.count, by: 1) {
-                if found && nums2[index2] > nums1[index1] {
-                    nums1[index1] = nums2[index2]
+            // First find the index in nums1 with element corresponding 
+            // to the same value in nums2 (target), then find the next value 
+            // in nums2 that's greater than such value (nextGreater)
+            var target, nextGreater : Int?
+            for j in 0..<nums2.count {
+                if nums2[j] == nums1[i] {
+                    target = j
+                    continue
+                }
+                if let target = target, nums2[j] > nums2[target] {
+                    result[i] = nums2[j]
                     break
-                }
-                if nums2[index2] == nums1[index1] {
-                    found = true
-                }
-
-                // If no candidate is found, set -1
-                if index2 == nums2.count-1 {
-                    nums1[index1] = -1
                 }
             }
         }
-        return nums1
+        return result
     }
 }
 ```
-__O(m*n/2) Time, O(n) Space:__
+__O(nums1*nums2/2) Time, O(nums2) Space - Improved Brute-Force:__
 ```Swift
 class Solution {
     func nextGreaterElement(_ nums1: [Int], _ nums2: [Int]) -> [Int] {
+        var result = Array(repeating: -1, count: nums1.count)
 
         // Store values of nums2 with respect to their indices
         var lookup : [Int: Int] = [:]
@@ -73,28 +71,21 @@ class Solution {
 
         // Lookup in nums2 the index of value corresponding to nums1
         // Search in nums2 starting from such index to find the next greater value
-        var nums1 = nums1
-        for i in stride(from: 0, to: nums1.count, by: 1) {
-            let curr = nums1[i]
-            var j = lookup[curr]!
-            while j < nums2.count {
-                if nums2[j] > curr {
-                    nums1[i] = nums2[j]
-                    break
+        for (index, value) in nums1.enumerated() {
+            if let target = lookup[value] {
+                for j in target..<nums2.count {
+                    if nums2[j] > value {
+                        result[index] = nums2[j]
+                        break
+                    }
                 }
-                j+=1
-            }
-
-            // If no candidate is found, set -1
-            if nums1[i] == curr {
-                nums1[i] = -1
             }
         }
-        return nums1
+        return result
     }
 }
 ```
-__O(m+n) Time, O(n) Space:__
+__O(nums1+nums2) Time, O(nums2) Space - Stack:__
 ```Swift
 class Solution {
     func nextGreaterElement(_ nums1: [Int], _ nums2: [Int]) -> [Int] {
