@@ -19,7 +19,7 @@ __Note:__
 * The length of `words[i]` will be in the range of `[1, 50]`.
 
 ### Solution
-__O(2^S):__
+__O(2^S) Time, O(words) Space - Brute-Force:__
 ```Swift
 class Solution {
     func numMatchingSubseq(_ S: String, _ words: [String]) -> Int {
@@ -43,7 +43,7 @@ class Solution {
     }
 }
 ```
-__O((S+k)*words):__
+__O((S+c)*words) Time, O(c) Space - Improved Brute-Force:__
 ```Swift
 class Solution {
     func numMatchingSubseq(_ S: String, _ words: [String]) -> Int {
@@ -65,7 +65,7 @@ class Solution {
     }
 }
 ```
-__O((log(S)\*k)*words+S):__
+__O((log\[base 2\](S)\*c)*words+S) Time, O(S) Space - Binary-Search:__
 ```Swift
 extension Array {
     func binarySearch(_ start: Int, _ end: Int, _ transform: (Int, inout Int, inout Int)->Void) -> (start: Int, end: Int) {
