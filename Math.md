@@ -8,6 +8,7 @@
 [66. Plus One](solutions/0066-Plus%20One.md)</br>
 [202. Happy Number](solutions/0202-Happy%20Number.md)</br>
 [231. Power of Two](solutions/0231-Power%20of%20Two.md)</br>
+[258. Add Digits](solutions/0258-Add%20Digits.md)</br>
 [263. Ugly Number](solutions/0263-Ugly%20Number.md)</br>
 [268. Missing Number](solutions/0268-Missing%20Number.md)</br>
 [405. Convert a Number to Hexadecimal](solutions/0405-Convert%20a%20Number%20to%20Hexadecimal.md)</br>
