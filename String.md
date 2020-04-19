@@ -2,6 +2,7 @@
 
 ### Easy
 ---
+[67. Add Binary](solutions/0067-Add%20Binary.md)</br>
 [392. Is Subsequence](solutions/0392-Is%20Subsequence.md)</br>
 
 ### Medium
