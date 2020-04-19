@@ -36,7 +36,7 @@ Explanation:
 ```
 
 ### Solution
-__O(tokens):__
+__O(tokens) Time:__
 ```Swift
 class Solution {
     
