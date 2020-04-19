@@ -17,6 +17,7 @@
 [70. Climbing Stairs](solutions/0070-Climbing%20Stairs.md)</br>
 [120. Triangle](solutions/0120-Triangle.md)</br>
 [221. Maximal Square](solutions/0221-Maximal%20Square.md)</br>
+[279. Perfect Squares](solutions/0279-Perfect%20Squares.md)</br>
 [338. Counting Bits](solutions/0338-Counting%20Bits.md)</br>
 [494. Target Sum](solutions/0494-Target%20Sum.md)</br>
 [931. Minimum Falling Path Sum](solutions/0931-Minimum%20Falling%20Path%20Sum.md)</br>
