@@ -13,6 +13,7 @@
 [268. Missing Number](solutions/0268-Missing%20Number.md)</br>
 [405. Convert a Number to Hexadecimal](solutions/0405-Convert%20a%20Number%20to%20Hexadecimal.md)</br>
 [412. Fizz Buzz](solutions/0412-Fizz%20Buzz.md)</br>
+[561. Array Partition I](solutions/0561-Array%20Partition%20I.md)</br>
 [657. Robot Return to Origin](solutions/0657-Robot%20Return%20to%20Origin.md)</br>
 [724. Find Pivot Index](solutions/0724-Find%20Pivot%20Index.md)</br>
 [728. Self Dividing Numbers](solutions/0728-Self%20Dividing%20Numbers.md)</br>

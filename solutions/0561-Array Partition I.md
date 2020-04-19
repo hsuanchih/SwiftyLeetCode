@@ -17,7 +17,7 @@ __Note:__
 2. All the integers in the array will be in the range of `[-10000, 10000]`.
 
 ### Solution
-__O(n*log(n)+n):__
+__O(n*log(n)+n) Time:__
 ```Swift
 class Solution {
     func arrayPairSum(_ nums: [Int]) -> Int {
