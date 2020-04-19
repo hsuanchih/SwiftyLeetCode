@@ -22,7 +22,7 @@ Explanation: The array represents the integer 4321.
 ```
 
 ### Solution
-__O(n):__
+__O(digits) Time:__
 ```Swift
 class Solution {
     func plusOne(_ digits: [Int]) -> [Int] {
