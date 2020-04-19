@@ -22,6 +22,7 @@ starting each problem with a brute force approach & optimize along the way.
 * [Prefix/Postfix Sum](Prefix-Postfix-Sum.md)
 * [Sliding Window](Sliding-Window.md)
 * [Stack](Stack.md)
+* [String](String.md)
 * [Tree](Tree.md)
 * [Trie](Trie.md)
 * [Two Pointers](Two-Pointers.md)

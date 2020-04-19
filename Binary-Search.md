@@ -7,6 +7,7 @@
 [278. First Bad Version](solutions/0278-First%20Bad%20Version.md)</br>
 [367. Valid Perfect Square](solutions/0367-Valid%20Perfect%20Square.md)</br>
 [374. Guess Number Higher or Lower](solutions/0374-Guess%20Number%20Higher%20or%20Lower.md)</br>
+[392. Is Subsequence](solutions/0392-Is%20Subsequence.md)</br>
 [441. Arranging Coins](solutions/0441-Arranging%20Coins.md)</br>
 [704. Binary Search](solutions/0704-Binary%20Search.md)</br>
 [744. Find Smallest Letter Greater Than Target](solutions/0744-Find%20Smallest%20Letter%20Greater%20Than%20Target.md)</br>

@@ -29,7 +29,7 @@ and you want to check one by one to see if T has its subsequence.</br>
 In this scenario, how would you change your code?
 
 ### Solution
-__O(n):__
+__O(t) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func isSubsequence(_ s: String, _ t: String) -> Bool {
@@ -51,6 +51,47 @@ class Solution {
             }
         }
         return false
+    }
+}
+```
+__O(t+s\*log\[base 2\](t)) Time, O(t) Space - Binary-Search:__
+```Swift
+class Solution {
+    func isSubsequence(_ s: String, _ t: String) -> Bool {
+        var lookup : [Character: [Int]] = [:]
+        for (index, value) in t.enumerated() {
+            lookup[value, default: []].append(index)
+        }
+        var curr = -1
+        for (index, value) in s.enumerated() {
+            guard let indices = lookup[value] else { return false }
+            switch binarySearch(indices, curr) {
+                case -1:
+                return false
+                case let index:
+                curr = index
+            }
+        }
+        return true
+    }
+    
+    func binarySearch(_ input: [Int], _ target: Int) -> Int {
+        var start = 0, end = input.count-1
+        while start+1 < end {
+            let mid = start + (end-start)/2
+            if input[mid] <= target {
+                start = mid
+            } else {
+                end = mid
+            }
+        }
+        if input[start] > target {
+            return input[start]
+        }
+        if input[end] > target {
+            return input[end]
+        }
+        return -1
     }
 }
 ```
