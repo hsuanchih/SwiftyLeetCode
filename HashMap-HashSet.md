@@ -3,6 +3,7 @@
 ### Easy
 ---
 [1. Two Sum](solutions/0001-Two%20Sum.md)</br>
+[136. Single Number](solutions/0136-Single%20Number.md)</br>
 [205. Isomorphic Strings](solutions/0205-Isomorphic%20Strings.md)</br>
 [242. Valid Anagram](solutions/0242-Valid%20Anagram.md)</br>
 [290. Word Pattern](solutions/0290-Word%20Pattern.md)</br>

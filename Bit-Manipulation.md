@@ -2,6 +2,7 @@
 
 ### Easy
 ---
+[136. Single Number](solutions/0136-Single%20Number.md)</br>
 [461. Hamming Distance](solutions/0461-Hamming%20Distance.md)</br>
 
 ### Medium
