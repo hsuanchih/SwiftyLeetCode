@@ -16,3 +16,7 @@
 [380. Insert Delete GetRandom O(1)](solutions/0380-Insert%20Delete%20GetRandom%20O(1).md)</br>
 [384. Shuffle an Array](solutions/0384-Shuffle%20an%20Array.md)</br>
 [535. Encode and Decode TinyURL](solutions/0535-Encode%20and%20Decode%20TinyURL.md)</br>
+
+### Hard
+---
+[381. Insert Delete GetRandom O(1) - Duplicates allowed](solutions/0381-Insert%20Delete%20GetRandom%20O(1)%20-%20Duplicates%20allowed.md)</br>
