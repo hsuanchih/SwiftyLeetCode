@@ -7,6 +7,7 @@
 [13. Roman to Integer](solutions/0013-Roman%20to%20Integer.md)</br>
 [38. Count and Say](solutions/0038-Count%20and%20Say.md)</br>
 [66. Plus One](solutions/0066-Plus%20One.md)</br>
+[168. Excel Sheet Column Title](solutions/0168-Excel%20Sheet%20Column%20Title.md)</br>
 [202. Happy Number](solutions/0202-Happy%20Number.md)</br>
 [231. Power of Two](solutions/0231-Power%20of%20Two.md)</br>
 [258. Add Digits](solutions/0258-Add%20Digits.md)</br>
