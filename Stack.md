@@ -12,5 +12,6 @@
 [56. Merge Intervals](solutions/0056-Merge%20Intervals.md)</br>
 [71. Simplify Path](solutions/0071-Simplify%20Path.md)</br>
 [150. Evaluate Reverse Polish Notation](solutions/0150-Evaluate%20Reverse%20Polish%20Notation.md)</br>
+[394. Decode String](solutions/0394-Decode%20String.md)</br>
 [402. Remove K Digits](solutions/0402-Remove%20K%20Digits.md)</br>
 [1019. Next Greater Node In Linked List](solutions/1019-Next%20Greater%20Node%20In%20Linked%20List.md)</br>
