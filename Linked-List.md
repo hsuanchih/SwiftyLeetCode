@@ -5,6 +5,7 @@
 [21. Merge Two Sorted Lists](solutions/0021-Merge%20Two%20Sorted%20Lists.md)</br>
 [83. Remove Duplicates from Sorted List](solutions/0083-Remove%20Duplicates%20from%20Sorted%20List.md)</br>
 [141. Linked List Cycle](solutions/0141-Linked%20List%20Cycle.md)</br>
+[160. Intersection of Two Linked Lists](solutions/0160-Intersection%20of%20Two%20Linked%20Lists.md)</br>
 [203. Remove Linked List Elements](solutions/0203-Remove%20Linked%20List%20Elements.md)</br>
 [206. Reverse Linked List](solutions/0206-Reverse%20Linked%20List.md)</br>
 [876. Middle of the Linked List](solutions/0876-Middle%20of%20the%20Linked%20List.md)</br>
