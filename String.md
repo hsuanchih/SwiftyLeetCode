@@ -6,6 +6,7 @@
 [67. Add Binary](solutions/0067-Add%20Binary.md)</br>
 [392. Is Subsequence](solutions/0392-Is%20Subsequence.md)</br>
 [680. Valid Palindrome II](solutions/0680-Valid%20Palindrome%20II.md)</br>
+[709. To Lower Case](solutions/0709-To%20Lower%20Case.md)</br>
 [1108. Defanging an IP Address](solutions/1108-Defanging%20an%20IP%20Address.md)</br>
 
 ### Medium
