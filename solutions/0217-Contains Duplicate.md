@@ -23,7 +23,7 @@ Output: true
 ```
 
 ### Solution
-__O(n^2) Time, O(1) Space:__
+__O(nums^2) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func containsDuplicate(_ nums: [Int]) -> Bool {
@@ -38,7 +38,7 @@ class Solution {
     }
 }
 ```
-__O(n) Time, O(n) Space:__
+__O(nums) Time, O(nums) Space - HashSet:__
 ```Swift
 class Solution {
     func containsDuplicate(_ nums: [Int]) -> Bool {
