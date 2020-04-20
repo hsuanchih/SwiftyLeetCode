@@ -19,7 +19,7 @@ What should we return when `needle` is an empty string? This is a great question
 For the purpose of this problem, we will return 0 when `needle` is an empty string. This is consistent to C's strstr() and Java's `indexOf()`.
 
 ### Solution
-__O(n*k):__
+__O(haystack*needle) Time:__
 ```Swift
 class Solution {
     func strStr(_ haystack: String, _ needle: String) -> Int {
