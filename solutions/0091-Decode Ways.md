@@ -24,7 +24,7 @@ Explanation: It could be decoded as "BZ" (2 26), "VF" (22 6), or "BBF" (2 2 6).
 ```
 
 ### Solution
-__O(2^n):__
+__O(2^s) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func numDecodings(_ s: String) -> Int {
@@ -57,7 +57,7 @@ class Solution {
     }
 }
 ```
-__Recursive O(n):__
+__O(s) Time, O(s) Space - Bottom-Up Recursive, Top-Down Memoization:__
 ```Swift
 class Solution {
     func numDecodings(_ s: String) -> Int {
@@ -94,7 +94,7 @@ class Solution {
     }
 }
 ```
-__Iterative O(n):__
+__Iterative O(s) Time, O(s) Space - Bottom-Up Iterative, Bottom-Up Memoization:__
 ```Swift
 class Solution {
     func numDecodings(_ s: String) -> Int {

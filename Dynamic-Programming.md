@@ -15,6 +15,7 @@
 [63. Unique Paths II](solutions/0063-Unique%20Paths%20II.md)</br>
 [64. Minimum Path Sum](solutions/0064-Minimum%20Path%20Sum.md)</br>
 [70. Climbing Stairs](solutions/0070-Climbing%20Stairs.md)</br>
+[91. Decode Ways](solutions/0091-Decode%20Ways.md)</br>
 [120. Triangle](solutions/0120-Triangle.md)</br>
 [139. Word Break](solutions/0139-Word%20Break.md)</br>
 [221. Maximal Square](solutions/0221-Maximal%20Square.md)</br>
