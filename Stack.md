@@ -6,6 +6,7 @@
 [155. Min Stack](solutions/0155-Min%20Stack.md)</br>
 [225. Implement Stack using Queues](solutions/0225-Implement%20Stack%20using%20Queues.md)</br>
 [496. Next Greater Element I](solutions/0496-Next%20Greater%20Element%20I.md)</br>
+[1047. Remove All Adjacent Duplicates In String](solutions/1047-Remove%20All%20Adjacent%20Duplicates%20In%20String.md)</br>
 
 ### Medium
 ---

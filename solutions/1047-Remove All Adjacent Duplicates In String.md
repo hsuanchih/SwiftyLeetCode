@@ -20,7 +20,7 @@ __Note:__
 2. `S` consists only of English lowercase letters.
 
 ### Solution
-__O(n):__
+__O(S) Time, O(S) Space:__
 ```Swift
 class Solution {
     func removeDuplicates(_ S: String) -> String {
