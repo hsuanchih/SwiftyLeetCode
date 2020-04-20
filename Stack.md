@@ -4,6 +4,7 @@
 ---
 [20. Valid Parentheses](solutions/0020-Valid%20Parentheses.md)</br>
 [155. Min Stack](solutions/0155-Min%20Stack.md)</br>
+[225. Implement Stack using Queues](solutions/0225-Implement%20Stack%20using%20Queues.md)</br>
 [496. Next Greater Element I](solutions/0496-Next%20Greater%20Element%20I.md)</br>
 
 ### Medium

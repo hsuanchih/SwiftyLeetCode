@@ -3,6 +3,7 @@
 ### Easy
 ---
 [155. Min Stack](solutions/0155-Min%20Stack.md)</br>
+[225. Implement Stack using Queues](solutions/0225-Implement%20Stack%20using%20Queues.md)</br>
 [705. Design HashSet](solutions/0705-Design%20HashSet.md)</br>
 [706. Design HashMap](solutions/0706-Design%20HashMap.md)</br>
 
