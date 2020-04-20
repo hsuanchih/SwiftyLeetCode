@@ -17,7 +17,7 @@ Output:
 ```
 
 ### Solution
-__O(n) Time, O(n) Space:__
+__O(nums) Time, O(nums) Space:__
 ```Swift
 class Solution {
     func findDisappearedNumbers(_ nums: [Int]) -> [Int] {
@@ -36,7 +36,7 @@ class Solution {
     }
 }
 ```
-__O(n) Time, O(1) Space:__
+__O(nums) Time, O(1) Space:__
 ```Swift
 class Solution {
     func findDisappearedNumbers(_ nums: [Int]) -> [Int] {
