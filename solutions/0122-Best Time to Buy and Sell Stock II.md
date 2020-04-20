@@ -30,7 +30,7 @@ Explanation: In this case, no transaction is done, i.e. max profit = 0.
 ```
 
 ### Solution
-__O(n):__
+__O(prices) Time:__
 ```Swift
 class Solution {
     func maxProfit(_ prices: [Int]) -> Int {
