@@ -44,7 +44,7 @@ Output: "/a/b/c"
 ```
 
 ### Solution
-__O(n):__
+__O(path) Time, O(path) Space:__
 ```Swift
 class Solution {
     func simplifyPath(_ path: String) -> String {
