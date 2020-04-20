@@ -15,7 +15,7 @@ Output: -1->0->3->4->5
 ```
 
 ### Solution
-__O(n*log(n)) Merge Sort:__
+__O(n*log\[base 2\](n)) Merge Sort:__
 ```Swift
 /**
  * Definition for singly-linked list.
