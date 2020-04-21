@@ -2,6 +2,7 @@
 
 ### Easy
 ---
+[14. Longest Common Prefix](solutions/0014-Longest%20Common%20Prefix.md)</br>
 [28. Implement strStr()](solutions/0028-Implement%20strStr().md)</br>
 [67. Add Binary](solutions/0067-Add%20Binary.md)</br>
 [392. Is Subsequence](solutions/0392-Is%20Subsequence.md)</br>
