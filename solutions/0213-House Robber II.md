@@ -25,7 +25,7 @@ Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
 ```
 
 ### Solution
-__O(n):__
+__O(nums) Time, O(nums) Space:__
 ```Swift
 class Solution {
     func rob(_ nums: [Int]) -> Int {
