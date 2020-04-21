@@ -12,5 +12,6 @@
 
 ### Medium
 ---
+[8. String to Integer (atoi)](solutions/0008-String%20to%20Integer%20(atoi).md)</br>
 [165. Compare Version Numbers](solutions/0165-Compare%20Version%20Numbers.md)</br>
 [393. UTF-8 Validation](solutions/0393-UTF-8%20Validation.md)</br>
