@@ -31,6 +31,7 @@
 ### Medium
 ---
 [49. Group Anagrams](solutions/0049-Group%20Anagrams.md)</br>
+[388. Longest Absolute File Path](solutions/0388-Longest%20Absolute%20File%20Path.md)</br>
 [438. Find All Anagrams in a String](solutions/0438-Find%20All%20Anagrams%20in%20a%20String.md)</br>
 [567. Permutation in String](solutions/0567-Permutation%20in%20String.md)</br>
 [792. Number of Matching Subsequences](solutions/0792-Number%20of%20Matching%20Subsequences.md)</br>
