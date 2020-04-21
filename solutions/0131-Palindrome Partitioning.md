@@ -15,7 +15,7 @@ Output:
 ```
 
 ### Solution
-__O(2^n):__
+__O(2^s) Time:__
 ```Swift
 class Solution {
     func partition(_ s: String) -> [[String]] {
