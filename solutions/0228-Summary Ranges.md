@@ -17,7 +17,7 @@ Explanation: 2,3,4 form a continuous range; 8,9 form a continuous range.
 ```
 
 ### Solution
-__O(n):__
+__O(nums) Time:__
 ```Swift
 class Solution {
     func summaryRanges(_ nums: [Int]) -> [String] {
