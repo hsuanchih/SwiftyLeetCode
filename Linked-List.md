@@ -22,3 +22,7 @@
 [148. Sort List](solutions/0148-Sort%20List.md)</br>
 [445. Add Two Numbers II](solutions/0445-Add%20Two%20Numbers%20II.md)</br>
 [1019. Next Greater Node In Linked List](solutions/1019-Next%20Greater%20Node%20In%20Linked%20List.md)</br>
+
+### Hard
+---
+[25. Reverse Nodes in k-Group](solutions/0025-Reverse%20Nodes%20in%20k-Groups.md)</br>
