@@ -20,7 +20,7 @@ Output: 99
 ```
 
 ### Solution
-__O(n^2) Time, O(1) Space:__
+__O(nums^2) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func singleNumber(_ nums: [Int]) -> Int {
@@ -42,7 +42,7 @@ class Solution {
     }
 }
 ```
-__O(n) Time, O(n/3) Space:__
+__O(nums) Time, O(nums/3) Space - HashMap:__
 ```Swift
 class Solution {
     func singleNumber(_ nums: [Int]) -> Int {
@@ -57,7 +57,7 @@ class Solution {
     }
 }
 ```
-__O(64\*n) Time, O(1) Space:__
+__O(64\*nums) Time, O(1) Space - Bit-Manipulation:__
 ```Swift
 class Solution {
     func singleNumber(_ nums: [Int]) -> Int {
