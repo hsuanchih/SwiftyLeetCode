@@ -45,6 +45,7 @@
 [98. Validate Binary Search Tree](solutions/0098-Validate%20Binary%20Search%20Tree.md)</br>
 [102. Binary Tree Level Order Traversal](solutions/0102-Binary%20Tree%20Level%20Order%20Traversal.md)</br>
 [103. Binary Tree Zigzag Level Order Traversal](solutions/0103-Binary%20Tree%20Zigzag%20Level%20Order%20Traversal.md)</br>
+[105. Construct Binary Tree from Preorder and Inorder Traversal](solutions/0105-Construct%20Binary%20Tree%20from%20Preorder%20and%20Inorder%20Traversal.md.md)</br>
 [109. Convert Sorted List to Binary Search Tree](solutions/0109-Convert%20Sorted%20List%20to%20Binary%20Search%20Tree.md)</br>
 [113. Path Sum II](solutions/0113-Path%20Sum%20II.md)</br>
 [114. Flatten Binary Tree to Linked List](solutions/0114-Flatten%20Binary%20Tree%20to%20Linked%20List.md)</br>
