@@ -33,6 +33,7 @@
 [6. ZigZag Conversion](solutions/0006-ZigZag%20Conversion.md)</br>
 [12. Integer to Roman](solutions/0012-Integer%20to%20Roman.md)</br>
 [29. Divide Two Integers](solutions/0029-Divide%20Two%20Integers.md)</br>
+[31. Next Permutation](solutions/0031-Next%20Permutation.md)</br>
 [43. Multiply Strings](solutions/0043-Multiply%20Strings.md)</br>
 [50. Pow(x, n)](solutions/0050-Pow(x,%20n).md)</br>
 [89. Gray Code](solutions/0089-Gray%20Code.md)</br>

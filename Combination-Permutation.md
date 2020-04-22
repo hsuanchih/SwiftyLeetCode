@@ -8,6 +8,7 @@
 ### Medium
 ---
 [17. Letter Combinations of a Phone Number](solutions/0017-Letter%20Combinations%20of%20a%20Phone%20Number.md)</br>
+[31. Next Permutation](solutions/0031-Next%20Permutation.md)</br>
 [39. Combination Sum](solutions/0039-Combination%20Sum.md)</br>
 [40. Combination Sum II](solutions/0040-Combination%20Sum%20II.md)</br>
 [46. Permutations](solutions/0046-Permutations.md)</br>
