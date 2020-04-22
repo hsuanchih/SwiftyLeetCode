@@ -4,6 +4,7 @@
 ---
 [136. Single Number](solutions/0136-Single%20Number.md)</br>
 [231. Power of Two](solutions/0231-Power%20of%20Two.md)</br>
+[342. Power of Four](solutions/0342-Power%20of%20Four.md)</br>
 [461. Hamming Distance](solutions/0461-Hamming%20Distance.md)</br>
 
 ### Medium
