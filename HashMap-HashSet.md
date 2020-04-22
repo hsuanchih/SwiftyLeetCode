@@ -41,4 +41,5 @@
 
 ### Hard
 ---
+[30. Substring with Concatenation of All Words](solutions/0030-Substring%20with%20Concatenation%20of%20All%20Words.md)</br>
 [76. Minimum Window Substring](solutions/0076-Minimum%20Window%20Substring.md)</br>
