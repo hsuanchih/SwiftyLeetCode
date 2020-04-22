@@ -35,3 +35,4 @@
 [29. Divide Two Integers](solutions/0029-Divide%20Two%20Integers.md)</br>
 [50. Pow(x, n)](solutions/0050-Pow(x,%20n).md)</br>
 [89. Gray Code](solutions/0089-Gray%20Code.md)</br>
+[223. Rectangle Area](solutions/0223-Rectangle%20Area.md)</br>
