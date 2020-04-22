@@ -28,7 +28,7 @@ __Follow up:__
 Could you do it without using any loop / recursion?
 
 ### Solution
-__Iterative:__
+__O(log\[base 3\](n) Time - Iterative:__
 ```Swift
 class Solution {
     func isPowerOfThree(_ n: Int) -> Bool {
@@ -44,7 +44,7 @@ class Solution {
     }
 }
 ```
-__Recursive:__
+__O(log\[base 3\](n) Time - Recursive:__
 ```Swift
 class Solution {
     func isPowerOfThree(_ n: Int) -> Bool {

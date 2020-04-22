@@ -13,6 +13,7 @@
 [258. Add Digits](solutions/0258-Add%20Digits.md)</br>
 [263. Ugly Number](solutions/0263-Ugly%20Number.md)</br>
 [268. Missing Number](solutions/0268-Missing%20Number.md)</br>
+[326. Power of Three](solutions/0326-Power%20of%20Three.md)</br>
 [342. Power of Four](solutions/0342-Power%20of%20Four.md)</br>
 [405. Convert a Number to Hexadecimal](solutions/0405-Convert%20a%20Number%20to%20Hexadecimal.md)</br>
 [412. Fizz Buzz](solutions/0412-Fizz%20Buzz.md)</br>
