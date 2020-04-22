@@ -24,6 +24,7 @@
 [300. Longest Increasing Subsequencee](solutions/0300-Longest%20Increasing%20Subsequence.md)</br>
 [334. Increasing Triplet Subsequence](solutions/0334-Increasing%20Triplet%20Subsequence.md)</br>
 [338. Counting Bits](solutions/0338-Counting%20Bits.md)</br>
+[413. Arithmetic Slices](solutions/0413-Arithmetic%20Slices.md)</br>
 [416. Partition Equal Subset Sum](solutions/0416-Partition%20Equal%20Subset%20Sum.md)</br>
 [494. Target Sum](solutions/0494-Target%20Sum.md)</br>
 [931. Minimum Falling Path Sum](solutions/0931-Minimum%20Falling%20Path%20Sum.md)</br>
