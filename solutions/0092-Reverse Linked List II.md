@@ -23,7 +23,7 @@ class Solution {
             return reverse(head, n).0
         }
         // We assume that n >= m as valid input, in which case the # of nodes we want
-        // to reverse is (n-m), thus the strategy is to decrement m & n together while
+        // to reverse is (n-m+1), thus the strategy is to decrement m & n together while
         // we move further into the recursion to identify the first node to reverse
         head?.next = reverseBetween(head?.next, m-1, n-1)
         return head
