@@ -17,6 +17,7 @@
 [19. Remove Nth Node From End of List](solutions/0019-Remove%20Nth%20Node%20From%20End%20of%20List.md)</br>
 [24. Swap Nodes in Pairs](solutions/0024-Swap%20Nodes%20in%20Pairs.md)</br>
 [82. Remove Duplicates from Sorted List II](solutions/0082-Remove%20Duplicates%20from%20Sorted%20List%20II.md)</br>
+[86. Partition List](solutions/0086-Partition%20List.md)</br>
 [92. Reverse Linked List II](solutions/0092-Reverse%20Linked%20List%20II.md)</br>
 [138. Copy List with Random Pointer](solutions/0138-Copy%20List%20with%20Random%20Pointer.md)</br>
 [143. Reorder List](solutions/0143-Reorder%20List.md)</br>
