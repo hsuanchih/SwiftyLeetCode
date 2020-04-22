@@ -19,7 +19,7 @@ Explanation: 10 = 3 + 3 + 4, 3 × 3 × 4 = 36.
 __Note:__ You may assume that *n* is not less than 2 and not larger than 58.
 
 ### Solution
-__O(n^(log(n))) Recursive Top-Down:__
+__O(n^(log(n))) Recursive Top-Down - Brute-Force:__
 ```Swift
 class Solution {
     func integerBreak(_ n: Int) -> Int {
@@ -45,7 +45,7 @@ class Solution {
     }
 }
 ```
-__O(n^2) Recursive Top-Down:__
+__O(n^2) Recursive Top-Down - Memoization:__
 ```Swift
 class Solution {
     func integerBreak(_ n: Int) -> Int {
@@ -76,7 +76,7 @@ class Solution {
     }
 }
 ```
-__O(n^2) Iterative Bottom-Up:__
+__O(n^2) Iterative Bottom-Up - Memoization:__
 ```Swift
 class Solution {
     func integerBreak(_ n: Int) -> Int {
