@@ -21,3 +21,4 @@
 ### Hard
 ---
 [57. Insert Interval](solutions/0057-Insert%20Interval.md)</br>
+[84. Largest Rectangle in Histogram](solutions/0084-Largest%20Rectangle%20in%20Histograml.md)</br>
