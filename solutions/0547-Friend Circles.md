@@ -42,26 +42,19 @@ class Solution {
     func findCircleNum(_ M: [[Int]]) -> Int {
         var visited : Set<Int> = [], result : Int = 0
         for person in 0..<M.count {
-            if visited.contains(person) {
-                continue
-            }
-            result+=1
-            visited.insert(person)
-            bfs(person, M, &visited)
+            result += dfs(person, M, &visited)
         }
         return result
     }
     
-    func bfs(_ person: Int, _ M: [[Int]], _ visited: inout Set<Int>) {
+    func dfs(_ person: Int, _ M: [[Int]], _ visited: inout Set<Int>) -> Int {
+        guard !visited.contains(person) else { return 0 }
+        visited.insert(person)
         for friend in 0..<M.count {
-            if visited.contains(friend) || friend == person {
-                continue
-            }
-            if M[person][friend] == 1 {
-                visited.insert(friend)
-                bfs(friend, M, &visited)
-            }
+            guard friend != person && M[person][friend] == 1 else { continue }
+            _ = dfs(friend, M, &visited)
         }
+        return 1
     }
 }
 ```
