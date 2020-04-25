@@ -33,38 +33,39 @@ __Note:__
 __O(V+E):__
 ```Swift
 class Solution {
-    typealias AdjacencyList = [Set<Int>]
-    
     func findOrder(_ numCourses: Int, _ prerequisites: [[Int]]) -> [Int] {
-        let adjacencyList = constructAdjacencyList(numCourses, prerequisites)
-        var visited: Set<Int> = [], visiting: Set<Int> = [], stack: [Int] = []
-        for index in stride(from: 0, to: adjacencyList.count, by: 1) {
-            if !topologicalSort(index, adjacencyList, &visited, &visiting, &stack) {
+        let adjList = adjacencyList(numCourses, prerequisites)
+        var visited : Set<Int> = [], visitStack : Set<Int> = [], stack : [Int] = []
+        for vertex in 0..<numCourses {
+            if !dfs(vertex, adjList, &visited, &visitStack, &stack) {
                 return []
             }
         }
-        return stack
+        return stack.reversed()
     }
     
-    func topologicalSort(_ index: Int, _ adjacencyList: AdjacencyList, _ visited: inout Set<Int>, _ visiting: inout Set<Int>, _ stack: inout [Int]) -> Bool {
-        if !visited.contains(index) {
-            visited.insert(index)
-            visiting.insert(index)
-            for prereq in adjacencyList[index] {
-                if !topologicalSort(prereq, adjacencyList, &visited, &visiting, &stack) {
+    func dfs(_ vertex: Int, _ adjList: [[Int]], _ visited: inout Set<Int>, _ visitStack: inout Set<Int>, _ stack: inout [Int]) -> Bool {
+        guard !visitStack.contains(vertex) else { return false }
+        visitStack.insert(vertex)
+        if !visited.contains(vertex) {
+            visited.insert(vertex)
+            for next in adjList[vertex] {
+                if !dfs(next, adjList, &visited, &visitStack, &stack) {
                     return false
                 }
             }
-            stack.append(index)
-            visiting.remove(index)
-        } else if visiting.contains(index) {
-            return false
+            stack.append(vertex)
         }
+        visitStack.remove(vertex)
         return true
     }
     
-    func constructAdjacencyList(_ numCourses: Int, _ prerequisites: [[Int]]) -> AdjacencyList {
-        return prerequisites.reduce(into: Array(repeating: [], count: numCourses)) { $0[$1[0]].insert($1[1]) }
+    func adjacencyList(_ numCourses: Int, _ prerequisites: [[Int]]) -> [[Int]] {
+        var result : [[Int]] = Array(repeating: [Int](), count: numCourses)
+        prerequisites.forEach {
+            result[$0[1]].append($0[0])
+        }
+        return result
     }
 }
 ```
