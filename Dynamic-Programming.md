@@ -23,7 +23,8 @@
 [213. House Robber II](solutions/0213-House%20Robber%20II.md)</br>
 [221. Maximal Square](solutions/0221-Maximal%20Square.md)</br>
 [279. Perfect Squares](solutions/0279-Perfect%20Squares.md)</br>
-[300. Longest Increasing Subsequencee](solutions/0300-Longest%20Increasing%20Subsequence.md)</br>
+[300. Longest Increasing Subsequence](solutions/0300-Longest%20Increasing%20Subsequence.md)</br>
+[322. Coin Change](solutions/0322-Coin%20Change.md)</br>
 [334. Increasing Triplet Subsequence](solutions/0334-Increasing%20Triplet%20Subsequence.md)</br>
 [338. Counting Bits](solutions/0338-Counting%20Bits.md)</br>
 [343. Integer Break](solutions/0343-Integer%20Break.md)</br>
