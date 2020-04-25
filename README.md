@@ -21,6 +21,7 @@ starting each problem with a brute force approach & optimize along the way.
 * [Pigeon Hole](Pigeon-Hole.md)
 * [Prefix/Postfix Sum](Prefix-Postfix-Sum.md)
 * [Sliding Window](Sliding-Window.md)
+* [Sorting](Sorting.md)
 * [Stack](Stack.md)
 * [String](String.md)
 * [Tree](Tree.md)
