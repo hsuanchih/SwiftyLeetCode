@@ -24,6 +24,7 @@ starting each problem with a brute force approach & optimize along the way.
 * [Sorting](Sorting.md)
 * [Stack](Stack.md)
 * [String](String.md)
+* [Topological Sort](Topological-Sort.md)
 * [Tree](Tree.md)
 * [Trie](Trie.md)
 * [Two Pointers](Two-Pointers.md)

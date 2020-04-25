@@ -37,22 +37,20 @@ class Solution {
         let adjacencyList : AdjacencyList = constructAdjacencyList(prerequisites)
         var stack : [Int] = [], visited : Set<Int> = []
         for course in adjacencyList.keys {
-            if !topologicalSort(course, adjacencyList, &stack, &visited) {
+            if !dfs(course, adjacencyList, &stack, &visited) {
                 return false
             }
         }
         return true
     }
     
-    func topologicalSort(_ course : Int, _ adjacencyList: AdjacencyList, _ stack: inout [Int], _ visited: inout Set<Int>) -> Bool {
-        if stack.contains(course) {
-            return false
-        }
+    func dfs(_ course : Int, _ adjacencyList: AdjacencyList, _ stack: inout [Int], _ visited: inout Set<Int>) -> Bool {
+        guard !stack.contains(course) else { return false }
         stack.append(course)
         if !visited.contains(course) {
             visited.insert(course)
             for prereq in adjacencyList[course] ?? [] {
-                if !topologicalSort(prereq, adjacencyList, &stack, &visited) {
+                if !dfs(prereq, adjacencyList, &stack, &visited) {
                     return false
                 }
             }
