@@ -31,38 +31,38 @@ __Note:__
 __O(V+E):__
 ```Swift
 class Solution {
-    typealias AdjacencyList = [Int: Set<Int>]
-    
     func canFinish(_ numCourses: Int, _ prerequisites: [[Int]]) -> Bool {
-        let adjacencyList : AdjacencyList = constructAdjacencyList(prerequisites)
-        var stack : [Int] = [], visited : Set<Int> = []
-        for course in adjacencyList.keys {
-            if !dfs(course, adjacencyList, &stack, &visited) {
+        let adjList = adjacencyList(numCourses, prerequisites)
+        var visited : Set<Int> = [], visitStack : Set<Int> = []
+        for vertex in 0..<numCourses-1 {
+            if !dfs(vertex, adjList, &visited, &visitStack) {
                 return false
             }
         }
         return true
     }
     
-    func dfs(_ course : Int, _ adjacencyList: AdjacencyList, _ stack: inout [Int], _ visited: inout Set<Int>) -> Bool {
-        guard !stack.contains(course) else { return false }
-        stack.append(course)
-        if !visited.contains(course) {
-            visited.insert(course)
-            for prereq in adjacencyList[course] ?? [] {
-                if !dfs(prereq, adjacencyList, &stack, &visited) {
+    func dfs(_ vertex: Int, _ adjList: [[Int]], _ visited: inout Set<Int>, _ visitStack: inout Set<Int>) -> Bool {
+        guard !visitStack.contains(vertex) else { return false }
+        visitStack.insert(vertex)
+        if !visited.contains(vertex) {
+            visited.insert(vertex)
+            for next in adjList[vertex] {
+                if !dfs(next, adjList, &visited, &visitStack) {
                     return false
                 }
             }
         }
-        stack.removeLast()
+        visitStack.remove(vertex)
         return true
     }
     
-    func constructAdjacencyList(_ prereq: [[Int]]) -> AdjacencyList {
-        return prereq.reduce(into: AdjacencyList()) {
-            $0[$1.first!, default: Set<Int>()].insert($1.last!)
+    func adjacencyList(_ numCourses: Int, _ prerequisites: [[Int]]) -> [[Int]] {
+        var result : [[Int]] = Array(repeating: [Int](), count: numCourses)
+        prerequisites.forEach {
+            result[$0[1]].append($0[0])
         }
+        return result
     }
 }
 ```
