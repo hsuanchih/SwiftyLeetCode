@@ -33,6 +33,7 @@
 ---
 [49. Group Anagrams](../solutions/0049-Group%20Anagrams.md)</br>
 [187. Repeated DNA Sequences](../solutions/0187-Repeated%20DNA%20Sequences.md)</br>
+[347. Top K Frequent Elements](../solutions/0347-Top%20K%20Frequent%20Elements.md)</br>
 [388. Longest Absolute File Path](../solutions/0388-Longest%20Absolute%20File%20Path.md)</br>
 [438. Find All Anagrams in a String](../solutions/0438-Find%20All%20Anagrams%20in%20a%20String.md)</br>
 [454. 4Sum II](../solutions/0454-4Sum%20II.md)</br>
