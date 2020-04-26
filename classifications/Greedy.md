@@ -6,5 +6,6 @@
 
 ### Medium
 ---
+[45. Jump Game II](../solutions/0045-Jump%20Game%20II.md)</br>
 [55. Jump Game](../solutions/0055-Jump%20Game.md)</br>
 [334. Increasing Triplet Subsequence](../solutions/0334-Increasing%20Triplet%20Subsequence.md)</br>
