@@ -20,6 +20,7 @@ starting each problem with a brute force approach & optimize along the way.
 * [Matrix](Matrix.md)
 * [Pigeon Hole](Pigeon-Hole.md)
 * [Prefix/Postfix Sum](Prefix-Postfix-Sum.md)
+* [Priority Queue](Priority-Queue.md)
 * [Sliding Window](Sliding-Window.md)
 * [Sorting](Sorting.md)
 * [Stack](Stack.md)
