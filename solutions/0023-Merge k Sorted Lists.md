@@ -15,7 +15,7 @@ Output: 1->1->2->3->4->4->5->6
 ```
 
 ### Solution
-__O(k*n) Time, O(1) Space:__
+__O(k^2*n) Time, O(1) Space - Brute-Force:__
 ```Swift
 /**
  * Definition for singly-linked list.
@@ -158,7 +158,7 @@ extension PriorityQueue : QueueOperations {
     }
 }
 ```
-__O(k*log(n)):__
+__O((n\*k)\*log\[base 2\](n\*k) + (n\*k)\*log\[base 2\](n\*k)) Time, O(n\*k) Space:__
 ```Swift
 /**
  * Definition for singly-linked list.
@@ -192,7 +192,7 @@ class Solution {
     }
 }
 ```
-__O(n*log(k)):__
+__O((n\*k)\*2\*log(k)) Time, O(k) Space:__
 ```Swift
 /**
  * Definition for singly-linked list.
