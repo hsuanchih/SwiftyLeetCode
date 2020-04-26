@@ -25,3 +25,7 @@
 [18. 4Sum](../solutions/0018-4Sum.md)</br>
 [75. Sort Colors](../solutions/0075-Sort%20Colors.md)</br>
 [228. Summary Ranges](../solutions/0228-Summary%20Ranges.md)</br>
+
+### Hard
+---
+[42. Trapping Rain Water](../solutions/0042-Trapping%20Rain%20Water.md)</br>

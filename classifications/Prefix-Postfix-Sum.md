@@ -8,3 +8,7 @@
 ### Medium
 ---
 [848. Shifting Letters](../solutions/0848-Shifting%20Letters.md)</br>
+
+### Hard
+---
+[42. Trapping Rain Water](../solutions/0042-Trapping%20Rain%20Water.md)</br>
