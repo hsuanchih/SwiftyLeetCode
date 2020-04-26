@@ -26,7 +26,7 @@ __Follow up:__
 * Could you solve it in logarithmic time complexity?
 
 ### Solution
-__O(log(citations)):__
+__O(log\[base 2\](citations)):__
 ```Swift
 class Solution {
     func hIndex(_ citations: [Int]) -> Int {

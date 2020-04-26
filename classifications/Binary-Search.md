@@ -21,6 +21,7 @@
 [81. Search in Rotated Sorted Array II](../solutions/0081-Search%20in%20Rotated%20Sorted%20Array%20II.md)</br>
 [153. Find Minimum in Rotated Sorted Array](../solutions/0153-Find%20Minimum%20in%20Rotated%20Sorted%20Array.md)</br>
 [162. Find Peak Element](../solutions/0162-Find%20Peak%20Element.md)</br>
+[275. H-Index II](../solutions/0275-H-Index%20II.md)</br>
 [792. Number of Matching Subsequences](../solutions/0792-Number%20of%20Matching%20Subsequences.md)</br>
 
 ### Hard
