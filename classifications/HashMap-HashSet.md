@@ -32,6 +32,7 @@
 ### Medium
 ---
 [49. Group Anagrams](../solutions/0049-Group%20Anagrams.md)</br>
+[146. LRU Cache](../solutions/0146-LRU%20Cache.md)</br>
 [187. Repeated DNA Sequences](../solutions/0187-Repeated%20DNA%20Sequences.md)</br>
 [347. Top K Frequent Elements](../solutions/0347-Top%20K%20Frequent%20Elements.md)</br>
 [388. Longest Absolute File Path](../solutions/0388-Longest%20Absolute%20File%20Path.md)</br>

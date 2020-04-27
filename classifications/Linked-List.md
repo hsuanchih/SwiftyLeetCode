@@ -21,6 +21,7 @@
 [92. Reverse Linked List II](../solutions/0092-Reverse%20Linked%20List%20II.md)</br>
 [138. Copy List with Random Pointer](../solutions/0138-Copy%20List%20with%20Random%20Pointer.md)</br>
 [143. Reorder List](../solutions/0143-Reorder%20List.md)</br>
+[146. LRU Cache](../solutions/0146-LRU%20Cache.md)</br>
 [147. Insertion Sort List](../solutions/0147-Insertion%20Sort%20List.md)</br>
 [148. Sort List](../solutions/0148-Sort%20List.md)</br>
 [328. Odd Even Linked List](../solutions/0328-Odd%20Even%20Linked%20List.md)</br>

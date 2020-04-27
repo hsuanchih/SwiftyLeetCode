@@ -9,6 +9,7 @@
 
 ### Medium
 ---
+[146. LRU Cache](../solutions/0146-LRU%20Cache.md)</br>
 [173. Binary Search Tree Iterator](../solutions/0173-Binary%20Search%20Tree%20Iterator.md)</br>
 [208. Implement Trie (Prefix Tree)](../solutions/0208-Implement%20Trie%20(Prefix%20Tree).md)</br>
 [211. Add and Search Word - Data structure design](../solutions/0211-Add%20and%20Search%20Word%20-%20Data%20structure%20design.md)</br>
