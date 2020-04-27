@@ -21,6 +21,7 @@ starting each problem with a brute force approach & optimize along the way.
 * [Pigeon Hole](classifications/Pigeon-Hole.md)
 * [Prefix/Postfix Sum](classifications/Prefix-Postfix-Sum.md)
 * [Priority Queue](classifications/Priority-Queue.md)
+* [Reservoir Sampling](classifications/Reservoir-Sampling.md)
 * [Sliding Window](classifications/Sliding-Window.md)
 * [Sorting](classifications/Sorting.md)
 * [Stack](classifications/Stack.md)

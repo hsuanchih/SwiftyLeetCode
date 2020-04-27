@@ -15,6 +15,7 @@
 [341. Flatten Nested List Iterator](../solutions/0341-Flatten%20Nested%20List%20Iterator.md)</br>
 [355. Design Twitter](../solutions/0355-Design%20Twitter.md)</br>
 [380. Insert Delete GetRandom O(1)](../solutions/0380-Insert%20Delete%20GetRandom%20O(1).md)</br>
+[382. Linked List Random Node](../solutions/0382-Linked%20List%20Random%20Node.md)</br>
 [384. Shuffle an Array](../solutions/0384-Shuffle%20an%20Array.md)</br>
 [535. Encode and Decode TinyURL](../solutions/0535-Encode%20and%20Decode%20TinyURL.md)</br>
 

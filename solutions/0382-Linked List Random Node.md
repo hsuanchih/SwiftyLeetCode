@@ -21,7 +21,7 @@ solution.getRandom();
 ```
 
 ### Solution
-__O(n) Time Access, O(n) Space:__
+__O(n) Time Access, O(n) Space - Array:__
 ```Swift
 /**
  * Definition for singly-linked list.
@@ -52,6 +52,50 @@ class Solution {
     /** Returns a random node's value. */
     func getRandom() -> Int {
         return values[Int.random(in: 0..<values.count)]
+    }
+}
+
+/**
+ * Your Solution object will be instantiated and called as such:
+ * let obj = Solution(head)
+ * let ret_1: Int = obj.getRandom()
+ */
+```
+__O(n) Time Access, O(1) Space - Reservoir Sampling:__
+```Swift
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public var val: Int
+ *     public var next: ListNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.next = nil
+ *     }
+ * }
+ */
+
+class Solution {
+    
+    private let head : ListNode?
+
+    /** @param head The linked list's head.
+        Note that the head is guaranteed to be not null, so it contains at least one node. */
+    init(_ head: ListNode?) {
+        self.head = head
+    }
+    
+    /** Returns a random node's value. */
+    func getRandom() -> Int {
+        var curr = head, i = 0, result = curr?.val
+        while let node = curr {
+            if Int.random(in: 0..<i+1) == i {
+                result = node.val
+            }
+            i+=1
+            curr = node.next
+        }
+        return result ?? -1
     }
 }
 

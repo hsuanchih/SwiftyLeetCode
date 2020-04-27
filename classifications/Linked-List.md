@@ -24,6 +24,7 @@
 [147. Insertion Sort List](../solutions/0147-Insertion%20Sort%20List.md)</br>
 [148. Sort List](../solutions/0148-Sort%20List.md)</br>
 [328. Odd Even Linked List](../solutions/0328-Odd%20Even%20Linked%20List.md)</br>
+[382. Linked List Random Node](../solutions/0382-Linked%20List%20Random%20Node.md)</br>
 [445. Add Two Numbers II](../solutions/0445-Add%20Two%20Numbers%20II.md)</br>
 [1019. Next Greater Node In Linked List](../solutions/1019-Next%20Greater%20Node%20In%20Linked%20List.md)</br>
 
