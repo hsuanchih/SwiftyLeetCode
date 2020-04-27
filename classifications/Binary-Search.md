@@ -26,4 +26,5 @@
 
 ### Hard
 ---
+[4. Median of Two Sorted Arrays](../solutions/0004-Median%20of%20Two%20Sorted%20Arrays.md)</br>
 [154. Find Minimum in Rotated Sorted Array II](../solutions/0154-Find%20Minimum%20in%20Rotated%20Sorted%20Array%20II.md)</br>
