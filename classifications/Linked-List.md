@@ -20,6 +20,7 @@
 [86. Partition List](../solutions/0086-Partition%20List.md)</br>
 [92. Reverse Linked List II](../solutions/0092-Reverse%20Linked%20List%20II.md)</br>
 [138. Copy List with Random Pointer](../solutions/0138-Copy%20List%20with%20Random%20Pointer.md)</br>
+[142. Linked List Cycle II](../solutions/0142-Linked%20List%20Cycle%20II.md)</br>
 [143. Reorder List](../solutions/0143-Reorder%20List.md)</br>
 [146. LRU Cache](../solutions/0146-LRU%20Cache.md)</br>
 [147. Insertion Sort List](../solutions/0147-Insertion%20Sort%20List.md)</br>
