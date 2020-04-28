@@ -9,6 +9,7 @@
 [66. Plus One](../solutions/0066-Plus%20One.md)</br>
 [168. Excel Sheet Column Title](../solutions/0168-Excel%20Sheet%20Column%20Title.md)</br>
 [202. Happy Number](../solutions/0202-Happy%20Number.md)</br>
+[204. Count Primes](../solutions/0204-Count%20Primes.md)</br>
 [231. Power of Two](../solutions/0231-Power%20of%20Two.md)</br>
 [258. Add Digits](../solutions/0258-Add%20Digits.md)</br>
 [263. Ugly Number](../solutions/0263-Ugly%20Number.md)</br>
