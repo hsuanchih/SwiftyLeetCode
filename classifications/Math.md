@@ -8,6 +8,7 @@
 [38. Count and Say](../solutions/0038-Count%20and%20Say.md)</br>
 [66. Plus One](../solutions/0066-Plus%20One.md)</br>
 [168. Excel Sheet Column Title](../solutions/0168-Excel%20Sheet%20Column%20Title.md)</br>
+[169. Majority Element](../solutions/0169-Majority%20Element.md)</br>
 [202. Happy Number](../solutions/0202-Happy%20Number.md)</br>
 [204. Count Primes](../solutions/0204-Count%20Primes.md)</br>
 [231. Power of Two](../solutions/0231-Power%20of%20Two.md)</br>
