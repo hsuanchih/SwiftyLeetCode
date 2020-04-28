@@ -37,6 +37,7 @@
 [31. Next Permutation](../solutions/0031-Next%20Permutation.md)</br>
 [43. Multiply Strings](../solutions/0043-Multiply%20Strings.md)</br>
 [50. Pow(x, n)](../solutions/0050-Pow(x,%20n).md)</br>
+[60. Permutation Sequence](../solutions/0060-Permutation%20Sequence.md)</br>
 [89. Gray Code](../solutions/0089-Gray%20Code.md)</br>
 [223. Rectangle Area](../solutions/0223-Rectangle%20Area.md)</br>
 [264. Ugly Number II](../solutions/0264-Ugly%20Number%20II.md)</br>
