@@ -30,7 +30,7 @@ __Note:__
 * The length of `words[i]` will be in the range `[1, 30]`.
 
 ### Solution
-__O(words*l+words):__
+__O((words\*l)^2+words\*l) Time, O(words\*l) Space - HashSet:__
 ```Swift
 class Solution {
     func longestWord(_ words: [String]) -> String {
@@ -69,6 +69,58 @@ class Solution {
             }
         }
         return result
+    }
+}
+```
+__O(words\*l+words\*l) Time, O(words\*l) Time - Trie + BFS:__
+```Swift
+extension Character {
+    var offset : Int {
+        return Int(asciiValue!-Character("a").asciiValue!)
+    }
+}
+struct Trie {
+    private class TrieNode {
+        var nodes : [TrieNode?] = Array(repeating: nil, count: 26)
+        var word : String?
+    }
+    private let root = TrieNode()
+    mutating public func insert(_ word: String) {
+        var curr = root
+        for char in word {
+            let node = curr.nodes[char.offset] ?? TrieNode()
+            if curr.nodes[char.offset] == nil {
+                curr.nodes[char.offset] = node
+            }
+            curr = node
+        }
+        curr.word = word
+    }
+    
+    public func findLongestWord() -> String {
+        var stack : [TrieNode] = [root], result : String = ""
+        while !stack.isEmpty {
+            let curr = stack.removeLast()
+            if let word = curr.word, word.count >= result.count {
+                result = word
+            }
+            curr.nodes.forEach {
+                if let node = $0, let _ = node.word {
+                    stack.append(node)
+                }
+            }
+        }
+        return result
+    }
+}
+
+class Solution {
+    func longestWord(_ words: [String]) -> String {
+        var trie = Trie()
+        for word in words {
+            trie.insert(word)
+        }
+        return trie.findLongestWord()
     }
 }
 ```

@@ -1,5 +1,9 @@
 # Trie
 
+### Easy
+---
+[720. Longest Word in Dictionary](../solutions/0720-Longest%20Word%20in%20Dictionary.md)</br>
+
 ### Medium
 ---
 [208. Implement Trie (Prefix Tree)](../solutions/0208-Implement%20Trie%20(Prefix%20Tree).md)</br>

@@ -1,5 +1,9 @@
 # Breadth-First-Search
 
+### Easy
+---
+[720. Longest Word in Dictionary](../solutions/0720-Longest%20Word%20in%20Dictionary.md)</br>
+
 ### Medium
 ---
 [127. Word Ladder](../solutions/0127-Word%20Ladder.md)</br>
