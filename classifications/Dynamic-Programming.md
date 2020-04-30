@@ -35,6 +35,7 @@
 [494. Target Sum](../solutions/0494-Target%20Sum.md)</br>
 [516. Longest Palindromic Subsequence](../solutions/0516-Longest%20Palindromic%20Subsequence.md)</br>
 [931. Minimum Falling Path Sum](../solutions/0931-Minimum%20Falling%20Path%20Sum.md)</br>
+[983. Minimum Cost For Tickets](../solutions/0983-Minimum%20Cost%20For%20Tickets.md)</br>
 [1014. Best Sightseeing Pair](../solutions/1014-Best%20Sightseeing%20Pair.md)</br>
 
 ### Hard
