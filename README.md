@@ -18,6 +18,7 @@ starting each problem with a brute force approach & optimize along the way.
 * [Linked List](classifications/Linked-List.md)
 * [Math](classifications/Math.md)
 * [Matrix](classifications/Matrix.md)
+* [Minimax](classifications/Minimax.md)
 * [Pigeon Hole](classifications/Pigeon-Hole.md)
 * [Prefix/Postfix Sum](classifications/Prefix-Postfix-Sum.md)
 * [Priority Queue](classifications/Priority-Queue.md)
