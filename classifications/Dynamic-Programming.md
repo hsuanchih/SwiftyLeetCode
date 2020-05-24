@@ -33,6 +33,7 @@
 [343. Integer Break](../solutions/0343-Integer%20Break.md)</br>
 [413. Arithmetic Slices](../solutions/0413-Arithmetic%20Slices.md)</br>
 [416. Partition Equal Subset Sum](../solutions/0416-Partition%20Equal%20Subset%20Sum.md)</br>
+[464. Can I Win](../solutions/0464-Can%20I%20Win.md)</br>
 [486. Predict the Winner](../solutions/0486-Predict%20the%20Winner.md)</br>
 [494. Target Sum](../solutions/0494-Target%20Sum.md)</br>
 [516. Longest Palindromic Subsequence](../solutions/0516-Longest%20Palindromic%20Subsequence.md)</br>
