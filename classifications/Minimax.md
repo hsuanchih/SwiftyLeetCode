@@ -1,5 +1,9 @@
 # Minimax
 
+### Easy
+---
+[292. Nim Game](../solutions/0292-Nim%20Game.md)</br>
+
 ### Medium
 ---
 [464. Can I Win](../solutions/0464-Can%20I%20Win.md)</br>

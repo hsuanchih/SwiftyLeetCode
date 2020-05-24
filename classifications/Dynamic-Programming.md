@@ -5,6 +5,7 @@
 [53. Maximum Subarray](../solutions/0053-Maximum%20Subarray.md)</br>
 [121. Best Time to Buy and Sell Stock](../solutions/0121-Best%20Time%20to%20Buy%20and%20Sell%20Stock.md)</br>
 [198. House Robber](../solutions/0198-House%20Robber.md)</br>
+[292. Nim Game](../solutions/0292-Nim%20Game.md)</br>
 [485. Max Consecutive Ones](../solutions/0485-Max%20Consecutive%20Ones.md)</br>
 [509. Fibonacci Number](../solutions/0509-Fibonacci%20Number.md)</br>
 [746. Min Cost Climbing Stairs](../solutions/0746-Min%20Cost%20Climbing%20Stairs.md)</br>
