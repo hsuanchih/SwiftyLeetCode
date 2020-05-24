@@ -31,6 +31,7 @@
 [334. Increasing Triplet Subsequence](../solutions/0334-Increasing%20Triplet%20Subsequence.md)</br>
 [338. Counting Bits](../solutions/0338-Counting%20Bits.md)</br>
 [343. Integer Break](../solutions/0343-Integer%20Break.md)</br>
+[375. Guess Number Higher or Lower II](../solutions/0375-Guess%20Number%20Higher%20or%20Lower%20II.md)</br>
 [413. Arithmetic Slices](../solutions/0413-Arithmetic%20Slices.md)</br>
 [416. Partition Equal Subset Sum](../solutions/0416-Partition%20Equal%20Subset%20Sum.md)</br>
 [464. Can I Win](../solutions/0464-Can%20I%20Win.md)</br>
