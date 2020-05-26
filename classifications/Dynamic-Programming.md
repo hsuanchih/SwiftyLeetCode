@@ -50,6 +50,7 @@
 [44. Wildcard Matching](../solutions/0044-Wildcard%20Matching.md)</br>
 [72. Edit Distance](../solutions/0072-Edit%20Distance.md)</br>
 [85. Maximal Rectangle](../solutions/0085-Maximal%20Rectangle.md)</br>
+[87. Scramble String](../solutions/0087-Scramble%20String.md)</br>
 [97. Interleaving String](../solutions/0097-Interleaving%20String.md)</br>
 [115. Distinct Subsequences](../solutions/0115-Distinct%20Subsequences.md)</br>
 [123. Best Time to Buy and Sell Stock III](../solutions/0123-Best%20Time%20to%20Buy%20and%20Sell%20Stock%20III.md)</br>
