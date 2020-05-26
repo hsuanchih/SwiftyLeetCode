@@ -8,6 +8,7 @@
 [160. Intersection of Two Linked Lists](../solutions/0160-Intersection%20of%20Two%20Linked%20Lists.md)</br>
 [203. Remove Linked List Elements](../solutions/0203-Remove%20Linked%20List%20Elements.md)</br>
 [206. Reverse Linked List](../solutions/0206-Reverse%20Linked%20List.md)</br>
+[237. Delete Node in a Linked List](../solutions/0237-Delete%20Node%20in%20a%20Linked%20List.md)</br>
 [876. Middle of the Linked List](../solutions/0876-Middle%20of%20the%20Linked%20List.md)</br>
 [1290. Convert Binary Number in a Linked List to Integer](../solutions/1290-Convert%20Binary%20Number%20in%20a%20Linked%20List%20to%20Integer.md)</br>
 
