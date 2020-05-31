@@ -5,6 +5,7 @@ Write a function to delete a node (except the tail) in a singly linked list, giv
 
 Given linked list -- head = [4,5,1,9], which looks like following:
 
+![example](images/question_237.png)
 
 __Example 1:__
 ```
