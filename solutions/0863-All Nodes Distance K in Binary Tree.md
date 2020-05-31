@@ -7,6 +7,7 @@ Return a list of the values of all nodes that have a distance `K` from the `targ
 
 __Example 1:__
 
+![example 1](images/question_863.png)
 
 ```
 Input: root = [3,5,1,6,2,0,8,null,null,7,4], target = 5, K = 2
