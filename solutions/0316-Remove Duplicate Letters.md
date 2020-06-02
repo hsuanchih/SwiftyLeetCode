@@ -19,6 +19,11 @@ __Note:__ This question is the same as 1081: [https://leetcode.com/problems/smal
 ### Solution
 __O(s) Time, O(s) Space:__
 ```Swift
+extension Character {
+    var offset : Int {
+        return Int(asciiValue! - Character("a").asciiValue!)
+    }
+}
 class Solution {
     func removeDuplicateLetters(_ s: String) -> String {
 
