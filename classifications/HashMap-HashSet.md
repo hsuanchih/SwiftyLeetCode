@@ -42,6 +42,7 @@
 [567. Permutation in String](../solutions/0567-Permutation%20in%20String.md)</br>
 [763. Partition Labels](../solutions/0763-Partition%20Labels.md)</br>
 [792. Number of Matching Subsequences](../solutions/0792-Number%20of%20Matching%20Subsequences.md)</br>
+[1081. Smallest Subsequence of Distinct Characters](../solutions/1081-Smallest%20Subsequence%20of%20Distinct%20Characters.md)</br>
 
 ### Hard
 ---

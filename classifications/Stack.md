@@ -18,6 +18,7 @@
 [394. Decode String](../solutions/0394-Decode%20String.md)</br>
 [402. Remove K Digits](../solutions/0402-Remove%20K%20Digits.md)</br>
 [1019. Next Greater Node In Linked List](../solutions/1019-Next%20Greater%20Node%20In%20Linked%20List.md)</br>
+[1081. Smallest Subsequence of Distinct Characters](../solutions/1081-Smallest%20Subsequence%20of%20Distinct%20Characters.md)</br>
 
 ### Hard
 ---
