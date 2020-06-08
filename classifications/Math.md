@@ -43,3 +43,4 @@
 [89. Gray Code](../solutions/0089-Gray%20Code.md)</br>
 [223. Rectangle Area](../solutions/0223-Rectangle%20Area.md)</br>
 [264. Ugly Number II](../solutions/0264-Ugly%20Number%20II.md)</br>
+[319. Bulb Switcher](../solutions/0319-Bulb%20Switcher.md)</br>
