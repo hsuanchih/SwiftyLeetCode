@@ -21,17 +21,30 @@ __Note:__
 You may assume that you have an infinite number of each kind of coin.
 
 ### Solution
-__O(coins^amount) Recursive Top-Down:__
+__O(amount^coins) - Top-Down Recursive:__
 ```Swift
 class Solution {
     func coinChange(_ coins: [Int], _ amount: Int) -> Int {
+
+        // If we don't find a solution with the coins we have making up to the current amount,
+        // return -1
         return findChange(coins, amount) ?? -1
     }
     
     func findChange(_ coins: [Int], _ amount: Int) -> Int? {
+
+        // Base case:
+        // If we eventually reach amount 0 exactly, it means there
+        // is a valid solution - return 0
         if amount == 0 {
             return 0
         }
+
+        // We want to try all possible coins that are smaller
+        // than the current amount to find the minimum number of
+        // coins we need to make up the current amount
+        // Also, the conditional check guarantees that the amount will never
+        // go below zero
         var minCoins = Int.max
         for coin in coins where amount >= coin {
             minCoins = min(minCoins, findChange(coins, amount-coin) ?? Int.max)
@@ -40,7 +53,7 @@ class Solution {
     }
 }
 ```
-__O(coins*amount) Recursive Top-Down:__
+__O(coins*amount) - Top-Down Recursive, Bottom-Up Memoization:__
 ```Swift
 class Solution {
     func coinChange(_ coins: [Int], _ amount: Int) -> Int {
