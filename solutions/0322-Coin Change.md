@@ -78,54 +78,18 @@ class Solution {
     }
 }
 ```
-__O(coins*amount) Iterative Bottom-Up:__
+__O(coins*amount) Bottom-Up Iterative, Bottom-Up Memoization:__
 ```Swift
 class Solution {
     func coinChange(_ coins: [Int], _ amount: Int) -> Int {
-
-        // 0 coins are required to make up for amount 0
-        if amount == 0 { return 0 }
-
-        // memo[index][amount] represents the minimum number of coins required to make up amount using coins in 
-        // coins[0] up to coins[index]
-        var memo : [[Int]] = Array(repeating: Array(repeating: Int.max-1, count: amount+1), count: coins.count)
-        
-        for (index, coin) in coins.enumerated() {
-            for sum in 0...amount {
-                switch (index, sum-coin) {
-
-                    // If amount is equal to the coin value, minimum number of coins required to make up amount is 1
-                    case (_, 0):
-                    memo[index][sum] = 1
-                    
-                    // This is the first coin in coins, if amount is greater than the coin value, check if we can
-                    // make up amount-coin using the same coin. If so, add one more coin to make up amount
-                    case (0, 1..<amount):
-                    memo[index][sum] = min(memo[index][sum], memo[index][sum-coin]+1)
-
-                    // If the current coin value is larger than the amount we need to make up, such amount can
-                    // only come from smaller coin values if any, carry over result from previous
-                    // computations from smaller denominations
-                    case (1..<coins.count, Int.min..<0):
-                    memo[index][sum] = memo[index-1][sum]
-
-                    // We can make up the target amount using either coins from all previous denomination, or
-                    // including also the current coin; take the option which requires fewer coins
-                    case (1..<coins.count, 1..<amount):
-                    memo[index][sum] = min(memo[index][sum-coin]+1, memo[index-1][sum])
-
-                    // This is the case where we're dealing with the first coin in coins, yet this coin value
-                    // is larger than the amount we're dealing with. We cannot make up these amounts using any of
-                    // the coins we have. Do nothing.
-                    default:
-                    break
-                }
+        var memo : [Int] = Array(repeating: amount+1, count: amount+1)
+        memo[0] = 0
+        for coin in coins {
+            for sum in stride(from: 0, through: amount, by: 1) where sum-coin >= 0 {
+                memo[sum] = min(memo[sum], memo[sum-coin]+1)
             }
         }
-        if let result = memo.last?.last, result != Int.max-1 {
-            return result
-        }
-        return -1
+        return memo.last! > amount ? -1 : memo.last!
     }
 }
 ```
