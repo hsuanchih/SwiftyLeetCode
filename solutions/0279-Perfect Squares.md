@@ -22,9 +22,19 @@ __Exponential Time Recursive Top-Down:__
 ```Swift
 class Solution {
     func numSquares(_ n: Int) -> Int {
+
+        // Base case:
+        // n == 0: solution = 0
+        // n == 1: solution = 1
         if n <= 1 {
             return n
         }
+
+        // Recurring sub-problem:
+        // Given number n, compute the minimum number of squares
+        // required to make up the number:
+        // Try all squares smaller than sqrt(n), calling numSquares
+        // on the difference to find the minimum
         var min = n
         for num in 1...Int(Double(n).squareRoot()) {
             min = Swift.min(min, numSquares(n-num*num))
@@ -37,6 +47,8 @@ __Polynomial Time Recursive Top-Down:__
 ```Swift
 class Solution {
     func numSquares(_ n: Int) -> Int {
+
+        // Same solution as recusrive top-down, but with memoization
         var memo : [Int?] = Array(repeating: nil, count: n+1)
         return numSquares(n, &memo)
     }
@@ -61,7 +73,15 @@ __Polynomial Time Iterative Bottom-Up:__
 ```Swift
 class Solution {
     func numSquares(_ n: Int) -> Int {
+
+        // The max number of squares making up a number n
+        // will be n: (1+1+1+1+1...)
         var memo : [Int] = Array(0...n)
+
+        // Topological order:
+        // 1. Staring with num = 0, compute the minimum number of squares needed to make up
+        //    num using all squares smaller than num
+        // 2. Work our way up to num = n
         for num in 0...n {
             for i in 0...Int(sqrt(Double(num))) {
                 memo[num] = min(memo[num], 1+memo[num-i*i])
