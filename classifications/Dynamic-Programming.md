@@ -23,6 +23,7 @@
 [96. Unique Binary Search Trees](../solutions/0096-Unique%20Binary%20Search%20Trees.md)</br>
 [120. Triangle](../solutions/0120-Triangle.md)</br>
 [139. Word Break](../solutions/0139-Word%20Break.md)</br>
+[152. Maximum Product Subarray](../solutions/0152-Maximum%20Product%20Subarray.md)</br>
 [213. House Robber II](../solutions/0213-House%20Robber%20II.md)</br>
 [221. Maximal Square](../solutions/0221-Maximal%20Square.md)</br>
 [264. Ugly Number II](../solutions/0264-Ugly%20Number%20II.md)</br>
