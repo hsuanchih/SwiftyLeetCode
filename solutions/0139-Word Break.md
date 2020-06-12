@@ -27,72 +27,72 @@ Output: false
 ```
 
 ### Solution
-__Exponential:__
+__O(2^(s-2)) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func wordBreak(_ s: String, _ wordDict: [String]) -> Bool {
-        return solve(Array(s), 0, Set(wordDict.map(ArraySlice.init)))
+
+        // Convert s into [Character] for ease of indexing, 
+        // and wordDict into ArraySlice<Character> for ease of comparison
+        return wordBreak(Array(s), 0, Set(wordDict.map(ArraySlice.init)))
     }
     
-    func solve(_ s: [Character], _ index: Int, _ wordDict: Set<ArraySlice<Character>>) -> Bool {
-        switch index {
-            case s.count:
-            return true
-            case s.count+1...Int.max:
-            return false
-            default:
-            break
-        }
-        for i in index...s.count {
-            if wordDict.contains(s[index..<i]) {
-                if solve(s, i, wordDict) {
-                    return true
-                }
+    func wordBreak(_ s: [Character], _ index: Int, _ wordDict: Set<ArraySlice<Character>>) -> Bool {
+
+        for i in index..<s.count {
+
+            // If s[index...i] matches a word in wordDict, continue searching on
+            // in s starting with index i+1
+            // If any one search ends up with match, we've found a solution:
+            // early return true
+            if wordDict.contains(s[index...i]) && wordBreak(s, i+1, wordDict) {
+                return true
             }
         }
-        return false
+
+        // Return true only if index reaches s.count, otherwise we've not found
+        // a match starting at index
+        return index == s.count
     }
 }
 ```
-__Polynomial Bottom-Up Recursive:__
+__O(s^2) Time, O(s) Space - Bottom-Up Recursive, Top-Down Memoization:__
 ```Swift
 class Solution {
     func wordBreak(_ s: String, _ wordDict: [String]) -> Bool {
         var memo : [Bool?] = Array(repeating: nil, count: s.count)
-        return solve(Array(s), 0, Set(wordDict.map(ArraySlice.init)), &memo)
+        return wordBreak(Array(s), 0, Set(wordDict.map(ArraySlice.init)), &memo)
     }
     
-    func solve(_ s: [Character], _ index: Int, _ wordDict: Set<ArraySlice<Character>>, _ memo: inout [Bool?]) -> Bool {
-        switch index {
-            case s.count:
+    func wordBreak(_ s: [Character], _ index: Int, _ wordDict: Set<ArraySlice<Character>>, _ memo: inout [Bool?]) -> Bool {
+        if index == s.count {
             return true
-            case s.count+1...Int.max:
-            return false
-            default:
-            break
         }
         if let result = memo[index] {
             return result
         }
-        for i in index...s.count {
-            if wordDict.contains(s[index..<i]) {
-                if solve(s, i, wordDict, &memo) {
-                    memo[index] = true
-                    return memo[index]!
-                }
+        memo[index] = false
+        for i in index..<s.count {
+            if wordDict.contains(s[index...i]) && wordBreak(s, i+1, wordDict, &memo) {
+                memo[index] = true
+                break
             }
         }
-        memo[index] = false
         return memo[index]!
     }
 }
 ```
-__Polynomial Bottom-Up Iterative:__
+__O(s^2) Time, O(s) Space - Bottom-Up Iterative, Bottom-Up Memoization:__
 ```Swift
 class Solution {
     func wordBreak(_ s: String, _ wordDict: [String]) -> Bool {
         let s = Array(s), wordDict : Set<ArraySlice<Character>> = Set(wordDict.map(ArraySlice.init))
         var memo : [Bool] = Array(repeating: false, count: s.count)
+        
+        // Iterate through s, and check if there is any word in wordDict 
+        // that matches a substring in s starting at index i:
+        // If there is, then the substring from 0..<i+word.count-1 is a match
+        // only if 0..<i-1 is also a match - update memo array
         for i in 0..<s.count {
             for word in wordDict where i+word.count <= s.count {
                 if s[i..<i+word.count] == word {
@@ -102,6 +102,8 @@ class Solution {
                 }
             }
         }
+
+        // We have a solution only if 0..<s.count-1 is a match
         return memo.last!
     }
 }
