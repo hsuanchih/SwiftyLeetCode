@@ -26,10 +26,8 @@ class Solution {
             return n
         }
         var min = n
-        for num in 1...n/2 {
-            let square = num*num
-            if n-square < 0 { break }
-            min = Swift.min(min, numSquares(n-square))
+        for num in 1...Int(Double(n).squareRoot()) {
+            min = Swift.min(min, numSquares(n-num*num))
         }
         return min+1
     }
@@ -51,10 +49,8 @@ class Solution {
             return result
         }
         var min = n
-        for num in 1...n/2 {
-            let square = num*num
-            if n-square < 0 { break }
-            min = Swift.min(min, numSquares(n-square, &memo))
+        for num in 1...Int(Double(n).squareRoot()) {
+            min = Swift.min(min, numSquares(n-num*num, &memo))
         }
         memo[n] = min+1
         return memo[n]!
