@@ -62,14 +62,12 @@ __Polynomial Time Iterative Bottom-Up:__
 class Solution {
     func numSquares(_ n: Int) -> Int {
         var memo : [Int] = Array(0...n)
-        for i in 0...n {
-            for num in 0...i/2 {
-                let square = num*num
-                if i-square < 0 { break }
-                memo[i] = min(memo[i], memo[i-square]+1)
+        for num in 0...n {
+            for i in 0...Int(sqrt(Double(num))) {
+                memo[num] = min(memo[num], 1+memo[num-i*i])
             }
         }
-        return memo.last!
+        return memo.last ?? 0
     }
 }
 ```
