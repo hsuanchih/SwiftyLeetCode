@@ -18,6 +18,30 @@ __Note:__
 __Follow up:__ Could you improve it to O(n log n) time complexity?
 
 ### Solution
+__O(2^nums) Time, O(1) Space - Bottom-Up Recursive:__
+```Swift
+class Solution {
+    func lengthOfLIS(_ nums: [Int]) -> Int {
+        return longest(nums, Int.min, 0)
+    }
+    
+    func longest(_ nums: [Int], _ prev: Int, _ index: Int) -> Int {
+        if index == nums.count {
+            return 0
+        }
+
+        // There are 2 options we can explore here:
+        // 1. Ignore the current element; continue finding LIS from the next index
+        // 2. If the current element is greater than the previous, we can include
+        //    the current element as part of our LIS
+        var max = longest(nums, prev, index+1)
+        if nums[index] > prev {
+            max = Swift.max(max, longest(nums, nums[index], index+1)+1)
+        }
+        return max
+    }
+}
+```
 __O(nums^2) Time, O(nums) Space:__
 ```Swift
 class Solution {
