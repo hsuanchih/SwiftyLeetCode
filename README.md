@@ -1,6 +1,6 @@
 # SwiftyLeetCode
 
-Solving leetcode problems on the side to keep the mind sharp - 
+Solving leetcode problems on the side to keep the mind fresh - 
 starting each problem with a brute force approach & optimize along the way.
 
 ---
