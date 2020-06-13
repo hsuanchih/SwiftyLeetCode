@@ -44,3 +44,4 @@
 [223. Rectangle Area](../solutions/0223-Rectangle%20Area.md)</br>
 [264. Ugly Number II](../solutions/0264-Ugly%20Number%20II.md)</br>
 [319. Bulb Switcher](../solutions/0319-Bulb%20Switcher.md)</br>
+[357. Count Numbers with Unique Digits](../solutions/0357-Count%20Numbers%20with%20Unique%20Digits.md)</br>
