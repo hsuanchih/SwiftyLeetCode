@@ -49,6 +49,7 @@
 [983. Minimum Cost For Tickets](../solutions/0983-Minimum%20Cost%20For%20Tickets.md)</br>
 [1014. Best Sightseeing Pair](../solutions/1014-Best%20Sightseeing%20Pair.md)</br>
 [1025. Divisor Game](../solutions/1025-Divisor%20Game.md)</br>
+[1143. Longest Common Subsequence](../solutions/1143-Longest%20Common%20Subsequence.md)</br>
 
 ### Hard
 ---
