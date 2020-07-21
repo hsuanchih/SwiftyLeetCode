@@ -72,3 +72,4 @@
 [99. Recover Binary Search Tree](../solutions/0099-Recover%20Binary%20Search%20Tree.md)</br>
 [124. Binary Tree Maximum Path Sum](../solutions/0124-Binary%20Tree%20Maximum%20Path%20Sum.md)</br>
 [145. Binary Tree Postorder Traversal](../solutions/0145-Binary%20Tree%20Postorder%20Traversal.md)</br>
+[297. Serialize and Deserialize Binary Tree](../solutions/0297-Serialize%20and%20Deserialize%20Binary%20Tree.md)</br>

@@ -24,4 +24,5 @@
 
 ### Hard
 ---
+[297. Serialize and Deserialize Binary Tree](../solutions/0297-Serialize%20and%20Deserialize%20Binary%20Tree.md)</br>
 [381. Insert Delete GetRandom O(1) - Duplicates allowed](../solutions/0381-Insert%20Delete%20GetRandom%20O(1)%20-%20Duplicates%20allowed.md)</br>
