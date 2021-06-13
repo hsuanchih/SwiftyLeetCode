@@ -123,13 +123,13 @@ class Solution {
     func longestPalindrome(_ s: [Character], _ start: Int, _ end: Int) -> Range<Int> {
         switch (start, end) {
 
-            // If start & end are within bounds of s and s[start] == s[end], 
-            // we want to continue explore the longest palindrome
-            case (0..<s.count, 0..<s.count) where s[start] == s[end]:
+        // If start & end are within bounds of s and s[start] == s[end], 
+        // we want to continue explore the longest palindrome
+        case (0..<s.count, 0..<s.count) where s[start] == s[end]:
             return longestPalindrome(s, start-1, end+1)
 
-            // Otherwise the longest palindrome ended at [start+1...end-1]
-            default:
+        // Otherwise the longest palindrome ended at [start+1...end-1]
+        default:
             return start+1..<end
         }
     }
