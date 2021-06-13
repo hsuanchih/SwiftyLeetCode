@@ -76,6 +76,30 @@ class Solution {
     }
 }
 ```
+__O(s^2) Time, Constant (26) Space - Improved Brute-Force Alternative:__
+```Swift
+class Solution {
+    func lengthOfLongestSubstring(_ s: String) -> Int {
+        let s = Array(s)
+        var result = 0
+        
+        // Evaluate each substring starting at every "start"
+        for start in 0..<s.count {
+            var seen : Set<Character> = []
+            for i in start..<s.count {
+                // Evaluate each substring starting at every "start"
+                let curr = s[i]
+                if seen.contains(curr) {
+                    break
+                }
+                result = max(result, i-start+1)
+                seen.insert(curr)
+            }
+        }
+        return result
+    }
+}
+```
 __O(s) Time, Constant (26) Space - Sliding Window:__
 ```Swift
 class Solution {
