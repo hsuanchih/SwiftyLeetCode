@@ -10,7 +10,7 @@ Output: 1->1->2->3->4->4
 ```
 
 ### Solution
-__O(min(m,n)):__
+__O(l1+l2):__
 ```Swift
 /**
  * Definition for singly-linked list.
@@ -44,6 +44,37 @@ class Solution {
             iter?.next = l2
         }
         return result.next
+    }
+}
+```
+__O(l1+l2):__
+```Swift
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public var val: Int
+ *     public var next: ListNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.next = nil
+ *     }
+ * }
+ */
+class Solution {
+    func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+        let result: ListNode? = .init(0)
+        var curr = result, l1 = l1, l2 = l2
+        while l1 != nil || l2 != nil {
+            if (l1?.val ?? Int.max) < (l2?.val ?? Int.max) {
+                curr?.next = l1
+                l1 = l1?.next
+            } else {
+                curr?.next = l2
+                l2 = l2?.next
+            }
+            curr = curr?.next
+        }
+        return result?.next
     }
 }
 ```
