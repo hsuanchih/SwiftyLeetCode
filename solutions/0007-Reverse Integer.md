@@ -28,12 +28,7 @@ __String Manipulation:__
 ```Swift
 extension Int {
     var converted : Int {
-        switch self {
-            case (1<<31)...Int.max, Int.min..<(-(1<<31)):
-            return 0
-            default:
-            return self
-        }
+        self > Int32.max || self < Int32.min ? 0 : self
     }
 }
 
@@ -48,12 +43,7 @@ __O(log\[base 10\](x) Time, O(1) Space - Iterative:__
 ```Swift
 extension Int {
     var converted : Int {
-        switch self {
-            case (1<<31)...Int.max, Int.min..<(-(1<<31)):
-            return 0
-            default:
-            return self
-        }
+        self > Int32.max || self < Int32.min ? 0 : self
     }
 }
 
@@ -73,12 +63,7 @@ __O(log\[base 10\](x) Time, O(1) Space - Recursive:__
 ```Swift
 extension Int {
     var converted : Int {
-        switch self {
-            case (1<<31)...Int.max, Int.min..<(-(1<<31)):
-            return 0
-            default:
-            return self
-        }
+        self > Int32.max || self < Int32.min ? 0 : self
     }
 }
 
