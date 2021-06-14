@@ -1,5 +1,5 @@
 
-### Count and Say
+### Longest Common Prefix
 
 Write a function to find the longest common prefix string amongst an array of strings.
 
@@ -30,7 +30,7 @@ class Solution {
             case 1: return strs.first!
             default: break
         }
-        let strs = strs.map { Array($0) }
+        let strs = strs.map(Array.init)
         let minLength = strs.reduce(Int.max) { return min($0, $1.count) }
         for i in stride(from: 0, to: minLength, by: 1) {
             let curr = strs.first![i]
@@ -48,7 +48,7 @@ __O((strs\*k)+(strs\*k)):__
 ```Swift
 class Solution {
     func longestCommonPrefix(_ strs: [String]) -> String {
-        let strs = strs.map { Array($0) }
+        let strs = strs.map(Array.init)
         var index = 0, result : String = ""
         while true {
             var curr : Character?
