@@ -39,20 +39,16 @@ __Iterative:__
  */
 class Solution {
     func levelOrder(_ root: TreeNode?) -> [[Int]] {
-        guard let node = root else { return [] }
-        var queue : [TreeNode] = [node], result : [[Int]] = []
+        guard let root = root else { return [] }
+        var queue: [TreeNode] = [root], result: [[Int]] = []
         while !queue.isEmpty {
             let size = queue.count
-            var temp : [Int] = []
-            for _ in 0..<size {
+            var temp: [Int] = []
+            for _ in 0 ..< size {
                 let node = queue.removeFirst()
                 temp.append(node.val)
-                if let left = node.left {
-                    queue.append(left)
-                }
-                if let right = node.right {
-                    queue.append(right)
-                }
+                node.left.map { queue.append($0) }
+                node.right.map { queue.append($0) }
             }
             result.append(temp)
         }
