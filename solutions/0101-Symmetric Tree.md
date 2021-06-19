@@ -1,5 +1,5 @@
 
-### Same Tree
+### Symmetric Tree
 
 Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
 
@@ -20,7 +20,11 @@ But the following `[1,2,2,null,3,null,3]` is not:
    3    3
 ```
 
-__Note:__
+__Constraints:__
+* The number of nodes in the tree is in the range [1, 1000].
+* `-100 <= Node.val <= 100`
+
+__Follow up:__
 Bonus points if you could solve it both recursively and iteratively.
 
 ### Solution
@@ -53,6 +57,52 @@ class Solution {
             default:
             return false
         }
+    }
+}
+```
+### Solution
+__O(2n) Time, O(n/2) Space - Iterative:__
+```Swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.left = nil
+ *         self.right = nil
+ *     }
+ * }
+ */
+class Solution {
+    func isSymmetric(_ root: TreeNode?) -> Bool {
+        guard let root = root else { return true }
+        var queue: [TreeNode] = [root]
+
+        // Run level order traversal, stub a dummy node if the left or right child is nil
+        while !queue.isEmpty {
+            let size: Int = queue.count
+            var temp: [Int] = []
+            for _ in 0 ..< size {
+                let node = queue.removeFirst()
+                temp.append(node.val)
+
+                // Stub left & right children only if the node itself is not a stub,
+                // otherwise the traversal will never termintate
+                if node.val != Int.max {
+                    queue.append(node.left ?? TreeNode(Int.max))
+                    queue.append(node.right ?? TreeNode(Int.max))
+                }
+            }
+
+            // A tree is symmetric only if elements at every level is symmetric
+            if temp != temp.reversed() {
+                return false
+            }
+        }
+        return true
     }
 }
 ```
