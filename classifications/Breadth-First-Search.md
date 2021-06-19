@@ -2,6 +2,7 @@
 
 ### Easy
 ---
+[101. Symmetric Tree](../solutions/0101-Symmetric%20Tree.md)</br>
 [720. Longest Word in Dictionary](../solutions/0720-Longest%20Word%20in%20Dictionary.md)</br>
 
 ### Medium
