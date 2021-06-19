@@ -25,6 +25,7 @@ __Constraints:__
 * `-100 <= Node.val <= 100`
 
 __Follow up:__
+
 Bonus points if you could solve it both recursively and iteratively.
 
 ### Solution
