@@ -61,7 +61,6 @@ class Solution {
     }
 }
 ```
-### Solution
 __O(2n) Time, O(n/2) Space - Iterative:__
 ```Swift
 /**
