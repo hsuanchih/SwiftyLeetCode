@@ -47,14 +47,26 @@ __O(n) Recursive:__
 class Solution {
     func lowestCommonAncestor(_ root: TreeNode?, _ p: TreeNode?, _ q: TreeNode?) -> TreeNode? {
         guard let node = root else { return root }
+        
+        // The assumption here is that p & q will both exist in the binary tree, and that there is exactly one valid LCA.
+        // If the current node's value matches either p or q, then the matching node must be a potential LCA unless found
+        // otherwise (that the other matching node does not exist in the subtrees of the current node), in which case the
+        // LCA will be re-assigned when the complimentary subtree traversal returns.
         switch node.val {
             case p!.val: return p
             case q!.val: return q
             default: break
         }
+        
         switch (lowestCommonAncestor(node.left, p, q), lowestCommonAncestor(node.right, p, q)) {
-            case (.some(_), .some(_)):
+        
+            // If both the current node's left & right subtrees contain p and q, then the node must be the lowest
+            // common ancestor.
+            case (.some, .some):
             return node
+            
+            // Either p or q is found in one of the subtrees of the current node, or neither is found:
+            // propagate the result upwards.
             case let (left, right):
             return left ?? right
         }
