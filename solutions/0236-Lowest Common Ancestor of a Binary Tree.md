@@ -101,9 +101,18 @@ extension TreeNode : Hashable {
 class Solution {
     func lowestCommonAncestor(_ root: TreeNode?, _ p: TreeNode?, _ q: TreeNode?) -> TreeNode? {
         guard let root = root else { return nil }
+        
+        // Use `stack` for level-order traversal, and `parent` to track the parent of each tree node
         var stack : [TreeNode] = [root], parent : [TreeNode:TreeNode] = [:]
+        
+        // We want to early return if both p & q have been visited  (direct parents of p & q have been found)
+        // Otherwise, level-traverse through the entire tree.
         while (parent[p!] == nil || parent[q!] == nil) && !stack.isEmpty {
+        
+            // Pop the most recently added node on from the stack, 
+            // and record this node as the parent of its left & right children
             let node = stack.removeLast()
+            
             if let left = node.left {
                 stack.append(left)
                 parent[left] = node
@@ -113,12 +122,18 @@ class Solution {
                 parent[right] = node
             }
         }
+        
+        // Start with node `p` and unwind its anscestors from one parent to another, 
+        // adding each ancestor to the `parents` set.
         var parents : Set<TreeNode> = [], p = p
         while let curr = p {
             parents.insert(curr)
             p = parent[curr]
         }
         
+        // Now that `p`'s parents have been added to the `parents` set, 
+        // unwind node `q`'s ancestors from one parent to another.
+        // The first ancestor unwound from `q` to match an ancestor of `p` will be the LCA.
         var q = q
         while let curr = q, !parents.contains(curr) {
             q = parent[curr]
