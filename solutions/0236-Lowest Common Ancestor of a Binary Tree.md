@@ -48,10 +48,10 @@ class Solution {
     func lowestCommonAncestor(_ root: TreeNode?, _ p: TreeNode?, _ q: TreeNode?) -> TreeNode? {
         guard let node = root else { return root }
         
-        // The assumption here is that p & q will both exist in the binary tree, and that there is exactly one valid LCA.
-        // If the current node's value matches either p or q, then the matching node must be a potential LCA unless found
-        // otherwise (that the other matching node does not exist in the subtrees of the current node), in which case the
-        // LCA will be re-assigned when the complimentary subtree traversal returns.
+        // The assumption here is that p & q will both exist in the binary tree, and there exists exactly one LCA.
+        // If the current node's value matches either p or q, then the matching node must be a potential LCA 
+        // unless found otherwise (that the other matching node does not exist in the current node's subtrees), 
+        // in which case the LCA will be re-assigned when the complimentary subtree traversal returns.
         switch node.val {
             case p!.val: return p
             case q!.val: return q
