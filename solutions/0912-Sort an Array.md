@@ -99,7 +99,7 @@ __Quick Sort | O(n*log(n)~O(n^2)) Time, O(1) Space:__
 class Solution {
     func sortArray(_ nums: [Int]) -> [Int] {
         var nums = nums
-        quickSort(&nums, 0, nums.count-1)
+        quickSort(&nums, 0, nums.count - 1)
         return nums
     }
 
@@ -109,22 +109,27 @@ class Solution {
             return
         }
 
-        // Find the index of the pivot in this sub-array, run quick sort on the sub-arrays
-        // left & right of the pivot
+        // 1. Randomly choose an element as the pivot in sub-array nums[start ... end]
+        // 2. Move all elements with value less than the pivot to its left 
+        //   (all elements with value greater will naturally end up on its right)
+        // 3. Identify the correct position of the pivot in sub-array nums[start ... end]
         let pivot = partition(&nums, start, end)
-        quickSort(&nums, start, pivot-1)
-        quickSort(&nums, pivot+1, end)
+        
+        // Run quick sort on the (unsorted) sub-arrays to the left & right of the pivot.
+        quickSort(&nums, start, pivot - 1)
+        quickSort(&nums, pivot + 1, end)
     }
     
     // Pick a random element (nums[end]) as the pivot, and return the index the pivot in the sub-array
     func partition(_ nums: inout [Int], _ start: Int, _ end: Int) -> Int {
         
-        // Elements with value less than pivot are placed to the left of i
+        // Elements with value less than pivot are placed to the left of i (the divider)
         var i = start
 
-        // Iterate through the array using j, if element is less than pivot
+        // Randomly pick a pivot in sub-array nums[start ... end], here we pick nums[end].
+        // Iterate through the array using j (the iterator), if element is less than pivot
         // swap elements at i & j, then advance i
-        for j in start...end {
+        for j in start ... end {
             if nums[j] <= nums[end] {
                 if i != j {
                     nums.swapAt(i, j)
