@@ -34,13 +34,13 @@ class Solution {
 
     // Use hashtable to store visited [value:index] pair
     func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
-        var seen : [Int: Int] = [:]
+        var indexLookup: [Int: Int] = [:]
         for index in stride(from: 0, to: nums.count, by: 1) {
             let num = nums[index], difference = target - num
-            if let prevIndex = seen[difference] {
-                return [prevIndex, index]
+            if let otherIndex = indexLookup[difference] {
+                return [otherIndex, index]
             }
-            seen[num] = index 
+            indexLookup[num] = index
         }
         return []
     }
