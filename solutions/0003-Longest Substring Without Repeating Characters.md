@@ -135,3 +135,49 @@ class Solution {
     }
 }
 ```
+__O(s) Time, Constant (26) Space - Sliding Window Alternative:__
+```Swift
+class Solution {
+    func lengthOfLongestSubstring(_ s: String) -> Int {
+        let s: [Character] = Array(s)
+        
+        // "start" tracks the start of the current window 
+        var start: Int = 0
+        
+        // "seen" tracks all the characters in the current window 
+        var seen: Set<Character> = []
+        
+        // "result" tracks the longest substring
+        var result: Int = 0
+        
+        // "end" tracks the end of the current window
+        for end in 0 ... s.count {
+            
+            // Edge case: if "end" reaches past the end of "s", 
+            // we've walked the entire input so return the longest among 
+            // the current window and result
+            if end == s.count {
+                return max(result, end - start)
+            }
+            
+            let char: Character = s[end]
+            
+            // If we run into a character that already exists in the current window:
+            // 1. Update result if the current window is the longest substring
+            // 2. Forward the starting point of the sliding window until all characters
+            //    in the window are unique
+            if seen.contains(char) {
+                result = max(result, end - start)
+                while seen.contains(char) {
+                    seen.remove(s[start])
+                    start += 1
+                }
+            }
+            
+            // Add the current character to the "seen" set
+            seen.insert(char)
+        }
+        return result
+    }
+}
+```
