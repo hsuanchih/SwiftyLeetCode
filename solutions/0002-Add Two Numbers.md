@@ -14,7 +14,7 @@ Output: 7 -> 0 -> 8
 Explanation: 342 + 465 = 807.
 ```
 ### Solution
-__O(n) Time, O(n) Space:__
+__O(l1+l2) Time, O(l1+l2) Space:__
 ```Swift
 /**
  * Definition for singly-linked list.
@@ -32,17 +32,17 @@ class Solution {
     func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
         let result = ListNode(0)
         
-        var carry : Int = 0, 
-        l1 : ListNode? = l1, 
-        l2 : ListNode? = l2, 
-        curr : ListNode? = result
+        var carry: Int = 0, 
+        l1: ListNode? = l1, 
+        l2: ListNode? = l2, 
+        curr: ListNode? = result
         
         while l1 != nil || l2 != nil {
         
             // Compute sum & carry
             let sum = (l1?.val ?? 0) + (l2?.val ?? 0) + carry
-            carry = sum/10
-            curr?.next = ListNode(sum%10)
+            carry = sum / 10
+            curr?.next = ListNode(sum % 10)
 
             // Advance l1, l2 & curr
             l1 = l1?.next
