@@ -28,16 +28,16 @@ __O(s^3) Time, Constant (26) Space - Brute-Force:__
 ```Swift
 class Solution {
     func lengthOfLongestSubstring(_ s: String) -> Int {
-        let s = Array(s)
-        var result = 0
-        for start in 0..<s.count {
-            for end in start...s.count {
-                var seen : Set<Character> = []
+        let s: [Character] = Array(s)
+        var result: Int = 0
+        for start in 0 ..< s.count {
+            for end in start ... s.count {
+                var seen: Set<Character> = []
 
                 // Evaluate every subset of s
                 // ie, from every start to every end
                 // to find the longest subset without repeating characters
-                for i in start...end { 
+                for i in start ... end { 
                     if i == end || seen.contains(s[i]) {
                         result = max(result, i-start)
                         break
@@ -54,13 +54,13 @@ __O(s^2) Time, Constant (26) Space - Improved Brute-Force:__
 ```Swift
 class Solution {
     func lengthOfLongestSubstring(_ s: String) -> Int {
-        let s = Array(s)
-        var result = 0
+        let s: [Character] = Array(s)
+        var result: Int = 0
         
         // Evaluate each substring starting at every "start"
-        for start in 0..<s.count {
-            var seen : Set<Character> = []
-            for i in start...s.count {
+        for start in 0 ..< s.count {
+            var seen: Set<Character> = []
+            for i in start ... s.count {
                 
                 // Evaluate each substring starting at every "start"
                 if i == s.count || seen.contains(s[i]) {
@@ -80,15 +80,15 @@ __O(s^2) Time, Constant (26) Space - Improved Brute-Force Alternative:__
 ```Swift
 class Solution {
     func lengthOfLongestSubstring(_ s: String) -> Int {
-        let s = Array(s)
-        var result = 0
+        let s: [Character] = Array(s)
+        var result: Int = 0
         
         // Evaluate each substring starting at every "start"
-        for start in 0..<s.count {
-            var seen : Set<Character> = []
-            for i in start..<s.count {
+        for start in 0 ..< s.count {
+            var seen: Set<Character> = []
+            for i in start ..< s.count {
                 // Evaluate each substring starting at every "start"
-                let curr = s[i]
+                let curr: Character = s[i]
                 if seen.contains(curr) {
                     break
                 }
@@ -104,10 +104,9 @@ __O(s) Time, Constant (26) Space - Sliding Window:__
 ```Swift
 class Solution {
     func lengthOfLongestSubstring(_ s: String) -> Int {
-        let s = Array(s)
-        var seen : Set<Character> = [], result = 0
-        var start = 0, end = 0
-        
+        let s: [Character] = Array(s)
+        var seen: Set<Character> = [], result = 0
+        var start: Int = 0, end: Int = 0
         
         // Sliding window
         while end <= s.count {
@@ -123,14 +122,14 @@ class Solution {
                 
                 // Otherwise mark character at s[start] as un-seen & advance start
                 seen.remove(s[start])
-                start+=1
+                start += 1
                 continue
             }
             
             // Duplicate is not found, 
             // mark the current character as seen & continue with traversal
             seen.insert(s[end])
-            end+=1
+            end += 1
         }
         return result
     }
