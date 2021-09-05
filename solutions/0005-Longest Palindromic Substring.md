@@ -53,31 +53,28 @@ __O(n^2) Time, O(n^2) Space - Bottom-Up:__
 ```Swift
 class Solution {
     func longestPalindrome(_ s: String) -> String {
-        let s = Array(s)
+        let s: [Character] = Array(s)
 
         // Dynamic programming:
-        // dp[start][end] memoizes whether s[start][end] is a palindrome
-        var dp : [[Bool]] = Array(repeating: Array(repeating: false, count: s.count), count: s.count),
+        // memo[start][end] memoizes whether s[start][end] is a palindrome
+        var memo : [[Bool]] = Array(repeating: Array(repeating: false, count: s.count), count: s.count),
         result : Range<Int> = 0 ..< 0
 
         // Start with substring of size 1 & expand into substring of size n
         for end in stride(from: 0, to: s.count, by: 1) {
-            for start in stride(from: 0, through: end, by: 1) {
-                if s[start] == s[end] {
+            for start in stride(from: 0, through: end, by: 1) where s[start] == s[end] {
+                // If the indices are the same, then the substring is a single character -> a palindrome
+                // If the indices are one unit apart, then the substring is a palindrome if the 2 characters are the same
+                // If the indices are more than one unit apart, then the substring is a palindrome only if the substring between the indices is a palindrome
+                if start == end || start == end-1 {
+                    memo[start][end] = true
+                } else {
+                    memo[start][end] = memo[start+1][end-1]
+                }
 
-                    // If the indices are the same, then the substring is a single character -> a palindrome
-                    // If the indices are one unit apart, then the substring is a palindrome if the 2 characters are the same
-                    // If the indices are more than one unit apart, then the substring is a palindrome only if the substring between the indices is a palindrome
-                    if start == end || start == end-1 {
-                        dp[start][end] = true
-                    } else {
-                        dp[start][end] = dp[start+1][end-1]
-                    }
-
-                    // Update result if the current palindrome is longer than previously recorded
-                    if dp[start][end] && end-start+1 > result.count {
-                        result = start ..< end+1
-                    }
+                // Update result if the current palindrome is longer than previously recorded
+                if memo[start][end] && end-start+1 > result.count {
+                    result = start ..< end+1
                 }
             }
         }
