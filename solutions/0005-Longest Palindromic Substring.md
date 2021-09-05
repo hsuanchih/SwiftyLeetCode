@@ -24,11 +24,11 @@ class Solution {
     // Exhaustive search of every subarray to see if each subarray is a palindrome
     func longestPalindrome(_ s: String) -> String {
         let s = Array(s)
-        var result : Range<Int> = 0..<0
+        var result : Range<Int> = 0 ..< 0
 
         // Evaluate substrings of different lengths
         for start in 0..<s.count {
-            for end in start..<s.count {
+            for end in start ..< s.count {
 
                 // Check whether Characters on both ends of the substring match
                 // Iterate inwards to the center
@@ -41,7 +41,7 @@ class Solution {
                 // If start & end meet in the middle, the substring is a palindrome
                 // Update result if substring is longer than previously recorded
                 if i >= j && end-start+1 > result.count {
-                    result = start..<end+1
+                    result = start ..< end+1
                 }
             }
         }
@@ -58,7 +58,7 @@ class Solution {
         // Dynamic programming:
         // dp[start][end] memoizes whether s[start][end] is a palindrome
         var dp : [[Bool]] = Array(repeating: Array(repeating: false, count: s.count), count: s.count),
-        result : Range<Int> = 0..<0
+        result : Range<Int> = 0 ..< 0
 
         // Start with substring of size 1 & expand into substring of size n
         for end in stride(from: 0, to: s.count, by: 1) {
@@ -76,7 +76,7 @@ class Solution {
 
                     // Update result if the current palindrome is longer than previously recorded
                     if dp[start][end] && end-start+1 > result.count {
-                        result = start..<end+1
+                        result = start ..< end+1
                     }
                 }
             }
@@ -94,11 +94,11 @@ class Solution {
         // If length of s is less than or equal to 1, return s
         if s.count <= 1 { return s }
         let s = Array(s)
-        var result : Range<Int> = 0..<0
+        var result : Range<Int> = 0 ..< 0
 
         // Iterate through each character of s & expand out from s[i]
         // to find the range of the longest palindrome extending from s[i]
-        for i in 0..<s.count-1 {
+        for i in 0 ..< s.count-1 {
 
             // A single character is by definition a palindrome
             // Find longest palindrome extending from s[i]
@@ -125,12 +125,12 @@ class Solution {
 
         // If start & end are within bounds of s and s[start] == s[end], 
         // we want to continue explore the longest palindrome
-        case (0..<s.count, 0..<s.count) where s[start] == s[end]:
+        case (0 ..< s.count, 0 ..< s.count) where s[start] == s[end]:
             return longestPalindrome(s, start-1, end+1)
 
         // Otherwise the longest palindrome ended at [start+1...end-1]
         default:
-            return start+1..<end
+            return start+1 ..< end
         }
     }
 }
