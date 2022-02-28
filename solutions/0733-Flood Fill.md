@@ -10,7 +10,8 @@ To perform a __flood fill__, consider the starting pixel, plus any pixels connec
 Return _the modified image after performing the flood fill_.
 
 __Example 1:__
-![images/question_733.jpg](images/question_733.jpg)
+
+![images/question_733.jpg](../images/question_733.jpg)
 
 ```
 Input: image = [[1,1,1],[1,1,0],[1,0,1]], sr = 1, sc = 1, newColor = 2
