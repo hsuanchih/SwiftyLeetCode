@@ -35,7 +35,7 @@ __Constraints:__
 * `0 <= sc < n`
 
 ### Solution
-__O(m*n) Time:__
+__O(2\*(m*n)) Time:__
 ```Swift
 class Solution {
     func floodFill(_ image: [[Int]], _ sr: Int, _ sc: Int, _ newColor: Int) -> [[Int]] {
@@ -69,6 +69,37 @@ class Solution {
                 [-1, 1].forEach {
                     fill(image: &image, row: row+$0, col: col, color: color)
                     fill(image: &image, row: row, col: col+$0, color: color)
+                }
+            }
+        }
+    }
+}
+```
+
+__O(m*n) Time:__
+```Swift
+class Solution {
+    func floodFill(_ image: [[Int]], _ sr: Int, _ sc: Int, _ newColor: Int) -> [[Int]] {
+        guard !image.isEmpty, sr >= 0, sr < image.count, sc >= 0, sc < image.first!.count else { return image }
+        var image = image, color = image[sr][sc]
+        // If color is the same as newColor, the original image 
+        // would be equivalent to the transformed image
+        if color != newColor {
+            fill(image: &image, row: sr, col: sc, color: color, newColor: newColor)
+        }
+        return image
+    }
+    
+    func fill(image: inout [[Int]], row: Int, col: Int, color: Int, newColor: Int) {
+        switch (row, col) {
+        case (Int.min ..< 0, _), (image.count..., _), (_, Int.min ..< 0), (_, image.first!.count...):
+            break
+        default:
+            if image[row][col] == color {
+                image[row][col] = newColor
+                [-1, 1].forEach {
+                    fill(image: &image, row: row+$0, col: col, color: color, newColor: newColor)
+                    fill(image: &image, row: row, col: col+$0, color: color, newColor: newColor)
                 }
             }
         }
