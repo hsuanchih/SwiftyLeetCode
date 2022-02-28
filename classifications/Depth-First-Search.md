@@ -1,5 +1,9 @@
 # Depth-First-Search
 
+### Easy
+---
+[733. Flood Fill](../solutions/0733-Flood%20Fill.md)</br>
+
 ### Medium
 ---
 [22. Generate Parentheses](../solutions/0022-Generate%20Parentheses.md)</br>
