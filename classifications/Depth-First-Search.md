@@ -16,6 +16,7 @@
 [306. Additive Number](../solutions/0306-Additive%20Number.md)</br>
 [332. Reconstruct Itinerary](../solutions/0332-Reconstruct%20Itinerary.md)</br>
 [547. Friend Circles](../solutions/0547-Friend%20Circles.md)</br>
+[695. Max Area of Island](../solutions/0695-Max%20Area%20of%20Island.md)</br>
 
 ### Hard
 ---
