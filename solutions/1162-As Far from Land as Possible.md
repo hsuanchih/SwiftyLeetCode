@@ -76,7 +76,6 @@ class Solution {
             for _ in 0 ..< count {
                 let current = queue.removeFirst()
                 if grid[current.row][current.col] == 1 {
-                    print(levels)
                     return levels
                 }
                 [-1, 1].forEach {
