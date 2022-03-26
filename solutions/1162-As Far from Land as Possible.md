@@ -44,7 +44,7 @@ __Constraints:__
 * `grid[i][j]` is `0` or `1`
 
 ### Solution
-__O(4^(n*n)), BFS TLE:__
+__O(4^(n*n)), BFS from every water cell, TLE:__
 ```swift
 class Solution {
     struct Cell: Hashable {
@@ -94,6 +94,55 @@ class Solution {
             levels += 1
         }
         return -1
+    }
+}
+```
+
+__O(2*(n*n)), BFS approaching from all land cells:__
+```swift
+class Solution {
+    struct Cell: Hashable {
+        let row: Int, col: Int
+    }
+    
+    func maxDistance(_ grid: [[Int]]) -> Int {
+        guard !grid.isEmpty else { return -1 }
+        // A value one represents a land/visited cell
+        var grid = grid, queue: [Cell] = []
+        var levels: Int = -1
+        (0 ..< grid.count).forEach { row in
+            (0 ..< grid.first!.count).forEach { col in
+                // Add all land cells into the initial queue for BFS
+                if grid[row][col] == 1 {
+                    queue.append(Cell(row: row, col: col))
+                }
+            }
+        }
+        
+        while !queue.isEmpty {
+            let count = queue.count
+            for _ in 0 ..< count {
+                let current = queue.removeFirst()
+                [-1, 1].forEach {
+                    [Cell(row: current.row+$0, col: current.col), Cell(row: current.row, col: current.col+$0)].forEach { cell in
+                        switch (cell.row, cell.col) {
+                        case (0 ..< grid.count, 0 ..< grid.first!.count) where grid[cell.row][cell.col] != 1:
+                            // Add any water cell that's not previously visited to the queue for BFS, and mark it as visited
+                            grid[cell.row][cell.col] = 1
+                            queue.append(cell)
+                        default:
+                            break
+                        }
+                    }
+                }
+            }
+            levels += 1
+        }
+        
+        // If levels is -1, there are no land cells
+        // If levels is 0, there are no water cells
+        // Otherwise, return the max BFS level that can be reached approaching from all land cells simultaneously
+        return levels <= 0 ? -1 : levels
     }
 }
 ```
