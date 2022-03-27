@@ -14,3 +14,4 @@
 [863. All Nodes Distance K in Binary Tree](../solutions/0863-All%20Nodes%20Distance%20K%20in%20Binary%20Tree.md)</br>
 [1091. Shortest Path in Binary Matrix](../solutions/1091-Shortest%20Path%20in%20Binary%20Matrix.md)</br>
 [1162. As Far from Land as Possible](../solutions/1162-As%20Far%20from%20Land%20as%20Possible.md)</br>
+[1926. Nearest Exit from Entrance in Maze](../solutions/1926-Nearest%20Exit%20from%20Entrance%20in%20Maze.md)</br>
