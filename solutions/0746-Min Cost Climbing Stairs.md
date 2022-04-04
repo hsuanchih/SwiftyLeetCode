@@ -25,8 +25,30 @@ __Note:__
 2. Every `cost[i]` will be an integer in the range `[0, 999]`.
 
 ### Solution
-__O(cost) Time:__
-```Swift
+__O(2^cost) Time, O(1) space, TLE:__
+```swift
+class Solution {
+    func minCostClimbingStairs(_ cost: [Int]) -> Int {
+        return minCost(cost.count, cost: cost)
+    }
+    
+    func minCost(_ n: Int, cost: [Int]) -> Int {
+        // Costs nothing to reach steps 0 or 1
+        guard n > 1 else { return 0 }
+
+        // Otherwise the cost to reach step n is the minimum of:
+        // * The min cost it took to reach step n-1 + the cost to go from step n-1 to step n
+        // * The min cost it took to reach step n-2 + the cost to go from step n-2 to step n
+        return min(
+            cost[n-1] + minCost(n-1, cost: cost), 
+            cost[n-2] + minCost(n-2, cost: cost)
+        )
+    }
+}
+```
+
+__O(cost) Time, O(cost) Space (in-place modify):__
+```swift
 class Solution {
     func minCostClimbingStairs(_ cost: [Int]) -> Int {
         switch cost.count {
@@ -42,6 +64,22 @@ class Solution {
             cost[index] += min(cost[index-1], cost[index-2])
         }
         return min(cost.last!, cost[cost.count-2])
+    }
+}
+```
+
+__O(cost) Time, O(1) Space:__
+```swift
+class Solution {
+    func minCostClimbingStairs(_ cost: [Int]) -> Int {
+        guard cost.count >= 2 else { return 0 }
+        var minus1: Int = 0, minus2: Int = 0
+        (2 ... cost.count).forEach {
+            let current = min(cost[$0-1] + minus1, cost[$0-2] + minus2)
+            minus2 = minus1
+            minus1 = current
+        }
+        return minus1
     }
 }
 ```
