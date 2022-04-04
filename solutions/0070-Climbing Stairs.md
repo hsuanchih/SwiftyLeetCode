@@ -27,7 +27,7 @@ Explanation: There are three ways to climb to the top.
 
 ### Solution
 __O(2^n):__
-```Swift
+```swift
 class Solution {
     func climbStairs(_ n: Int) -> Int {
         if n <= 2 {
@@ -38,7 +38,7 @@ class Solution {
 }
 ```
 __O(n) Time + O(n) Space (Top-Down):__
-```Swift
+```swift
 class Solution {
     func climbStairs(_ n: Int) -> Int {
         var memo : [Int?] = Array(repeating: nil, count: n+1)
@@ -55,7 +55,7 @@ class Solution {
 }
 ```
 __O(n) Time + O(n) Space (Bottom-Up):__
-```Swift
+```swift
 class Solution {
     func climbStairs(_ n: Int) -> Int {
         var memo : [Int] = Array(repeating: 1, count: n+1)
@@ -67,7 +67,7 @@ class Solution {
 }
 ```
 __O(n) Time + O(1) Space (Bottom-Up):__
-```Swift
+```swift
 class Solution {
     func climbStairs(_ n: Int) -> Int {
         var minus1 = 1, minus2 = 1, result = 1
