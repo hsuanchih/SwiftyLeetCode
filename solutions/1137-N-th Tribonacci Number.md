@@ -27,7 +27,7 @@ __Constraints:__
 
 ### Solution
 __O(n) Time, O(n) Space:__
-```Swift
+```swift
 class Solution {
     func tribonacci(_ n: Int) -> Int {
         var memo : [Int] = Array(repeating: 0, count: n+1)
@@ -42,6 +42,22 @@ class Solution {
             }
         }
         return memo.last ?? 0
+    }
+}
+```
+__O(n) Time, O(1) Space:__
+```swift
+class Solution {
+    func tribonacci(_ n: Int) -> Int {
+        guard n > 1 else { return n }
+        var current: Int = 1, minus1: Int = 1, minus2: Int = 0
+        for _ in (2 ..< n) {
+            let next = current + minus1 + minus2
+            minus2 = minus1
+            minus1 = current
+            current = next
+        }
+        return current
     }
 }
 ```
