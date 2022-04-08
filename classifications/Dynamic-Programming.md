@@ -45,6 +45,7 @@
 [494. Target Sum](../solutions/0494-Target%20Sum.md)</br>
 [516. Longest Palindromic Subsequence](../solutions/0516-Longest%20Palindromic%20Subsequence.md)</br>
 [647. Palindromic Substrings](../solutions/0647-Palindromic%20Substrings.md)</br>
+[740. Delete and Earn](../solutions/0740-Delete%20and%20Earn.md)</br>
 [877. Stone Game](../solutions/0877-Stone%20Game.md)</br>
 [931. Minimum Falling Path Sum](../solutions/0931-Minimum%20Falling%20Path%20Sum.md)</br>
 [983. Minimum Cost For Tickets](../solutions/0983-Minimum%20Cost%20For%20Tickets.md)</br>
