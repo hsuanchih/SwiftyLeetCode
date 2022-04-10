@@ -19,34 +19,26 @@ __Note:__
 You can assume that you can always reach the last index.
 
 ### Solution
-__O(nums*min(nums, nums.max())) Time, O(nums) Space - Iterative Bottom-Up + Memoization:__
+__O(nums^2)) Time, O(nums) Space - Iterative Bottom-Up + Memoization:__
 ```Swift
 class Solution {
     func jump(_ nums: [Int]) -> Int {
-
         // If nums is empty, it takes 0 jumps to reach the end
         guard !nums.isEmpty else { return 0 }
 
-        // memo[i] records the minimum number of jumps to reach index i
-        var memo : [Int] = Array(repeating: Int.max, count: nums.count)
+        // minStepsRequiredToReachIndex[i] records the minimum number of steps to reach index i
+        var minStepsRequiredToReachIndex: [Int] = Array(repeating: Int.max, count: nums.count)
+        minStepsRequiredToReachIndex[0] = 0
 
         // Iterate through nums
-        for i in 0..<nums.count-1 {
-
-            // Initialize memo[0] = 0
-            if i == 0 {
-                memo[i] = 0
-            }
+        for index in 0 ..< nums.count - 1 {
 
             // For each index reachable from i, compute the minimum jumps needs to reach such index
-            for jump in stride(from: 1, through: nums[i], by: 1) where i+jump < nums.count {
-                memo[i+jump] = min(memo[i]+1, memo[i+jump])
+            for next in 0 ..< nums[index] where index + next + 1 < nums.count {
+                minStepsRequiredToReachIndex[index + next + 1] = min(minStepsRequiredToReachIndex[index] + 1, minStepsRequiredToReachIndex[index + next + 1])
             }
         }
-
-        // If nums has only 1 element, the loop will not enter, and memo[0] will have initial value Int.max
-        // Handle this edge case
-        return memo.last! < Int.max ? memo.last! : 0
+        return minStepsRequiredToReachIndex.last ?? 0
     }
 }
 ```
