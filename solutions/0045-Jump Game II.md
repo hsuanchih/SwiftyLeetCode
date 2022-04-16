@@ -46,30 +46,44 @@ __O(nums) Time, O(1) Space - Iterative Bottom-Up + Greedy:__
 ```Swift
 class Solution {
     func jump(_ nums: [Int]) -> Int {
+        // If nums is of size 1 or less, it will take 0 steps to reach the end
+        if nums.count <= 1 { return 0 }
 
-        // If nums is empty, it takes 0 jumps to reach the end
-        guard !nums.isEmpty else { return 0 }
+        // It takes at least 1 step to reach the end of nums
+        var k: Int = 1
 
-        // memo[i] records the minimum number of jumps to reach index i
-        var memo : [Int] = Array(repeating: Int.max, count: nums.count)
+        // maxIndexReachableInKSteps tracks the max index reachable in k steps
+        var maxIndexReachableInKSteps: Int = nums.first!
+
+        // maxIndexReachable tracks the max index reachable at any time
+        var maxIndexReachable: Int = maxIndexReachableInKSteps
+
+        // If we can reach the end of nums from the 0th index, then the number of
+        // steps required is just 1
+        guard maxIndexReachable < nums.count - 1 else { return k }
 
         // Iterate through nums
-        for i in 0..<nums.count-1 {
+        for index in 1 ..< nums.count {
 
-            // Initialize memo[0] = 0
-            if i == 0 {
-                memo[i] = 0
+            // If we've reached the max index reachable in k steps,
+            // increment k and update the max index reachable in k+1 steps with the global max
+            if maxIndexReachableInKSteps < index {
+                k += 1
+                maxIndexReachableInKSteps = maxIndexReachable
             }
 
-            // For each index reachable from i, compute the minimum jumps needs to reach such index
-            for jump in stride(from: 1, through: nums[i], by: 1) where i+jump < nums.count {
-                memo[i+jump] = min(memo[i]+1, memo[i+jump])
+            // Update the global max reachable index unconditionally
+            maxIndexReachable = max(maxIndexReachable, index + nums[index])
+
+            // We can reach the end from the current index
+            // return k + 1
+            if maxIndexReachable >= nums.count-1 {
+                return k + 1
             }
         }
 
-        // If nums has only 1 element, the loop will not enter, and memo[0] will have initial value Int.max
-        // Handle this edge case
-        return memo.last! < Int.max ? memo.last! : 0
+        // There is no solution, return -1.
+        return -1
     }
 }
 ```
