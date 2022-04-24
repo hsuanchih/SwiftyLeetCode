@@ -32,6 +32,28 @@ __Constraints:__
 * `-3 * 10^4 <= nums[i] <= 3 * 10^4`
 
 ### Solution
+__O(nums^3) Time, O(1) Space, Brute-Force - TLE:__
+```swift
+class Solution {
+    func maxSubarraySumCircular(_ nums: [Int]) -> Int {
+        var maxSum = Int.min
+        // Set the starting point for each circular array
+        for i in 0 ..< nums.count {
+            // Inspect the array at each starting point i & ending at i+nums.count
+            for j in i ..< i+nums.count {
+                var sum = 0
+                // Compute the maximum sum for every subarray starting at j, j+1, ... all ending at j+nums.count
+                for k in j ..< j+nums.count {
+                    sum += nums[k%nums.count]
+                    maxSum = max(maxSum, sum)
+                }
+            }
+        }
+        return maxSum
+    }
+}
+```
+
 __O(nums^2) Time, O(1) Space - TLE:__
 ```swift
 class Solution {
