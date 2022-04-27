@@ -1,11 +1,11 @@
 
 ### Best Time to Buy and Sell Stock II
 
-Say you have an array for which the *ith* element is the price of a given stock on day *i*.
+You are given an integer array `prices` where `prices[i]` is the price of a given stock on the ith day.
 
-Design an algorithm to find the maximum profit. You may complete as many transactions as you like (i.e., buy one and sell one share of the stock multiple times).
+On each day, you may decide to buy and/or sell the stock. You can only hold __at most one__ share of the stock at any time. However, you can buy it then immediately sell it on the __same day__.
 
-__Note:__ You may not engage in multiple transactions at the same time (i.e., you must sell the stock before you buy again).
+Find and return the __maximum profit__ you can achieve.
 
 __Example 1:__
 ```
@@ -29,23 +29,29 @@ Output: 0
 Explanation: In this case, no transaction is done, i.e. max profit = 0.
 ```
 
+__Constraints:__
+* `1 <= prices.length <= 3 * 10^4`
+* `0 <= prices[i] <= 10^4`
+
 ### Solution
 __O(prices) Time:__
 ```Swift
 class Solution {
     func maxProfit(_ prices: [Int]) -> Int {
-        if prices.count < 2 {
-            return 0
+        var buyPrice: Int = 0
+        var maxProfit: Int = 0
+        for price in prices {
+            // If the current price is more than the buy price:
+            // Sell the stock at the current price to profit (price - buyPrice), and
+            // buy the stock at the current price again
+            
+            // If the current price is less than the buy price:
+            // Sell the stock at the buy price to avoid losing money (profit 0), and
+            // buy the stock at the current price (so we can profit if the price goes up)
+            maxProfit += max(0, price - buyPrice)
+            buyPrice = price
         }
-        var buy = 0, maxProfit = 0
-        for i in 1..<prices.count {
-            if prices[i] <= prices[i-1] {
-                maxProfit += prices[i-1] - prices[buy]
-                buy = i
-            }
-        }
-        maxProfit += prices[prices.count-1] - prices[buy]
-        return maxProfit
+        return maxProfit - (prices.first ?? 0)
     }
 }
 ```
