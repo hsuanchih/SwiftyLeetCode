@@ -34,6 +34,51 @@ __Constraints:__
 * `0 <= prices[i] <= 10^4`
 
 ### Solution
+__O(2^prices) Time, Brute Forece - TLE:__
+```Swift
+class Solution {
+    func maxProfit(_ prices: [Int]) -> Int {
+        guard !prices.isEmpty else { return 0 }
+        return transact(day: 0, buyPrice: Int.max, prices: prices)
+    }
+    
+    func transact(day: Int, buyPrice: Int, prices: [Int]) -> Int {
+        let price = prices[day]
+        // We've reached the last day
+        if day == prices.count - 1 {
+            if buyPrice == Int.max {
+                // If we haven't bought the stock (buyPrice == Int.max), 
+                // then we've got nothing to sell.
+                // Profit on the last day will be 0
+                return 0
+            } else {
+                // If we already bought the stock (buyPrice != Int.max), 
+                // we only want to sell if we can make a profit
+                return max(price - buyPrice, 0)
+            }
+        }
+        
+        if buyPrice == Int.max {
+            // If we haven't bought the stock (buyPrice == Int.max), then we can either:
+            // 1. Buy the stock today, or
+            // 2. Do not buy the stock today
+            return max(
+                transact(day: day+1, buyPrice: price, prices: prices),
+                transact(day: day+1, buyPrice: buyPrice, prices: prices)
+            )
+        } else {
+            // If we already bought the stock (buyPrice != Int.max), then we can either:
+            // 1. Sell the stock today, or
+            // 2. Do not sell the stock today
+            return max(
+                transact(day: day+1, buyPrice: Int.max, prices: prices) + price - buyPrice,
+                transact(day: day+1, buyPrice: buyPrice, prices: prices)
+            )
+        }
+    }
+}
+```
+
 __O(prices) Time:__
 ```Swift
 class Solution {
