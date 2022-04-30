@@ -62,7 +62,6 @@ __O(2^prices) Time, O(1) Space - TLE:__
 ```swift
 class Solution {
     func maxProfit(_ prices: [Int]) -> Int {
-        guard !prices.isEmpty else { return 0 }
         return transact(day: 0, buyPrice: Int.max, prices: prices)
     }
     
@@ -93,6 +92,48 @@ class Solution {
     }
 }
 ```
+
+__O(2^prices) Time, O(1) Space, Tri-State Brute-Force - TLE:__
+```swift
+class Solution {
+    enum Mode {
+        case buy, sell(buyPrice: Int), cooldown
+    }
+    
+    func maxProfit(_ prices: [Int]) -> Int {
+        return transact(day: 0, mode: .buy, prices: prices)
+    }
+    
+    func transact(day: Int, mode: Mode, prices: [Int]) -> Int {
+        guard day < prices.count else { return 0 }
+        
+        let price = prices[day]
+        
+        switch mode {
+        case .buy:
+            // When in buy mode, we can either:
+            // 1. Buy on another day, or
+            // 2. Buy today
+            return max(
+                transact(day: day+1, mode: .buy, prices: prices),
+                transact(day: day+1, mode: .sell(buyPrice: price), prices: prices)
+            )
+        case .sell(let buyPrice):
+            // When in sell mode, we can either:
+            // 1. Sell on another day, or
+            // 2. Sell today, make profit (price - buyPrice) & enter cooldown
+            return max(
+                transact(day: day+1, mode: mode, prices: prices),
+                transact(day: day+1, mode: .cooldown, prices: prices) + price - buyPrice
+            )
+        case .cooldown:
+            // When in cooldown mode, we cannot transact until the next day
+            return transact(day: day+1, mode: .buy, prices: prices)
+        }
+    }
+}
+```
+
 __O(3\*prices) Time, O(3\*prices) Space - Bottom-Up Recursive, Top-Down Memoization:__
 ```swift
 class Solution {
