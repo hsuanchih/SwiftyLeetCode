@@ -45,6 +45,7 @@
 [494. Target Sum](../solutions/0494-Target%20Sum.md)</br>
 [516. Longest Palindromic Subsequence](../solutions/0516-Longest%20Palindromic%20Subsequence.md)</br>
 [647. Palindromic Substrings](../solutions/0647-Palindromic%20Substrings.md)</br>
+[714. Best Time to Buy and Sell Stock with Transaction Fee](../solutions/0714-Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.md)</br>
 [740. Delete and Earn](../solutions/0740-Delete%20and%20Earn.md)</br>
 [877. Stone Game](../solutions/0877-Stone%20Game.md)</br>
 [918. Maximum Sum Circular Subarray](../solutions/0918-Maximum%20Sum%20Circular%20Subarray.md)</br>
