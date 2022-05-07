@@ -137,41 +137,50 @@ class Solution {
 __O(3\*prices) Time, O(3\*prices) Space - Bottom-Up Recursive, Top-Down Memoization:__
 ```swift
 class Solution {
-    func maxProfit(_ prices: [Int]) -> Int {
-        var memo : [[Int?]] = Array(repeating: Array(repeating: nil, count: prices.count), count: 3)
-        return maxProfit(prices, 0, true, false, &memo)
+    enum Mode {
+        case buy, sell, cooldown
     }
     
-    func maxProfit(_ prices: [Int], _ index: Int, _ canBuy: Bool, _ canSell: Bool, _ memo: inout [[Int?]]) -> Int {
-        if index == prices.count {
-            return 0
+    func maxProfit(_ prices: [Int]) -> Int {
+        var memo: [Mode: [Int?]] = [
+            .buy: Array(repeating: nil, count: prices.count),
+            .sell: Array(repeating: nil, count: prices.count),
+            .cooldown: Array(repeating: nil, count: prices.count)
+        ]
+        return transact(day: 0, mode: .buy, prices: prices, memo: &memo)
+    }
+    
+    func transact(day: Int, mode: Mode, prices: [Int], memo: inout [Mode: [Int?]]) -> Int {
+        guard day < prices.count else { return 0 }
+        
+        if let value = memo[mode]?[day] {
+            return value
         }
-        switch (canBuy, canSell) {
-            case (true, _):
-            if let result = memo[0][index] {
-                return result
-            }
-            memo[0][index] = max(
-                -prices[index]+maxProfit(prices, index+1, false, true, &memo),
-                maxProfit(prices, index+1, true, false, &memo)
+        
+        let price = prices[day]
+        
+        switch mode {
+        case .buy:
+            // When in buy mode, we can either:
+            // 1. Buy on another day, or
+            // 2. Buy today
+            memo[mode]![day] = max(
+                transact(day: day+1, mode: .buy, prices: prices, memo: &memo),
+                -price + transact(day: day+1, mode: .sell, prices: prices, memo: &memo)
             )
-            return memo[0][index]!
-            case (_, true):
-            if let result = memo[1][index] {
-                return result
-            }
-            memo[1][index] = max(
-                maxProfit(prices, index+1, false, true, &memo),
-                prices[index]+maxProfit(prices, index+1, false, false, &memo)
+        case .sell:
+            // When in sell mode, we can either:
+            // 1. Sell on another day, or
+            // 2. Sell today & enter cooldown
+            memo[mode]![day] = max(
+                transact(day: day+1, mode: mode, prices: prices, memo: &memo),
+                price + transact(day: day+1, mode: .cooldown, prices: prices, memo: &memo)
             )
-            return memo[1][index]!
-            default:
-            if let result = memo[2][index] {
-                return result
-            }
-            memo[2][index] = maxProfit(prices, index+1, true, false, &memo)
-            return memo[2][index]!
+        case .cooldown:
+            // When in cooldown mode, we cannot transact until the next day
+            memo[mode]![day] = transact(day: day+1, mode: .buy, prices: prices, memo: &memo)
         }
+        return memo[mode]![day]!
     }
 }
 ```
