@@ -80,3 +80,34 @@ class Solution {
     }
 }
 ```
+__O(prices) Time, O(1) Space - Greedy:__
+```swift
+class Solution {
+    func maxProfit(_ prices: [Int], _ fee: Int) -> Int {
+        guard !prices.isEmpty else { return 0 }
+        var buyPrice: Int = prices.first!
+        var currentMaxPrice: Int = buyPrice
+        var maxProfit: Int = 0
+        for price in prices {
+            // If the current price with transaction fee added to it is less than the current max price,
+            // then we can safely reset our buy at this price with guarantee that we'll still make
+            // maximum profit
+            if price + fee < currentMaxPrice {
+                // We not necessarily make a profit selling, in the worst case we reset to a better
+                // buy price without making a profit
+                maxProfit += max(0, currentMaxPrice - buyPrice - fee)
+                
+                // When we reset the buy price, we also need to reset the current max price,
+                // all prices before this is forgotten
+                buyPrice = price
+                currentMaxPrice = buyPrice
+            } else {
+                // Otherwise we continue to update the lowest buy price & max price along the way
+                buyPrice = min(price, buyPrice)
+                currentMaxPrice = max(price, currentMaxPrice)
+            }
+        }
+        return maxProfit + max(0, currentMaxPrice - buyPrice - fee)
+    }
+}
+```
