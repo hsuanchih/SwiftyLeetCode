@@ -21,6 +21,10 @@ Output: 0
 Explanation: In this case, no transaction is done, i.e. max profit = 0.
 ```
 
+__Constraints:__
+* `1 <= prices.length <= 10^5`
+* `0 <= prices[i] <= 10^4`
+
 ### Solution
 __O(prices^2) Time, O(1) Space - Brute-Force:__
 ```Swift
