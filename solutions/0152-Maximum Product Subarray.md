@@ -33,6 +33,44 @@ class Solution {
     }
 }
 ```
+__O(2*nums) Time - O(1) Space:__
+```Swift
+class Solution {
+    func maxProduct(_ nums: [Int]) -> Int {
+        var maxConsecutiveNonNegativeProduct: Int = 1
+        var product: Int = 1
+        var result: Int = Int.min
+        for num in nums {
+            evaluate(num, &maxConsecutiveNonNegativeProduct, &product, &result)
+        }
+        maxConsecutiveNonNegativeProduct = 1
+        product = 1
+        for i in stride(from: nums.count-1, through: 0, by: -1) {
+            evaluate(nums[i], &maxConsecutiveNonNegativeProduct, &product, &result)
+        }
+        return result
+    }
+    
+    func evaluate(_ num: Int, _ maxConsecutiveNonNegativeProduct: inout Int, _ product: inout Int, _ result: inout Int) {
+        switch num {
+        case 0:
+            maxConsecutiveNonNegativeProduct = 1
+            product = 1
+            result = max(num, result)
+        case Int.min ..< 0:
+            maxConsecutiveNonNegativeProduct = 1
+            product *= num
+            result = max(product, result)
+        case 1...:
+            maxConsecutiveNonNegativeProduct *= num
+            product *= num
+            result = max(result, max(maxConsecutiveNonNegativeProduct, product))
+        default:
+            break
+        }
+    }
+}
+```
 __O(nums) Time - O(1) Space - Prefix-Product/Memoization:__
 ```Swift
 class Solution {
