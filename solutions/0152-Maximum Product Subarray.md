@@ -16,6 +16,11 @@ Output: 0
 Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
 ```
 
+__Constraints:__
+* `1 <= nums.length <= 2 * 10^4`
+* `-10 <= nums[i] <= 10`
+* The product of any prefix or suffix of `nums` is __guaranteed__ to fit in a __32-bit__ integer.
+
 ### Solution
 __O(nums^2) Time, O(1) Space - Brute-Force:__
 ```Swift
