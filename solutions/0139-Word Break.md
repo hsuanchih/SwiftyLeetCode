@@ -26,6 +26,13 @@ Input: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
 Output: false
 ```
 
+__Constraints:__
+* `1 <= s.length <= 300`
+* `1 <= wordDict.length <= 1000`
+* `1 <= wordDict[i].length <= 20`
+* `s` and `wordDict[i]` consist of only lowercase English letters.
+* All the strings of `wordDict` are __unique__.
+
 ### Solution
 __O(2^(s-2)) Time, O(1) Space - Brute-Force:__
 ```Swift
