@@ -17,34 +17,37 @@ Output: -1
 Explanation: 2 does not exist in nums so return -1
 ```
 
-__Note:__
-1. You may assume that all elements in `nums` are unique.
-2. `n` will be in the range `[1, 10000]`.
-3. The value of each element in `nums` will be in the range `[-9999, 9999]`.
+__Constraints:__
+* `1 <= nums.length <= 10^4`
+* `-10^4 < nums[i], target < 10^4`
+* All the integers in `nums` are unique.
+* `nums` is sorted in ascending order.
 
 ### Solution
 __O(log\[base 2\](nums)) Time:__
 ```Swift
 class Solution {
     func search(_ nums: [Int], _ target: Int) -> Int {
-        var start = 0, end = nums.count-1
-        while start+1 < end {
-            let mid = start + (end-start)/2
+        var start: Int = 0, end: Int = nums.count - 1
+        while start + 1 < end {
+            let mid = start + (end - start) / 2
             switch nums[mid] {
-                case target:
+            case target:
                 return mid
-                case Int.min..<target:
+            case Int.min ..< target:
                 start = mid
-                default:
+            case target + 1 ... Int.max:
                 end = mid
+            default:
+                fatalError()
             }
         }
         switch (nums[start], nums[end]) {
-            case (target, _):
+        case (target, _):
             return start
-            case (_, target):
+        case (_, target):
             return end
-            default:
+        default:
             return -1
         }
     }
