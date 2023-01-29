@@ -1,31 +1,32 @@
 
 ### Search Insert Position
 
-Given a sorted array and a target value, return the index if the target is found.</br>
+Given a sorted array of distinct integers and a target value, return the index if the target is found.</br> 
 If not, return the index where it would be if it were inserted in order.
 
-You may assume no duplicates in the array.
+You must write an algorithm with `O(log n)` runtime complexity.
 
 __Example 1:__
 ```
-Input: [1,3,5,6], 5
+Input: nums = [1,3,5,6], target = 5
 Output: 2
 ```
 __Example 2:__
 ```
-Input: [1,3,5,6], 2
+Input: nums = [1,3,5,6], target = 2
 Output: 1
 ```
 __Example 3:__
 ```
-Input: [1,3,5,6], 7
+Input: nums = [1,3,5,6], target = 7
 Output: 4
 ```
-__Example 4:__
-```
-Input: [1,3,5,6], 0
-Output: 0
-```
+
+__Constraints:__
+* `1 <= nums.length <= 10^4`
+* `-10^4 <= nums[i] <= 10^4`
+* `nums` contains __distinct__ values sorted in __ascending__ order.
+* `-10^4 <= target <= 10^4`
 
 ### Solution
 __O(nums) Time, O(1) Space - Brute-Force:__
@@ -48,23 +49,25 @@ __O(log\[base 2\](nums)) Time, O(1) Space - Binary Search:__
 ```Swift
 class Solution {
     func searchInsert(_ nums: [Int], _ target: Int) -> Int {
-        var start = 0, end = nums.count-1
-        while start+1 < end {
-            let mid = start + (end-start)/2
-            switch nums[mid] - target {
-                case 0:
+        var start: Int = 0, end: Int = nums.count - 1
+        while start + 1 < end {
+            let mid = start + (end - start) / 2
+            switch nums[mid] {
+            case target:
                 return mid
-                case Int.min..<0:
+            case Int.min ..< target:
                 start = mid
-                default:
+            case target + 1 ... Int.max:
                 end = mid
+            default:
+                fatalError()
             }
         }
         if nums[end] < target {
-            return end+1
+            return end + 1
         }
         if nums[start] < target {
-            return start+1
+            return start + 1
         }
         return start
     }
