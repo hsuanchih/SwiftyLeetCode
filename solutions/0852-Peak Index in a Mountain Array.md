@@ -1,60 +1,75 @@
 
 ### Peak Index in a Mountain Array
 
-Let's call an array `A` a mountain if the following properties hold:
+An array `arr` a __mountain__ if the following properties hold:
 
-* `A.length >= 3`
-* There exists some `0 < i < A.length - 1` such that `A[0] < A[1] < ... A[i-1] < A[i] > A[i+1] > ... > A[A.length - 1]`
+* `arr.length >= 3`
+* There exists some `i` with `0 < i < arr.length - 1` such that:
+   * `arr[0] < arr[1] < ... < arr[i - 1] < arr[i]`
+   * `arr[i] > arr[i + 1] > ... > arr[arr.length - 1]`
 
-Given an array that is definitely a mountain, return any `i` such that `A[0] < A[1] < ... A[i-1] < A[i] > A[i+1] > ... > A[A.length - 1]`.
+Given a mountain array `arr`, return the index `i` such that `arr[0] < arr[1] < ... < arr[i - 1] < arr[i] > arr[i + 1] > ... > arr[arr.length - 1]`.
+
+You must solve it in `O(log(arr.length))` time complexity.
+
 
 __Example 1:__
 ```
-Input: [0,1,0]
+Input: arr = [0,1,0]
 Output: 1
 ```
 __Example 2:__
 ```
-Input: [0,2,1,0]
+Input: arr = [0,2,1,0]
+Output: 1
+```
+__Example 3:__
+```
+Input: arr = [0,10,5,2]
 Output: 1
 ```
 
-__Note:__
-1. `3 <= A.length <= 10000`
-2. `0 <= A[i] <= 10^6`
-3. `A` is a mountain, as defined above.
+__Constraints:__
+* `3 <= arr.length <= 10^5`
+* `0 <= arr[i] <= 10^6`
+* `arr` is __guaranteed__ to be a mountain array.
 
 ### Solution
-__O(A) Time - Brute-Force:__
+__O(arr) Time - Brute-Force:__
 ```Swift
 class Solution {
-    func peakIndexInMountainArray(_ A: [Int]) -> Int {
-        for i in 0..<A.count {
-            if i != 0 && i != A.count-1 && A[i] > A[i-1] && A[i] > A[i+1] {
+    func peakIndexInMountainArray(_ arr: [Int]) -> Int {
+        for i in stride(from: 1, to: arr.count - 1, by: 1) {
+            if arr[i - 1] < arr[i] && arr[i] > arr[i + 1] {
                 return i
             }
         }
-        fatalError()
+        return arr.count - 1
     }
 }
 ```
-__O(log\[base 2\](A)) Time - Binary-Search:__
+__O(log\[base 2\](arr)) Time - Binary-Search:__
 ```Swift
 class Solution {
-    func peakIndexInMountainArray(_ A: [Int]) -> Int {
-        var start = 0, end = A.count-1
-        while start+1 < end {
-            let mid = start + (end-start)/2
-            if A[mid] > A[mid-1] {
-                if A[mid] > A[mid+1] {
-                    return mid
-                }
+    func peakIndexInMountainArray(_ arr: [Int]) -> Int {
+        var start: Int = 0, end: Int = arr.count - 1
+        while start + 1 < end {
+            let mid: Int = start + (end - start) / 2
+            if mid == 0 || mid == arr.count - 1 {
+                return mid
+            }
+            switch (arr[mid - 1], arr[mid + 1]) {
+            case (Int.min ..< arr[mid], arr[mid] + 1 ... Int.max):
                 start = mid
-            } else {
+            case (arr[mid] + 1 ... Int.max, Int.min ..< arr[mid]):
                 end = mid
+            case (Int.min ..< arr[mid], Int.min ..< arr[mid]):
+                return mid
+            default:
+                fatalError()
             }
         }
-        return A[start] > A[end] ? start : end
+        return arr[start] > arr[end] ? start : end
     }
 }
 ```
