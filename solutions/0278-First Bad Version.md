@@ -7,16 +7,25 @@ Suppose you have `n` versions `[1, 2, ..., n]` and you want to find out the firs
 
 You are given an API `bool isBadVersion(version)` which will return whether `version` is bad. Implement a function to find the first bad version. You should minimize the number of calls to the API.
 
-__Example:__
+__Example 1:__
 ```
-Given n = 5, and version = 4 is the first bad version.
-
+Input: n = 5, bad = 4
+Output: 4
+Explanation:
 call isBadVersion(3) -> false
 call isBadVersion(5) -> true
 call isBadVersion(4) -> true
-
 Then 4 is the first bad version.
 ```
+
+__Example 2:__
+```
+Input: n = 1, bad = 1
+Output: 1
+```
+
+__Constraints:__
+* `1 <= bad <= n <= 231 - 1`
 
 ### Solution
 __O(n) Time - Brute-Force:__
@@ -28,7 +37,7 @@ __O(n) Time - Brute-Force:__
 
 class Solution : VersionControl {
     func firstBadVersion(_ n: Int) -> Int {
-        for version in 1...n {
+        for version in 1 ... n {
             if isBadVersion(version) {
                 return version
             }
@@ -46,13 +55,12 @@ __O(log\[base 2\](n)) Time - Binary-Search:__
 
 class Solution : VersionControl {
     func firstBadVersion(_ n: Int) -> Int {
-        var start = 1, end = n
-        while start+1 < end {
-            let mid = start + (end-start)/2
-            switch isBadVersion(mid) {
-                case true:
+        var start: Int = 1, end: Int = n
+        while start + 1 < end {
+            let mid: Int = start + (end - start) / 2
+            if isBadVersion(mid) {
                 end = mid
-                case false:
+            } else {
                 start = mid
             }
         }
