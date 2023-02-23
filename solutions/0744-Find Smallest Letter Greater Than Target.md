@@ -1,76 +1,69 @@
 
 ### Find Smallest Letter Greater Than Target
 
-Given a list of sorted characters `letters` containing only lowercase letters, and given a target letter `target`,</br> 
-find the smallest element in the list that is larger than the given target.
+You are given an array of characters `letters` that is sorted in non-decreasing order, and a character `target`.</br> 
+There are __at least two different__ characters in `letters`.
 
-Letters also wrap around. For example, if the target is `target = 'z'` and `letters = ['a', 'b']`, the answer is `'a'`.
+Return _the smallest character in_ `letters` _that is lexicographically greater than_ `target`. If such a character does not exist, return the first character in `letters`.
 
-__Examples:__
+__Example 1:__
 ```
-Input:
-letters = ["c", "f", "j"]
-target = "a"
+Input: letters = ["c","f","j"], target = "a"
 Output: "c"
-
-Input:
-letters = ["c", "f", "j"]
-target = "c"
+Explanation: The smallest character that is lexicographically greater than 'a' in letters is 'c'.
+```
+__Example 2:__
+```
+Input: letters = ["c","f","j"], target = "c"
 Output: "f"
-
-Input:
-letters = ["c", "f", "j"]
-target = "d"
-Output: "f"
-
-Input:
-letters = ["c", "f", "j"]
-target = "g"
-Output: "j"
-
-Input:
-letters = ["c", "f", "j"]
-target = "j"
-Output: "c"
-
-Input:
-letters = ["c", "f", "j"]
-target = "k"
-Output: "c"
+Explanation: The smallest character that is lexicographically greater than 'c' in letters is 'f'.
+```
+__Example 3:__
+```
+Input: letters = ["x","x","y","y"], target = "z"
+Output: "x"
+Explanation: There are no characters in letters that is lexicographically greater than 'z' so we return letters[0].
 ```
 
-__Note:__
-1. `letters` has a length in range `[2, 10000]`.
-2. `letters` consists of lowercase letters, and contains at least 2 unique letters.
-3. `target` is a lowercase letter.
+__Constraints:__
+* `2 <= letters.length <= 10^4`
+* `letters[i]` is a lowercase English letter.
+* `letters` is sorted in __non-decreasing__ order.
+* `letters` contains at least two different characters.
+* `target` is a lowercase English letter.
 
 ### Solution
-__O(log\[base 2\](letters)) Time - Binary-Search:__
+__O(letters) Time - Linear Search:__
 ```Swift
-extension Character {
-    var offset : Int {
-        return Int(asciiValue!-Character("a").asciiValue!)
-    }
-}
 class Solution {
     func nextGreatestLetter(_ letters: [Character], _ target: Character) -> Character {
-        let targetOffset = target.offset
-        var start = 0, end = letters.count-1
-        while start+1 < end {
-            let mid = start + (end-start)/2
-            switch letters[mid].offset {
-            case 0...targetOffset:
-                start = mid
-            default:
-                end = mid
+        for letter in letters {
+            if letter > target {
+                return letter
             }
         }
-        switch (letters[start].offset, letters[end].offset) {
-        case (targetOffset+1...26, _):
+        return letters.first!
+    }
+}
+```
+__O(log\[base 2\](letters)) Time - Binary Search:__
+```Swift
+class Solution {
+    func nextGreatestLetter(_ letters: [Character], _ target: Character) -> Character {
+        var start: Int = 0, end: Int = letters.count - 1
+        while start + 1 < end {
+            let mid: Int = start + (end - start) / 2
+            if letters[mid] > target {
+                end = mid
+            } else {
+                start = mid
+            }
+        }
+        if letters[start] > target {
             return letters[start]
-        case (_, targetOffset+1...26):
+        } else if letters[end] > target {
             return letters[end]
-        default:
+        } else {
             return letters.first!
         }
     }
