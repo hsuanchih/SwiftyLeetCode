@@ -1,12 +1,11 @@
 
 ### Find First and Last Position of Element in Sorted Array
 
-Given an array of integers nums sorted in ascending order,</br> 
-find the starting and ending position of a given target value.</br>
+Given an array of integers `nums` sorted in non-decreasing order, find the starting and ending position of a given `target` value.
 
-Your algorithm's runtime complexity must be in the order of O(log n).
+If `target` is not found in the array, return `[-1, -1]`.
 
-If the target is not found in the array, return `[-1, -1]`.
+You must write an algorithm with `O(log n)` runtime complexity.
 
 __Example 1:__
 ```
@@ -18,13 +17,24 @@ __Example 2:__
 Input: nums = [5,7,7,8,8,10], target = 6
 Output: [-1,-1]
 ```
+__Example 3:__
+```
+Input: nums = [], target = 0
+Output: [-1,-1]
+```
+
+__Constraints:__
+* `0 <= nums.length <= 10^5`
+* `-10^9 <= nums[i] <= 10^9`
+* `nums` is a non-decreasing array.
+* `-10^9 <= target <= 10^9`
 
 ### Solution
 __O(nums) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func searchRange(_ nums: [Int], _ target: Int) -> [Int] {
-        var result : [Int] = [-1,-1]
+        var result : [Int] = [-1, -1]
         for index in stride(from: 0, to: nums.count, by: 1) {
             switch nums[index] {
                 case target:
@@ -45,48 +55,42 @@ __O(2*log\[base 2\](nums)) Time, O(1) Space - Binary Search:__
 class Solution {
     func searchRange(_ nums: [Int], _ target: Int) -> [Int] {
 
-        var result : [Int] = [-1, -1]
-        if nums.isEmpty {
-            return result
-        }
+        var result: [Int] = [-1, -1]
+        guard !nums.isEmpty else { return result }
 
         // Find the starting position of target
-        var start = 0, end = nums.count-1
-        while start+1 < end {
-            let mid = start + (end-start)/2
+        var start: Int = 0, end = nums.count - 1
+        while start + 1 < end {
+            let mid: Int = start + (end - start) / 2
             if nums[mid] >= target {
                 end = mid
             } else {
                 start = mid
             }
         }
-        switch (nums[start], nums[end]) {
-            case (target, _):
+        if nums[start] == target {
             result[0] = start
-            case (_, target):
+        } else if nums[end] == target {
             result[0] = end
-            default:
+            start = end
+        } else {
             return result
         }
         
         // Find the ending position of target
-        start = 0 
-        end = nums.count-1
-        while start+1 < end {
-            let mid = start + (end-start)/2
-            if nums[mid] <= target {
-                start = mid
-            } else {
+        end = nums.count - 1
+        while start + 1 < end {
+            let mid: Int = start + (end - start) / 2
+            if nums[mid] > target {
                 end = mid
+            } else {
+                start = mid
             }
         }
-        switch (nums[start], nums[end]) {
-            case (_, target):
+        if nums[end] == target {
             result[1] = end
-            case (target, _):
+        } else if nums[start] == target {
             result[1] = start
-            default:
-            result[1] = result[0]
         }
         return result
     }
