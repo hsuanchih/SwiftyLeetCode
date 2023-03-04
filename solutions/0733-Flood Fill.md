@@ -92,26 +92,22 @@ __O(m*n) Time:__
 ```Swift
 class Solution {
     func floodFill(_ image: [[Int]], _ sr: Int, _ sc: Int, _ newColor: Int) -> [[Int]] {
-        guard !image.isEmpty, sr >= 0, sr < image.count, sc >= 0, sc < image.first!.count else { return image }
-        var image = image, color = image[sr][sc]
         // If color is the same as newColor, the original image 
         // would be equivalent to the transformed image
-        if color != newColor {
-            fill(image: &image, row: sr, col: sc, color: color, newColor: newColor)
+        guard sr >= 0,  sr < image.count,  sc >= 0,  sc < (image.first?.count ?? 0), image[sr][sc] != color else {
+            return image
         }
+        var image: [[Int]] = image
+        replace(image: &image, row: sr, col: sc, color: image[sr][sc], newColor: color)
         return image
     }
-    
-    func fill(image: inout [[Int]], row: Int, col: Int, color: Int, newColor: Int) {
-        switch (row, col) {
-        case (0 ..< image.count, 0 ..< image.first!.count) where image[row][col] == color:
-            image[row][col] = newColor
-            [-1, 1].forEach {
-                fill(image: &image, row: row+$0, col: col, color: color, newColor: newColor)
-                fill(image: &image, row: row, col: col+$0, color: color, newColor: newColor)
-            }
-        default:
-            break
+
+    func replace(image: inout [[Int]], row: Int, col: Int, color: Int, newColor: Int) {
+        guard row >= 0,  row < image.count,  col >= 0,  col < (image.first?.count ?? 0), image[row][col] == color else { return }
+        image[row][col] = newColor
+        [-1, 1].forEach {
+            replace(image: &image, row: row + $0, col: col, color: color, newColor: newColor)
+            replace(image: &image, row: row, col: col + $0, color: color, newColor: newColor)
         }
     }
 }
