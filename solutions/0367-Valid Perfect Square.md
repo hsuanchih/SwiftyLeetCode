@@ -21,17 +21,17 @@ __O(num) Time - Brute-Force:__
 ```Swift
 class Solution {
     func isPerfectSquare(_ num: Int) -> Bool {
-        for i in 0..<num {
-            switch i*i {
-                case num:
+        for i in 1 ... num {
+            switch i * i {
+            case num:
                 return true
-                case num+1...Int.max:
+            case num + 1 ... Int.max:
                 return false
-                default:
+            default:
                 break
             }
         }
-        return true
+        return false
     }
 }
 ```
@@ -39,22 +39,19 @@ __O(log\[\base 2\](num)) Time - Binary-Search:__
 ```Swift
 class Solution {
     func isPerfectSquare(_ num: Int) -> Bool {
-        if num <= 1 {
-            return true
-        }
-        var start = 2, end = num/2
-        while start+1 < end {
-            let mid = start + (end-start)/2
-            switch mid*mid {
-                case num:
+        var start: Int = 1, end: Int = num / 2
+        while start + 1 < end {
+            let mid = start + (end - start) / 2
+            switch mid * mid {
+            case num:
                 return true
-                case 2...num-1:
+            case 1 ... num-1:
                 start = mid
-                default:
+            default:
                 end = mid
             }
         }
-        return start*start == num || end*end == num
+        return start * start == num || end * end == num
     }
 }
 ```
