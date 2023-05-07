@@ -12,7 +12,16 @@ __Example 1:__
 ![images/question_695.jpg](images/question_695.jpg)
 
 ```
-Input: grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]]
+Input: grid = [
+    [0,0,1,0,0,0,0,1,0,0,0,0,0],
+    [0,0,0,0,0,0,0,1,1,1,0,0,0],
+    [0,1,1,0,1,0,0,0,0,0,0,0,0],
+    [0,1,0,0,1,1,0,0,1,0,1,0,0],
+    [0,1,0,0,1,1,0,0,1,1,1,0,0],
+    [0,0,0,0,0,0,0,0,0,0,1,0,0],
+    [0,0,0,0,0,0,0,1,1,1,0,0,0],
+    [0,0,0,0,0,0,0,1,1,0,0,0,0]
+]
 Output: 6
 Explanation: The answer is not 11, because the island must be connected 4-directionally.
 ```
@@ -34,31 +43,28 @@ __O(m*n) Time:__
 ```Swift
 class Solution {
     func maxAreaOfIsland(_ grid: [[Int]]) -> Int {
-        guard !grid.isEmpty else { return 0 }
-        var grid = grid, maxArea: Int = 0
-        (0 ..< grid.count).forEach { row in
-            (0 ..< grid.first!.count).forEach { col in
-                if grid[row][col] == 1 {
-                    maxArea = max(maxArea, consolidateIsland(grid: &grid, row: row, col: col))
-                }
+        var grid: [[Int]] = grid
+        var maxArea: Int = 0
+        for row in 0 ..< grid.count {
+            for col in 0 ..< (grid.first?.count ?? 0) {
+                maxArea = max(
+                    maxArea, 
+                    turnIslandIntoWater(grid: &grid, row: row, col: col)
+                )
             }
         }
         return maxArea
     }
-    
-    func consolidateIsland(grid: inout [[Int]], row: Int, col: Int) -> Int {
-        switch (row, col) {
-        case (0 ..< grid.count, 0 ..< grid.first!.count) where grid[row][col] == 1:
-            grid[row][col] = 0
-            var area: Int = 0
-            [-1, 1].forEach {
-                area += consolidateIsland(grid: &grid, row: row+$0, col: col)
-                area += consolidateIsland(grid: &grid, row: row, col: col+$0)
-            }
-            return area + 1
-        default:
-            return 0
+
+    func turnIslandIntoWater(grid: inout [[Int]], row: Int, col: Int) -> Int {
+        guard row >= 0, row < grid.count, col >= 0, col < (grid.first?.count ?? 0), grid[row][col] == 1 else { return 0 }
+        grid[row][col] = 0
+        var area: Int = 1
+        [-1, 1].forEach {
+            area += turnIslandIntoWater(grid: &grid, row: row + $0, col: col)
+            area += turnIslandIntoWater(grid: &grid, row: row, col: col + $0)
         }
+        return area
     }
 }
 ```
