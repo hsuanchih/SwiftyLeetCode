@@ -44,6 +44,60 @@ __Constraints:__
 * `grid[i][j]` is `0` or `1`
 
 ### Solution
+__DFS from every water cell, TLE:__
+```swift
+class Solution {
+    func maxDistance(_ grid: [[Int]]) -> Int {
+        var grid: [[Int]] = grid
+        let rows: Int = grid.count, cols: Int = grid.first?.count ?? 0
+        var result: Int = 0
+        for row in 0 ..< rows {
+            for col in 0 ..< cols {
+                if grid[row][col] == 1 {
+                    grid[row][col] = 0
+                } else {
+                    grid[row][col] = 1
+                }
+            }
+        }
+        for row in 0 ..< rows {
+            for col in 0 ..< cols {
+                let distance: Int = distance(grid: &grid, row: row, col: col, rows: rows, cols: cols)
+                grid[row][col] = distance
+                if distance != Int.max {
+                    result = max(result, distance)
+                }
+            }
+        }
+        return result == 0 ? -1: result
+    }
+
+    func distance(grid: inout [[Int]], row: Int, col: Int, rows: Int, cols: Int) -> Int {
+        guard row >= 0, row < rows, col >= 0, col < cols else { return Int.max }
+        if grid[row][col] == 0 {
+            return 0
+        } else if grid[row][col] == 1 {
+            grid[row][col] = Int.max
+            var minDistance: Int = Int.max
+            [-1, 1].forEach {
+                minDistance = min(
+                    minDistance,
+                    distance(grid: &grid, row: row + $0, col: col, rows: rows, cols: cols)
+                )
+                minDistance = min(
+                    minDistance,
+                    distance(grid: &grid, row: row, col: col + $0, rows: rows, cols: cols)
+                )
+            }
+            grid[row][col] = 1
+            return minDistance == Int.max ? Int.max : minDistance + 1
+        } else {
+            return grid[row][col]
+        }
+    }
+}
+```
+
 __O(4^(n*n)), BFS from every water cell, TLE:__
 ```swift
 class Solution {
@@ -124,7 +178,10 @@ class Solution {
             for _ in 0 ..< count {
                 let current = queue.removeFirst()
                 [-1, 1].forEach {
-                    [Cell(row: current.row+$0, col: current.col), Cell(row: current.row, col: current.col+$0)].forEach { cell in
+                    [
+                        Cell(row: current.row + $0, col: current.col), 
+                        Cell(row: current.row, col: current.col + $0),
+                    ].forEach { cell in
                         switch (cell.row, cell.col) {
                         case (0 ..< grid.count, 0 ..< grid.first!.count) where grid[cell.row][cell.col] != 1:
                             // Add any water cell that's not previously visited to the queue for BFS, and mark it as visited
