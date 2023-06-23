@@ -34,53 +34,78 @@ __Constraints:__
 * `grid[i][j]` is either `0` or `1`.
 
 ### Solution
-__O(2\*(m*n)) Time:__
+__Brute Force - TLE:__
 ```Swift
 class Solution {
     func numEnclaves(_ grid: [[Int]]) -> Int {
-        guard !grid.isEmpty else { return 0 }
-        var grid = grid, numLandCells: Int = 0
-
-        // For every first & last cells in each row, turn boundary land connections into sea
-        (0 ..< grid.count).forEach { row in
-            [0, grid.first!.count-1].forEach { col in
-                if grid[row][col] == 1 {
-                    turnBoundaryLandConnectionsIntoSea(grid: &grid, row: row, col: col)
+        var grid: [[Int]] = grid
+        var cells: Int = 0
+        var result: Int = 0
+        for row in 0 ..< grid.count {
+            for col in 0 ..< (grid.first?.count ?? 0) {
+                if grid[row][col] == 1, !canReachBorder(grid: &grid, row: row, col: col) {
+                    result += 1
                 }
             }
         }
-
-        // For every first & last cells of each column, turn boundary land connections into sea
-        (0 ..< grid.first!.count).forEach { col in
-            [0, grid.count-1].forEach { row in
-                if grid[row][col] == 1 {
-                    turnBoundaryLandConnectionsIntoSea(grid: &grid, row: row, col: col)
-                }
-            }
-        }
-
-        // Compute the number of cells that are still land
-        (0 ..< grid.count).forEach { row in
-            (0 ..< grid.first!.count).forEach { col in
-                if grid[row][col] == 1 {
-                    numLandCells += 1
-                }
-            }
-        }
-        return numLandCells
+        return result
     }
-    
-    func turnBoundaryLandConnectionsIntoSea(grid: inout [[Int]], row: Int, col: Int) {
-        switch (row, col) {
-        case (0 ..< grid.count, 0 ..< grid.first!.count) where grid[row][col] == 1:
-            grid[row][col] = 0
-            [-1, 1].forEach {
-                turnBoundaryLandConnectionsIntoSea(grid: &grid, row: row+$0, col: col)
-                turnBoundaryLandConnectionsIntoSea(grid: &grid, row: row, col: col+$0)
-            }
-        default:
-            break
+
+    func canReachBorder(grid: inout [[Int]], row: Int, col: Int) -> Bool {
+        guard row >= 0, row < grid.count, col >= 0, col < (grid.first?.count ?? 0) else {
+            return true
         }
+        if grid[row][col] == 1 {
+            grid[row][col] = 0
+            for offset in [-1, 1] {
+                if canReachBorder(grid: &grid, row: row + offset, col: col) || canReachBorder(grid: &grid, row: row, col: col + offset) {
+                    grid[row][col] = 1
+                    return true
+                }
+            }
+            grid[row][col] = 1
+        }
+        return false
+    }
+}
+```
+
+__O(m*n) Time, O(1) Space:__
+```Swift
+class Solution {
+    func numEnclaves(_ grid: [[Int]]) -> Int {
+        // Count the number of lands in grid
+        let lands: Int = grid.reduce(into: 0) { result, col in
+            result += col.reduce(into: 0, +=)
+        }
+
+        var grid: [[Int]] = grid
+        var landsReachingBorder: Int = 0
+        for row in 0 ..< grid.count {
+            for col in 0 ..< (grid.first?.count ?? 0) {
+                switch (row, col) {
+                case (0, _), (grid.count - 1, _), (_, 0), (_, (grid.first?.count ?? 0) - 1):
+                    // Start from borders & count the number of lands reachable
+                    landsReachingBorder += landsReachable(grid: &grid, row: row, col: col)
+                default:
+                    break
+                }
+            }
+        }
+        return lands - landsReachingBorder
+    }
+
+    func landsReachable(grid: inout [[Int]], row: Int, col: Int) -> Int {
+        guard row >= 0, row < grid.count, col >= 0, col < (grid.first?.count ?? 0), grid[row][col] == 1 else {
+            return 0
+        }
+        grid[row][col] = 0
+        var lands: Int = 1
+        [-1, 1].forEach {
+            lands += landsReachable(grid: &grid, row: row + $0, col: col)
+            lands += landsReachable(grid: &grid, row: row, col: col + $0)
+        }
+        return lands
     }
 }
 ```
