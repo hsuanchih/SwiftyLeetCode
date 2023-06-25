@@ -34,16 +34,16 @@ __Recursive:__
  */
 class Solution {
     func inorderTraversal(_ root: TreeNode?) -> [Int] {
-        var result : [Int] = []
-        inOrder(root, &result)
+        var result: [Int] = []
+        inOrder(node: root, result: &result)
         return result
     }
-    
-    func inOrder(_ node: TreeNode?, _ result: inout [Int]) {
+
+    func inOrder(node: TreeNode?, result: inout [Int]) {
         guard let node = node else { return }
-        inOrder(node.left, &result)
+        inOrder(node: node.left, result: &result)
         result.append(node.val)
-        inOrder(node.right, &result)
+        inOrder(node: node.right, result: &result)
     }
 }
 ```
