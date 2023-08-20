@@ -14,7 +14,6 @@ return [0, 1].
 __O(nums^2) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
-
     // Try every combination
     func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
         for i in stride(from: 0, to: nums.count, by: 1) {
@@ -31,11 +30,10 @@ class Solution {
 __O(nums) Time, O(nums) Space - HashMap:__
 ```Swift
 class Solution {
-
     // Use hashtable to store visited [value:index] pair
     func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
         var indexLookup: [Int: Int] = [:]
-        for index in stride(from: 0, to: nums.count, by: 1) {
+        for index in 0 ..< nums.count {
             let num = nums[index], difference = target - num
             if let otherIndex = indexLookup[difference] {
                 return [otherIndex, index]
