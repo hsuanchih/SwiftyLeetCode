@@ -64,13 +64,22 @@ __Iterative:__
  */
 class Solution {
     func inorderTraversal(_ root: TreeNode?) -> [Int] {
-        var stack : [TreeNode] = [], result : [Int] = []
+        var stack : [TreeNode] = []
+        var result : [Int] = []
         var curr = root
+
+        // Terminate when current is nil or stack is empty
         while curr != nil || !stack.isEmpty {
+            // For a given node, push itself & all its left children
+            // onto the stack
             while let node = curr {
                 stack.append(node)
                 curr = node.left
             }
+            // The last item on the stack is the left-most child of the
+            // current node (that does not have a left child)
+            // Add it to result & set its right child as the next node
+            // to repeat the same process
             let node = stack.removeLast()
             result.append(node.val)
             curr = node.right
