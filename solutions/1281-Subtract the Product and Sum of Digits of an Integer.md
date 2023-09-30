@@ -26,21 +26,20 @@ __Constraints:__
 * `1 <= n <= 10^5`
 
 ### Solution
-__O(5) Time:__
+__Time Linear to Digits in n:__
 ```Swift
 class Solution {
     func subtractProductAndSum(_ n: Int) -> Int {
-        if n == 0 {
-            return n
-        }
-        var n = n, sum = 0, product = 1
+        var n: Int = n
+        var sum: Int = 0
+        var product: Int = 1
         while n > 0 {
-            let digit = n%10
-            sum+=digit
-            product*=digit
-            n/=10
+            let digit: Int = n % 10
+            sum += digit
+            product *= digit
+            n /= 10
         }
-        return product-sum
+        return product - sum
     }
 }
 ```
