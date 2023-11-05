@@ -22,14 +22,12 @@ __O(2^n):__
 ```Swift
 class Solution {
     func numTrees(_ n: Int) -> Int {
-        if n <= 1 {
-            return 1
+        guard n > 1 else { return 1 }
+        var trees: Int = 0
+        for root in 1 ... n {
+            trees += numTrees(root - 1) * numTrees(n - root)
         }
-        var count = 0
-        for root in stride(from: 1, through: n, by: 1) {
-            count+=numTrees(root-1)*numTrees(n-root)
-        }
-        return count
+        return trees
     }
 }
 ```
