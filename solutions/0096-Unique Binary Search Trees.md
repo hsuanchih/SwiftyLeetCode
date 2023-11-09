@@ -31,27 +31,25 @@ class Solution {
     }
 }
 ```
-__Recursive O(n):__
+__Recursive O(n^2):__
 ```Swift
 class Solution {
     func numTrees(_ n: Int) -> Int {
-        var memo : [Int?] = Array(repeating: nil, count: n+1)
-        return numTrees(n, &memo)
+        var memo: [Int?] = Array(repeating: nil, count: n + 1)
+        return numTrees(n: n, memo: &memo)
     }
-    
-    func numTrees(_ n: Int, _ memo: inout [Int?]) -> Int {
-        if n <= 1 {
-            return 1
+
+    func numTrees(n: Int, memo: inout [Int?]) -> Int {
+        guard n > 1 else { return 1 }
+        if let trees = memo[n] {
+            return trees
         }
-        if let result = memo[n] {
-            return result
+        var trees: Int = 0
+        for root in 1 ... n {
+            trees += numTrees(n: root - 1, memo: &memo) * numTrees(n: n - root, memo: &memo) 
         }
-        var count = 0
-        for root in stride(from: 1, through: n, by: 1) {
-            count+=numTrees(root-1, &memo)*numTrees(n-root, &memo)
-        }
-        memo[n] = count
-        return count
+        memo[n] = trees
+        return trees
     }
 }
 ```
