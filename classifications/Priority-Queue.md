@@ -1,5 +1,7 @@
 # Priority Queue
 
+[Data Structure Implementation](../data-structures/Priority-Queue.md)
+
 ### Medium
 ---
 [347. Top K Frequent Elements](../solutions/0347-Top%20K%20Frequent%20Elements.md)</br>
