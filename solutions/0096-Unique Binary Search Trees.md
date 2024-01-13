@@ -53,26 +53,20 @@ class Solution {
     }
 }
 ```
-__Iterative O(n):__
+__Iterative O(n^2):__
 ```Swift
 class Solution {
     func numTrees(_ n: Int) -> Int {
-        if n <= 1 {
-            return 1
-        }
-        var memo : [Int] = Array(repeating: 1, count: n+1)
-        for size in 2...n {
-            var count = 0
-            for root in 1...size {
-                if root == 1 || root == size {
-                    count += memo[size-1]
-                } else {
-                    count += (memo[root-1] * memo[size-root])
-                }
+        guard n > 1 else { return 1 }
+        var numTrees: [Int] = Array(repeating: 1, count: 2)
+        for nodes in 2 ... n {
+            var trees: Int = 0
+            for root in 1 ... nodes {
+                trees += numTrees[root - 1] * numTrees[nodes - root]
             }
-            memo[size] = count
+            numTrees.append(trees)
         }
-        return memo[n]
+        return numTrees.last ?? 1
     }
 }
 ```
