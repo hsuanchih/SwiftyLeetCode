@@ -4,7 +4,8 @@
 Given an integer `n`, return *all the structurally unique __BST's__ (binary search trees), which has exactly `n` nodes of unique values from `1` to `n`.* Return the answer in __any order__.
 
 __Example 1:__
-![question_95.jpg](./images/question_95.jpg)
+
+![question_95.jpg](../images/question_95.jpg)
 ```
 Input: 3
 Output:
@@ -15,14 +16,6 @@ Output:
   [2,1,3],
   [1,null,2,null,3]
 ]
-Explanation:
-The above output corresponds to the 5 unique BST's shown below:
-
-   1         3     3      2      1
-    \       /     /      / \      \
-     3     2     1      1   3      2
-    /     /       \                 \
-   2     1         2                 3
 ```
 
 __Example 2:__
