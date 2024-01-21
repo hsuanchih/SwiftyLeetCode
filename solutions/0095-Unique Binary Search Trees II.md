@@ -70,3 +70,51 @@ class Solution {
     }
 }
 ```
+
+__Using Closed Range Representation:__
+```Swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+ *         self.val = val
+ *         self.left = left
+ *         self.right = right
+ *     }
+ * }
+ */
+class Solution {
+    func generateTrees(_ n: Int) -> [TreeNode?] {
+        generateTrees(ClosedRange(uncheckedBounds: (1, n)))
+    }
+
+    func generateTrees(_ range: ClosedRange<Int>) -> [TreeNode?] {
+        switch range.upperBound - range.lowerBound {
+        case Int.min ..< 0:
+            return [nil]
+        case 0:
+            return [TreeNode(range.lowerBound)]
+        case 1 ... Int.max:
+            var trees: [TreeNode] = []
+            for root in range {
+                for leftSubtree in generateTrees(ClosedRange(uncheckedBounds: (range.lowerBound, root - 1))) {
+                    for rightSubtree in generateTrees(ClosedRange(uncheckedBounds: (root + 1, range.upperBound))) {
+                        let node = TreeNode(root)
+                        node.left = leftSubtree
+                        node.right = rightSubtree
+                        trees.append(node)
+                    }
+                }
+            }
+            return trees
+        default:
+            fatalError()
+        }
+    }
+}
+```
