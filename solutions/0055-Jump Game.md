@@ -22,25 +22,22 @@ Explanation: You will always arrive at index 3 no matter what. Its maximum
 ```
 
 ### Solution
-__O(nums^2) Time, O(1) Space - Bottom-Up Recursive, Brute-Force:__
+__O(pow(nums, nums)) Time, O(1) Space - Bottom-Up Recursive, Brute-Force:__
 ```Swift
 class Solution {
     func canJump(_ nums: [Int]) -> Bool {
-        return canJump(nums, from: 0)
+        canReachEnd(nums, from: 0)
     }
-    
-    func canJump(_ nums: [Int], from index: Int) -> Bool {
-        if index >= nums.count-1 {
+
+    func canReachEnd(_ nums: [Int], from index: Int) -> Bool {
+        guard index < nums.count - 1 else { return true }
+        for next in stride(from: index + 1, through: index + nums[index], by: 1) where canReachEnd(nums, from: next) {
             return true
-        }
-        for i in stride(from: 1, through: nums[index], by: 1) {
-            if canJump(nums, from: index+i) {
-                return true
-            }
         }
         return false
     }
 }
+
 ```
 __O(nums^2) Time, O(nums) Space - Bottom-Up Recursive + Memoization:__
 ```Swift
