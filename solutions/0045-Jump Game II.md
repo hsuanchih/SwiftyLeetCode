@@ -19,12 +19,28 @@ __Note:__
 You can assume that you can always reach the last index.
 
 ### Solution
-__O(nums^2)) Time, O(nums) Space - Iterative Bottom-Up + Memoization:__
+__O(pow(nums, nums)) Time, O(1) Space - Recursive Bottom-Up Brute Force:__
 ```Swift
 class Solution {
     func jump(_ nums: [Int]) -> Int {
-        // If nums is empty, it takes 0 jumps to reach the end
-        guard !nums.isEmpty else { return 0 }
+        minJumps(nums, from: 0)
+    }
+
+    func minJumps(_ nums: [Int], from index: Int) -> Int {
+        // Base case: 0 jumps to reach the end of the array if we're already at the end
+        guard index < nums.count - 1 else { return 0 }
+
+        // Recursive definition:
+        // The minimum jumps required to reach the end from index is the minimum jumps
+        // from each of the indices reachable from index + 1
+        var jumps: Int = Int.max
+        for offset in stride(from: 1, through: nums[index], by: 1) {
+            jumps = min(jumps, minJumps(nums, from: index + offset))
+        }
+        return jumps == Int.max ? jumps : 1 + jumps
+    }
+}
+```
 
         // minStepsRequiredToReachIndex[i] records the minimum number of steps to reach index i
         var minStepsRequiredToReachIndex: [Int] = Array(repeating: Int.max, count: nums.count)
