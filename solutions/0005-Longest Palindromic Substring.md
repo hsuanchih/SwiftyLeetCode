@@ -17,37 +17,43 @@ Output: "bb"
 ```
 
 ### Solution
-__O(n^3) Time, O(1) Space - Exhaustive Search:__
+__O(pow(s, 3)) Time, O(1) Space - Exhaustive Search:__
 ```Swift
 class Solution {
-
-    // Exhaustive search of every subarray to see if each subarray is a palindrome
     func longestPalindrome(_ s: String) -> String {
+        guard !s.isEmpty else { return s }
         let s = Array(s)
-        var result : Range<Int> = 0 ..< 0
+        var result: ClosedRange<Int> = 0 ... 0
 
+        // Exhaustive search of every subarray to see if each subarray is a palindrome
         // Evaluate substrings of different lengths
-        for start in 0..<s.count {
-            for end in start ..< s.count {
-
-                // Check whether Characters on both ends of the substring match
-                // Iterate inwards to the center
-                var i = start, j = end
-                while i < j && s[i] == s[j] {
-                    i+=1
-                    j-=1
-                }
-
-                // If start & end meet in the middle, the substring is a palindrome
-                // Update result if substring is longer than previously recorded
-                if i >= j && end-start+1 > result.count {
-                    result = start ..< end+1
-                }
+        for start in 0 ..< s.count {
+            // Update result if substring is a palindrome & longer than previously recorded
+            for end in start ..< s.count where isPalindrome(s, start ... end) && end - start + 1 > result.count {
+                result = start ... end
             }
         }
         return String(s[result])
     }
+
+    func isPalindrome(_ s: [Character], _ range: ClosedRange<Int>) -> Bool {
+        var start: Int = range.lowerBound, end: Int = range.upperBound
+
+        // Check whether Characters on both ends of the substring match
+        // Iterate inwards to the center
+        while start < end {
+            if s[start] != s[end] {
+                return false
+            }
+            start += 1
+            end -= 1
+        }
+
+        // If start & end meet in the middle, the substring is a palindrome
+        return true
+    }
 }
+
 ```
 __O(n^2) Time, O(n^2) Space - Bottom-Up:__
 ```Swift
