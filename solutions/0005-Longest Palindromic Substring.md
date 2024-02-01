@@ -89,52 +89,40 @@ class Solution {
     }
 }
 ```
-__O((2n+1)*n) Time, O(1) Space - Middle-Out:__
+__O((2s+1)*s) Time, O(1) Space - Middle-Out:__
 ```Swift
 class Solution {
-
     func longestPalindrome(_ s: String) -> String {
-
-        // If length of s is less than or equal to 1, return s
-        if s.count <= 1 { return s }
-        let s = Array(s)
-        var result : Range<Int> = 0 ..< 0
+        guard !s.isEmpty else { return s }
+        let s: [Character] = Array(s)
+        var result: ClosedRange<Int> = 0 ... 0
 
         // Iterate through each character of s & expand out from s[i]
         // to find the range of the longest palindrome extending from s[i]
-        for i in 0 ..< s.count-1 {
-
-            // A single character is by definition a palindrome
-            // Find longest palindrome extending from s[i]
-            let longest = longestPalindrome(s, i-1, i+1)
-            if longest.count > result.count {
-                result = longest
+        for i in 0 ..< s.count {
+            let centered = longestPalindrome(s, start: i - 1, end: i + 1)
+            let mirrored = longestPalindrome(s, start: i, end: i + 1)
+            if centered.lowerBound <= centered.upperBound, centered.count > result.count {
+                result = centered
             }
-
-            // If s[i] == s[i+1], then we also need to check the longest palindrome
-            // extending from s[i...i+1]
-            if s[i] == s[i+1] {
-                let longest = longestPalindrome(s, i-1, i+2)
-                if longest.count > result.count {
-                    result = longest
-                }
+            if mirrored.lowerBound <= mirrored.upperBound, mirrored.count > result.count {
+                result = mirrored
             }
         }
         return String(s[result])
     }
-    
-    // Helper method to check longest palindrome extending from indices (start, end)
-    func longestPalindrome(_ s: [Character], _ start: Int, _ end: Int) -> Range<Int> {
+
+    func longestPalindrome(_ s: [Character], start: Int, end: Int) -> ClosedRange<Int> {
         switch (start, end) {
-
-        // If start & end are within bounds of s and s[start] == s[end], 
-        // we want to continue explore the longest palindrome
         case (0 ..< s.count, 0 ..< s.count) where s[start] == s[end]:
-            return longestPalindrome(s, start-1, end+1)
 
-        // Otherwise the longest palindrome ended at [start+1...end-1]
+            // If start & end are within bounds of s and s[start] == s[end], 
+            // we want to continue explore the longest palindrome
+            return longestPalindrome(s, start: start - 1, end: end + 1)
         default:
-            return start+1 ..< end
+
+            // Otherwise the longest palindrome ended at [start+1...end-1]
+            return ClosedRange(uncheckedBounds: (start + 1, end - 1))
         }
     }
 }
