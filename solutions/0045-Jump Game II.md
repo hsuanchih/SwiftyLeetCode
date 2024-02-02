@@ -41,10 +41,28 @@ class Solution {
     }
 }
 ```
+__O(pow(nums, 2)) Time, O(nums) Space - Recursive Bottom-Up + Memoization:__
+```Swift
+class Solution {
+    func jump(_ nums: [Int]) -> Int {
+        var memo: [Int?] = Array(repeating: nil, count: nums.count)
+        return minJumps(nums, from: 0, memo: &memo)
+    }
 
-        // minStepsRequiredToReachIndex[i] records the minimum number of steps to reach index i
-        var minStepsRequiredToReachIndex: [Int] = Array(repeating: Int.max, count: nums.count)
-        minStepsRequiredToReachIndex[0] = 0
+    func minJumps(_ nums: [Int], from index: Int, memo: inout [Int?]) -> Int {
+        guard index < nums.count - 1 else { return 0 }
+        if let jumps = memo[index] {
+            return jumps
+        }
+        var jumps: Int = Int.max
+        for offset in stride(from: 1, through: nums[index], by: 1) {
+            jumps = min(jumps, minJumps(nums, from: index + offset, memo: &memo))
+        }
+        memo[index] = jumps == Int.max ? jumps : 1 + jumps
+        return memo[index]!
+    }
+}
+```
 
         // Iterate through nums
         for index in 0 ..< nums.count - 1 {
