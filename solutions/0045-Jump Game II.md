@@ -88,24 +88,16 @@ __O(nums) Time, O(1) Space - Iterative Bottom-Up + Greedy:__
 ```Swift
 class Solution {
     func jump(_ nums: [Int]) -> Int {
-        // If nums is of size 1 or less, it will take 0 steps to reach the end
-        if nums.count <= 1 { return 0 }
-
-        // It takes at least 1 step to reach the end of nums
-        var k: Int = 1
+        guard nums.count > 1 else { return 0 }
+        var k: Int = 0
 
         // maxIndexReachableInKSteps tracks the max index reachable in k steps
-        var maxIndexReachableInKSteps: Int = nums.first!
+        var maxIndexReachableInKSteps: Int = 0
 
         // maxIndexReachable tracks the max index reachable at any time
-        var maxIndexReachable: Int = maxIndexReachableInKSteps
+        var maxIndexReachable: Int = 0
 
-        // If we can reach the end of nums from the 0th index, then the number of
-        // steps required is just 1
-        guard maxIndexReachable < nums.count - 1 else { return k }
-
-        // Iterate through nums
-        for index in 1 ..< nums.count {
+        for index in 0 ..< nums.count {
 
             // If we've reached the max index reachable in k steps,
             // increment k and update the max index reachable in k+1 steps with the global max
@@ -119,13 +111,13 @@ class Solution {
 
             // We can reach the end from the current index
             // return k + 1
-            if maxIndexReachable >= nums.count-1 {
+            if maxIndexReachable >= nums.count - 1 {
                 return k + 1
             }
         }
 
-        // There is no solution, return -1.
-        return -1
+        // There is no solution
+        fatalError()
     }
 }
 ```
