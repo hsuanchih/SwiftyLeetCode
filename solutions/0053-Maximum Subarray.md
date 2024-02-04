@@ -35,19 +35,20 @@ class Solution {
     }
 }
 ```
-__O(nums^2) Time, O(1) Space - Improved Brute-Force:__
+__O(pow(nums, 2)) Time, O(1) Space - Improved Brute-Force:__
 ```Swift
 class Solution {
     func maxSubArray(_ nums: [Int]) -> Int {
-        var result = Int.min
-        for i in stride(from: 0, to: nums.count, by: 1) {
-            var sum = 0
-            for j in i..<nums.count {
-                sum+=nums[j]
-                result = max(result, sum)
+        // Initial maxSum need to be Int.min since an element can be a negative value
+        var maxSum: Int = .min
+        for start in 0 ..< nums.count {
+            var sum: Int = 0
+            for end in start ..< nums.count {
+                sum += nums[end]
+                maxSum = max(maxSum, sum)
             }
         }
-        return result
+        return maxSum
     }
 }
 ```
