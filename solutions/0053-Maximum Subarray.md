@@ -14,21 +14,24 @@ __Follow up:__
 If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
 
 ### Solution
-__O(nums^3) Time, O(1) Space - Brute-Force:__
+__O(pow(nums, 3)) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func maxSubArray(_ nums: [Int]) -> Int {
-        var result = Int.min
-        for start in stride(from: 0, to: nums.count, by: 1) {
-            for end in stride(from: start, to: nums.count, by: 1) {
-                var sum = 0
-                for index in stride(from: start, through: end, by: 1) {
-                    sum+=nums[index]
-                }
-                result = max(result, sum)
+        // Initial maxSum need to be Int.min since an element can be a negative value
+        var maxSum: Int = .min
+        for start in 0 ..< nums.count {
+            for end in start ..< nums.count {
+                maxSum = max(maxSum, sumOfSubarray(nums, start ... end))
             }
         }
-        return result
+        return maxSum
+    }
+
+    func sumOfSubarray(_ nums: [Int], _ range: ClosedRange<Int>) -> Int {
+        range.reduce(into: 0) { result, index in
+            result += nums[index]
+        }
     }
 }
 ```
