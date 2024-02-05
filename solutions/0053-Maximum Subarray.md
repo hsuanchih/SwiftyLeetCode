@@ -74,12 +74,18 @@ __O(nums) Time, O(1) Space - Improved Memoization:__
 ```Swift
 class Solution {
     func maxSubArray(_ nums: [Int]) -> Int {
-        var currMax = nums.first!, result = currMax
-        for i in stride(from: 1, to: nums.count, by: 1) {
-            currMax = max(nums[i], currMax+nums[i])
-            result = max(result, currMax)
+        var maxSum: Int = .min
+        var prefixSum: Int = 0
+        nums.forEach { num in
+            let sum = prefixSum + num
+            maxSum = max(maxSum, sum)
+
+            // If the prefixSum including the current element is less than 0,
+            // we want to reset prefixSum to 0 as we no longer want to cumulate 
+            // the prefixSum for the next element
+            prefixSum = max(0, sum)
         }
-        return result
+        return maxSum
     }
 }
 ```
