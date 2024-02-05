@@ -39,29 +39,26 @@ class Solution {
 }
 
 ```
-__O(nums^2) Time, O(nums) Space - Bottom-Up Recursive + Memoization:__
+__O(pow(nums, 2)) Time, O(nums) Space - Bottom-Up Recursive + Memoization:__
 ```Swift
 class Solution {
     func canJump(_ nums: [Int]) -> Bool {
-        var memo : [Bool?] = Array(repeating: nil, count: nums.count)
-        return canJump(nums, from: 0, &memo)
+        var memo: [Bool?] = Array(repeating: nil, count: nums.count) 
+        return canReachEnd(nums, from: 0, memo: &memo)
     }
-    
-    func canJump(_ nums: [Int], from index: Int, _ memo: inout [Bool?]) -> Bool {
-        if index >= nums.count-1 {
-            return true
-        }
-        if let result = memo[index] {
-            return result
-        }
-        for i in stride(from: 1, through: nums[index], by: 1) {
-            if canJump(nums, from: index+i, &memo) {
+
+    func canReachEnd(_ nums: [Int], from index: Int, memo: inout [Bool?]) -> Bool {
+        guard index < nums.count - 1 else { return true }
+        if let canReachEndFromIndex = memo[index] {
+            return canReachEndFromIndex
+        } else {
+            for next in stride(from: index + 1, through: index + nums[index], by: 1) where canReachEnd(nums, from: next, memo: &memo) {
                 memo[index] = true
                 return true
             }
+            memo[index] = false
+            return false
         }
-        memo[index] = false
-        return false
     }
 }
 ```
