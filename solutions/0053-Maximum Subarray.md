@@ -56,12 +56,17 @@ __O(nums) Time, O(nums) Space - Memoization:__
 ```Swift
 class Solution {
     func maxSubArray(_ nums: [Int]) -> Int {
-        var maxAtIndex : [Int] = Array(repeating: nums.first!, count: nums.count), result : Int = nums.first!
-        for i in stride(from: 1, to: nums.count, by: 1) {
-            maxAtIndex[i] = max(nums[i], maxAtIndex[i-1]+nums[i])
-            result = max(result, maxAtIndex[i])
+        guard !nums.isEmpty else { return 0 }
+        var maxAtIndex: [Int] = Array(repeating: nums.first!, count: nums.count)
+
+        // The initial value of maxSum needs to be the first element to account for the
+        // case where nums only includes 1 element
+        var maxSum: Int = nums.first!
+        for index in 1 ..< nums.count {
+            maxAtIndex[index] = max(nums[index], maxAtIndex[index - 1] + nums[index])
+            maxSum = max(maxSum, maxAtIndex[index])
         }
-        return result
+        return maxSum
     }
 }
 ```
