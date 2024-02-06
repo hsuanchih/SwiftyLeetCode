@@ -62,21 +62,24 @@ class Solution {
     }
 }
 ```
-__O(nums^2) Time, O(nums) Space - Bottom-Up Iterative + Memoization:__
+__O(pow(nums, 2)) Time, O(nums) Space - Bottom-Up Iterative + Memoization:__
 ```Swift
 class Solution {
     func canJump(_ nums: [Int]) -> Bool {
+        guard !nums.isEmpty else { return true }
         var canReach: [Bool] = Array(repeating: false, count: nums.count)
-        for i in 0 ..< nums.count {
+        for index in 0 ..< nums.count {
             // Initial condition, we can always reach index 0
-            if i == 0 {
-                canReach[i] = true
+            if index == 0 {
+                canReach[index] = true
             }
 
-            // For every other indices reachable from i, update their reachability
-            for next in (0 ... nums[i]) where i + next < canReach.count {
-                // An future index can be reached if the current index is reachable
-                canReach[i + next] = canReach[i + next] || canReach[i]
+            // Every other indices reachable from index is reachable if index is reachable. 
+            // Update their reachability
+            if canReach[index] {
+                for offset in index ... index + nums[index] where offset < nums.count {
+                    canReach[offset] = true
+                }
             }
         }
         return canReach.last ?? false
