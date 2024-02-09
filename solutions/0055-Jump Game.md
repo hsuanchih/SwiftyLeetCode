@@ -87,6 +87,34 @@ class Solution {
 }
 ```
 __O(nums) Time, O(1) Space - Bottom-Up Iterative Greedy:__
+```swift
+class Solution {
+    func canJump(_ nums: [Int]) -> Bool {
+        // Use maxReachableIndex to track the highest index that can be reached
+        var maxReachableIndex: Int = 0
+
+        // Since nums[i] is consecutive, if we can reach index i, 
+        // then we can reach indices (0 ... i - 1) by deduction.
+        // We can then use this property to determine the max reachable index
+        for index in 0 ..< nums.count where maxReachableIndex >= index {
+
+            // max reachable index is the global maximum of i + nums[i]
+            maxReachableIndex = max(index + nums[index], maxReachableIndex)
+
+            // If the max reachable index can reach the last index & beyond
+            // we know for sure we can reach the end. Early exit.
+            if maxReachableIndex >= nums.count - 1 {
+                return true
+            }
+        }
+
+        // If the max reachable index can reach the last index & beyond
+        // we know for sure we can reach the end
+        return maxReachableIndex >= nums.count - 1
+    }
+}
+```
+__O(nums) Time, O(1) Space - Bottom-Up Iterative Greedy with Slight Optimization:__
 ```Swift
 class Solution {
     func canJump(_ nums: [Int]) -> Bool {
