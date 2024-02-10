@@ -144,3 +144,20 @@ class Solution {
     }
 }
 ```
+__O(nums) Time, O(1) Space - Top-Down Iterative Greedy:__
+```Swift
+class Solution {
+    func canJump(_ nums: [Int]) -> Bool {
+        guard nums.count > 1 else { return true }
+
+        // indexToReach is a moving target that tracks the index 
+        // we'll need to be able to reach from the current index in order to 
+        // eventually reach the last index
+        var indexToReach: Int = nums.count - 1
+        for index in stride(from: nums.count - 2, through: 0, by: -1) where nums[index] + index >= indexToReach {
+            indexToReach = index
+        }
+        return indexToReach == 0
+    }
+}
+```
