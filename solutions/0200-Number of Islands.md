@@ -34,28 +34,31 @@ __Constraints:__
 
 
 ### Solution
+__O(grid) Time:__
 ```Swift
 class Solution {
     func numIslands(_ grid: [[Character]]) -> Int {
         var grid: [[Character]] = grid
         var islands: Int = 0
         for row in 0 ..< grid.count {
-            for col in 0 ..< (grid.first?.count ?? 0) {
-                if grid[row][col] == "1" {
-                    islands += 1
-                    turnIslandIntoWater(grid: &grid, row: row, col: col)
-                }
+            for col in 0 ..< grid.first!.count where grid[row][col] == "1" {
+                islands += 1
+                markAsWater(&grid, row: row, col: col)
             }
         }
         return islands
     }
 
-    func turnIslandIntoWater(grid: inout [[Character]], row: Int, col: Int) {
-        guard row >= 0, row < grid.count, col >= 0, col < (grid.first?.count ?? 0), grid[row][col] == "1" else { return }
-        grid[row][col] = "0"
-        [-1, 1].forEach {
-            turnIslandIntoWater(grid: &grid, row: row + $0, col: col)
-            turnIslandIntoWater(grid: &grid, row: row, col: col + $0)
+    func markAsWater(_ grid: inout [[Character]], row: Int, col: Int) {
+        switch (row, col) {
+        case (0 ..< grid.count, 0 ..< grid.first!.count) where grid[row][col] == "1":
+            grid[row][col] = "0"
+            [-1, 1].forEach {
+                markAsWater(&grid, row: row + $0, col: col)
+                markAsWater(&grid, row: row, col: col + $0)
+            }
+        default:
+            break
         }
     }
 }
