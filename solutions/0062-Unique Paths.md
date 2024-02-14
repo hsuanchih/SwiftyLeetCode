@@ -28,23 +28,21 @@ Output: 28
 ```
 
 ### Solution
-__O(2^(m*n)) Time, O(1) Space - Brute-Force:__
+__O(pow(2, m*n)) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func uniquePaths(_ m: Int, _ n: Int) -> Int {
-        return solve(n, m, 0, 0)
+        paths(m, n, row: 0, col: 0)
     }
-    
-    func solve(_ n: Int, _ m: Int, _ row: Int, _ col: Int) -> Int {
+
+    func paths(_ m: Int, _ n: Int, row: Int, col: Int) -> Int {
         switch (row, col) {
-            case (n-1, m-1):
+        case (m - 1, n - 1):
             return 1
-            case (n-1, _):
-            return solve(n, m, row, col+1)
-            case (_, m-1):
-            return solve(n, m, row+1, col)
-            default:
-            return solve(n, m, row, col+1) + solve(n, m, row+1, col)
+        case (m, _), (_, n):
+            return 0
+        case (let row, let col):
+            return paths(m, n, row: row + 1, col: col) + paths(m, n, row: row, col: col + 1)
         }
     }
 }
