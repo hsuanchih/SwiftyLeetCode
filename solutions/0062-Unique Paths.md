@@ -47,14 +47,40 @@ class Solution {
     }
 }
 ```
-__O(m\*n) Time, O(m\*n) - Memoization:__
+__O(m\*n) Time, O(m\*n) Space - Recursive + Memoization:__
 ```Swift
 class Solution {
     func uniquePaths(_ m: Int, _ n: Int) -> Int {
-        var memo : [[Int]] = Array(repeating: Array(repeating: 1, count: m), count: n)
-        for row in stride(from: 1, to: n, by: 1) {
-            for col in stride(from: 1, to: m, by: 1) {
-                memo[row][col] = memo[row-1][col] + memo[row][col-1]
+        var memo: [[Int?]] = Array(repeating: Array(repeating: nil, count: n), count: m)
+        return paths(m, n, row: 0, col: 0, memo: &memo)
+    }
+
+    func paths(_ m: Int, _ n: Int, row: Int, col: Int, memo: inout [[Int?]]) -> Int {
+        print(row, col)
+        switch (row, col) {
+        case (m - 1, n - 1):
+            return 1
+        case (m, _), (_, n):
+            return 0
+        case (let row, let col):
+            if let result = memo[row][col] {
+                return result
+            } else {
+                memo[row][col] = paths(m, n, row: row + 1, col: col, memo: &memo) + paths(m, n, row: row, col: col + 1, memo: &memo)
+                return memo[row][col]!
+            }
+        }
+    }
+}
+```
+__O(m\*n) Time, O(m\*n) Space - Iterative + Memoization:__
+```Swift
+class Solution {
+    func uniquePaths(_ m: Int, _ n: Int) -> Int {
+        var memo: [[Int]] = Array(repeating: Array(repeating: 1, count: n), count: m)
+        for row in stride(from: 1, to: m, by: 1) {
+            for col in stride(from: 1, to: n, by: 1) {
+                memo[row][col] = memo[row - 1][col] + memo[row][col - 1]
             }
         }
         return memo.last?.last ?? 1
