@@ -55,31 +55,27 @@ class Solution {
     }
 }
 ```
-__O(m\*n) Time, O(m\*n) Space - Memoization:__
+__O(m\*n) Time, O(m\*n) Space - Iterative + Memoization:__
 ```Swift
 class Solution {
     func uniquePathsWithObstacles(_ obstacleGrid: [[Int]]) -> Int {
-        var memo : [[Int]] = Array(repeating: Array(repeating: 1, count: obstacleGrid.first?.count ?? 0), count: obstacleGrid.count)
-        
-        for row in stride(from: 0, to: obstacleGrid.count, by: 1) {
-            for col in stride(from: 0, to: obstacleGrid.first?.count ?? 0, by: 1) {
-                if obstacleGrid[row][col] == 1 {
-                    memo[row][col] = 0
-                    continue
-                }
+        guard !obstacleGrid.isEmpty else { return 0 }
+        var memo: [[Int]] = Array(repeating: Array(repeating: 0, count: obstacleGrid.first!.count), count: obstacleGrid.count)
+        for row in 0 ..< obstacleGrid.count {
+            for col in 0 ..< obstacleGrid.first!.count where obstacleGrid[row][col] == 0 {
                 switch (row, col) {
-                    case (0, 0):
-                    break
-                    case (0, _):
-                    memo[row][col] = memo[row][col-1]
-                    case (_, 0):
-                    memo[row][col] = memo[row-1][col]
-                    default:
-                    memo[row][col] = memo[row-1][col] + memo[row][col-1]
+                case (0, 0):
+                    memo[row][col] = 1
+                case (0, let col):
+                    memo[row][col] = memo[row][col - 1]
+                case (let row, 0):
+                    memo[row][col] = memo[row - 1][col]
+                case (let row, let col):
+                    memo[row][col] = memo[row - 1][col] + memo[row][col - 1]
                 }
             }
         }
-        return memo.last?.last ?? 1
+        return memo.last?.last ?? 0
     }
 }
 ```
