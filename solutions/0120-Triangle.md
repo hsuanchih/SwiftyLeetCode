@@ -26,6 +26,23 @@ __Follow up:__
 Could you optimize your algorithm to use only O(k) extra space?
 
 ### Solution
+__O(pow(2, triangle)) Time, O(1) Space, Brute-Force Recursive:__
+```Swift
+class Solution {
+    func minimumTotal(_ triangle: [[Int]]) -> Int {
+        guard !triangle.isEmpty else { return .min }
+        return minSum(triangle, row: 0, col: 0)
+    }
+
+    func minSum(_ triangle: [[Int]], row: Int, col: Int) -> Int {
+        if row == triangle.count - 1 {
+            return triangle[row][col]
+        } else {
+            return triangle[row][col] + min(minSum(triangle, row: row + 1, col: col), minSum(triangle, row: row + 1, col: col + 1))
+        }
+    }
+}
+```
 __O(triangle) Time, O(triangle) Space:__
 ```Swift
 class Solution {
