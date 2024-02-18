@@ -31,26 +31,22 @@ A robot is located at the top-left corner of a *m* x *n* grid (marked 'Start' in
 ```
 
 ### Solution
-__O(2^(m*n)) Time, O(1) Space - Brute-Force:__
+__O(pow(2, m*n)) Time, O(1) Space - Recursive Brute-Force:__
 ```Swift
 class Solution {
     func uniquePathsWithObstacles(_ obstacleGrid: [[Int]]) -> Int {
-        return solve(obstacleGrid, 0, 0)
+        guard !obstacleGrid.isEmpty else { return 0 }
+        return paths(obstacleGrid, row: 0, col: 0)
     }
-    
-    func solve(_ grid: [[Int]], _ row: Int, _ col: Int) -> Int {
-        if grid[row][col] == 1 {
-            return 0
-        }
+
+    func paths(_ grid: [[Int]], row: Int, col: Int) -> Int {
         switch (row, col) {
-            case (grid.count-1, (grid.first?.count ?? 0)-1):
-            return 1
-            case (grid.count-1, _):
-            return solve(grid, row, col+1)
-            case (_,  (grid.first?.count ?? 0)-1):
-            return solve(grid, row+1, col)
-            default:
-            return solve(grid, row, col+1) + solve(grid, row+1, col)
+        case (grid.count - 1, grid.first!.count - 1):
+            return grid[row][col] == 1 ? 0 : 1
+        case (let row, let col) where row == grid.count || col == grid.first!.count || grid[row][col] == 1:
+            return 0
+        case (let row, let col):
+            return paths(grid, row: row + 1, col: col) + paths(grid, row: row, col: col + 1)
         }
     }
 }
