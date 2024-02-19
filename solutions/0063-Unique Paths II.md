@@ -51,6 +51,32 @@ class Solution {
     }
 }
 ```
+__O(m\*n) Time, O(m\*n) Space - Recursive + Memoization:__
+```Swift
+class Solution {
+    func uniquePathsWithObstacles(_ obstacleGrid: [[Int]]) -> Int {
+        guard !obstacleGrid.isEmpty else { return 0 }
+        var memo: [[Int?]] = Array(repeating: Array(repeating: nil, count: obstacleGrid.first!.count), count: obstacleGrid.count)
+        return paths(obstacleGrid, row: 0, col: 0, memo: &memo)
+    }
+
+    func paths(_ grid: [[Int]], row: Int, col: Int, memo: inout [[Int?]]) -> Int {
+        switch (row, col) {
+        case (grid.count - 1, grid.first!.count - 1):
+            return grid[row][col] == 1 ? 0 : 1
+        case (let row, let col) where row == grid.count || col == grid.first!.count || grid[row][col] == 1:
+            return 0
+        case (let row, let col):
+            if let result = memo[row][col] {
+                return result
+            } else {
+                memo[row][col] = paths(grid, row: row + 1, col: col, memo: &memo) + paths(grid, row: row, col: col + 1, memo: &memo)
+                return memo[row][col]!
+            }
+        }
+    }
+}
+```
 __O(m\*n) Time, O(m\*n) Space - Iterative + Memoization:__
 ```Swift
 class Solution {
