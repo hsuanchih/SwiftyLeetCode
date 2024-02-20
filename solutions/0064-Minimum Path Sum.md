@@ -43,18 +43,18 @@ __O(m\*n) Time, O(1) Space - Memoization:__
 ```Swift
 class Solution {
     func minPathSum(_ grid: [[Int]]) -> Int {
-        var grid = grid
-        for row in stride(from: 0, to: grid.count, by: 1) {
-            for col in stride(from: 0, to: grid.first!.count, by: 1) {
+        var grid: [[Int]] = grid
+        for row in 0 ..< grid.count {
+            for col in 0 ..< grid.first!.count {
                 switch (row, col) {
-                    case (0, 0):
+                case (0, 0):
                     break
-                    case (0, _):
-                    grid[row][col] += grid[row][col-1]
-                    case (_, 0):
-                    grid[row][col] += grid[row-1][col]
-                    default:
-                    grid[row][col] += min(grid[row][col-1], grid[row-1][col])
+                case (0, _):
+                    grid[row][col] += grid[row][col - 1]
+                case (_, 0):
+                    grid[row][col] += grid[row - 1][col]
+                case (let row, let col):
+                    grid[row][col] += min(grid[row][col - 1], grid[row - 1][col])
                 }
             }
         }
