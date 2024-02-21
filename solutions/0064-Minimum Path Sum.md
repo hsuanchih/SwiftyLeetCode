@@ -18,23 +18,22 @@ Explanation: Because the path 1→3→1→1→1 minimizes the sum.
 ```
 
 ### Solution
-__O(2^(m*n)) Time, O(1) Space - Brute-Force:__
+__O(pow(2, m*n)) Time, O(1) Space - Recursive Brute-Force:__
 ```Swift
 class Solution {
     func minPathSum(_ grid: [[Int]]) -> Int {
-        return minSum(grid, 0, 0)
+        guard !grid.isEmpty else { return .max }
+        return minSum(grid, row: 0, col: 0)
     }
-    
-    func minSum(_ grid: [[Int]], _ row: Int, _ col: Int) -> Int {
+
+    func minSum(_ grid: [[Int]], row: Int, col: Int) -> Int {
         switch (row, col) {
-            case (grid.count-1, (grid.first?.count ?? 0)-1):
+        case (grid.count - 1, grid.first!.count - 1):
             return grid[row][col]
-            case (grid.count-1, _):
-            return grid[row][col] + minSum(grid, row, col+1)
-            case (_, (grid.first?.count ?? 0)-1):
-            return grid[row][col] + minSum(grid, row+1, col)
-            default:
-            return grid[row][col] + min(minSum(grid, row, col+1), minSum(grid, row+1, col))
+        case (grid.count, _), (_, grid.first!.count):
+            return .max
+        case (let row, let col):
+            return grid[row][col] + min(minSum(grid, row: row + 1, col: col), minSum(grid, row: row, col: col + 1))
         }
     }
 }
