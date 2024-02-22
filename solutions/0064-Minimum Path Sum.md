@@ -64,6 +64,29 @@ class Solution {
     }
 }
 ```
+__O(m\*n) Time, O(m\*n) Space - Iterative + Memoization:__
+```Swift
+class Solution {
+    func minPathSum(_ grid: [[Int]]) -> Int {
+        var memo: [[Int]] = Array(repeating: Array(repeating: 0, count: grid.first!.count), count: grid.count)
+        for row in 0 ..< grid.count {
+            for col in 0 ..< grid.first!.count {
+                switch (row, col) {
+                case (0, 0):
+                    memo[row][col] = grid[row][col]
+                case (0, _):
+                    memo[row][col] = grid[row][col] + memo[row][col - 1]
+                case (_, 0):
+                    memo[row][col] = grid[row][col] + memo[row - 1][col]
+                case (let row, let col):
+                    memo[row][col] = grid[row][col] + min(memo[row][col - 1], memo[row - 1][col])
+                }
+            }
+        }
+        return memo.last?.last ?? 0
+    }
+}
+```
 __O(m\*n) Time, O(1) Space - Memoization:__
 ```Swift
 class Solution {
