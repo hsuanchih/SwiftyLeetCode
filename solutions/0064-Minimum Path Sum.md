@@ -38,6 +38,32 @@ class Solution {
     }
 }
 ```
+__O(m\*n) Time, O(m\*n) Space - Recursive + Memoization:__
+```Swift
+class Solution {
+    func minPathSum(_ grid: [[Int]]) -> Int {
+        guard !grid.isEmpty else { return .max }
+        var memo: [[Int?]] = Array(repeating: Array(repeating: nil, count: grid.first!.count), count: grid.count)
+        return minSum(grid, row: 0, col: 0, memo: &memo)
+    }
+
+    func minSum(_ grid: [[Int]], row: Int, col: Int, memo: inout [[Int?]]) -> Int {
+        switch (row, col) {
+        case (grid.count - 1, grid.first!.count - 1):
+            return grid[row][col]
+        case (grid.count, _), (_, grid.first!.count):
+            return .max
+        case (let row, let col):
+            if let result = memo[row][col] {
+                return result
+            } else {
+                memo[row][col] = grid[row][col] + min(minSum(grid, row: row + 1, col: col, memo: &memo), minSum(grid, row: row, col: col + 1, memo: &memo))
+                return memo[row][col]!
+            }
+        }
+    }
+}
+```
 __O(m\*n) Time, O(1) Space - Memoization:__
 ```Swift
 class Solution {
