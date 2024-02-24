@@ -26,14 +26,18 @@ Explanation: There are three ways to climb to the top.
 ```
 
 ### Solution
-__O(2^n):__
+__O(pow(2, n)) Time, Brute-Force:__
 ```swift
 class Solution {
     func climbStairs(_ n: Int) -> Int {
-        if n <= 2 {
-            return n
+        switch n {
+        case Int.min ..< 0:
+            return 0
+        case 0:
+            return 1
+        case let n:
+            return climbStairs(n - 1) + climbStairs(n - 2)
         }
-        return climbStairs(n-1)+climbStairs(n-2)
     }
 }
 ```
