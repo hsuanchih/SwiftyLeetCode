@@ -41,20 +41,28 @@ class Solution {
     }
 }
 ```
-__O(n) Time + O(n) Space (Top-Down):__
+__O(n) Time + O(n) Space, Top-Down Recursive + Memoization:__
 ```swift
 class Solution {
     func climbStairs(_ n: Int) -> Int {
-        var memo : [Int?] = Array(repeating: nil, count: n+1)
-        return numWays(n, &memo)
+        var memo: [Int?] = Array(repeating: nil, count: n + 1)
+        return waysTo(n, memo: &memo)
     }
-    
-    func numWays(_ n: Int, _ memo: inout [Int?]) -> Int {
-        if let ways = memo[n] {
-            return ways
+
+    func waysTo(_ n: Int, memo: inout [Int?]) -> Int {
+        switch n {
+        case Int.min ..< 0:
+            return 0
+        case 0:
+            return 1
+        case let n:
+            if let result = memo[n] {
+                return result
+            } else {
+                memo[n] = waysTo(n - 1, memo: &memo) + waysTo(n - 2, memo: &memo)
+                return memo[n]!
+            }
         }
-        memo[n] = n <= 2 ? n : numWays(n-1, &memo)+numWays(n-2, &memo)
-        return memo[n]!
     }
 }
 ```
