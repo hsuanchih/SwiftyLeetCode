@@ -66,19 +66,24 @@ class Solution {
     }
 }
 ```
-__O(n) Time + O(n) Space (Bottom-Up):__
+__O(n) Time + O(n) Space, Bottom-Up Iterative + Memoization:__
 ```swift
 class Solution {
     func climbStairs(_ n: Int) -> Int {
-        var memo : [Int] = Array(repeating: 1, count: n+1)
-        for stair in stride(from: 2, through: n, by: 1) {
-            memo[stair] = memo[stair-1] + memo[stair-2]
+        guard n > 0 else { return 0 }
+        var ways: [Int] = Array(repeating: 1, count: n + 1)
+        for stair in 1 ... n {
+            if stair == 1 {
+                ways[stair] = ways[stair - 1]
+            } else {
+                ways[stair] = ways[stair - 1] + ways[stair - 2]
+            }
         }
-        return memo.last!
+        return ways.last ?? 0
     }
 }
 ```
-__O(n) Time + O(1) Space (Bottom-Up):__
+__O(n) Time + O(1) Space, Bottom-Up Iterative + Memoization Space Optimized:__
 ```swift
 class Solution {
     func climbStairs(_ n: Int) -> Int {
