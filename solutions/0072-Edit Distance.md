@@ -30,43 +30,36 @@ exection -> execution (insert 'u')
 ```
 
 ### Solution
-__O(3^min(word1, word2)) Time, O(1) Space - Bottom-Up Recursive:__
+__O(pow(3, min(word1, word2))) Time, O(1) Space - Bottom-Up Recursive Brute-Force:__
 ```Swift
 class Solution {
     func minDistance(_ word1: String, _ word2: String) -> Int {
-        return minDistance(Array(word1), Array(word2), 0, 0)
+        minD(Array(word1), Array(word2), 0, 0)
     }
-    
-    func minDistance(_ word1: [Character], _ word2: [Character], _ i: Int, _ j: Int) -> Int {
 
-        // If we've reached the end of either word1 or word2, 
-        // the difference between i & length of word1 or j & length of word2 is the
-        // outstanding edit difference that needs to be matched
-        switch (i, j) {
-            case (word1.count, _):
-            return word2.count-j
-            case (_, word2.count):
-            return word1.count-i
-            default:
-            break
-        }
-
-        // Compare i-th character of word1 & j-th character of word2
-        switch word1[i] {
-
+    func minD(_ word1: [Character], _ word2: [Character], _ index1: Int, _ index2: Int) -> Int {
+        switch (index1, index2) {
+        case (word1.count, let index2):
+            // If we've reached the end of either word1, 
+            // the difference between index2 & length of word2 is the
+            // outstanding edit difference that needs to be matched
+            return word2.count - index2
+        case (let index1, word2.count):
+            // If we've reached the end of either word2, 
+            // the difference between index1 & length of word1 is the
+            // outstanding edit difference that needs to be matched
+            return word1.count - index1
+        case (let index1, let index2) where word1[index1] == word2[index2]:
             // If the characters match, no edits need to be made
-            // proceed with characters i+1 & j+1
-            case word2[j]:
-            return minDistance(word1, word2, i+1, j+1)
-
+            return minD(word1, word2, index1 + 1, index2 + 1)
+        case (let index1, let index2):
             // If the characters don't match, we can:
             // Remove/replace/insert (+1 edit distance) a character in word1 and
             // continue finding the minimum edit distance
-            default:
-            return 1+min(
-                minDistance(word1, word2, i+1, j+1),
-                min(minDistance(word1, word2, i+1, j), minDistance(word1, word2, i, j+1))
-            )
+            let insert = minD(word1, word2, index1, index2 + 1)
+            let delete = minD(word1, word2, index1 + 1, index2)
+            let replace = minD(word1, word2, index1 + 1, index2 + 1)
+            return 1 + min(min(insert, delete), replace)
         }
     }
 }
