@@ -1,42 +1,51 @@
 
 ### Valid Palindrome
 
-Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+A phrase is a __palindrome__ if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
 
-__Note:__ For the purpose of this problem, we define empty string as valid palindrome.
+Given a string `s`, return `true` if it is a __palindrome__, or `false` otherwise.
 
 __Example 1:__
 ```
 Input: "A man, a plan, a canal: Panama"
 Output: true
+Explanation: "amanaplanacanalpanama" is a palindrome.
 ```
 __Example 2:__
 ```
 Input: "race a car"
 Output: false
+Explanation: "raceacar" is not a palindrome.
+```
+__Example 3:__
+```
+Input: s = " "
+Output: true
+Explanation: s is an empty string "" after removing non-alphanumeric characters.
+Since an empty string reads the same forward and backward, it is a palindrome.
 ```
 
 ### Solution
-__O(n):__
+__O(s) Time, O(1) Space:__
 ```Swift
 class Solution {
     func isPalindrome(_ s: String) -> Bool {
-        let s = Array(s)
-        var start = 0, end = s.count-1
+        let s: [Character] = Array(s)
+        var start: Int = 0, end: Int = s.count - 1
         while start < end {
-            if !(s[start].isNumber || s[start].isLetter) {
-                start+=1
+            if !s[start].isLetter && !s[start].isNumber {
+                start += 1
                 continue
             }
-            if !(s[end].isNumber || s[end].isLetter) {
-                end-=1
+            if !s[end].isLetter && !s[end].isNumber {
+                end -= 1
                 continue
             }
             if s[start].lowercased() != s[end].lowercased() {
                 return false
             }
-            start+=1
-            end-=1
+            start += 1
+            end -= 1
         }
         return true
     }
