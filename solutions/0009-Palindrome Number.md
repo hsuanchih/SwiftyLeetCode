@@ -29,14 +29,14 @@ __String Manipulation:__
 ```Swift
 class Solution {
     func isPalindrome(_ x: Int) -> Bool {
-        let x = Array(String(x))
-        var start = 0, end = x.count-1
+        let x: [Character] = Array(String(x))
+        var start: Int = 0, end: Int = x.count - 1
         while start < end {
             if x[start] != x[end] {
                 return false
             }
-            start+=1
-            end-=1
+            start += 1
+            end -= 1
         }
         return true
     }
