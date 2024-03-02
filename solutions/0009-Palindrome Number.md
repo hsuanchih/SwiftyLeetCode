@@ -47,12 +47,13 @@ __Iterative:__
 class Solution {
     func isPalindrome(_ x: Int) -> Bool {
         guard x >= 0 else { return false }
-        var num = x, result = 0
+        var num: Int = x
+        var reversed: Int = 0
         while num > 0 {
-            result = result*10+num%10
-            num/=10
+            reversed = reversed * 10 + (num % 10)
+            num /= 10
         }
-        return x == result
+        return x == reversed
     }
 }
 ```
