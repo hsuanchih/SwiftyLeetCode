@@ -11,15 +11,21 @@ Because nums[0] + nums[1] = 2 + 7 = 9,
 return [0, 1].
 ```
 ### Solution
-__O(nums^2) Time, O(1) Space - Brute-Force:__
+__O(pow(nums, 2)) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     // Try every combination
     func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
-        for i in stride(from: 0, to: nums.count, by: 1) {
-            for j in stride(from: i+1, to: nums.count, by: 1) {
-                if nums[i] + nums[j] == target {
-                    return [i, j]
+        guard !nums.isEmpty else { return [] }
+        for anchor in 0 ..< nums.count - 1 {
+            for other in anchor + 1 ..< nums.count where nums[anchor] + nums[other] == target {
+                return [anchor, other]
+            }
+        }
+        return []
+    }
+}
+```
                 }
             }
         }
