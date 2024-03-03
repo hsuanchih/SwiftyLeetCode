@@ -16,16 +16,16 @@ Output: 49
 ```
 
 ### Solution
-__O(height^2) Time, O(1) Space - Maximize Container Capacity at Each Start/End Pair:__
+__O(pow(height, 2)) Time, O(1) Space - Maximize Container Capacity at Each Start/End Pair:__
 ```Swift
 class Solution {
     func maxArea(_ height: [Int]) -> Int {
-        var result = 0
+        var result: Int = 0
 
         // Validate the area between each pair of start/end points
-        for start in stride(from: 0, to: height.count, by: 1) {
-            for end in stride(from: start+1, to: height.count, by: 1) {
-                result = max(result, min(height[start], height[end])*(end-start))
+        for start in 0 ..< height.count {
+            for end in start ..< height.count {
+                result = max(result, min(height[start], height[end]) * (end - start))
             }
         }
         return result
