@@ -26,7 +26,36 @@ class Solution {
     }
 }
 ```
+__O((nums * log(nums)) + (2 * nums)) Time, O(nums) Space - Input Sorted:__
+```Swift
+class Solution {
+    func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
+        var indexLookup: [Int: [Int]] = nums
+            .enumerated()
+            .reduce(into: [Int: [Int]]()) { result, indexValue in
+                let (index, value) = indexValue
+                result[value, default: []].append(index)
+            }
+        let nums: [Int] = nums.sorted()
+
+        var start: Int = 0, end: Int = nums.count - 1
+        while start < end {
+            switch nums[start] + nums[end] {
+            case target:
+                var result: [Int] = []
+                [start, end].forEach {
+                    if var indices = indexLookup[nums[$0]], !indices.isEmpty {
+                        result.append(indices.removeFirst())
+                        indexLookup[nums[$0]] = indices
+                    }
                 }
+                return result
+            case ..<target:
+                start += 1
+            case (target + 1)...:
+                end -= 1
+            default:
+                fatalError()
             }
         }
         return []
@@ -40,11 +69,12 @@ class Solution {
     func twoSum(_ nums: [Int], _ target: Int) -> [Int] {
         var indexLookup: [Int: Int] = [:]
         for index in 0 ..< nums.count {
-            let num = nums[index], difference = target - num
-            if let otherIndex = indexLookup[difference] {
-                return [otherIndex, index]
+            let num: Int = nums[index]
+            if let otherIndex = indexLookup[target - num] {
+                return [index, otherIndex]
+            } else {
+                indexLookup[num] = index
             }
-            indexLookup[num] = index
         }
         return []
     }
