@@ -36,18 +36,17 @@ __O(height) Time, O(1) Space - 2 Pointers:__
 ```Swift
 class Solution {
     func maxArea(_ height: [Int]) -> Int {
-        var start = 0, end = height.count-1, result = 0
+        var result: Int = 0
+        var start: Int = 0, end: Int = height.count - 1
 
         // Move in from both ends of the array, retain the taller of the two endpoints
         // as we advance the next index
         while start < end {
-            let shorter = min(height[start], height[end])
-            result = max(result, shorter*(end-start))
-            switch shorter {
-                case height[start]:
-                start+=1
-                default:
-                end-=1
+            result = max(result, min(height[start], height[end]) * (end - start))
+            if height[start] < height[end] {
+                start += 1
+            } else {
+                end -= 1
             }
         }
         return result
