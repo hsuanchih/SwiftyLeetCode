@@ -23,77 +23,55 @@ __Note:__
 __Recursive:__
 ```Swift
 class Solution {
-    class Solution {
     func solveSudoku(_ board: inout [[Character]]) {
         solve(&board, 0, 0)
     }
-    
-    // Helper method to solve each cell of the sudoku
+
     func solve(_ board: inout [[Character]], _ row: Int, _ col: Int) -> Bool {
         switch (row, col) {
+        case (board.count, _):
 
             // If we've reached the end of the board,
             // there is a solution to the sudoku
-            case (board.count, _):
             return true
+        case (let row, board.first!.count):
 
             // If we've reached the end of the current row, 
             // continue to solve the next row
-            case (_, board.count):
-            return solve(&board, row+1, 0)
+            return solve(&board, row + 1, 0)
+        case (let row, let col) where board[row][col] == ".":
+
+            // If the current cell is not filled validate numbers 1...9 to see 
+            // if it fits the cell
+            for num in 1 ... board.count where isValid(board, row, col, num) {
+                board[row][col] = Character(String(num))
+                if solve(&board, row, col + 1) {
+                    return true
+                }
+            }
+            board[row][col] = "."
+            return false
+        case (let row, let col):
 
             // If the current cell is already filled, continue to the next column
-            // Otherwise, validate numbers 1...9 to see if it fits the cell
-            default:
-            if board[row][col] == "." {
-
-                // Check each of numbers from 1...9
-                for i in 1...board.count {
-                    let num = Character(String(i))
-
-                    // If the number is valid, use this number as a tentative solution
-                    // to solve the rest of the board
-                    if isValid(board, row, col, num) {
-                        board[row][col] = num
-
-                        // If we can solve the rest of the board with this number
-                        // then we've got a solution
-                        if solve(&board, row, col+1) {
-                            return true
-                        }
-                    }
-                }
-
-                // Otherwise reset the cell to ".", as we might need to backtrack
-                // to a previous cell to solve the board
-                board[row][col] = "."
-            } else {
-
-                // The current cell has already been filled,
-                // continue to the next column
-                return solve(&board, row, col+1)
-            }
-            return false
+            return solve(&board, row, col + 1)
         }
     }
-    
-    // Helper method to validate whether a number fits a given cell
-    func isValid(_ board: [[Character]], _ row: Int, _ col: Int, _ num: Character) -> Bool {
 
-        // Check if there are duplicates in each row & col
-        for i in 0..<board.count {
-            if board[i][col] == num || board[row][i] == num {
-                return false
-            }
+    func isValid(_ board: [[Character]], _ row: Int, _ col: Int, _ num: Int) -> Bool {
+        let num: Character = Character(String(num))
+
+        // If num is already used in the corresponding row or col,
+        // num cannot be used again
+        for i in 0 ..< board.count where board[row][i] == num || board[i][col] == num {
+            return false
         }
 
-        // Check 3*3 square for duplicates
-        let rStart = row/3*3, cStart = col/3*3
-        for r in rStart..<rStart+3 {
-            for c in cStart..<cStart+3 {
-                if board[r][c] == num {
-                    return false
-                }
+        // If num is already used in the corresponding 3 by 3 grid
+        // num cannot be used again
+        for c in col / 3 * 3 ..< col / 3 * 3 + 3 {
+            for r in row / 3 * 3 ..< row / 3 * 3 + 3 where board[r][c] == num {
+                return false
             }
         }
         return true
