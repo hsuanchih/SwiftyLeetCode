@@ -57,53 +57,48 @@ __Note:__
 ```Swift
 class Solution {
     func isValidSudoku(_ board: [[Character]]) -> Bool {
-        var board = board
-        for col in 0..<board.count {
-            for row in 0..<board.count {
-                if board[row][col] != "." {
-                    if !isValid(board, row, col) {
-                        return false
-                    }
+        var board: [[Character]] = board
+        for row in 0 ..< board.count {
+            for col in 0 ..< board.first!.count where board[row][col] != "." {
+                if !isValid(board, row, col) {
+                    return false
+                } else {
                     board[row][col] = "."
                 }
             }
         }
         return true
     }
-    
+
     func isValid(_ board: [[Character]], _ row: Int, _ col: Int) -> Bool {
-        var set : Set<Character> = []
-        
-        for r in 0..<board.count {
-            let char = board[r][col]
-            if char != "." {
-                if set.contains(char) {
-                    return false
-                }
-                set.insert(char)
+        var seen: Set<Character> = []
+        for r in 0 ..< board.count where board[r][col] != "." {
+            let element: Character = board[r][col]
+            if seen.contains(element) {
+                return false
+            } else {
+                seen.insert(element)
             }
         }
-        set.removeAll()
-        
-        for c in 0..<board.count {
-            let char = board[row][c]
-            if char != "." {
-                if set.contains(char) {
-                    return false
-                }
-                set.insert(char)
+
+        seen = []
+        for c in 0 ..< board.first!.count where board[row][c] != "." {
+            let element: Character = board[row][c]
+            if seen.contains(element) {
+                return false
+            } else {
+                seen.insert(element)
             }
         }
-        set.removeAll()
-        
-        for c in col/3*3..<col/3*3+3 {
-            for r in row/3*3..<row/3*3+3 {
-                let char = board[r][c]
-                if char != "." {
-                    if set.contains(char) {
-                        return false
-                    }
-                    set.insert(char)
+
+        seen = []
+        for r in row / 3 * 3 ..< row / 3 * 3 + 3 {
+            for c in col / 3 * 3 ..< col / 3 * 3 + 3 where board[r][c] != "." {
+                let element: Character = board[r][c]
+                if seen.contains(element) {
+                    return false
+                } else {
+                    seen.insert(element)
                 }
             }
         }
