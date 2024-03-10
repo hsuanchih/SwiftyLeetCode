@@ -28,57 +28,75 @@ Explanation: There exist two distinct solutions to the 4-queens puzzle as shown 
 ```
 
 ### Solution
-__Recursive:__
+__O(pow(n, 2)) Space:__
 ```Swift
 class Solution {
     func solveNQueens(_ n: Int) -> [[String]] {
-        var placement : [Int] = Array(repeating: 0, count: n), result: [[String]] = []
-        solve(&placement, 0, &result)
+        var board: [[Bool]] = Array(repeating: Array(repeating: false, count: n), count: n)
+        var result: [[String]] = []
+        solve(0, &board, &result)
         return result
     }
-    
-    // Helper method to solve for queen placement in each row
-    func solve(_ placement: inout [Int], _ row: Int, _ result: inout [[String]]) {
-        if row == placement.count {
-            result.append(constructResult(placement))
-            return
-        }
-        for col in 0..<placement.count {
-            if isValid(placement, row, col) {
-                placement[row] = col
-                solve(&placement, row+1, &result)
+
+    func solve(_ row: Int, _ board: inout [[Bool]], _ result: inout [[String]]) {
+        if row == board.count {
+            result.append(
+                board.map { row in
+                    row.reduce(into: "") { result, col in
+                        result += (col ? "Q" : ".")
+                    }
+                }
+            )
+        } else {
+            for col in 0 ..< board.count where row == 0 || isValid(board, row, col) {
+                board[row][col] = true
+                solve(row + 1, &board, &result)
+                board[row][col] = false
             }
         }
     }
-    
-    // Helper method to validate placement of a queue
-    func isValid(_ placement: [Int], _ row: Int, _ col: Int) -> Bool {
-        for r in stride(from: row-1, through: 0, by: -1) {
-            switch placement[r] {
-                case col, col-(row-r), col+(row-r):
-                return false
-                default:
-                break
-            }
+
+    func isValid(_ board: [[Bool]], _ row: Int, _ col: Int) -> Bool {
+        for i in 1 ... row where (col - i >= 0 && board[row - i][col - i]) || (col + i < board.count && board[row - i][col + i]) || board[row - i][col] {
+            return false
         }
         return true
     }
-    
-    // Helper method to construct the board given placement
-    func constructResult(_ placement: [Int]) -> [String] {
-        var result : [String] = []
-        for row in 0..<placement.count {
-            var temp = ""
-            for col in 0..<placement.count {
-                if col == placement[row] {
-                    temp.append("Q")
-                } else {
-                    temp.append(".")
-                }
-            }
-            result.append(temp)
-        }
+}
+```
+__O(n) Space:__
+```Swift
+class Solution {
+    func solveNQueens(_ n: Int) -> [[String]] {
+        var queenPlacement: [Int] = Array(repeating: 0, count: n)
+        var result: [[String]] = []
+        solve(0, &queenPlacement, &result)
         return result
+    }
+
+    func solve(_ row: Int, _ queenPlacement: inout [Int], _ result: inout [[String]]) {
+        if row == queenPlacement.count {
+            result.append(
+                queenPlacement.map { row in
+                    (0 ..< queenPlacement.count).reduce(into: "") { result, col in
+                        result += (col == row ? "Q" : ".")
+                    }
+                }
+            )
+        } else {
+            for col in 0 ..< queenPlacement.count where row == 0 || isValid(queenPlacement, row, col) {
+                queenPlacement[row] = col
+                solve(row + 1, &queenPlacement, &result)
+                queenPlacement[row] = 0
+            }
+        }
+    }
+
+    func isValid(_ queenPlacement: [Int], _ row: Int, _ col: Int) -> Bool {
+        for i in 1 ... row where queenPlacement[row - i] == col - i || queenPlacement[row - i] == col + i || queenPlacement[row - i] == col {
+            return false
+        }
+        return true
     }
 }
 ```
