@@ -30,32 +30,27 @@ __Recursive:__
 ```Swift
 class Solution {
     func totalNQueens(_ n: Int) -> Int {
-        var placement : [Int] = Array(repeating: 0, count: n), result : Int = 0
-        solve(&placement, 0, &result)
+        var queenPlacement: [Int] = Array(repeating: 0, count: n)
+        var result: Int = 0
+        solve(0, &queenPlacement, &result)
         return result
     }
-    
-    func solve(_ placement: inout [Int], _ row: Int, _ result: inout Int) {
-        if row == placement.count {
-            result+=1
-            return
-        }
-        for col in 0..<placement.count {
-            if isValid(placement, row, col) {
-                placement[row] = col
-                solve(&placement, row+1, &result)
+
+    func solve(_ row: Int, _ queenPlacement: inout [Int], _ result: inout Int) {
+        if row == queenPlacement.count {
+            result += 1
+        } else {
+            for col in 0 ..< queenPlacement.count where row == 0 || isValid(queenPlacement, row, col) {
+                queenPlacement[row] = col
+                solve(row + 1, &queenPlacement, &result)
+                queenPlacement[row] = 0
             }
         }
     }
-    
-    func isValid(_ placement: [Int], _ row: Int, _ col: Int) -> Bool {
-        for r in stride(from: row-1, through: 0, by: -1) {
-            switch placement[r] {
-                case col, col-(row-r), col+(row-r):
-                return false
-                default:
-                break
-            }
+
+    func isValid(_ queenPlacement: [Int], _ row: Int, _ col: Int) -> Bool {
+        for i in 1 ... row where queenPlacement[row - i] == col || queenPlacement[row - i] == col - i || queenPlacement[row - i] == col + i {
+            return false
         }
         return true
     }
