@@ -50,26 +50,20 @@ __O(matrix) Time, O(1) Space:__
 ```Swift
 class Solution {
     func rotate(_ matrix: inout [[Int]]) {
-        if matrix.isEmpty {
-            return
-        }
 
         // Swap along diagnal axis
-        for row in 0..<matrix.count {
-            for col in row..<matrix.count {
-                let temp = matrix[row][col]
+        for row in 0 ..< matrix.count {
+            for col in row ..< matrix.count {
+                let temp: Int = matrix[row][col]
                 matrix[row][col] = matrix[col][row]
                 matrix[col][row] = temp
             }
         }
 
         // Swap along x-axis
-        for row in 0..<matrix.count {
-            var start = 0, end = matrix.count-1
-            while start < end {
-                matrix[row].swapAt(start, end)
-                start+=1
-                end-=1
+        for row in 0 ..< matrix.count {
+            for col in 0 ... (matrix.count - 1) / 2 {
+                matrix[row].swapAt(col, matrix.count - 1 - col)
             }
         }
     }
