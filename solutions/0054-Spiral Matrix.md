@@ -25,35 +25,40 @@ Output: [1,2,3,4,8,12,11,10,9,5,6,7]
 ```
 
 ### Solution
-__O(matrix):__
+__O(matrix) Time:__
 ```Swift
 class Solution {
     func spiralOrder(_ matrix: [[Int]]) -> [Int] {
-        var result : [Int] = []
-        var rowStart = 0, rowEnd = matrix.count-1,
-        colStart = 0, colEnd = (matrix.first?.count ?? 0)-1
+        guard !matrix.isEmpty else { return [] }
+        var rowStart: Int = 0
+        var rowEnd: Int = matrix.count - 1
+        var colStart: Int = 0
+        var colEnd: Int = matrix.first!.count - 1
+        var result: [Int] = []
+
         while rowStart <= rowEnd && colStart <= colEnd {
-            for col in stride(from: colStart, through: colEnd, by: 1) {
+            for col in colStart ... colEnd {
                 result.append(matrix[rowStart][col])
             }
-            for row in stride(from: rowStart+1, through: rowEnd, by: 1) {
-                result.append(matrix[row][colEnd])
-            }
             if rowStart < rowEnd {
-                for col in stride(from: colEnd-1, through: colStart, by: -1) {
+                for row in rowStart + 1 ... rowEnd {
+                    result.append(matrix[row][colEnd])
+                }
+                for col in stride(from: colEnd - 1, through: colStart, by: -1) {
                     result.append(matrix[rowEnd][col])
                 }
             }
             if colStart < colEnd {
-                for row in stride(from: rowEnd-1, through: rowStart+1, by: -1) {
+                for row in stride(from: rowEnd - 1, to: rowStart, by: -1) {
                     result.append(matrix[row][colStart])
                 }
             }
-            rowStart+=1
-            rowEnd-=1
-            colStart+=1
-            colEnd-=1
+            rowStart += 1
+            rowEnd -= 1
+            colStart += 1
+            colEnd -= 1
         }
+
         return result
     }
 }
