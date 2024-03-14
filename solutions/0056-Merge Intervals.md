@@ -17,17 +17,17 @@ Explanation: Intervals [1,4] and [4,5] are considered overlapping.
 ```
 
 ### Solution
-__O(intervals*log\[base 2\](intervals)+intervals) Time, O(intervals) Space:__
+__O(intervals * log(intervals) + intervals) Time, O(intervals) Space:__
 ```Swift
 class Solution {
     func merge(_ intervals: [[Int]]) -> [[Int]] {
-        let input = intervals.sorted { $0[0] < $1[0] }
-        var result : [[Int]] = []
-        for interval in input {
-            if let last = result.last, last[1] >= interval[0] {
-                var temp = result.removeLast()
-                temp[1] = max(temp[1], interval[1])
-                result.append(temp)
+        guard !intervals.isEmpty else { return [] }
+        let intervals: [[Int]] = intervals.sorted { $0.first! < $1.first! }
+        var result: [[Int]] = []
+        for interval in intervals {
+            if let previous = result.last, (previous.first! ... previous.last!).contains(interval.first!) {
+                result.removeLast()
+                result.append([previous.first!, max(previous.last!, interval.last!)])
             } else {
                 result.append(interval)
             }
