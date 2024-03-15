@@ -15,32 +15,35 @@ Output:
 ```
 
 ### Solution
-__O(n^2):__
+__O(pow(n, 2)) Time:__
 ```Swift
 class Solution {
     func generateMatrix(_ n: Int) -> [[Int]] {
-        var result : [[Int]] = Array(repeating: Array(repeating: 0, count: n), count: n)
-        var start = 0, end = n-1, num = 1
+        var start: Int = 0, end: Int = n - 1
+        var num: Int = 1
+        var result: [[Int]] = Array(repeating: Array(repeating: 0, count: n), count: n)
         while start <= end {
-            for col in stride(from: start, through: end, by: 1) {
+            for col in start ... end {
                 result[start][col] = num
-                num+=1
+                num += 1
             }
-            for row in stride(from: start+1, through: end, by: 1) {
-                result[row][end] = num
-                num+=1
+
+            if start < end {
+                for row in start + 1 ... end {
+                    result[row][end] = num
+                    num += 1
+                }
+                for col in stride(from: end - 1, through: start, by: -1) {
+                    result[end][col] = num
+                    num += 1
+                }
+                for row in stride(from: end - 1, to: start, by: -1) {
+                    result[row][start] = num
+                    num += 1
+                }
             }
-            if start == end { break }
-            for col in stride(from: end-1, through: start, by: -1) {
-                result[end][col] = num
-                num+=1
-            }
-            for row in stride(from: end-1, to: start, by: -1) {
-                result[row][start] = num
-                num+=1
-            }
-            start+=1
-            end-=1
+            start += 1
+            end -= 1
         }
         return result
     }
