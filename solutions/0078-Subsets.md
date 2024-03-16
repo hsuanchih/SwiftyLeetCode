@@ -22,24 +22,20 @@ Output:
 ```
 
 ### Solution
-__O(nums*2^nums) Time, Recursive:__
+__O(pow(2, nums)) Time - Recursive:__
 ```Swift
 class Solution {
     func subsets(_ nums: [Int]) -> [[Int]] {
-        var temp : [Int] = [], result : [[Int]] = []
-        generate(nums, 0, &temp, &result)
+        var result: [[Int]] = []
+        addSubset(nums, 0, [], &result)
         return result
     }
-    
-    func generate(_ nums: [Int], _ index: Int, _ temp: inout [Int], _ result: inout [[Int]]) {
+
+    func addSubset(_ nums: [Int], _ index: Int, _ temp: [Int], _ result: inout [[Int]]) {
         result.append(temp)
-        if index == nums.count {
-            return
-        }
-        for i in index..<nums.count {
-            temp.append(nums[i])
-            generate(nums, i+1, &temp, &result)
-            temp.removeLast()
+        guard index < nums.count else { return }
+        for i in index ..< nums.count {
+            addSubset(nums, i + 1, temp + [nums[i]], &result)
         }
     }
 }
