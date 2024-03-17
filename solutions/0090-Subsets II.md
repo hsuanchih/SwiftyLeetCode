@@ -20,7 +20,7 @@ Output:
 ```
 
 ### Solution
-__Set:__
+__O(nums * log(nums) + pow(2, nums)) Time, HashSet:__
 ```Swift
 class Solution {
     func subsetsWithDup(_ nums: [Int]) -> [[Int]] {
@@ -39,26 +39,21 @@ class Solution {
     }
 }
 ```
-__Array:__
+__O(nums * log(nums) + pow(2, nums)) Time:__
 ```Swift
 class Solution {
     func subsetsWithDup(_ nums: [Int]) -> [[Int]] {
-        var temp : [Int] = [], result : [[Int]] = []
-        solve(nums.sorted(), 0, &temp, &result)
+        var result: [[Int]] = []
+        genSubsets(nums.sorted(), 0, [], &result)
         return result
     }
-    
-    func solve(_ nums: [Int], _ index: Int, _ temp: inout [Int], _ result: inout [[Int]]) {
+
+    func genSubsets(_ nums: [Int], _ index: Int, _ temp: [Int], _ result: inout [[Int]]) {
         result.append(temp)
-        var index = index
-        while index < nums.count {
-            temp.append(nums[index])
-            solve(nums, index+1, &temp, &result)
-            temp.removeLast()
-            while index < nums.count-1 && nums[index] == nums[index+1] {
-                index+=1
-            }
-            index+=1
+        var currentNum: Int?
+        for i in index ..< nums.count where nums[i] != currentNum {
+            currentNum = nums[i]
+            genSubsets(nums, i + 1, temp + [nums[i]], &result)
         }
     }
 }
