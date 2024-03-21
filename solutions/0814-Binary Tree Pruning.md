@@ -5,8 +5,8 @@ Given the `root` of a binary tree, return the same tree where every subtree (of 
 
 A subtree of a node `node` is `node` plus every node that is a descendant of `node`.
 
-![images/question_814-0.png](images/question_814-0.png)
 __Example 1:__
+![images/question_814-0.png](../images/question_814-0.png)
 ```
 Input: root = [1,null,0,0,1]
 Output: [1,null,0,null,1]
@@ -14,14 +14,14 @@ Explanation:
 Only the red nodes satisfy the property "every subtree not containing a 1".
 The diagram on the right represents the answer.
 ```
-![images/question_814-1.png](images/question_814-1.png)
 __Example 2:__
+![images/question_814-1.png](../images/question_814-1.png)
 ```
 Input: root = [1,0,1,0,0,0,1]
 Output: [1,null,1,null,1]
 ```
-![images/question_814-2.png](images/question_814-2.png)
 __Example 3:__
+![images/question_814-2.png](../images/question_814-2.png)
 ```
 Input: root = [1,1,0,1,1,0,1,0]
 Output: [1,1,0,1,1,null,1]
