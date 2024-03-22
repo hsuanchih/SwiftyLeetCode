@@ -9,3 +9,7 @@
 [134. Gas Station](../solutions/0134-Gas%20Station.md)</br>
 [334. Increasing Triplet Subsequence](../solutions/0334-Increasing%20Triplet%20Subsequence.md)</br>
 [714. Best Time to Buy and Sell Stock with Transaction Fee](../solutions/0714-Best%20Time%20to%20Buy%20and%20Sell%20Stock%20with%20Transaction%20Fee.md)</br>
+
+### Hard
+---
+[135. Candy](../solutions/0135-Candy.md)</br>
