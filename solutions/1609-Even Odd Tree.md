@@ -10,6 +10,7 @@ A binary tree is named __Even-Odd__ if it meets the following conditions:
 Given the `root` of a binary tree, return `true` if the binary tree is __Even-Odd__, otherwise return `false`.
 
 __Example 1:__
+
 ![images/question_1609-0.png](../images/question_1609-0.png)
 ```
 Input: root = [1,10,4,3,null,7,9,12,8,6,null,null,2]
@@ -22,6 +23,7 @@ Level 3: [12,8,6,2]
 Since levels 0 and 2 are all odd and increasing and levels 1 and 3 are all even and decreasing, the tree is Even-Odd.
 ```
 __Example 2:__
+
 ![images/question_1609-1.png](../images/question_1609-1.png)
 ```
 Input: root = [5,4,2,3,3,7]
@@ -33,6 +35,7 @@ Level 2: [3,3,7]
 Node values in level 2 must be in strictly increasing order, so the tree is not Even-Odd.
 ```
 __Example 3:__
+
 ![images/question_1609-2.png](../images/question_1609-2.png)
 ```
 Input: root = [5,9,1,3,5,7]
