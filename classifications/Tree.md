@@ -67,6 +67,7 @@
 [655. Print Binary Tree](../solutions/0655-Print%20Binary%20Tree.md)</br>
 [814. Binary Tree Pruning](../solutions/0814-Binary%20Tree%20Pruning.md)</br>
 [863. All Nodes Distance K in Binary Tree](../solutions/0863-All%20Nodes%20Distance%20K%20in%20Binary%20Tree.md)</br>
+[1609. Even Odd Tree](../solutions/1609-Even%20Odd%20Tree.md)</br>
 
 ### Hard
 ---
