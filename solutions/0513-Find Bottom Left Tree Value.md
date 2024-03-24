@@ -4,12 +4,14 @@
 Given the `root` of a binary tree, return the leftmost value in the last row of the tree.
  
 __Example 1:__
+
 ![images/question_513-0.jpg](../images/question_513-0.jpg)
 ```
 Input: root = [2,1,3]
 Output: 1
 ```
 __Example 2:__
+
 ![images/question_513-1.jpg](../images/question_513-1.jpg)
 ```
 Input: root = [1,2,3,4,null,5,6,null,null,7]
