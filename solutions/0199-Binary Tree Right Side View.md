@@ -17,28 +17,37 @@ Explanation:
 ```
 
 ### Solution
-__Iterative O(n):__
+__Recursive:__
 ```Swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+ *         self.val = val
+ *         self.left = left
+ *         self.right = right
+ *     }
+ * }
+ */
 class Solution {
     func rightSideView(_ root: TreeNode?) -> [Int] {
-        guard let root = root else { return [] }
-        var queue : [TreeNode] = [root], result : [Int] = []
-        while !queue.isEmpty {
-            let size = queue.count
-            for i in 0 ..< size {
-                let node = queue.removeFirst()
-                if let left = node.left {
-                    queue.append(left)
-                }
-                if let right = node.right {
-                    queue.append(right)
-                }
-                if i == size-1 {
-                    result.append(node.val)
-                }
-            }
-        }
+        var result: [Int] = []
+        traverse(root, 0, &result)
         return result
+    }
+
+    func traverse(_ node: TreeNode?, _ level: Int, _ result: inout [Int]) {
+        guard let node else { return }
+        if level == result.count {
+            result.append(node.val)
+        }
+        traverse(node.right, level + 1, &result)
+        traverse(node.left, level + 1, &result)
     }
 }
 ```
