@@ -51,3 +51,42 @@ class Solution {
     }
 }
 ```
+__Iterative:__
+```Swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+ *         self.val = val
+ *         self.left = left
+ *         self.right = right
+ *     }
+ * }
+ */
+class Solution {
+    func rightSideView(_ root: TreeNode?) -> [Int] {
+        guard let root else { return [] }
+        var queue: [TreeNode] = [root]
+        var result: [Int] = []
+        while !queue.isEmpty {
+            let count: Int = queue.count
+            for i in 0 ..< count {
+                let node: TreeNode = queue.removeFirst()
+                [node.left, node.right].forEach {
+                    guard let next = $0 else { return }
+                    queue.append(next)
+                }
+                if i == count - 1 {
+                    result.append(node.val)
+                }
+            }
+        }
+        return result
+    }
+}
+```
