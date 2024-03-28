@@ -4,6 +4,7 @@
 Given an integer array `nums` where the elements are sorted in __ascending order__, convert it to a height-balanced binary search tree.
 
 __Example 1:__
+
 ![images/question_108-0.jpg](../images/question_108-0.jpg)
 ```
 Input: nums = [-10,-3,0,5,9]
@@ -11,7 +12,9 @@ Output: [0,-3,9,-10,null,5]
 Explanation: [0,-10,5,null,-3,null,9] is also accepted:
 ```
 ![images/question_108-1.jpg](../images/question_108-1.jpg)
+
 __Example 2:__
+
 ![images/question_108-2.jpg](../images/question_108-2.jpg)
 ```
 Input: nums = [1,3]
