@@ -25,6 +25,7 @@ __Constraints:__
  
 
 __Follow up:__ 
+
 Can you solve the problem in `O(1)` extra space complexity? (The output array does not count as extra space for space complexity analysis.)
 
 ### Solution
@@ -37,6 +38,25 @@ class Solution {
             for j in 0 ..< nums.count where j != i {
                 answer[i] *= nums[j]
             }
+        }
+        return answer
+    }
+}
+```
+__O(n) Time, O(1) Space - Prefix/Suffix Product:__
+```Swift
+class Solution {
+    func productExceptSelf(_ nums: [Int]) -> [Int] {
+        var answer: [Int] = Array(repeating: 1, count: nums.count)
+        var product: Int = nums[0]
+        for i in 1 ..< nums.count {
+            answer[i] = product
+            product *= nums[i]
+        }
+        product = nums[nums.count - 1]
+        for i in stride(from: nums.count - 2, through: 0, by: -1) {
+            answer[i] *= product
+            product *= nums[i]
         }
         return answer
     }
