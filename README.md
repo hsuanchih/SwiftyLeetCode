@@ -20,7 +20,7 @@ starting each problem with a brute force approach & optimize along the way.
 * [Matrix](classifications/Matrix.md)
 * [Minimax](classifications/Minimax.md)
 * [Pigeon Hole](classifications/Pigeon-Hole.md)
-* [Prefix/Postfix Sum](classifications/Prefix-Postfix-Sum.md)
+* [Prefix/Suffix Sum](classifications/Prefix-Suffix-Sum.md)
 * [Priority Queue](classifications/Priority-Queue.md)
 * [Reservoir Sampling](classifications/Reservoir-Sampling.md)
 * [Sliding Window](classifications/Sliding-Window.md)

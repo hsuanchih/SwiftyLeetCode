@@ -1,4 +1,4 @@
-# Prefix/Postfix Sum
+# Prefix/Suffix Sum
 
 ### Easy
 ---
@@ -7,6 +7,7 @@
 
 ### Medium
 ---
+[238. Product of Array Except Self](../solutions/0238-Product%20of%20Array%20Except%20Self.md)</br>
 [304. Range Sum Query 2D - Immutable](../solutions/0304-Range%20Sum%20Query%202D%20-%20Immutable.md)</br>
 [560. Subarray Sum Equals K](../solutions/0560-Subarray%20Sum%20Equals%20K.md)</br>
 [848. Shifting Letters](../solutions/0848-Shifting%20Letters.md)</br>
