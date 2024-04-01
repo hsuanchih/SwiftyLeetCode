@@ -8,6 +8,7 @@ Merge the two lists into one sorted list. The list should be made by splicing to
 Return the head of the merged linked list.
 
 __Example 1:__
+
 ![question_21.jpg](../images/question_21.jpg)
 ```
 Input: list1 = [1,2,4], list2 = [1,3,4]
