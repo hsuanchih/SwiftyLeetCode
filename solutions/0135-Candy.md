@@ -86,3 +86,19 @@ class Solution {
     }
 }
 ```
+__O(ratings) Time, O(ratings) Space - Iterative Greedy:__
+```Swift
+class Solution {
+    func candy(_ ratings: [Int]) -> Int {
+        guard !ratings.isEmpty else { return 0 }
+        var candy: [Int] = Array(repeating: 1, count: ratings.count)
+        for target in stride(from: 1, to: ratings.count, by: 1) where ratings[target - 1] < ratings[target] && candy[target] <= candy[target - 1] {
+            candy[target] = candy[target - 1] + 1
+        }
+        for target in stride(from: ratings.count - 2, through: 0, by: -1) where ratings[target + 1] < ratings[target] && candy[target] <= candy[target + 1] {
+            candy[target] = candy[target + 1] + 1
+        }
+        return candy.reduce(into: 0, +=)
+    }
+}
+```
