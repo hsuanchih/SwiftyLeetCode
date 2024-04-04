@@ -24,7 +24,40 @@ __Constraints:__
 * `0 <= k <= 2 * pow(10, 9)`
 
 ### Solution
-__O(head) Time:__
+__O(head) Time, O(head) Space:__
+```Swift
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public var val: Int
+ *     public var next: ListNode?
+ *     public init() { self.val = 0; self.next = nil; }
+ *     public init(_ val: Int) { self.val = val; self.next = nil; }
+ *     public init(_ val: Int, _ next: ListNode?) { self.val = val; self.next = next; }
+ * }
+ */
+class Solution {
+    func rotateRight(_ head: ListNode?, _ k: Int) -> ListNode? {
+        guard head != nil else { return head }
+        var nodes: [ListNode] = []
+        var curr: ListNode? = head
+        while let node = curr {
+            nodes.append(node)
+            curr = node.next
+        }
+
+        let rotation: Int = k % nodes.count 
+        if rotation == 0 {
+            return head
+        } else {
+            nodes.last?.next = nodes.first
+            nodes[nodes.count - 1 - rotation].next = nil
+        }
+        return nodes[nodes.count - rotation]
+    }
+}
+```
+__O(2 * head) Time, O(1) Space:__
 ```Swift
 /**
  * Definition for singly-linked list.
