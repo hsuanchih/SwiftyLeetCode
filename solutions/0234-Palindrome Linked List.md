@@ -4,12 +4,14 @@
 Given the `head` of a singly linked list, return `true` if it is a palindrome or `false` otherwise.
 
 __Example 1:__
+
 ![question_234-0.jpg](../images/question_234-0.jpg)
 ```
 Input: head = [1,2,2,1]
 Output: true
 ```
 __Example 2:__
+
 ![question_234-1.jpg](../images/question_234-1.jpg)
 ```
 Input: head = [1,2]
