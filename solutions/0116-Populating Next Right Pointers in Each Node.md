@@ -22,7 +22,7 @@ __Follow up:__
 
 __Example 1:__
 
-![example](images/question_116.png)
+![question_116.png](../images/question_116.png)
 ```
 Input: root = [1,2,3,4,5,6,7]
 Output: [1,#,2,3,#,4,5,6,7,#]
@@ -30,11 +30,15 @@ Explanation: Given the above perfect binary tree (Figure A), your function shoul
 ```
 
 __Constraints:__
-* The number of nodes in the given tree is less than `4096`.
+* The number of nodes in the tree is in the range `[0, pow(2, 12) - 1]`.
 * `-1000 <= node.val <= 1000`
 
+__Follow-up:__
+* You may only use constant extra space.
+* The recursive approach is fine. You may assume implicit stack space does not count as extra space for this problem.
+
 ### Solution
-__O(n) Time, O((n+1)/2) Space - Iterative Level-Order Traversal:__
+__O(n) Time, O((n + 1) / 2) Space - Iterative Level-Order Traversal:__
 ```Swift
 /**
  * Definition for a Node.
@@ -53,27 +57,26 @@ __O(n) Time, O((n+1)/2) Space - Iterative Level-Order Traversal:__
  */
 class Solution {
     func connect(_ root: Node?) -> Node? {
-        guard let root = root else { return nil }
-        var queue : [Node] = [root]
+        guard let root else { return nil }
+        var queue: [Node] = [root]
         while !queue.isEmpty {
-            let size = queue.count
-            for i in 0..<size {
-                let curr = queue.removeFirst()
-                if let left = curr.left {
-                    queue.append(left)
+            let count: Int = queue.count
+            for i in 0 ..< count {
+                let node: Node = queue.removeFirst()
+                [node.left, node.right].forEach {
+                    guard let next = $0 else { return }
+                    queue.append(next)
                 }
-                if let right = curr.right {
-                    queue.append(right)
+                if i < count - 1 {
+                    node.next = queue.first
                 }
-                guard i < size-1 else { break }
-                curr.next = queue.first
             }
         }
         return root
     }
 }
 ```
-__O(n) Time, O(1) Space - Recursive Pre-Order Assignment:__
+__O(n) Time, O(1) Space - Recursive Preorder Assignment:__
 ```Swift
 /**
  * Definition for a Node.
@@ -92,12 +95,12 @@ __O(n) Time, O(1) Space - Recursive Pre-Order Assignment:__
  */
 class Solution {
     func connect(_ root: Node?) -> Node? {
-        guard let node = root else { return root }
-        node.left?.next = node.right
-        node.right?.next = node.next?.left
-        _ = connect(node.left)
-        _ = connect(node.right)
-        return node
+        guard let root else { return nil }
+        root.left?.next = root.right
+        root.right?.next = root.next?.left
+        _ = connect(root.left)
+        _ = connect(root.right)
+        return root
     }
 }
 ```
