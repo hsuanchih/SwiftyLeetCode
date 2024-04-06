@@ -8,6 +8,7 @@ Add the two numbers and return it as a linked list.
 You may assume the two numbers do not contain any leading zero, except the number `0` itself.
 
 __Example 1:__
+
 ![question_2.jpg](../images/question_2.jpg)
 ```
 Input: l1 = [2,4,3], l2 = [5,6,4]
