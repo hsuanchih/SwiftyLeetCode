@@ -7,7 +7,7 @@ The robot can only move either down or right at any point in time. The robot is 
 
 How many possible unique paths are there?
 
-![Above is a 7 x 3 grid. How many possible unique paths are there?](images/question_62.png)
+![Above is a 7 x 3 grid. How many possible unique paths are there?](../images/question_62.png)
 
 __Note:__ *m* and *n* will be at most 100.
 
