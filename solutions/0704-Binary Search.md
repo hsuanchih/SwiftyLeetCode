@@ -1,8 +1,9 @@
 
 ### Binary Search
 
-Given a __sorted__ (in ascending order) integer array `nums` of `n` elements and a target value,</br> 
-write a function to search `target` in `nums`. If `target` exists, then return its index, otherwise return `-1`.
+Given an array of integers `nums` which is sorted in ascending order, and an integer `target`, write a function to search `target` in `nums`. If `target` exists, then return its index. Otherwise, return `-1`.
+
+You must write an algorithm with `O(log n)` runtime complexity.
 
 __Example 1:__
 ```
@@ -18,36 +19,35 @@ Explanation: 2 does not exist in nums so return -1
 ```
 
 __Constraints:__
-* `1 <= nums.length <= 10^4`
-* `-10^4 < nums[i], target < 10^4`
+* `1 <= nums.length <= pow(10, 4)`
+* `-pow(10, 4) < nums[i], target < pow(10, 4)`
 * All the integers in `nums` are unique.
 * `nums` is sorted in ascending order.
 
 ### Solution
-__O(log\[base 2\](nums)) Time:__
+__O(log(nums)) Time:__
 ```Swift
 class Solution {
     func search(_ nums: [Int], _ target: Int) -> Int {
         var start: Int = 0, end: Int = nums.count - 1
         while start + 1 < end {
-            let mid = start + (end - start) / 2
-            switch nums[mid] {
-            case target:
+            let mid: Int = start + (end - start) / 2
+            switch nums[mid] - target {
+            case 0:
                 return mid
-            case Int.min ..< target:
+            case ..<0:
                 start = mid
-            case target + 1 ... Int.max:
+            case 1...:
                 end = mid
             default:
                 fatalError()
             }
         }
-        switch (nums[start], nums[end]) {
-        case (target, _):
+        if nums[start] == target {
             return start
-        case (_, target):
+        } else if nums[end] == target {
             return end
-        default:
+        } else {
             return -1
         }
     }
