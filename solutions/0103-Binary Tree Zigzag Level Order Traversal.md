@@ -1,26 +1,29 @@
 
 ### Binary Tree Zigzag Level Order Traversal
 
-Given a binary tree, return the *zigzag level order* traversal of its nodes' values.</br> 
-(ie, from left to right, then right to left for the next level and alternate between).
+Given the `root` of a binary tree, return the _zigzag level order traversal of its nodes' values_. (i.e., from left to right, then right to left for the next level and alternate between).
 
-__For example:__
-Given binary tree `[3,9,20,null,null,15,7]`,
+__Example 1:__
+
+![question_103.jpg](../images/question_103.jpg)
 ```
-    3
-   / \
-  9  20
-    /  \
-   15   7
+Input: root = [3,9,20,null,null,15,7]
+Output: [[3],[20,9],[15,7]]
 ```
-return its zigzag level order traversal as:
+__Example 2:__
 ```
-[
-  [3],
-  [20,9],
-  [15,7]
-]
+Input: root = [1]
+Output: [[1]]
 ```
+__Example 3:__
+```
+Input: root = []
+Output: []
+```
+
+__Constraints:__
+* The number of nodes in the tree is in the range `[0, 2000]`.
+* `-100 <= Node.val <= 100`
 
 ### Solution
 __Iterative:__
@@ -31,36 +34,37 @@ __Iterative:__
  *     public var val: Int
  *     public var left: TreeNode?
  *     public var right: TreeNode?
- *     public init(_ val: Int) {
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
  *         self.val = val
- *         self.left = nil
- *         self.right = nil
+ *         self.left = left
+ *         self.right = right
  *     }
  * }
  */
 class Solution {
     func zigzagLevelOrder(_ root: TreeNode?) -> [[Int]] {
-        guard let node = node else { return [] }
-        var level = 0, queue : [TreeNode] = [node], result : [[Int]] = []
+        guard let root else { return [] }
+        var queue: [TreeNode] = [root]
+        var result: [[Int]] = []
         while !queue.isEmpty {
-            let size = queue.count
-            var temp : [Int] = []
-            for _ in 0..<size {
-                let node = queue.removeFirst()
-                if level%2 == 0 {
-                    temp.append(node.val)
+            let count: Int = queue.count
+            let isOddLevel: Bool = result.count % 2 == 1
+            var values: [Int] = []
+            for _ in 0 ..< count {
+                let node: TreeNode = queue.removeFirst()
+                if isOddLevel {
+                    values.insert(node.val, at: 0)
                 } else {
-                    temp.insert(node.val, at: 0)
+                    values.append(node.val)
                 }
-                if let left = node.left {
-                    queue.append(left)
-                }
-                if let right = node.right {
-                    queue.append(right)
+                [node.left, node.right].forEach {
+                    guard let next = $0 else { return }
+                    queue.append(next)
                 }
             }
-            result.append(temp)
-            level+=1
+            result.append(values)
         }
         return result
     }
@@ -74,32 +78,35 @@ __Recursive:__
  *     public var val: Int
  *     public var left: TreeNode?
  *     public var right: TreeNode?
- *     public init(_ val: Int) {
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
  *         self.val = val
- *         self.left = nil
- *         self.right = nil
+ *         self.left = left
+ *         self.right = right
  *     }
  * }
  */
 class Solution {
     func zigzagLevelOrder(_ root: TreeNode?) -> [[Int]] {
-        var result : [[Int]] = []
-        preOrder(root, 0, &result)
+        var result: [[Int]] = []
+        preorder(root, 0, &result)
         return result
     }
     
-    func preOrder(_ node: TreeNode?, _ level: Int, _ result: inout [[Int]]) {
-        guard let node = node else { return }
+    func preorder(_ node: TreeNode?, _ level: Int, _ result: inout [[Int]]) {
+        guard let node else { return }
         if level == result.count {
-            result.append([Int]())
+            result.append([])
         }
-        if level%2 == 0 {
+        if level % 2 == 0 {
             result[level].append(node.val)
         } else {
             result[level].insert(node.val, at: 0)
         }
-        preOrder(node.left, level+1, &result)
-        preOrder(node.right, level+1, &result)
+        [node.left, node.right].forEach {
+            preorder($0, level + 1, &result)
+        }
     }
 }
 ```
