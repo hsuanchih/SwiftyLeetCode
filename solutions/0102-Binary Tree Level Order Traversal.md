@@ -1,25 +1,29 @@
 
 ### Binary Tree Level Order Traversal
 
-Given a binary tree, return the *level order* traversal of its nodes' values. (ie, from left to right, level by level).
+Given the `root` of a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
 
-__For example:__
-Given binary tree `[3,9,20,null,null,15,7]`,
+__Example 1:__
+
+![question_102.jpg](../images/question_102.jpg)
 ```
-    3
-   / \
-  9  20
-    /  \
-   15   7
+Input: root = [3,9,20,null,null,15,7]
+Output: [[3],[9,20],[15,7]]
 ```
-return its level order traversal as:
+__Example 2:__
 ```
-[
-  [3],
-  [9,20],
-  [15,7]
-]
+Input: root = [1]
+Output: [[1]]
 ```
+__Example 3:__
+```
+Input: root = []
+Output: []
+```
+
+__Constraints:__
+* The number of nodes in the tree is in the range `[0, 2000]`.
+* `-1000 <= Node.val <= 1000`
 
 ### Solution
 __Iterative:__
@@ -30,27 +34,32 @@ __Iterative:__
  *     public var val: Int
  *     public var left: TreeNode?
  *     public var right: TreeNode?
- *     public init(_ val: Int) {
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
  *         self.val = val
- *         self.left = nil
- *         self.right = nil
+ *         self.left = left
+ *         self.right = right
  *     }
  * }
  */
 class Solution {
     func levelOrder(_ root: TreeNode?) -> [[Int]] {
-        guard let root = root else { return [] }
-        var queue: [TreeNode] = [root], result: [[Int]] = []
+        guard let root else { return [] }
+        var queue: [TreeNode] = [root]
+        var result: [[Int]] = []
         while !queue.isEmpty {
-            let size = queue.count
-            var temp: [Int] = []
-            for _ in 0 ..< size {
-                let node = queue.removeFirst()
-                temp.append(node.val)
-                node.left.map { queue.append($0) }
-                node.right.map { queue.append($0) }
+            let count: Int = queue.count
+            var values: [Int] = []
+            for _ in 0 ..< count {
+                let node: TreeNode = queue.removeFirst()
+                [node.left, node.right].forEach {
+                    guard let next = $0 else { return }
+                    queue.append(next)
+                }
+                values.append(node.val)
             }
-            result.append(temp)
+            result.append(values)
         }
         return result
     }
@@ -64,28 +73,31 @@ __Recursive:__
  *     public var val: Int
  *     public var left: TreeNode?
  *     public var right: TreeNode?
- *     public init(_ val: Int) {
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
  *         self.val = val
- *         self.left = nil
- *         self.right = nil
+ *         self.left = left
+ *         self.right = right
  *     }
  * }
  */
 class Solution {
     func levelOrder(_ root: TreeNode?) -> [[Int]] {
-        var result : [[Int]] = []
-        preOrder(root, 0, &result)
+        var result: [[Int]] = []
+        traverse(root, 0, &result)
         return result
     }
 
-    func preOrder(_ node: TreeNode?, _ level: Int, _ result: inout [[Int]]) {
-        guard let node = node else { return }
-        if result.count == level {
-            result.append([Int]())
+    func traverse(_ node: TreeNode?, _ level: Int, _ result: inout [[Int]]) {
+        guard let node else { return }
+        if level == result.count {
+            result.append([node.val])
+        } else {
+            result[level].append(node.val)
         }
-        result[level].append(node.val)
-        preOrder(node.left, level+1, &result)
-        preOrder(node.right, level+1, &result)
+        traverse(node.left, level + 1, &result)
+        traverse(node.right, level + 1, &result)
     }
 }
 ```
