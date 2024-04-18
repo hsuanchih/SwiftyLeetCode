@@ -3,7 +3,7 @@
 ### Easy
 ---
 [14. Longest Common Prefix](../solutions/0014-Longest%20Common%20Prefix.md)</br>
-[28. Implement strStr()](../solutions/0028-Implement%20strStr().md)</br>
+[28. Find the Index of the First Occurrence in a String](../solutions/0028-Find%20the%20Index%20of%20the%20First%20Occurrence%20in%20a%20String.md)</br>
 [67. Add Binary](../solutions/0067-Add%20Binary.md)</br>
 [392. Is Subsequence](../solutions/0392-Is%20Subsequence.md)</br>
 [434. Number of Segments in a String](../solutions/0434-Number%20of%20Segments%20in%20a%20String.md)</br>
