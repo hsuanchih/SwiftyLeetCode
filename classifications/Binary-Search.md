@@ -12,6 +12,7 @@
 [704. Binary Search](../solutions/0704-Binary%20Search.md)</br>
 [744. Find Smallest Letter Greater Than Target](../solutions/0744-Find%20Smallest%20Letter%20Greater%20Than%20Target.md)</br>
 [852. Peak Index in a Mountain Array](../solutions/0852-Peak%20Index%20in%20a%20Mountain%20Array.md)</br>
+[1385. Find the Distance Value Between Two Arrays](../solutions/1385-Find%20the%20Distance%20Value%20Between%20Two%20Arrays.md)
 [1539. Kth Missing Positive Number](../solutions/1539%20Kth%20Missing%20Positive%20Number.md)</br>
 
 ### Medium
