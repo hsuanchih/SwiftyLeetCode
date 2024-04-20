@@ -23,6 +23,7 @@ starting each problem with a brute force approach & optimize along the way.
 * [Prefix/Suffix Sum](classifications/Prefix-Suffix-Sum.md)
 * [Priority Queue](classifications/Priority-Queue.md)
 * [Reservoir Sampling](classifications/Reservoir-Sampling.md)
+* [Simulation](classifications/Simulation.md)
 * [Sliding Window](classifications/Sliding-Window.md)
 * [Sorting](classifications/Sorting.md)
 * [Stack](classifications/Stack.md)
