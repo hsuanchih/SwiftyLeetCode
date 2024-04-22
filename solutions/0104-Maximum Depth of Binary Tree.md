@@ -1,26 +1,29 @@
 
 ### Maximum Depth of Binary Tree
 
-Given a binary tree, find its maximum depth.
+Given the `root` of a binary tree, return its maximum depth.
 
-The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+A binary tree's __maximum depth__ is the number of nodes along the longest path from the root node down to the farthest leaf node.
 
-__Note:__ A leaf is a node with no children.
+__Example 1:__
 
-__Example:__
-
-Given binary tree `[3,9,20,null,null,15,7]`,
+![question_104.jpg](../images/question_104.jpg)
 ```
-    3
-   / \
-  9  20
-    /  \
-   15   7
+Input: root = [3,9,20,null,null,15,7]
+Output: 3
 ```
-return its depth = 3.
+__Example 2:__
+```
+Input: root = [1,null,2]
+Output: 2
+```
+
+__Constraints:__
+* The number of nodes in the tree is in the range `[0, 104]`.
+* `-100 <= Node.val <= 100`
 
 ### Solution
-__O(n) Time, O(1) Space - Recursive:__
+__Recursive:__
 ```Swift
 /**
  * Definition for a binary tree node.
@@ -28,21 +31,23 @@ __O(n) Time, O(1) Space - Recursive:__
  *     public var val: Int
  *     public var left: TreeNode?
  *     public var right: TreeNode?
- *     public init(_ val: Int) {
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
  *         self.val = val
- *         self.left = nil
- *         self.right = nil
+ *         self.left = left
+ *         self.right = right
  *     }
  * }
  */
 class Solution {
     func maxDepth(_ root: TreeNode?) -> Int {
-        guard let node = root else { return 0 }
-        return max(maxDepth(node.left), maxDepth(node.right)) + 1
+        guard let root else { return 0 }
+        return max(maxDepth(root.right), maxDepth(root.left)) + 1
     }
 }
 ```
-__O(n) Time, O(n) Space - Iterative:__
+__Iterative:__
 ```Swift
 /**
  * Definition for a binary tree node.
@@ -50,31 +55,32 @@ __O(n) Time, O(n) Space - Iterative:__
  *     public var val: Int
  *     public var left: TreeNode?
  *     public var right: TreeNode?
- *     public init(_ val: Int) {
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
  *         self.val = val
- *         self.left = nil
- *         self.right = nil
+ *         self.left = left
+ *         self.right = right
  *     }
  * }
  */
 class Solution {
     func maxDepth(_ root: TreeNode?) -> Int {
-        guard let root = root else { return 0 }
-        var queue : [TreeNode] = [root], result : Int = 0
+        guard let root else { return 0 }
+        var depth: Int = 0
+        var queue: [TreeNode] = [root]
         while !queue.isEmpty {
-            result+=1
-            let size = queue.count
-            for _ in 0..<size {
-                let node = queue.removeFirst()
-                if let left = node.left {
-                    queue.append(left)
-                }
-                if let right = node.right {
-                    queue.append(right)
+            depth += 1
+            let count: Int = queue.count
+            for _ in 0 ..< count {
+                let node: TreeNode = queue.removeFirst()
+                [node.left, node.right].forEach {
+                    guard let next = $0 else { return }
+                    queue.append(next)
                 }
             }
         }
-        return result
+        return depth
     }
 }
 ```
