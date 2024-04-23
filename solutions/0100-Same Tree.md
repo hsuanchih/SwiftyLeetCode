@@ -1,43 +1,38 @@
 
 ### Same Tree
 
-Given two binary trees, write a function to check if they are the same or not.
+Given the roots of two binary trees `p` and `q`, write a function to check if they are the same or not.
 
-Two binary trees are considered the same if they are structurally identical and the nodes have the same value.
+Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
 
 __Example 1:__
+
+![question_100-0.jpg](../images/question_100-0.jpg)
 ```
-Input:     1         1
-          / \       / \
-         2   3     2   3
-
-        [1,2,3],   [1,2,3]
-
+Input: p = [1,2,3], q = [1,2,3]
 Output: true
 ```
 __Example 2:__
+
+![question_100-1.jpg](../images/question_100-1.jpg)
 ```
-Input:     1         1
-          /           \
-         2             2
-
-        [1,2],     [1,null,2]
-
+Input: p = [1,2], q = [1,null,2]
 Output: false
 ```
 __Example 3:__
+
+![question_100-2.jpg](../images/question_100-2.jpg)
 ```
-Input:     1         1
-          / \       / \
-         2   1     1   2
-
-        [1,2,1],   [1,1,2]
-
+Input: p = [1,2,1], q = [1,1,2]
 Output: false
 ```
 
+__Constraints:__
+* The number of nodes in both trees is in the range `[0, 100]`.
+* `-pow(10, 4) <= Node.val <= pow(10, 4)`
+
 ### Solution
-__O(min(left,right)) Time, O(1) Space - Recursive:__
+__Recursive:__
 ```Swift
 /**
  * Definition for a binary tree node.
@@ -45,87 +40,77 @@ __O(min(left,right)) Time, O(1) Space - Recursive:__
  *     public var val: Int
  *     public var left: TreeNode?
  *     public var right: TreeNode?
- *     public init(_ val: Int) {
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
  *         self.val = val
- *         self.left = nil
- *         self.right = nil
- *     }
- * }
- */
-class Solution {
-    func isSameTree(_ left: TreeNode?, _ right: TreeNode?) -> Bool {
-        switch (left, right) {
-            case let (.some(left), .some(right)):
-            return left.val == right.val && isSameTree(left.left, right.left) && isSameTree(left.right, right.right)
-            case (.none, .none):
-            return true
-            default:
-            return false
-        }
-    }
-}
-```
-__O(min(left,right)) Time, O(min(left+right)/2) Space - Iterative:__
-```Swift
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     public var val: Int
- *     public var left: TreeNode?
- *     public var right: TreeNode?
- *     public init(_ val: Int) {
- *         self.val = val
- *         self.left = nil
- *         self.right = nil
+ *         self.left = left
+ *         self.right = right
  *     }
  * }
  */
 class Solution {
     func isSameTree(_ p: TreeNode?, _ q: TreeNode?) -> Bool {
-        
-        switch isEqual(p, q) {
-            case true:
-            break
-            case false:
+        switch (p, q) {
+        case (.none, .none):
+            return true 
+        case (.some(let p), .some(let q)):
+            return p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
+        case (.some, .none), (.none, .some):
             return false
-            default:
-            return true
         }
-        
-        var qP = [p!], qQ = [q!]
-        while !qP.isEmpty && !qQ.isEmpty {
-            let currP = qP.removeFirst(), currQ = qQ.removeFirst()
-            
-            switch isEqual(currP.left, currQ.left) {
-                case false:
-                return false
-                case true:
-                qP.append(currP.left!)
-                qQ.append(currQ.left!)
-                default:
-                break
-            }
-            
-            switch isEqual(currP.right, currQ.right) {
-                case false:
-                return false
-                case true:
-                qP.append(currP.right!)
-                qQ.append(currQ.right!)
-                default:
-                break
-            }
-        }
-        return true
     }
-    
-    func isEqual(_ lhs: TreeNode?, _ rhs: TreeNode?) -> Bool? {
-        switch (lhs?.val, rhs?.val) {
-            case (.none, .none):
-            return nil
-            case let (.some(valP), .some(valQ)) where valP == valQ:
+}
+```
+__Iterative:__
+```Swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+ *         self.val = val
+ *         self.left = left
+ *         self.right = right
+ *     }
+ * }
+ */
+class Solution {
+    func isSameTree(_ p: TreeNode?, _ q: TreeNode?) -> Bool {
+        switch (p, q) {
+        case (.none, .none):
             return true
-            default:
+        case (.none, .some), (.some, .none):
+            return false
+        case (.some(let p), .some(let q)) where p.val == q.val:
+            var pQ: [TreeNode] = [p]
+            var qQ: [TreeNode] = [q]
+            while !pQ.isEmpty && !qQ.isEmpty && pQ.count == qQ.count {
+                let count: Int = pQ.count
+                for _ in 0 ..< count {
+                    let p: TreeNode = pQ.removeFirst()
+                    let q: TreeNode = qQ.removeFirst()
+                    if let pLeft = p.left, let qLeft = q.left, pLeft.val == qLeft.val {
+                        pQ.append(pLeft)
+                        qQ.append(qLeft)
+                    } else if p.left?.val != q.left?.val {
+                        return false
+                    }
+
+                    if let pRight = p.right, let qRight = q.right, pRight.val == qRight.val {
+                        pQ.append(pRight)
+                        qQ.append(qRight)
+                    } else if p.right?.val != q.right?.val {
+                        return false
+                    }
+                }
+            }
+            return true
+        default:
             return false
         }
     }
