@@ -22,46 +22,51 @@ Explanation: The square root of 8 is 2.82842..., and since we round it down to t
 ```
 
 __Constraints:__
-* `0 <= x <= 2^31 - 1`
+* `0 <= x <= pow(2, 31) - 1`
 
 ### Solution
-__O(x) Time, O(1) Space - Brute-Force:__
+__O(x) Time, O(1) Space - Linear Search:__
 ```Swift
 class Solution {
     func mySqrt(_ x: Int) -> Int {
         for root in 0 ... x {
-            switch root * root {
-            case x:
+            let square: Int = root * root
+            if square == x {
                 return root
-            case x + 1 ... Int.max:
+            } else if square > x {
                 return root - 1
-            default:
-                break
             }
         }
         fatalError()
     }
 }
 ```
-__O(log\[\base 2](x)) Time, O(1) Space - Binary Search:__
+__O(log(x)) Time, O(1) Space - Binary Search:__
 ```Swift
 class Solution {
     func mySqrt(_ x: Int) -> Int {
         var start: Int = 0, end: Int = x
         while start + 1 < end {
             let mid: Int = start + (end - start) / 2
-            switch mid * mid {
-            case x:
+            switch mid * mid - x {
+            case 0:
                 return mid
-            case 0 ..< x:
+            case ..<0:
                 start = mid
-            case x + 1 ... Int.max:
+            case 1...:
                 end = mid
             default:
                 fatalError()
             }
         }
-        return end * end <= x ? end : start
+
+        if end * end <= x {
+            return end
+        } else if start * start <= x {
+            return start
+        } else {
+            return start - 1
+        }
     }
 }
 ```
