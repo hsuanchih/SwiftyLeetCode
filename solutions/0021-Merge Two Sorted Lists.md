@@ -45,57 +45,70 @@ __O(list1 + list2) Time:__
  */
 class Solution {
     func mergeTwoLists(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
+        var list1: ListNode? = list1
+        var list2: ListNode? = list2
         let dummyHead: ListNode = ListNode(0)
         var curr: ListNode? = dummyHead
-        var p1: ListNode? = list1
-        var p2: ListNode? = list2
-        while let node1 = p1, let node2 = p2 {
-            if node1.val < node2.val {
-                curr?.next = node1
-                p1 = node1.next
+        while let l1 = list1, let l2 = list2 {
+            if l1.val < l2.val {
+                curr?.next = l1
+                list1 = list1?.next
             } else {
-                curr?.next = node2
-                p2 = node2.next
+                curr?.next = l2
+                list2 = list2?.next
             }
             curr = curr?.next
         }
-        if let node1 = p1 {
-            curr?.next = node1
-        } else {
-            curr?.next = p2
+        if let l1 = list1 {
+            curr?.next = l1
+        } else if let l2 = list2 {
+            curr?.next = l2
         }
         return dummyHead.next
     }
 }
 ```
-__O(l1+l2):__
+__O(list1 + list2) Time:__
 ```Swift
 /**
  * Definition for singly-linked list.
  * public class ListNode {
  *     public var val: Int
  *     public var next: ListNode?
- *     public init(_ val: Int) {
- *         self.val = val
- *         self.next = nil
- *     }
+ *     public init() { self.val = 0; self.next = nil; }
+ *     public init(_ val: Int) { self.val = val; self.next = nil; }
+ *     public init(_ val: Int, _ next: ListNode?) { self.val = val; self.next = next; }
  * }
  */
 class Solution {
-    func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
-        let result: ListNode? = .init(0)
-        var curr = result, l1 = l1, l2 = l2
-        while l1 != nil || l2 != nil {
-            if (l1?.val ?? Int.max) < (l2?.val ?? Int.max) {
-                curr?.next = l1
-                l1 = l1?.next
-            } else {
-                curr?.next = l2
-                l2 = l2?.next
+    func mergeTwoLists(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
+        let dummyHead: ListNode = ListNode(0)
+        var curr: ListNode? = dummyHead
+        var p1: ListNode? = list1
+        var p2: ListNode? = list2
+        while p1 != nil || p2 != nil {
+            switch (p1, p2) {
+            case (.some(let node1), .some(let node2)):
+                if node1.val < node2.val {
+                    curr?.next = node1
+                    p1 = node1.next
+                } else {
+                    curr?.next = node2
+                    p2 = node2.next
+                }
+                curr = curr?.next
+            case (.some(let node1), .none):
+                curr?.next = node1
+                return dummyHead.next
+            case (.none, .some(let node2)):
+                curr?.next = node2
+                p2 = node2.next
+                return dummyHead.next
+            case (.none, .none):
+                fatalError()
             }
-            curr = curr?.next
         }
-        return result?.next
+        return dummyHead.next
     }
 }
 ```
