@@ -30,40 +30,52 @@ A   L S  I G
 Y A   H R
 P     I
 ```
+__Example 3:__
+```
+Input: s = "A", numRows = 1
+Output: "A"
+```
+
+__Constraints:__
+* `1 <= s.length <= 1000`
+* `s` consists of English letters (lower-case and upper-case), `','` and `'.'`.
+* `1 <= numRows <= 1000`
 
 ### Solution
 __O(s) Time, O(1) Space:__
 ```Swift
 class Solution {
     func convert(_ s: String, _ numRows: Int) -> String {
+        if numRows == 1 || s.count == numRows {
+            return s
+        } else {
+            let s: [Character] = Array(s) 
+            var result: String = ""
 
-        // If numRows == 1, return s
-        guard numRows > 1 else { return s } 
-        var result = ""
-        let s = Array(s)
-
-        // Iterate through rows 0..<numRows and map the characters in s to each row
-        for i in 0..<numRows {
-            var j = i, toggle = false
-            while j < s.count {
-                result.append(s[j])
-                switch i {
-
-                    // If we're in row 0 or the last row, the next character is going to be 2*(numRows-1) indices from the currrent
-                    case 0:
-                    j += 2*(numRows-1)
-                    case numRows-1:
-                    j += i*2
-
-                    // All the next indices for the inner rows are going to alternate between offsets 2*(numRows-1-i) & 2*i
-                    // Use a toggle to alternate between the 2 offsets
-                    default:
-                    j += (toggle ? 2*i : 2*(numRows-1-i))
-                    toggle = !toggle
+            // Iterate through rows 0 ..< numRows and map the characters in s to each row
+            for row in 0 ..< numRows {
+                var i: Int = row
+                var isDownUp: Bool = true
+                while i < s.count {
+                    result.append(s[i])
+                    if row == 0 {
+                        // For row 0 we're always going from top to bottom
+                        i += 2 * ((numRows - 1) - row)
+                    } else if row == numRows - 1 {
+                        // For row numRows - 1 we're always going from bottom to top
+                        i += 2 * row
+                    } else {
+                        if isDownUp {
+                            i += 2 * ((numRows - 1) - row)
+                        } else {
+                            i += 2 * row
+                        }
+                        isDownUp.toggle()
+                    }
                 }
             }
+            return result
         }
-        return result
     }
 }
 ```
