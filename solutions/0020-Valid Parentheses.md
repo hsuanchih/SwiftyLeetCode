@@ -1,47 +1,40 @@
 
 ### Valid Parentheses
 
-Given a string containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.
+Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.
 
-An input string is valid if:</br>
+An input string is valid if:
 1. Open brackets must be closed by the same type of brackets.
 2. Open brackets must be closed in the correct order.
-
-Note that an empty string is also considered valid.
-
+3. Every close bracket has a corresponding open bracket of the same type.
+ 
 __Example 1:__
 ```
-Input: "()"
+Input: s = "()"
 Output: true
 ```
 __Example 2:__
 ```
-Input: "()[]{}"
+Input: s = "()[]{}"
 Output: true
 ```
 __Example 3:__
 ```
-Input: "(]"
+Input: s = "(]"
 Output: false
 ```
-__Example 4:__
-```
-Input: "([)]"
-Output: false
-```
-__Example 5:__
-```
-Input: "{[]}"
-Output: true
-```
+
+__Constraints:__
+* `1 <= s.length <= pow(10, 4)`
+* `s` consists of parentheses only `'()[]{}'`.
 
 ### Solution
 __O(s) Time, O(s) Space:__
 ```Swift
 class Solution {
     func isValid(_ s: String) -> Bool {
-        let paren : [Character: Character] = [")": "(", "}": "{", "]": "["]
-        var stack : [Character] = []
+        let paren: [Character: Character] = [")": "(", "}": "{", "]": "["]
+        var stack: [Character] = []
 
         for char in s {
             if let curr = paren[char] {
@@ -61,6 +54,29 @@ class Solution {
         }
         
         // Parentheses are balanced only if stack is empty
+        return stack.isEmpty
+    }
+}
+```
+__O(s) Time, O(1) Space:__
+```Swift
+class Solution {
+    func isValid(_ s: String) -> Bool {
+        var stack: [Character] = []
+        for char in s {
+            switch char {
+            case "(", "{", "[":
+                stack.append(char)
+            case ")" where stack.isEmpty || stack.last! != "(",
+                 "}" where stack.isEmpty || stack.last! != "{",
+                 "]" where stack.isEmpty || stack.last! != "[":
+                return false
+            case ")", "}", "]":
+                _ = stack.removeLast()
+            default:
+                fatalError()
+            }
+        }
         return stack.isEmpty
     }
 }
