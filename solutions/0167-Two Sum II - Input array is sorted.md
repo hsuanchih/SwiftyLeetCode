@@ -16,20 +16,22 @@ Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.
 ```
 
 ### Solution
-__O(n):__
+__O(numbers) Time, O(1) Space:__
 ```Swift
 class Solution {
     func twoSum(_ numbers: [Int], _ target: Int) -> [Int] {
-        var start = 0, end = numbers.count-1
+        var start: Int = 0, end: Int = numbers.count - 1
         while start < end {
-            switch numbers[start]+numbers[end] {
-                case target:
-                return [start+1, end+1]
-                case Int.min..<target:
-                start+=1
-                default:
-                end-=1
-            } 
+            switch numbers[start] + numbers[end] {
+            case target:
+                return [start + 1, end + 1]
+            case ..<target:
+                start += 1
+            case (target + 1)...:
+                end -= 1
+            default:
+                fatalError()
+            }
         }
         fatalError()
     }
