@@ -1,19 +1,32 @@
 
 ### Container With Most Water
 
-Given n non-negative integers *a1, a2, ..., an* , where each represents a point at coordinate *(i, ai)*.</br> 
-*n* vertical lines are drawn such that the two endpoints of line i is at *(i, ai)* and *(i, 0)*.</br> 
-Find two lines, which together with x-axis forms a container, such that the container contains the most water.
+You are given an integer array `height` of length `n`. There are `n` vertical lines drawn such that the two endpoints of the `ith` line are `(i, 0)` and `(i, height[i])`.
 
-__Note:__ You may not slant the container and n is at least 2.
+Find two lines that together with the x-axis form a container, such that the container contains the most water.
 
-![images/question_11.jpg](images/question_11.jpg)
+Return the maximum amount of water a container can store.
 
-__Example:__
+Notice that you may not slant the container.
+
+__Example 1:__
+
+![images/question_11.jpg](../images/question_11.jpg)
 ```
-Input: [1,8,6,2,5,4,8,3,7]
+Input: height = [1,8,6,2,5,4,8,3,7]
 Output: 49
+Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
 ```
+__Example 2:__
+```
+Input: height = [1,1]
+Output: 1
+```
+
+__Constraints:__
+* `n == height.length`
+* `2 <= n <= pow(10, 5)`
+* `0 <= height[i] <= pow(10, 4)`
 
 ### Solution
 __O(pow(height, 2)) Time, O(1) Space - Maximize Container Capacity at Each Start/End Pair:__
