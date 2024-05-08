@@ -60,6 +60,62 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 __O(s) Time, O(1) Space:__
 ```Swift
 class Solution {
+    func romanToInt(_ s: String) -> Int {
+        let s: [Character] = Array(s)
+        var result: Int = 0
+        var i: Int = 0
+        while i < s.count {
+            switch s[i] {
+            case "I" where i < s.count - 1 && s[i + 1] == "V":
+                result += 4
+                i += 2
+            case "I" where i < s.count - 1 && s[i + 1] == "X":
+                result += 9
+                i += 2
+            case "I":
+                result += 1
+                i += 1
+            case "V":
+                result += 5
+                i += 1
+            case "X" where i < s.count - 1 && s[i + 1] == "L":
+                result += 40
+                i += 2
+            case "X" where i < s.count - 1 && s[i + 1] == "C":
+                result += 90
+                i += 2
+            case "X":
+                result += 10
+                i += 1
+            case "L":
+                result += 50
+                i += 1
+            case "C" where i < s.count - 1 && s[i + 1] == "D":
+                result += 400
+                i += 2
+            case "C" where i < s.count - 1 && s[i + 1] == "M":
+                result += 900
+                i += 2
+            case "C":
+                result += 100
+                i += 1
+            case "D":
+                result += 500
+                i += 1
+            case "M":
+                result += 1000
+                i += 1
+            default:
+                fatalError()
+            }
+        }
+        return result
+    }
+}
+```
+__O(s) Time, O(1) Space:__
+```Swift
+class Solution {
     
     let symbolMap : [Character: Int] = [
         "I" : 1,
