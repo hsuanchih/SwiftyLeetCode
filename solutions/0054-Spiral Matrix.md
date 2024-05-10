@@ -1,9 +1,11 @@
 
 ### Spiral Matrix
 
-Given a matrix of *m* x *n* elements (*m* rows, *n* columns), return all elements of the matrix in spiral order.
+Given an `m x n` `matrix`, return all elements of the `matrix` in spiral order.
 
 __Example 1:__
+
+![question_54-0.jpg](../images/question_54-0.jpg)
 ```
 Input:
 [
@@ -14,6 +16,8 @@ Input:
 Output: [1,2,3,6,9,8,7,4,5]
 ```
 __Example 2:__
+
+![question_54-1.jpg](../images/question_54-1.jpg)
 ```
 Input:
 [
@@ -24,19 +28,24 @@ Input:
 Output: [1,2,3,4,8,12,11,10,9,5,6,7]
 ```
 
+__Constraints:__
+* `m == matrix.length`
+* `n == matrix[i].length`
+* `1 <= m, n <= 10`
+* `-100 <= matrix[i][j] <= 100`
+
 ### Solution
 __O(matrix) Time:__
 ```Swift
 class Solution {
     func spiralOrder(_ matrix: [[Int]]) -> [Int] {
-        guard !matrix.isEmpty else { return [] }
         var rowStart: Int = 0
         var rowEnd: Int = matrix.count - 1
         var colStart: Int = 0
         var colEnd: Int = matrix.first!.count - 1
         var result: [Int] = []
 
-        while rowStart <= rowEnd && colStart <= colEnd {
+        while rowStart <= rowEnd, colStart <= colEnd {
             for col in colStart ... colEnd {
                 result.append(matrix[rowStart][col])
             }
@@ -58,7 +67,6 @@ class Solution {
             colStart += 1
             colEnd -= 1
         }
-
         return result
     }
 }
