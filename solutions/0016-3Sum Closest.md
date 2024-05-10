@@ -12,52 +12,57 @@ The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
 ```
 
 ### Solution
-__O(nums^3) Time, O(1) Space - Brute-Force:__
+__O(pow(nums, 3)) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func threeSumClosest(_ nums: [Int], _ target: Int) -> Int {
-        var difference : Int = Int.max
+        guard nums.count >= 3 else { fatalError() }
+        var difference: Int = .max
 
         // Evaluate all triplet combinations
-        for i in stride(from: 0, to: nums.count-2, by: 1) {
-            for j in stride(from: i+1, to: nums.count, by: 1) {
-                for k in stride(from: j+1, to: nums.count, by: 1) {
+        for i in 0 ..< nums.count - 2 {
+            for j in i + 1 ..< nums.count - 1 {
+                for k in j + 1 ..< nums.count {
+                    let delta: Int = nums[i] + nums[j] + nums[k] - target
 
                     // Update difference if absolute value of sum-target is smaller than current difference
-                    if abs(nums[i]+nums[k]+nums[j]-target) < abs(difference) {
-                        difference = nums[i]+nums[k]+nums[j]-target
+                    if abs(delta) < abs(difference) {
+                        difference = delta
                     }
                 }
             }
         }
-        return target+difference
+        return target + difference
     }
 }
 ```
-__O(nums*log\[base 2\](nums)+nums^2) Time, O(1) Space - Sorted Input + 2 Pointers:__
+__O(nums * log(nums) + pow(nums, 2)) Time, O(1) Space - Sorted Input + 2 Pointers:__
 ```Swift
 class Solution {
     func threeSumClosest(_ nums: [Int], _ target: Int) -> Int {
+        guard nums.count >= 3 else { fatalError() }
 
         // Sort input
-        let nums = nums.sorted()
-        var difference : Int = Int.max
+        let nums: [Int] = nums.sorted()
+        var difference: Int = .max
 
         // Using one element as anchor, and compute result based on sorted array property
-        for i in stride(from: 0, to: nums.count-2, by: 1) {
-            var start = i+1, end = nums.count-1
-            while start < end {
-                let curr = nums[i] + nums[start] + nums[end] - target
-                if abs(curr) < abs(difference) {
-                    difference = curr
+        for i in 0 ..< nums.count - 2 {
+            var j: Int = i + 1, k: Int = nums.count - 1
+            while j < k {
+                let delta: Int = nums[i] + nums[j] + nums[k] - target
+                if abs(delta) < abs(difference) {
+                    difference = delta
                 }
-                switch curr {
-                    case 0:
+                switch delta {
+                case 0:
                     return target
-                    case Int.min..<0:
-                    start+=1
-                    default:
-                    end-=1
+                case ..<0:
+                    j += 1
+                case 1...:
+                    k -= 1
+                default:
+                    fatalError()
                 }
             }
         }
