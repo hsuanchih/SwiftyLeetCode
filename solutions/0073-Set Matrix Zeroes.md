@@ -1,9 +1,13 @@
 
 ### Set Matrix Zeroes
 
-Given a *m* x *n* matrix, if an element is 0, set its entire row and column to 0. Do it __in-place__.
+Given an `m x n` integer matrix `matrix`, if an element is `0`, set its entire row and column to `0`'s.
+
+You must do it __in place__.
 
 __Example 1:__
+
+![question_73-0.jpg](../images/question_73-0.jpg)
 ```
 Input: 
 [
@@ -19,6 +23,8 @@ Output:
 ]
 ```
 __Example 2:__
+
+![question_73-1.jpg](../images/question_73-1.jpg)
 ```
 Input: 
 [
@@ -40,66 +46,104 @@ __Follow up:__
 * Could you devise a constant space solution?
 
 ### Solution
-__O(n*m) Time, O(n+m) Space:__
+__O(n * m) Time, O(n * m) Space:__
 ```Swift
 class Solution {
     func setZeroes(_ matrix: inout [[Int]]) {
-        var rows : Set<Int> = [], cols : Set<Int> = []
-        for row in stride(from: 0, to: matrix.count, by: 1) {
-            for col in stride(from: 0, to: matrix.first!.count, by: 1) {
-                if matrix[row][col] == 0 {
-                    rows.insert(row)
-                    cols.insert(col)
-                }
+        var zeros: [[Bool]] = Array(
+            repeating: Array(repeating: false, count: matrix.first!.count), 
+            count: matrix.count
+        )
+
+        for row in 0 ..< matrix.count {
+            for col in 0 ..< matrix.first!.count where matrix[row][col] == 0 {
+                zeros[row][col] = true
             }
         }
-        for row in stride(from: 0, to: matrix.count, by: 1) {
-            if rows.contains(row) {
-                for col in stride(from: 0, to: matrix.first!.count, by: 1) {
-                    matrix[row][col] = 0
+
+        for row in 0 ..< zeros.count {
+            for col in 0 ..< zeros.first!.count where zeros[row][col] {
+                for i in 0 ..< matrix.count {
+                    matrix[i][col] = 0
                 }
-            }
-        }
-        for col in stride(from: 0, to: matrix.first!.count, by: 1) {
-            if cols.contains(col) {
-                for row in stride(from: 0, to: matrix.count, by: 1) {
-                    matrix[row][col] = 0
+                for i in 0 ..< matrix.first!.count {
+                    matrix[row][i] = 0
                 }
             }
         }
     }
 }
 ```
-__O(n*m) Time, O(1) Space:__
+__O(n * m) Time, O(n + m) Space:__
 ```Swift
 class Solution {
     func setZeroes(_ matrix: inout [[Int]]) {
-        var colZero = false
-        for row in stride(from: 0, to: matrix.count, by: 1) {
-            if matrix[row][0] == 0 {
-                colZero = true
+        var rowZeros: [Bool] = Array(repeating: false, count: matrix.count)
+        var colZeros: [Bool] = Array(repeating: false, count: matrix.first!.count)
+        for row in 0 ..< matrix.count {
+            for col in 0 ..< matrix.first!.count where matrix[row][col] == 0 {
+                rowZeros[row] = true
+                colZeros[col] = true
             }
-            for col in stride(from: 1, to: matrix.first!.count, by: 1) {
-                if matrix[row][col] == 0 {
+        }
+
+        for row in 0 ..< rowZeros.count where rowZeros[row] {
+            for col in 0 ..< matrix.first!.count {
+                matrix[row][col] = 0
+            }
+        }
+
+        for col in 0 ..< colZeros.count where colZeros[col] {
+            for row in 0 ..< matrix.count {
+                matrix[row][col] = 0
+            }
+        }
+    }
+}
+```
+__O(n * m) Time, O(1) Space:__
+```Swift
+class Solution {
+    func setZeroes(_ matrix: inout [[Int]]) {
+        var isRow0Zero: Bool = false
+        var isCol0Zero: Bool = false
+        for row in 0 ..< matrix.count {
+            for col in 0 ..< matrix.first!.count where matrix[row][col] == 0 {
+                switch (row, col) {
+                case (0, 0):
+                    isRow0Zero = true
+                    isCol0Zero = true
+                case (0, _):
+                    isRow0Zero = true
+                case (_, 0):
+                    isCol0Zero = true
+                case (let row, let col):
                     matrix[0][col] = 0
                     matrix[row][0] = 0
                 }
             }
         }
-        for row in stride(from: 1, to: matrix.count, by: 1) {
-            for col in stride(from: 1, to: matrix.first!.count, by: 1) {
-                if matrix[row][0] == 0 || matrix[0][col] == 0 {
-                    matrix[row][col] = 0
-                }
+
+        for row in 1 ..< matrix.count where matrix[row][0] == 0 {
+            for col in 0 ..< matrix.first!.count {
+                matrix[row][col] = 0
             }
         }
-        if matrix[0][0] == 0 {
-            for col in stride(from: 0, to: matrix.first?.count ?? 0, by: 1) {
+
+        for col in 1 ..< matrix.first!.count where matrix[0][col] == 0 {
+            for row in 0 ..< matrix.count {
+                matrix[row][col] = 0
+            }
+        }
+
+        if isRow0Zero {
+            for col in 0 ..< matrix.first!.count {
                 matrix[0][col] = 0
             }
         }
-        if colZero {
-            for row in stride(from: 0, to: matrix.count, by: 1) {
+
+        if isCol0Zero {
+            for row in 0 ..< matrix.count {
                 matrix[row][0] = 0
             }
         }
