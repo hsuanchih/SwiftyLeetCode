@@ -1,55 +1,52 @@
 
 ### N-Queens II
 
-The *n*-queens puzzle is the problem of placing *n* queens on an *n×n* chessboard such that no two queens attack each other.
+The __n-queens__ puzzle is the problem of placing `n` queens on an `n x n` chessboard such that no two queens attack each other.
 
-![One solution to the 8 queens puzzle](images/question_51.png)
+Given an integer `n`, return the number of distinct solutions to the __n-queens puzzle__.
 
-Given an integer *n*, return the number of solutions to the *n*-queens puzzle.
+__Example 1:__
 
-__Example:__
+![question_52.jpg](../images/question_52.jpg)
 ```
-Input: 4
+Input: n = 4
 Output: 2
-Explanation: There are two distinct solutions to the 4-queens puzzle as shown below.
-[
- [".Q..",  // Solution 1
-  "...Q",
-  "Q...",
-  "..Q."],
-
- ["..Q.",  // Solution 2
-  "Q...",
-  "...Q",
-  ".Q.."]
-]
+Explanation: There are two distinct solutions to the 4-queens puzzle as shown.
 ```
+__Example 2:__
+```
+Input: n = 1
+Output: 1
+```
+
+__Constraints:__
+* `1 <= n <= 9`
 
 ### Solution
 __Recursive:__
 ```Swift
 class Solution {
     func totalNQueens(_ n: Int) -> Int {
-        var queenPlacement: [Int] = Array(repeating: 0, count: n)
+        var queens: [Int] = Array(repeating: .min, count: n)
         var result: Int = 0
-        solve(0, &queenPlacement, &result)
+        solve(&queens, 0, &result)
         return result
     }
 
-    func solve(_ row: Int, _ queenPlacement: inout [Int], _ result: inout Int) {
-        if row == queenPlacement.count {
+    func solve(_ queens: inout [Int], _ row: Int, _ result: inout Int) {
+        if row == queens.count {
             result += 1
         } else {
-            for col in 0 ..< queenPlacement.count where row == 0 || isValid(queenPlacement, row, col) {
-                queenPlacement[row] = col
-                solve(row + 1, &queenPlacement, &result)
-                queenPlacement[row] = 0
+            for col in 0 ..< queens.count where isValid(queens, row, col) {
+                queens[row] = col
+                solve(&queens, row + 1, &result)
+                queens[row] = .min
             }
         }
     }
 
-    func isValid(_ queenPlacement: [Int], _ row: Int, _ col: Int) -> Bool {
-        for i in 1 ... row where queenPlacement[row - i] == col || queenPlacement[row - i] == col - i || queenPlacement[row - i] == col + i {
+    func isValid(_ queens: [Int], _ row: Int, _ col: Int) -> Bool {
+        for r in 0 ..< row where queens[r] == col || queens[r] == col + (row - r) || queens[r] == col - (row - r) {
             return false
         }
         return true
