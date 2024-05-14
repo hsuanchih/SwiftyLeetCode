@@ -33,3 +33,4 @@ starting each problem with a brute force approach & optimize along the way.
 * [Tree](classifications/Tree.md)
 * [Trie](classifications/Trie.md)
 * [Two Pointers](classifications/Two-Pointers.md)
+* [Union Find](classifications/Union-Find.md)
