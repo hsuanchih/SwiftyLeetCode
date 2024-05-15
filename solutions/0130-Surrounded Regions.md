@@ -46,21 +46,23 @@ class Solution {
     func solve(_ board: inout [[Character]]) {
         for row in 0 ..< board.count {
             for col in [0, board.first!.count - 1] where board[row][col] == "O" {
-                markBorderConnections(&board, row: row, col: col)
+                convert(&board, row, col)
             }
         }
+
         for col in 0 ..< board.first!.count {
             for row in [0, board.count - 1] where board[row][col] == "O" {
-                markBorderConnections(&board, row: row, col: col)
+                convert(&board, row, col)
             }
         }
+
         for row in 0 ..< board.count {
             for col in 0 ..< board.first!.count {
                 switch board[row][col] {
-                case "B":
-                    board[row][col] = "O"
                 case "O":
                     board[row][col] = "X"
+                case ".":
+                    board[row][col] = "O"
                 default:
                     break
                 }
@@ -68,13 +70,13 @@ class Solution {
         }
     }
 
-    func markBorderConnections(_ board: inout [[Character]], row: Int, col: Int) {
+    func convert(_ board: inout [[Character]], _ row: Int, _ col: Int) {
         switch (row, col) {
         case (0 ..< board.count, 0 ..< board.first!.count) where board[row][col] == "O":
-            board[row][col] = "B"
-            [-1, 1].forEach {
-                markBorderConnections(&board, row: row + $0, col: col)
-                markBorderConnections(&board, row: row, col: col + $0)
+            board[row][col] = "."
+            for offset in [-1, 1] {
+                convert(&board, row + offset, col)
+                convert(&board, row, col + offset)
             }
         default:
             break
