@@ -25,6 +25,10 @@ Explanation: s is an empty string "" after removing non-alphanumeric characters.
 Since an empty string reads the same forward and backward, it is a palindrome.
 ```
 
+__Constraints:__
+* `1 <= s.length <= 2 * pow(10, 5)`
+* `s` consists only of printable ASCII characters.
+
 ### Solution
 __O(s) Time, O(1) Space:__
 ```Swift
@@ -33,19 +37,20 @@ class Solution {
         let s: [Character] = Array(s)
         var start: Int = 0, end: Int = s.count - 1
         while start < end {
-            if !s[start].isLetter && !s[start].isNumber {
+            if !s[start].isLetter, !s[start].isNumber {
                 start += 1
                 continue
             }
-            if !s[end].isLetter && !s[end].isNumber {
+            if !s[end].isLetter, !s[end].isNumber {
                 end -= 1
                 continue
             }
             if s[start].lowercased() != s[end].lowercased() {
                 return false
+            } else {
+                start += 1
+                end -= 1
             }
-            start += 1
-            end -= 1
         }
         return true
     }
