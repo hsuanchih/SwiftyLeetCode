@@ -6,54 +6,62 @@ A mapping of digit to letters (just like on the telephone buttons) is given belo
 
 ![images/question_17.png](../images/question_17.png)
 
-__Example:__
+__Example 1:__
 ```
-Input: "23"
-Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+Input: digits = "23"
+Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
 ```
+__Example 2:__
+```
+Input: digits = ""
+Output: []
+```
+__Example 3:__
+```
+Input: digits = "2"
+Output: ["a","b","c"]
+```
+
+__Constraints:__
+* `0 <= digits.length <= 4`
+* `digits[i]` is a digit in the range `['2', '9']`.
 
 ### Solution
-__O(3^(key with 3 letters)*4^(key with 4 letters)):__
+__O(pow(4, digits)) Time, O(pow(4, digits)) Space:__
 ```Swift
 class Solution {
-    
     // Phone key to corresponding letters lookup
-    let lettersForKey : [Character : String] = [
-        "2": "abc",
-        "3": "def",
-        "4": "ghi",
-        "5": "jkl",
-        "6": "mno",
-        "7": "pqrs",
-        "8": "tuv",
-        "9": "wxyz",
+    let lookup: [Character: [Character]] = [
+        "2": ["a", "b", "c"],
+        "3": ["d", "e", "f"],
+        "4": ["g", "h", "i"],
+        "5": ["j", "k", "l"],
+        "6": ["m", "n", "o"],
+        "7": ["p", "q", "r", "s"],
+        "8": ["t", "u", "v"],
+        "9": ["w", "x", "y", "z"],
     ]
-    
+
     func letterCombinations(_ digits: String) -> [String] {
         guard !digits.isEmpty else { return [] }
-
-        var temp : String = "", result : [String] = []
+        var temp: [Character] = []
+        var result: [String] = []
         generate(Array(digits), 0, &temp, &result)
         return result
     }
-    
-    func generate(_ digits: [Character], _ index: Int, _ temp: inout String, _ result: inout [String]) {
 
-        // If index reaches digit count, we know we've reached a possible solution,
-        // add the solution to result
+    func generate(_ digits: [Character], _ index: Int, _ temp: inout [Character], _ result: inout [String]) {
         if index == digits.count {
-            result.append(temp)
-            return
-        }
-
-        // Lookup letters corresponding to a phone key
-        let letters = Array(lettersForKey[digits[index]]!)
-
-        // Exhaust all combinations of letters for a particular key
-        for letter in letters {
-            temp.append(letter)
-            generate(digits, index+1, &temp, &result)
-            temp.removeLast()
+            // If index reaches digit count, we know we've reached a possible solution,
+            // add the solution to result
+            result.append(String(temp))
+        } else if let characters = lookup[digits[index]] {
+            // Exhaust all combinations of letters for a particular key
+            for character in characters {
+                temp.append(character)
+                generate(digits, index + 1, &temp, &result)
+                temp.removeLast()
+            }
         }
     }
 }
