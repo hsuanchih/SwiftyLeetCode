@@ -1,16 +1,13 @@
 
 ### Rotate Image
 
-You are given an *n x n* 2D matrix representing an image.
+You are given an `n x n` 2D `matrix` representing an image, rotate the image by __90__ degrees (clockwise).
 
-Rotate the image by 90 degrees (clockwise).
-
-__Note:__
-
-You have to rotate the image in-place, which means you have to modify the input 2D matrix directly.</br> 
-__DO NOT__ allocate another 2D matrix and do the rotation.
+You have to rotate the image __in-place__, which means you have to modify the input 2D matrix directly. __DO NOT__ allocate another 2D matrix and do the rotation.
 
 __Example 1:__
+
+![question_48-0.jpg](../images/question_48-0.jpg)
 ```
 Given input matrix = 
 [
@@ -27,6 +24,8 @@ rotate the input matrix in-place such that it becomes:
 ]
 ```
 __Example 2:__
+
+![question_48-1.jpg](../images/question_48-1.jpg)
 ```
 Given input matrix =
 [
@@ -44,6 +43,11 @@ rotate the input matrix in-place such that it becomes:
   [16, 7,10,11]
 ]
 ```
+
+__Constraints:__
+* `n == matrix.length == matrix[i].length`
+* `1 <= n <= 20`
+* `-1000 <= matrix[i][j] <= 1000`
 
 ### Solution
 __O(matrix) Time, O(1) Space:__
@@ -64,6 +68,31 @@ class Solution {
         for row in 0 ..< matrix.count {
             for col in 0 ... (matrix.count - 1) / 2 {
                 matrix[row].swapAt(col, matrix.count - 1 - col)
+            }
+        }
+    }
+}
+```
+__O(matrix) Time, O(1) Space:__
+```Swift
+class Solution {
+    func rotate(_ matrix: inout [[Int]]) {
+
+        // Swap along y-axis
+        for row in 0 ... (matrix.count - 1) / 2 {
+            for col in 0 ..< matrix.count {
+                let temp: Int = matrix[row][col]
+                matrix[row][col] = matrix[matrix.count - 1 - row][col]
+                matrix[matrix.count - 1 - row][col] = temp
+            }
+        }
+
+        // Swap along diagnal axis
+        for row in 0 ..< matrix.count {
+            for col in row ..< matrix.count where row != col {
+                let temp: Int = matrix[row][col]
+                matrix[row][col] = matrix[col][row]
+                matrix[col][row] = temp
             }
         }
     }
