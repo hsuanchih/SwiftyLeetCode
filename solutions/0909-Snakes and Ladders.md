@@ -17,6 +17,8 @@ Note that you only take a snake or ladder at most once per move. If the destinat
 Return the least number of moves required to reach the square `pow(n, 2)`. If it is not possible to reach the square, return `-1`.
 
 __Example 1:__
+
+![question_909.png](../images/question_909.png)
 ```
 Input: board = [[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,35,-1,-1,13,-1],[-1,-1,-1,-1,-1,-1],[-1,15,-1,-1,-1,-1]]
 Output: 4
