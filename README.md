@@ -14,6 +14,7 @@ starting each problem with a brute force approach & optimize along the way.
 * [Depth-First-Search](classifications/Depth-First-Search.md)
 * [Dynamic Programming](classifications/Dynamic-Programming.md)
 * [Design](classifications/Design.md)
+* [Graph](classifications/Graph.md)
 * [Greedy](classifications/Greedy.md)
 * [HashMap/HashSet](classifications/HashMap-HashSet.md)
 * [Linked List](classifications/Linked-List.md)
