@@ -1,62 +1,68 @@
 
 ### Integer to Roman
 
-Roman numerals are represented by seven different symbols: `I`, `V`, `X`, `L`, `C`, `D` and `M`.
-```
-Symbol       Value
-I             1
-V             5
-X             10
-L             50
-C             100
-D             500
-M             1000
-```
-For example, two is written as `II` in Roman numeral, just two one's added together.</br> 
-Twelve is written as, `XII`, which is simply `X` + `II`.</br> 
-The number twenty seven is written as `XXVII`, which is `XX` + `V` + `II`.
+Seven different symbols represent Roman numerals with the following values:
 
-Roman numerals are usually written largest to smallest from left to right.</br> 
-However, the numeral for four is not `IIII`. Instead, the number four is written as `IV`.</br>
-Because the one is before the five we subtract it making four.</br>
-The same principle applies to the number nine, which is written as `IX`. 
-There are six instances where subtraction is used:
+| Symbol | Value |
+| ------ | ----- |
+| I | 1    |
+| V | 5    |
+| X	| 10   |
+| L	| 50   |
+| C	| 100  |
+| D	| 500  |
+| M	| 1000 |
 
-* `I` can be placed before `V` (5) and `X` (10) to make 4 and 9. 
-* `X` can be placed before `L` (50) and `C` (100) to make 40 and 90. 
-* `C` can be placed before `D` (500) and `M` (1000) to make 400 and 900.
+Roman numerals are formed by appending the conversions of decimal place values from highest to lowest. Converting a decimal place value into a Roman numeral has the following rules:
+* If the value does not start with 4 or 9, select the symbol of the maximal value that can be subtracted from the input, append that symbol to the result, subtract its value, and convert the remainder to a Roman numeral.
+* If the value starts with 4 or 9 use the subtractive form representing one symbol subtracted from the following symbol, for example, 4 is 1 (`I`) less than 5 (`V`): `IV` and 9 is 1 (`I`) less than 10 (`X`): `IX`. Only the following subtractive forms are used: 4 (`IV`), 9 (`IX`), 40 (`XL`), 90 (`XC`), 400 (`CD`) and 900 (`CM`).
+* Only powers of 10 (`I`, `X`, `C`, `M`) can be appended consecutively at most 3 times to represent multiples of 10. You cannot append 5 (`V`), 50 (`L`), or 500 (`D`) multiple times. If you need to append a symbol 4 times use the subtractive form.
 
-Given an integer, convert it to a roman numeral. Input is guaranteed to be within the range from 1 to 3999.
+Given an integer, convert it to a Roman numeral.
 
 __Example 1:__
 ```
-Input: 3
-Output: "III"
+Input: num = 3749
+
+Output: "MMMDCCXLIX"
+
+Explanation:
+
+3000 = MMM as 1000 (M) + 1000 (M) + 1000 (M)
+ 700 = DCC as 500 (D) + 100 (C) + 100 (C)
+  40 = XL as 10 (X) less of 50 (L)
+   9 = IX as 1 (I) less of 10 (X)
+Note: 49 is not 1 (I) less of 50 (L) because the conversion is based on decimal places
 ```
 __Example 2:__
 ```
-Input: 4
-Output: "IV"
-```
-__Example 3:__
-```
-Input: 9
-Output: "IX"
-```
-__Example 4:__
-```
-Input: 58
+Input: num = 58
+
 Output: "LVIII"
-Explanation: L = 50, V = 5, III = 3.
-```
-__Example 5:__
-```
-Input: 1994
+
+Explanation:
+
+50 = L
+ 8 = VIII
+Example 3:
+
+Input: num = 1994
+
 Output: "MCMXCIV"
-Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
-```
+
+Explanation:
+
+1000 = M
+ 900 = CM
+  90 = XC
+   4 = IV
+``` 
+
+__Constraints:__
+* `1 <= num <= 3999`
 
 ### Solution
+__Solution 1:__
 ```Swift
 class Solution {
     let symbolMap : [Int: String] = [
@@ -88,6 +94,64 @@ class Solution {
             }
         }
         return result
+    }
+}
+```
+__Solution 2:__
+```Swift
+class Solution {
+    func intToRoman(_ num: Int) -> String {
+        var num: Int = num
+        var trailingZeros: Int = 0
+        var result: String = ""
+        while num > 0 {
+            let digit: Int = num % 10
+            result = symbol(for: digit, trailingZeros: trailingZeros) + result
+            num /= 10
+            trailingZeros += 1
+        }
+        return result
+    }
+
+    func symbol(for digit: Int, trailingZeros: Int) -> String {
+        switch (digit, trailingZeros) {
+        case (0, _):
+            return ""
+        case (1 ... 3, 0):
+            return String(Array(repeating: "I", count: digit))
+        case (4, 0):
+            return "IV"
+        case (5, 0):
+            return "V"
+        case (6 ... 8, 0):
+            return "V" + String(Array(repeating: "I", count: digit - 5))
+        case (9, 0):
+            return "IX"
+        case (1 ... 3, 1):
+            return String(Array(repeating: "X", count: digit))
+        case (4, 1):
+            return "XL"
+        case (5, 1):
+            return "L"
+        case (6 ... 8, 1):
+            return "L" + String(Array(repeating: "X", count: digit - 5))
+        case (9, 1):
+            return "XC"
+        case (1 ... 3, 2):
+            return String(Array(repeating: "C", count: digit))
+        case (4, 2):
+            return "CD"
+        case (5, 2):
+            return "D"
+        case (6 ... 8, 2):
+            return "D" + String(Array(repeating: "C", count: digit - 5))
+        case (9, 2):
+            return "CM"
+        case (1 ... 3, 3):
+            return String(Array(repeating: "M", count: digit))
+        default:
+            fatalError()
+        }
     }
 }
 ```
