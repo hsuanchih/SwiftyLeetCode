@@ -1,68 +1,104 @@
 
 ### Simplify Path
 
-Given an __absolute path__ for a file (Unix-style), simplify it. Or in other words, convert it to the __canonical path__.
+Given an absolute path for a Unix-style file system, which begins with a slash `'/'`, transform this path into its simplified canonical path.
 
-In a UNIX-style file system, a period `.` refers to the current directory.</br> 
-Furthermore, a double period `..` moves the directory up a level.</br>
-For more information, see: [Absolute path vs relative path in Linux/Unix](https://www.linuxnix.com/abslute-path-vs-relative-path-in-linuxunix/)
+In Unix-style file system context, a single period `'.'` signifies the current directory, a double period `".."` denotes moving up one directory level, and multiple slashes such as `"//"` are interpreted as a single slash. In this problem, treat sequences of periods not covered by the previous rules (like `"..."`) as valid names for files or directories.
 
-Note that the returned canonical path must always begin with a slash `/`, and there must be only a single slash `/` between two directory names. The last directory name (if it exists) __must not__ end with a trailing `/`. Also, the canonical path must be the __shortest__ string representing the absolute path.
+The simplified canonical path should adhere to the following rules:
+* It must start with a single slash `'/'`.
+* Directories within the path should be separated by only one slash `'/'`.
+* It should not end with a slash `'/'`, unless it's the root directory.
+* It should exclude any single or double periods used to denote current or parent directories.
+
+Return the new path.
 
 __Example 1:__
 ```
-Input: "/home/"
+Input: path = "/home/"
+
 Output: "/home"
-Explanation: Note that there is no trailing slash after the last directory name.
+
+Explanation:
+
+The trailing slash should be removed.
 ```
+ 
 __Example 2:__
 ```
-Input: "/../"
-Output: "/"
-Explanation: Going one level up from the root directory is a no-op, as the root level is the highest level you can go.
+Input: path = "/home//foo/"
+
+Output: "/home/foo"
+
+Explanation:
+
+Multiple consecutive slashes are replaced by a single one.
 ```
+
 __Example 3:__
 ```
-Input: "/home//foo/"
-Output: "/home/foo"
-Explanation: In the canonical path, multiple consecutive slashes are replaced by a single one.
+Input: path = "/home/user/Documents/../Pictures"
+
+Output: "/home/user/Pictures"
+
+Explanation:
+
+A double period ".." refers to the directory up a level.
 ```
+
 __Example 4:__
 ```
-Input: "/a/./b/../../c/"
-Output: "/c"
+Input: path = "/../"
+
+Output: "/"
+
+Explanation:
+
+Going one level up from the root directory is not possible.
 ```
+
 __Example 5:__
 ```
-Input: "/a/../../b/../c//.//"
-Output: "/c"
+Input: path = "/.../a/../b/c/../d/./"
+
+Output: "/.../b/d"
+
+Explanation:
+
+"..." is a valid name for a directory in this problem.
 ```
-__Example 6:__
-```
-Input: "/a//b////c/d//././/.."
-Output: "/a/b/c"
-```
+
+__Constraints:__
+* `1 <= path.length <= 3000`
+* `path` consists of English letters, digits, period `'.'`, slash `'/'` or `'_'`.
+* `path` is a valid absolute Unix path.
 
 ### Solution
 __O(path) Time, O(path) Space:__
 ```Swift
 class Solution {
     func simplifyPath(_ path: String) -> String {
-        let path = path.split(separator: "/")
-        var stack : [String] = []
-        for component in path {
-            switch component {
-                case "..":
-                if let temp = stack.last {
-                    stack.removeLast()
-                }
-                case ".":
+        let path: [Substring] = path.split(separator: "/")
+        var stack: [Substring] = []
+
+        for substring in path {
+            switch substring {
+            case ".." where !stack.isEmpty:
+                stack.removeLast()
+            case "..", ".":
                 break
-                default:
-                stack.append(String(component))
+            case let substring:
+                stack.append(substring)
             }
         }
-        return stack.isEmpty ? "/" : stack.reduce("") { $0+"/\($1)" }
+
+        if stack.isEmpty {
+            return "/"
+        } else {
+            return stack.reduce(into: "") {
+                $0.append("/\($1)")
+            }
+        }
     }
 }
 ```
