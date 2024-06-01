@@ -1,34 +1,32 @@
 
-### Unique Binary Search Trees
+### Validate Binary Search Tree
 
-Given a binary tree, determine if it is a valid binary search tree (BST).
+Given the `root` of a binary tree, determine if it is a valid binary search tree (BST).
 
-Assume a BST is defined as follows:
+A __valid BST__ is defined as follows:
 * The left subtree of a node contains only nodes with keys __less than__ the node's key.
 * The right subtree of a node contains only nodes with keys __greater than__ the node's key.
 * Both the left and right subtrees must also be binary search trees.
-
+ 
 __Example 1:__
-```
-    2
-   / \
-  1   3
 
-Input: [2,1,3]
+![question_98-0.jpg](../images/question_98-0.jpg)
+```
+Input: root = [2,1,3]
 Output: true
 ```
 __Example 2:__
-```
-    5
-   / \
-  1   4
-     / \
-    3   6
 
-Input: [5,1,4,null,null,3,6]
+![question_98-1.jpg](../images/question_98-1.jpg)
+```
+Input: root = [5,1,4,null,null,3,6]
 Output: false
 Explanation: The root node's value is 5 but its right child's value is 4.
 ```
+
+__Constraints:__
+* The number of nodes in the tree is in the range `[1, pow(10, 4)]`.
+* `-pow(2, 31) <= Node.val <= pow(2, 31) - 1`
 
 ### Solution
 __Recursive:__
@@ -39,26 +37,23 @@ __Recursive:__
  *     public var val: Int
  *     public var left: TreeNode?
  *     public var right: TreeNode?
- *     public init(_ val: Int) {
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
  *         self.val = val
- *         self.left = nil
- *         self.right = nil
+ *         self.left = left
+ *         self.right = right
  *     }
  * }
  */
 class Solution {
     func isValidBST(_ root: TreeNode?) -> Bool {
-        return isValidBST(root, Int.min, Int.max)
+        isValidBST(root, .min, .max)
     }
-    
+
     func isValidBST(_ node: TreeNode?, _ min: Int, _ max: Int) -> Bool {
-        guard let node = node else { return true }
-        switch node.val {
-            case (min+1..<max):
-            return isValidBST(node.left, min, node.val) && isValidBST(node.right, node.val, max)
-            default:
-            return false
-        }
+        guard let node else { return true }
+        return node.val > min && node.val < max && isValidBST(node.left, min, node.val) && isValidBST(node.right, node.val, max)
     }
 }
 ```
