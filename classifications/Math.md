@@ -41,6 +41,7 @@
 [50. Pow(x, n)](../solutions/0050-Pow(x,%20n).md)</br>
 [60. Permutation Sequence](../solutions/0060-Permutation%20Sequence.md)</br>
 [89. Gray Code](../solutions/0089-Gray%20Code.md)</br>
+[172. Factorial Trailing Zeroes](../solutions/0172-Factorial%20Trailing%20Zeroes.md)</br>
 [189. Rotate Array](../solutions/0189-Rotate%20Array.md)</br>
 [223. Rectangle Area](../solutions/0223-Rectangle%20Area.md)</br>
 [264. Ugly Number II](../solutions/0264-Ugly%20Number%20II.md)</br>
