@@ -64,25 +64,6 @@ class Solution {
     }
 }
 ```
-__(n / 5) * log\[5\](n) Time - Optimized:__
-```Swift
-class Solution {
-    func trailingZeroes(_ n: Int) -> Int {
-        guard n > 0 else { return 0 }
-        var num: Int = 5
-        var zeros: Int = 0
-        while num <= n {
-            var temp: Int = num
-            while temp % 5 == 0 {
-                temp /= 5
-                zeros += 1
-            }
-            num += 5
-        }
-        return zeros
-    }
-}
-```
 __log\[5\](n) Time - Optimized:__
 ```Swift
 class Solution {
