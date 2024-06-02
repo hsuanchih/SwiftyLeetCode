@@ -57,6 +57,34 @@ class Solution {
     }
 }
 ```
+__Recursive Alternative:__
+```Swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+ *         self.val = val
+ *         self.left = left
+ *         self.right = right
+ *     }
+ * }
+ */
+class Solution {
+    func isValidBST(_ root: TreeNode?) -> Bool {
+        isValidBST(root, .min, .max)
+    }
+
+    func isValidBST(_ node: TreeNode?, _ min: Int, _ max: Int) -> Bool {
+        guard let node else { return true }
+        return node.val > min && node.val < max && isValidBST(node.left, min, node.val) && isValidBST(node.right, node.val, max)
+    }
+}
+```
 __Iterative:__
 ```Swift
 /**
@@ -65,31 +93,36 @@ __Iterative:__
  *     public var val: Int
  *     public var left: TreeNode?
  *     public var right: TreeNode?
- *     public init(_ val: Int) {
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
  *         self.val = val
- *         self.left = nil
- *         self.right = nil
+ *         self.left = left
+ *         self.right = right
  *     }
  * }
  */
 class Solution {
     func isValidBST(_ root: TreeNode?) -> Bool {
-        var result : [Int] = []
-        return inOrder(root, &result)
-    }
+        var min: Int = .min
+        var curr: TreeNode? = root
+        var stack: [TreeNode] = []
 
-    func inOrder(_ node: TreeNode?, _ result: inout [Int]) -> Bool {
-        guard let node = node else {
-            return true
-        }
-        let left = inOrder(node.left, &result)
-        if !result.isEmpty {
-            if result.removeLast() >= node.val {
+        while curr != nil || !stack.isEmpty {
+            while let node = curr {
+                stack.append(node)
+                curr = node.left
+            }
+
+            let node: TreeNode = stack.removeLast()
+
+            if node.val <= min {
                 return false
+            } else {
+                min = node.val
+                curr = node.right
             }
         }
-        result.append(node.val)
-        return left && inOrder(node.right, &result)
+        return true
     }
-}
 ```
