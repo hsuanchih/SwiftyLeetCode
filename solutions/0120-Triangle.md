@@ -1,29 +1,37 @@
 
 ### Triangle
 
-Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.
+Given a `triangle` array, return the minimum path sum from top to bottom.
 
-For example, given the following triangle
-```
-[
-     [2],
-    [3,4],
-   [6,5,7],
-  [4,1,8,3]
-]
-```
-The minimum path sum from top to bottom is `11` (i.e., 2 + 3 + 5 + 1 = 11).
+For each step, you may move to an adjacent number of the row below. More formally, if you are on index `i` on the current row, you may move to either index `i` or index `i + 1` on the next row.
 
-__Note:__
-Bonus point if you are able to do this using only O(*n*) extra space, where *n* is the total number of rows in the triangle.
 
-__Example:__
+__Example 1:__
 ```
-Input: 3
-Output: [1,3,3,1]
+Input: triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
+Output: 11
+Explanation: The triangle looks like:
+   2
+  3 4
+ 6 5 7
+4 1 8 3
+The minimum path sum from top to bottom is 2 + 3 + 5 + 1 = 11 (underlined above).
 ```
-__Follow up:__
-Could you optimize your algorithm to use only O(k) extra space?
+__Example 2:__
+```
+Input: triangle = [[-10]]
+Output: -10
+```
+
+__Constraints:__
+* `1 <= triangle.length <= 200`
+* `triangle[0].length == 1`
+* `triangle[i].length == triangle[i - 1].length + 1`
+* `-pow(10, 4) <= triangle[i][j] <= pow(10, 4)`
+
+__Follow up:__ 
+* Could you do this using only `O(n)` extra space, where `n` is the total number of rows in the triangle?
+
 
 ### Solution
 __O(pow(2, triangle)) Time, O(1) Space, Brute-Force Recursive:__
@@ -47,20 +55,51 @@ __O(triangle) Time, O(triangle) Space:__
 ```Swift
 class Solution {
     func minimumTotal(_ triangle: [[Int]]) -> Int {
-        var triangle = triangle
-        for row in stride(from: 1, to: triangle.count, by: 1) {
-            for col in stride(from: 0, through: row, by: 1) {
+        guard !triangle.isEmpty else { return .min }
+        var pathSum: [[Int]] = []
+        for row in 0 ..< triangle.count {
+            var rowSum: [Int] = []
+            for col in 0 ..< triangle[row].count {
+                switch (row, col) {
+                case (0, _):
+                    rowSum.append(triangle[row][col])
+                case (_, 0):
+                    rowSum.append(triangle[row][col] + pathSum[row - 1][col])
+                case (_, triangle[row].count - 1):
+                    rowSum.append(triangle[row][col] + pathSum[row - 1][col - 1])
+                case (let row, let col):
+                    rowSum.append(triangle[row][col] + min(pathSum[row - 1][col], pathSum[row - 1][col - 1]))
+                }
+            }
+            pathSum.append(rowSum)
+        }
+        return pathSum.last.flatMap { $0.min() } ?? 0
+    }
+}
+```
+__O(triangle) Time, O(triangle) Space:__
+```Swift
+class Solution {
+    func minimumTotal(_ triangle: [[Int]]) -> Int {
+        var triangle: [[Int]] = triangle
+        for row in 1 ..< triangle.count {
+            let cols: Int = triangle[row].count
+            for col in 0 ..< cols {
                 switch col {
-                    case 0:
-                    triangle[row][col] += triangle[row-1][col]
-                    case row:
-                    triangle[row][col] += triangle[row-1][col-1]
-                    default:
-                    triangle[row][col] += min(triangle[row-1][col], triangle[row-1][col-1])
+                case 0:
+                    triangle[row][col] += triangle[row - 1][col]
+                case cols - 1:
+                    triangle[row][col] += triangle[row - 1][col - 1]
+                case let col:
+                    triangle[row][col] += min(triangle[row - 1][col], triangle[row - 1][col - 1])
                 }
             }
         }
-        return triangle.last?.min() ?? 0
+        if let minPathSum = triangle.last?.min() {
+            return minPathSum
+        } else {
+            fatalError()
+        }
     }
 }
 ```
@@ -71,8 +110,8 @@ class Solution {
         if triangle.isEmpty {
             return 0
         }
-        var colSum : [Int] = Array(repeating: 0, count: triangle.count)
-        for row in 0..<triangle.count {
+        var colSum: [Int] = Array(repeating: 0, count: triangle.count)
+        for row in 0 ..< triangle.count {
             for col in stride(from: row, through: 0, by: -1) {
                 switch (row, col) {
                     case (0, _):
@@ -80,9 +119,9 @@ class Solution {
                     case (_, 0):
                     colSum[col] += triangle[row][col]
                     case (_, row):
-                    colSum[col] = colSum[col-1] + triangle[row][col]
+                    colSum[col] = colSum[col - 1] + triangle[row][col]
                     default:
-                    colSum[col] = min(colSum[col], colSum[col-1]) + triangle[row][col]
+                    colSum[col] = min(colSum[col], colSum[col - 1]) + triangle[row][col]
                 }
             }
         }
