@@ -29,6 +29,7 @@ Output: [8,9,9,9,0,0,0,1]
 __Constraints:__
 * The number of nodes in each linked list is in the range `[1, 100]`.
 * `0 <= Node.val <= 9`
+* It is guaranteed that the list represents a number that does not have leading zeros.
 
 ### Solution
 __O(l1 + l2) Time, O(l1 + l2) Space:__
@@ -45,18 +46,23 @@ __O(l1 + l2) Time, O(l1 + l2) Space:__
  */
 class Solution {
     func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
-        var carry: Int = 0
-        var dummyHead: ListNode = ListNode(0)
+        let dummyHead: ListNode = ListNode(0)
         var curr: ListNode? = dummyHead
         var l1: ListNode? = l1
         var l2: ListNode? = l2
-        while l1 != nil || l2 != nil || carry != 0 {
-            let val: Int = (l1?.val ?? 0) + (l2?.val ?? 0) + carry
-            carry = val / 10
-            curr?.next = ListNode(val % 10)
+        var carry: Int = 0
+
+        while l1 != nil || l2 != nil {
+            let sum: Int = (l1?.val ?? 0) + (l2?.val ?? 0) + carry
+            carry = sum / 10
+            curr?.next = ListNode(sum % 10)
             curr = curr?.next
             l1 = l1?.next
             l2 = l2?.next
+        }
+
+        if carry > 0 {
+            curr?.next = ListNode(carry)
         }
         return dummyHead.next
     }
