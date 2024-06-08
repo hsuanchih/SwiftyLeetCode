@@ -63,21 +63,21 @@ __O(n) Time, O(n) Space - Recursive:__
 class Solution {
     func copyRandomList(_ head: Node?) -> Node? {
         guard let head else { return nil }
-        var copy: [Node: Node] = [:]
-        return cloneNode(head, &copy)
+        var lookup: [Node: Node] = [:]
+        return deepCopy(head, &lookup)
     }
 
-    func cloneNode(_ node: Node, _ copy: inout [Node: Node]) -> Node {
-        if let clone = copy[node] {
+    func deepCopy(_ node: Node, _ lookup: inout [Node: Node]) -> Node {
+        if let clone = lookup[node] {
             return clone
         } else {
-            let clone: Node = Node(node.val)
-            copy[node] = clone
+            let clone = Node(node.val)
+            lookup[node] = clone
             if let next = node.next {
-                clone.next = cloneNode(next, &copy)
+                clone.next = deepCopy(next, &lookup)
             }
             if let random = node.random {
-                clone.random = cloneNode(random, &copy)
+                clone.random = deepCopy(random, &lookup)
             }
             return clone
         }
