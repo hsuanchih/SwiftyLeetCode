@@ -12,6 +12,7 @@ starting each problem with a brute force approach & optimize along the way.
 * [Breadth-First-Search](classifications/Breadth-First-Search.md)
 * [Combination/Permutation](classifications/Combination-Permutation.md)
 * [Depth-First-Search](classifications/Depth-First-Search.md)
+* [Divide And Conquer](classifications/Divide-And-Conquer.md)
 * [Dynamic Programming](classifications/Dynamic-Programming.md)
 * [Design](classifications/Design.md)
 * [Graph](classifications/Graph.md)
