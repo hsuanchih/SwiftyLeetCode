@@ -6,6 +6,7 @@ starting each problem with a brute force approach & optimize along the way.
 ---
 ## Problem Class
 
+* [Array](classifications/Array.md)
 * [Backtracking](classifications/Backtracking.md)
 * [Binary Search](classifications/Binary-Search.md)
 * [Bit Manipulation](classifications/Bit-Manipulation.md)
