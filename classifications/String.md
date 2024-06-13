@@ -13,6 +13,7 @@
 
 ### Medium
 ---
+[3. Longest Substring Without Repeating Characters](../solutions/0003-Longest%20Substring%20Without%20Repeating%20Characters.md)</br>
 [8. String to Integer (atoi)](../solutions/0008-String%20to%20Integer%20(atoi).md)</br>
 [71. Simplify Path](../solutions/0071-Simplify%20Path.md)</br>
 [165. Compare Version Numbers](../solutions/0165-Compare%20Version%20Numbers.md)</br>
