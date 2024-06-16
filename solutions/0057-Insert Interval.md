@@ -1,9 +1,13 @@
 
 ### Insert Interval
 
-Given a set of *non-overlapping* intervals, insert a new interval into the intervals (merge if necessary).
+You are given an array of non-overlapping intervals `intervals` where `intervals[i] = [starti, endi]` represent the start and the end of the `ith` interval and `intervals` is sorted in ascending order by starti. You are also given an interval `newInterval = [start, end]` that represents the start and end of another interval.
 
-You may assume that the intervals were __initially sorted__ according to their start times.
+Insert `newInterval` into `intervals` such that `intervals` is still sorted in ascending order by `starti` and `intervals` still does not have any overlapping intervals (merge overlapping intervals if necessary).
+
+Return `intervals` after the insertion.
+
+Note that you don't need to modify `intervals` in-place. You can make a new array and return it.
 
 __Example 1:__
 ```
@@ -17,36 +21,37 @@ Output: [[1,2],[3,10],[12,16]]
 Explanation: Because the new interval [4,8] overlaps with [3,5],[6,7],[8,10].
 ```
 
+__Constraints:__
+* `0 <= intervals.length <= pow(10, 4)`
+* `intervals[i].length == 2`
+* `0 <= starti <= endi <= pow(10, 5)`
+* `intervals` is sorted by `starti` in __ascending order__.
+* `newInterval.length == 2`
+* `0 <= start <= end <= pow(10, 5)`
+
 ### Solution
-__O(n):__
+__O(intervals) Time:__
 ```Swift
 class Solution {
     func insert(_ intervals: [[Int]], _ newInterval: [Int]) -> [[Int]] {
-        var newInterval = newInterval, result : [[Int]] = []
-        var index = 0
-        while index < intervals.count {
-            let interval = intervals[index],
-            nextInsert = interval[0] < newInterval[0] ? interval : newInterval
-            insert(nextInsert, into: &result)
-            if nextInsert == interval {
-                index+=1
+        guard !intervals.isEmpty else { return [newInterval] }
+        var merged: [[Int]] = []
+        for interval in intervals {
+            if let previous = merged.last {
+                _ = merged.removeLast()
+                merge(previous, interval).forEach { merged.append($0) }
             } else {
-                newInterval = [Int.max, Int.max]
+                merge(interval, newInterval).forEach { merged.append($0) }
             }
         }
-        if newInterval != [Int.max, Int.max] {
-            insert(newInterval, into: &result)
-        }
-        return result
+        return merged
     }
-    
-    func insert(_ interval: [Int], into result: inout [[Int]]) {
-        if let last = result.last, last[1] >= interval[0] {
-            var elem = result.removeLast()
-            elem[1] = max(elem[1], interval[1])
-            result.append(elem)
+
+    func merge(_ lhs: [Int], _ rhs: [Int]) -> [[Int]] {
+        if lhs[0] < rhs[0] {
+            return (lhs[0] ... lhs[1]).contains(rhs[0]) ? [[lhs[0], max(lhs[1], rhs[1])]] : [lhs, rhs]
         } else {
-            result.append(interval)
+            return (rhs[0] ... rhs[1]).contains(lhs[0]) ? [[rhs[0], max(lhs[1], rhs[1])]] : [rhs, lhs]
         }
     }
 }
