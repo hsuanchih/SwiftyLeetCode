@@ -1,5 +1,9 @@
 # Array
 
+### Easy
+---
+[88. Merge Sorted Array](../solutions/0088-Merge%20Sorted%20Array.md)</br>
+
 ### Medium
 ---
 [56. Merge Intervals](../solutions/0056-Merge%20Intervals.md)</br>
