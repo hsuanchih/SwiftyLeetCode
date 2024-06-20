@@ -1,17 +1,19 @@
 
 ### Valid Sudoku
 
-Determine if a 9x9 Sudoku board is valid. Only the filled cells need to be validated __according to the following rules__:
+Determine if a `9 x 9` Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
 
 1. Each row must contain the digits `1-9` without repetition.
 2. Each column must contain the digits `1-9` without repetition.
-3. Each of the 9 `3x3` sub-boxes of the grid must contain the digits `1-9` without repetition.
+3. Each of the nine `3 x 3` sub-boxes of the grid must contain the digits `1-9`] without repetition.
 
-![A partially filled sudoku which is valid.](../images/question_36.png)
-
-The Sudoku board could be partially filled, where empty cells are filled with the character `'.'`.
+Note:
+* A Sudoku board (partially filled) could be valid but is not necessarily solvable.
+* Only the filled cells need to be validated according to the mentioned rules.
 
 __Example 1:__
+
+![question_36.png](../images/question_36.png)
 ```
 Input:
 [
@@ -46,32 +48,38 @@ Explanation:
 Same as Example 1, except with the 5 in the top left corner being modified to 8. 
 Since there are two 8's in the top left 3x3 sub-box, it is invalid.
 ```
-__Note:__
 
-* A Sudoku board (partially filled) could be valid but is not necessarily solvable.
-* Only the filled cells need to be validated according to the mentioned rules.
-* The given board contain only digits 1-9 and the character '.'.
-* The given board size is always 9x9.
+__Constraints:__
+* `board.length == 9`
+* `board[i].length == 9`
+* `board[i][j]` is a digit `1-9` or `'.'`.
 
 ### Solution
 ```Swift
 class Solution {
     func isValidSudoku(_ board: [[Character]]) -> Bool {
-        var board: [[Character]] = board
         for row in 0 ..< board.count {
             for col in 0 ..< board.first!.count where board[row][col] != "." {
-                if !isValid(board, row, col) {
+                if !isValid(board, row: row, col: col) {
                     return false
-                } else {
-                    board[row][col] = "."
                 }
             }
         }
         return true
     }
 
-    func isValid(_ board: [[Character]], _ row: Int, _ col: Int) -> Bool {
+    func isValid(_ board: [[Character]], row: Int, col: Int) -> Bool {
         var seen: Set<Character> = []
+        for c in 0 ..< board.first!.count where board[row][c] != "." {
+            let element: Character = board[row][c]
+            if seen.contains(element) {
+                return false
+            } else {
+                seen.insert(element)
+            }
+        }
+        
+        seen = []
         for r in 0 ..< board.count where board[r][col] != "." {
             let element: Character = board[r][col]
             if seen.contains(element) {
@@ -82,18 +90,10 @@ class Solution {
         }
 
         seen = []
-        for c in 0 ..< board.first!.count where board[row][c] != "." {
-            let element: Character = board[row][c]
-            if seen.contains(element) {
-                return false
-            } else {
-                seen.insert(element)
-            }
-        }
-
-        seen = []
-        for r in row / 3 * 3 ..< row / 3 * 3 + 3 {
-            for c in col / 3 * 3 ..< col / 3 * 3 + 3 where board[r][c] != "." {
+        let rowStart: Int = row / 3 * 3
+        let colStart: Int = col / 3 * 3
+        for r in rowStart ..< rowStart + 3 {
+            for c in colStart ..< colStart + 3 where board[r][c] != "." {
                 let element: Character = board[r][c]
                 if seen.contains(element) {
                     return false
