@@ -22,52 +22,78 @@ __Constraints:__
 * `-pow(10, 9) <= nums[i] <= pow(10, 9)`
 
 ### Solution
-__O(nums*log(nums)) Time - Sort Input:__
+__O(pow(nums, 2)) Time - Set:__
 ```Swift
 class Solution {
     func longestConsecutive(_ nums: [Int]) -> Int {
-        guard nums.count > 1 else { return nums.count }
-        let nums = nums.sorted()
+        guard !nums.isEmpty else { return 0 }
+        var elements: Set<Int> = Set(nums)
         var result: Int = 1
-        var length: Int = 1
-        for index in 1 ..< nums.count {
-            switch nums[index] - nums[index - 1] {
-            case 0:
-                break
-            case 1:
-                length += 1
-            default:
-                result = max(result, length)
-                length = 1
+        for num in nums {
+            var longest: Int = 0
+            var current: Int = num
+            while elements.contains(current) {
+                longest += 1
+                current += 1
             }
+
+            current = num - 1
+            while elements.contains(current) {
+                longest += 1
+                current -= 1
+            }
+            result = max(result, longest)
         }
-        return max(result, length)
+        return result
     }
 }
 ```
-__O(nums) Time - HashSet:__
+__O(nums * log(nums)) Time - Sort Input:__
 ```Swift
 class Solution {
     func longestConsecutive(_ nums: [Int]) -> Int {
-        var lookup: Set<Int> = nums.reduce(into: Set<Int>()) { partialResult, num in
-            partialResult.insert(num)
-        }
-        var result: Int = 0
-        for num in lookup {
-            var length: Int = 0
-            var current: Int = num
-            while lookup.contains(current) {
-                lookup.remove(current)
-                length += 1
-                current -= 1
+        guard !nums.isEmpty else { return 0 }
+        let nums: [Int] = nums.sorted()
+        var longest: Int = 1
+        var result: Int = 1
+        for i in 1 ..< nums.count {
+            switch nums[i] - nums[i - 1] {
+            case 0:
+                break
+            case 1:
+                longest += 1
+            default:
+                result = max(result, longest)
+                longest = 1
             }
-            current = num + 1
-            while lookup.contains(current) {
-                lookup.remove(current)
-                length += 1
+        }
+        return max(result, longest)
+    }
+}
+```
+__O(nums) Time - Set + Dynamic Element Removal:__
+```Swift
+class Solution {
+    func longestConsecutive(_ nums: [Int]) -> Int {
+        guard !nums.isEmpty else { return 0 }
+        var elements: Set<Int> = Set(nums)
+        var result: Int = 1
+        for num in nums {
+            var longest: Int = 0
+            var current: Int = num
+            while elements.contains(current) {
+                elements.remove(current)
+                longest += 1
                 current += 1
             }
-            result = max(result, length)
+
+            current = num - 1
+            while elements.contains(current) {
+                elements.remove(current)
+                longest += 1
+                current -= 1
+            }
+            result = max(result, longest)
         }
         return result
     }
