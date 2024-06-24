@@ -25,7 +25,7 @@ __Note:__
 2. Each node's value will be an integer in the range `[0, 99]`.
 
 ### Solution
-__O(n) Time, O(1) Space - Recursive:__
+__Recursive:__
 ```Swift
 /**
  * Definition for a binary tree node.
@@ -33,29 +33,29 @@ __O(n) Time, O(1) Space - Recursive:__
  *     public var val: Int
  *     public var left: TreeNode?
  *     public var right: TreeNode?
- *     public init(_ val: Int) {
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
  *         self.val = val
- *         self.left = nil
- *         self.right = nil
+ *         self.left = left
+ *         self.right = right
  *     }
  * }
  */
 class Solution {
     func isUnivalTree(_ root: TreeNode?) -> Bool {
-        guard let root = root else { return false }
-        return univalue(root, root.val)
-    }
-    
-    func univalue(_ node: TreeNode?, _ value: Int) -> Bool {
-        guard let node = node else { return true }
-        if node.val != value {
+        guard let root else { return true }
+        if let left = root.left, root.val != left.val {
             return false
         }
-        return univalue(node.left, value) && univalue(node.right, value)
+        if let right = root.right, root.val != right.val {
+            return false
+        }
+        return isUnivalTree(root.left) && isUnivalTree(root.right)
     }
 }
 ```
-__O(n) Time, O(n/2) Space - Iterative:__
+__Iterative:__
 ```Swift
 /**
  * Definition for a binary tree node.
@@ -63,27 +63,30 @@ __O(n) Time, O(n/2) Space - Iterative:__
  *     public var val: Int
  *     public var left: TreeNode?
  *     public var right: TreeNode?
- *     public init(_ val: Int) {
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
  *         self.val = val
- *         self.left = nil
- *         self.right = nil
+ *         self.left = left
+ *         self.right = right
  *     }
  * }
  */
 class Solution {
     func isUnivalTree(_ root: TreeNode?) -> Bool {
-        guard let root = root else { return false }
-        var queue = [root]
-        while !queue.isEmpty {
-            let curr = queue.removeFirst()
-            if curr.val != root.val {
+        guard let root else { return true }
+        var stack: [TreeNode] = [root]
+        while !stack.isEmpty {
+            let node: TreeNode = stack.removeLast()
+            if node.val != root.val {
                 return false
-            }
-            if let left = curr.left {
-                queue.append(left)
-            }
-            if let right = curr.right {
-                queue.append(right)
+            } else {
+                if let left = node.left {
+                    stack.append(left)
+                }
+                if let right = node.right {
+                    stack.append(right)
+                }
             }
         }
         return true
