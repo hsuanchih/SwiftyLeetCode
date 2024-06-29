@@ -28,27 +28,44 @@ Return the following binary tree:
  *     public var val: Int
  *     public var left: TreeNode?
  *     public var right: TreeNode?
- *     public init(_ val: Int) {
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
  *         self.val = val
- *         self.left = nil
- *         self.right = nil
+ *         self.left = left
+ *         self.right = right
  *     }
  * }
  */
 class Solution {
     func buildTree(_ preorder: [Int], _ inorder: [Int]) -> TreeNode? {
-        return build(preorder, 0, preorder.count-1, inorder, 0, inorder.count-1)
+        guard !preorder.isEmpty, preorder.count == inorder.count else { fatalError() }
+        return build(preorder, 0 ... preorder.count - 1, inorder, 0 ... inorder.count - 1)
     }
-    
-    func build(_ preorder: [Int], _ pStart : Int, _ pEnd: Int, _ inorder: [Int], _ iStart: Int, _ iEnd: Int) -> TreeNode? {
-        if pStart > pEnd {
-            return nil
+
+    func build(_ preorder: [Int], _ pRange: ClosedRange<Int>, _ inorder: [Int], _ iRange: ClosedRange<Int>) -> TreeNode? {
+        if pRange.lowerBound <= pRange.upperBound {
+            let val: Int = preorder[pRange.lowerBound]
+            if let mid: Int = inorder.firstIndex(of: val) {
+                let node: TreeNode = TreeNode(val)
+                let numsLeft: Int = mid - iRange.lowerBound
+                let numsRight: Int = iRange.upperBound - mid
+                node.left = build(
+                    preorder, 
+                    ClosedRange(uncheckedBounds: (pRange.lowerBound + 1, pRange.lowerBound + numsLeft)), 
+                    inorder, 
+                    ClosedRange(uncheckedBounds: (iRange.lowerBound, mid - 1))
+                )
+                node.right = build(
+                    preorder, 
+                    ClosedRange(uncheckedBounds: (pRange.lowerBound + numsLeft + 1, pRange.upperBound)), 
+                    inorder, 
+                    ClosedRange(uncheckedBounds: (mid + 1, iRange.upperBound))
+                )
+                return node
+            }
         }
-        let currValue = preorder[pStart], currNode = TreeNode(currValue)
-        let midIndex = inorder.firstIndex(of: currValue)!
-        currNode.left = build(preorder, pStart+1, pStart+midIndex-iStart, inorder, iStart, midIndex-1)
-        currNode.right = build(preorder, pStart+midIndex-iStart+1, pEnd, inorder, midIndex+1, iEnd)
-        return currNode
+        return nil
     }
 }
 ```
