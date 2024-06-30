@@ -1,24 +1,29 @@
 
 ### Construct Binary Tree from Preorder and Inorder Traversal
 
-Given preorder and inorder traversal of a tree, construct the binary tree.
+Given two integer arrays `preorder` and `inorder` where `preorder` is the preorder traversal of a binary tree and `inorder` is the inorder traversal of the same tree, construct and return the binary tree.
 
-__Note:__
-You may assume that duplicates do not exist in the tree.
+__Example 1:__
 
-__For example__, given
+![question_105.jpg](../images/question_105.jpg)
 ```
-preorder = [3,9,20,15,7]
-inorder = [9,3,15,20,7]
+Input: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
+Output: [3,9,20,null,null,15,7]
 ```
-Return the following binary tree:
+__Example 2:__
 ```
-    3
-   / \
-  9  20
-    /  \
-   15   7
+Input: preorder = [-1], inorder = [-1]
+Output: [-1]
 ```
+
+__Constraints:__
+* `1 <= preorder.length <= 3000`
+* `inorder.length == preorder.length`
+* `-3000 <= preorder[i], inorder[i] <= 3000`
+* `preorder` and `inorder` consist of unique values.
+* Each value of `inorder` also appears in `preorder`.
+* `preorder` is guaranteed to be the preorder traversal of the tree.
+* `inorder` is guaranteed to be the inorder traversal of the tree.
 
 ### Solution
 ```Swift
