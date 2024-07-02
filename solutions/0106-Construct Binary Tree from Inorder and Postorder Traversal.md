@@ -44,33 +44,39 @@ __Constraints:__
  */
 class Solution {
     func buildTree(_ inorder: [Int], _ postorder: [Int]) -> TreeNode? {
-        guard !inorder.isEmpty, inorder.count == postorder.count else { fatalError() }
-        return build(inorder, 0 ... inorder.count - 1, postorder, 0 ... postorder.count - 1)
+        build(
+            inorder,
+            postorder,
+            ClosedRange(uncheckedBounds: (0, inorder.count - 1)),
+            ClosedRange(uncheckedBounds: (0, postorder.count - 1))
+        )
     }
 
-    func build(_ inorder: [Int], _ iRange: ClosedRange<Int>, _ postorder: [Int], _ pRange: ClosedRange<Int>) -> TreeNode? {
+    func build(_ inorder: [Int], _ postorder: [Int], _ iRange: ClosedRange<Int>, _ pRange: ClosedRange<Int>) -> TreeNode? {
         if pRange.lowerBound <= pRange.upperBound {
-            let val: Int = postorder[pRange.upperBound]
-            if let mid: Int = inorder.firstIndex(of: val) {
-                let node: TreeNode = TreeNode(val)
-                let numsLeft: Int = mid - iRange.lowerBound
-                let numsRight: Int = iRange.upperBound - mid
+            let value: Int = postorder[pRange.upperBound]
+            if let nodeIndex = inorder.firstIndex(where: { $0 == value }) {
+                let numLeftNodes: Int = nodeIndex - iRange.lowerBound
+                let node: TreeNode = TreeNode(value)
                 node.left = build(
                     inorder,
-                    ClosedRange(uncheckedBounds: (iRange.lowerBound, mid - 1)),
                     postorder,
-                    ClosedRange(uncheckedBounds: (pRange.lowerBound, pRange.lowerBound + numsLeft - 1))
+                    ClosedRange(uncheckedBounds: (iRange.lowerBound, nodeIndex - 1)),
+                    ClosedRange(uncheckedBounds: (pRange.lowerBound, pRange.lowerBound + numLeftNodes - 1))
                 )
                 node.right = build(
                     inorder,
-                    ClosedRange(uncheckedBounds: (mid + 1, iRange.upperBound)),
                     postorder,
-                    ClosedRange(uncheckedBounds: (pRange.lowerBound + numsLeft, pRange.upperBound - 1))
+                    ClosedRange(uncheckedBounds: (nodeIndex + 1, iRange.upperBound)),
+                    ClosedRange(uncheckedBounds: (pRange.lowerBound + numLeftNodes, pRange.upperBound - 1))
                 )
                 return node
+            } else {
+                fatalError()
             }
+        } else {
+            return nil
         }
-        return nil
     }
 }
 ```
