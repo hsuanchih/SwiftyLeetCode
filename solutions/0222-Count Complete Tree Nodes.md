@@ -1,24 +1,34 @@
 
 ### Count Complete Tree Nodes
 
-Given a __complete__ binary tree, count the number of nodes.
+Given the `root` of a __complete binary tree__, return the number of the nodes in the tree.
 
-__Note:__
+According to Wikipedia, every level, except possibly the last, is completely filled in a complete binary tree, and all nodes in the last level are as far left as possible. It can have between `1` and `pow(2, h)` nodes inclusive at the last level `h`.
 
-__Definition of a complete binary tree from Wikipedia:__
-In a complete binary tree every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible. It can have between 1 and 2h nodes inclusive at the last level h.
+Design an algorithm that runs in less than `O(n)` time complexity.
 
-__Example:__
+__Example 1:__
+
+![question_222.jpg](../images/question_222.jpg)
 ```
-Input: 
-    1
-   / \
-  2   3
- / \  /
-4  5 6
-
+Input: root = [1,2,3,4,5,6]
 Output: 6
 ```
+__Example 2:__
+```
+Input: root = []
+Output: 0
+```
+__Example 3:__
+```
+Input: root = [1]
+Output: 1
+```
+
+__Constraints:__
+* The number of nodes in the tree is in the range `[0, 5 * pow(10, 4)]`.
+* `0 <= Node.val <= 5 * pow(10, 4)`
+* The tree is guaranteed to be __complete__.
 
 ### Solution
 __O(n) Time, O(1) Space - Recursive:__
