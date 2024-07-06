@@ -53,3 +53,41 @@ class Solution {
     }
 }
 ```
+__O(log(n)) Time, O(1) Space - Recursive:__
+```Swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+ *         self.val = val
+ *         self.left = left
+ *         self.right = right
+ *     }
+ * }
+ */
+class Solution {
+    func countNodes(_ root: TreeNode?) -> Int {
+        guard let root else { return 0 }
+        let leftHeight: Int = height(root.left)
+        let rightHeight: Int = height(root.right)
+        if leftHeight == rightHeight {
+            return (1 << leftHeight) + countNodes(root.right)
+        } else {
+            return (1 << rightHeight) + countNodes(root.left)
+        }
+    }
+
+    func height(_ node: TreeNode?) -> Int {
+        if let node {
+            return 1 + height(node.left)
+        } else { 
+            return 0 
+        }
+    }
+}
+```
