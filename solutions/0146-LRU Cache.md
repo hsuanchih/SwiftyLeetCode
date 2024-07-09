@@ -1,117 +1,138 @@
 
 ### LRU Cache
 
-Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations:</br> 
-`get` and `put`.
+Design a data structure that follows the constraints of a __Least Recently Used (LRU) cache__.
 
-`get(key)` - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return `-1`.
-`put(key, value)` - Set or insert the value if the key is not already present. When the cache reached its capacity,</br> 
-it should invalidate the least recently used item before inserting a new item.
+Implement the `LRUCache` class:
+* `LRUCache(int capacity)` Initialize the LRU cache with positive size `capacity`.
+* `int get(int key)` Return the value of the key if the `key` exists, otherwise return `-1`.
+* `void put(int key, int value)` Update the `value` of the `key` if the `key` exists. Otherwise, add the `key-value` pair to the cache. If the number of keys exceeds the `capacity` from this operation, evict the least recently used key.
 
-The cache is initialized with a __positive__ capacity.
+The functions `get` and `put` must each run in `O(1)` average time complexity.
 
-__Follow up:__
-Could you do both operations in __O(1)__ time complexity?
-
-__Example:__
+__Example 1:__
 ```
-LRUCache cache = new LRUCache( 2 /* capacity */ );
+Input
+["LRUCache", "put", "put", "get", "put", "get", "put", "get", "get", "get"]
+[[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]
+Output
+[null, null, null, 1, null, -1, null, -1, 3, 4]
 
-cache.put(1, 1);
-cache.put(2, 2);
-cache.get(1);       // returns 1
-cache.put(3, 3);    // evicts key 2
-cache.get(2);       // returns -1 (not found)
-cache.put(4, 4);    // evicts key 1
-cache.get(1);       // returns -1 (not found)
-cache.get(3);       // returns 3
-cache.get(4);       // returns 4
+Explanation
+LRUCache lRUCache = new LRUCache(2);
+lRUCache.put(1, 1); // cache is {1=1}
+lRUCache.put(2, 2); // cache is {1=1, 2=2}
+lRUCache.get(1);    // return 1
+lRUCache.put(3, 3); // LRU key was 2, evicts key 2, cache is {1=1, 3=3}
+lRUCache.get(2);    // returns -1 (not found)
+lRUCache.put(4, 4); // LRU key was 1, evicts key 1, cache is {4=4, 3=3}
+lRUCache.get(1);    // return -1 (not found)
+lRUCache.get(3);    // return 3
+lRUCache.get(4);    // return 4
 ```
+
+__Constraints:__
+* `1 <= capacity <= 3000`
+* `0 <= key <= pow(10, 4)`
+* `0 <= value <= pow(10, 5)`
+* At most `2 * pow(10, 5)` calls will be made to `get` and `put`.
 
 ### Solution
-__Recursive O(n):__
+__Key-Value Store + Doubly Linked List:__
 ```Swift
 class LRUCache {
+    private let capacity: Int
+    private let head: Node
+    private let tail: Node
+    private var lookup: [Int: Node]
+
+    init(_ capacity: Int) {
+        self.capacity = capacity
+        head = Node(key: nil, value: -1)
+        tail = Node(key: nil, value: -1)
+        head.next = tail
+        tail.prev = head
+        lookup = [:]
+    }
     
+    // O(1)
+    func get(_ key: Int) -> Int {
+        if let node = lookup[key] {
+            // Accessing an existing item should move the item to the front
+            // of the LRU Cache, call put to remove the item & add it to the front
+            put(key, node.value)
+            return node.value
+        } else {
+            return -1
+        }
+    }
+    
+    // O(1)
+    func put(_ key: Int, _ value: Int) {
+        // If key already exists in the lookup, a put should move
+        // its value to the front of the LRU, remove it from the list &
+        // the lookup, we will add it fresh
+        if let node = lookup[key] {
+            remove(node)
+        }
+
+        // Create a new ListNode, we will add the node to the list & the lookup
+        insert(Node(key: key, value: value))
+
+        // If we've exceeded the LRU's capacity, remove the least recently
+        // accessed item from the list
+        if lookup.count > capacity, let last = tail.prev {
+            remove(last)
+        }
+    }
+
+    private func insert(_ node: Node) {
+        if let key = node.key {
+            lookup[key] = node
+            node.next = head.next
+            node.prev = head
+            node.next?.prev = node
+            head.next = node
+        } else {
+            fatalError()
+        }
+    }
+
+    private func remove(_ node: Node) {
+        if let key = node.key {
+            lookup.removeValue(forKey: key)
+            node.prev?.next = node.next
+            node.next?.prev = node.prev
+        } else {
+            fatalError()
+        }
+    }
+}
+
+extension LRUCache {
     // A Doubly-LinkedList node implementation
     // Note:
     // Key is necessary here only to preserve O(1) run time on eviction when new item is inserted with LRU at full capacity.
     // When we remove the node at the end of the LinkedList, we need to remove the node also from the lookup, which requires
     // referencing via the key.
     // Alternatively we can remove the node from the lookup without requiring the key, but that will make removal an O(n) operation.
-    private class ListNode<Key, Value> {
-        var prev : ListNode<Key, Value>?, next : ListNode<Key, Value>?
-        var key : Key?
-        var val : Value
-        init(key: Key? = nil, val: Value) {
-            self.key = key
-            self.val = val
-        }
-    }
-    
-    private let head : ListNode<Int, Int> = ListNode<Int, Int>(val: -1), tail : ListNode<Int, Int> = ListNode<Int, Int>(val: -1)
-    
-    private var lookup : [Int: ListNode<Int, Int>] = [:]
-    private let capacity : Int
+    typealias Node = ListNode<Int?, Int>
+    class ListNode<Key, Value> {
+        var prev : ListNode<Key, Value>?
+        var next : ListNode<Key, Value>?
+        let key: Key
+        let value: Value
 
-    // O(1)
-    init(_ capacity: Int) {
-        self.capacity = capacity
-        head.next = tail
-        tail.next = head
-    }
-    
-    // O(1)
-    func get(_ key: Int) -> Int {
-        guard let node = lookup[key] else { return -1 }
-        
-        // Accessing an existing item should move the item to the front
-        // of the LRU Cache, call put to remove the item & add it to the front
-        put(key, node.val)
-        return node.val
-    }
-    
-    // O(1)
-    func put(_ key: Int, _ value: Int) {
-        
-        // If key already exists in the lookup, a put should move
-        // its value to the front of the LRU, remove it from the list &
-        // the lookup, we will add it fresh
-        if let _ = lookup[key] {
-            remove(key)
+        init(key: Key, value: Value) {
+            (self.key, self.value) = (key, value)
         }
-        
-        // If we've reached the LRU's capacity, remove the least recently
-        // accessed item from the list so that we can add a new item
-        if lookup.count == capacity, let key = tail.prev?.key {
-            remove(key)
-        }
-        
-        // Create a new ListNode, we will add the node to the list & the lookup
-        let node = ListNode(key: key, val: value)
-        insert(node)
-        lookup[key] = node
-    }
-    
-    private func remove(_ key: Int) {
-        guard let node = lookup[key] else { return }
-        lookup.removeValue(forKey: key)
-        remove(node)
-    }
-    
-    private func insert(_ node: ListNode<Int, Int>) {
-        let front = head.next
-        head.next = node
-        node.prev = head
-        node.next = front
-        front?.prev = node
-    }
-    
-    private func remove(_ node: ListNode<Int, Int>) {
-        node.next?.prev = node.prev
-        node.prev?.next = node.next
-        node.prev = nil
-        node.next = nil
     }
 }
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * let obj = LRUCache(capacity)
+ * let ret_1: Int = obj.get(key)
+ * obj.put(key, value)
+ */
 ```
