@@ -1,30 +1,35 @@
 
 ### Majority Element
 
-Given an array of size *n*, find the majority element. The majority element is the element that appears __more than__ `⌊ n/2 ⌋` times.
+Given an array `nums` of size `n`, return the majority element.
 
-You may assume that the array is non-empty and the majority element always exist in the array.
+The majority element is the element that appears more than `⌊n / 2⌋` times. You may assume that the majority element always exists in the array.
 
 __Example 1:__
 ```
-Input: [3,2,3]
+Input: nums = [3,2,3]
 Output: 3
 ```
 __Example 2:__
 ```
-Input: [2,2,1,1,1,2,2]
+Input: nums = [2,2,1,1,1,2,2]
 Output: 2
 ```
+ 
+__Constraints:__
+* `n == nums.length`
+* `1 <= n <= 5 * pow(10, 4)`
+* `-pow(10, 9) <= nums[i] <= pow(10, 9)`
 
 ### Solution
-__O(n) Time, O(n) Space - HashMap:__
+__O(nums) Time, O(nums) Space - HashMap:__
 ```Swift
 class Solution {
     func majorityElement(_ nums: [Int]) -> Int {
-        var map : [Int: Int] = [:]
+        var tally: [Int: Int] = [:]
         for num in nums {
-            map[num, default: 0]+=1
-            if map[num]! > nums.count/2 {
+            tally[num, default: 0] += 1
+            if tally[num]! > nums.count / 2 {
                 return num
             }
         }
@@ -32,11 +37,11 @@ class Solution {
     }
 }
 ```
-__O(nlogn) Time, O(1) Space - Sorted:__
+__O(nums * log(nums)) Time, O(1) Space - Sorted:__
 ```Swift
 class Solution {
     func majorityElement(_ nums: [Int]) -> Int {
-        return nums.sorted()[nums.count/2]
+        nums.sorted()[nums.count / 2]
     }
 }
 ```

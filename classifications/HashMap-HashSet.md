@@ -4,6 +4,7 @@
 ---
 [1. Two Sum](../solutions/0001-Two%20Sum.md)</br>
 [136. Single Number](../solutions/0136-Single%20Number.md)</br>
+[169. Majority Element](../solutions/0169-Majority%20Element.md)</br>
 [205. Isomorphic Strings](../solutions/0205-Isomorphic%20Strings.md)</br>
 [217. Contains Duplicate](../solutions/0217-Contains%20Duplicate.md)</br>
 [219. Contains Duplicate II](../solutions/0219-Contains%20Duplicate%20II.md)</br>
