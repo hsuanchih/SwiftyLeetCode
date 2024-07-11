@@ -2,6 +2,7 @@
 
 ### Easy
 ---
+[66. Plus One](../solutions/0066-Plus%20One.md)</br>
 [88. Merge Sorted Array](../solutions/0088-Merge%20Sorted%20Array.md)</br>
 [169. Majority Element](../solutions/0169-Majority%20Element.md)</br>
 
