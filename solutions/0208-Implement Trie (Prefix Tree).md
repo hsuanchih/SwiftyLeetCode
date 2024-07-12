@@ -1,22 +1,36 @@
 
 ### Implement Trie (Prefix Tree)
 
-Implement a trie with `insert`, `search`, and `startsWith` methods.
+A __trie__ (pronounced as "try") or __prefix tree__ is a tree data structure used to efficiently store and retrieve keys in a dataset of strings. There are various applications of this data structure, such as autocomplete and spellchecker.
 
-__Example:__
+Implement the Trie class:
+* `Trie()` Initializes the trie object.
+* `void insert(String word)` Inserts the string `word` into the trie.
+* `boolean search(String word)` Returns `true` if the string `word` is in the trie (i.e., was inserted before), and `false` otherwise.
+* `boolean startsWith(String prefix)` Returns `true` if there is a previously inserted string `word` that has the prefix `prefix`, and `false` otherwise.
+ 
+__Example 1:__
 ```
+Input
+["Trie", "insert", "search", "search", "startsWith", "insert", "search"]
+[[], ["apple"], ["apple"], ["app"], ["app"], ["app"], ["app"]]
+Output
+[null, null, true, false, true, null, true]
+
+Explanation
 Trie trie = new Trie();
-
 trie.insert("apple");
-trie.search("apple");   // returns true
-trie.search("app");     // returns false
-trie.startsWith("app"); // returns true
+trie.search("apple");   // return True
+trie.search("app");     // return False
+trie.startsWith("app"); // return True
 trie.insert("app");
-trie.search("app");     // returns true
+trie.search("app");     // return True
 ```
-__Note:__
-* You may assume that all inputs are consist of lowercase letters a-z.
-* All inputs are guaranteed to be non-empty strings.
+
+__Constraints:__
+* `1 <= word.length, prefix.length <= 2000`
+* `word` and `prefix` consist only of lowercase English letters.
+* At most `3 * pow(10, 4)` calls in total will be made to `insert`, `search`, and `startsWith`.
 
 ### Solution
 ```Swift
