@@ -33,65 +33,65 @@ __Constraints:__
 * At most `3 * pow(10, 4)` calls in total will be made to `insert`, `search`, and `startsWith`.
 
 ### Solution
+__Array:__
 ```Swift
-private extension Character {
-    var relativeOffset : Int {
-        return Int(asciiValue! - Character("a").asciiValue!)
-    }
-}
-
 class Trie {
-    class TrieNode {
-        var isWord : Bool = false
-        private var nodes : [TrieNode?] = Array(repeating: nil, count: 26)
-        
-        public func node(for character: Character) -> TrieNode? {
-            return nodes[character.relativeOffset]
-        }
-        public func insert(_ character: Character) -> TrieNode {
-            let node = TrieNode()
-            nodes[character.relativeOffset] = node
-            return node
-        }
-    }
-    
-    private var root : TrieNode
+    private let root: TrieNode
 
-    /** Initialize your data structure here. */
     init() {
         root = TrieNode()
     }
     
-    /** Inserts a word into the trie. */
     func insert(_ word: String) {
-        var curr = root
+        var node: TrieNode = root
         for char in word {
-            if let node = curr.node(for: char) {
-                curr = node
+            if let next = node.next[char.nodeIndex] {
+                node = next
             } else {
-                curr = curr.insert(char)
+                let next: TrieNode = TrieNode()
+                node.next[char.nodeIndex] = next
+                node = next
             }
         }
-        curr.isWord = true
+        node.isWord = true
     }
     
-    /** Returns if the word is in the trie. */
     func search(_ word: String) -> Bool {
-        return searchNode(word)?.isWord ?? false
+        search(word: word)?.isWord == true
     }
     
-    /** Returns if there is any word in the trie that starts with the given prefix. */
     func startsWith(_ prefix: String) -> Bool {
-        return searchNode(prefix) != nil
+        search(word: prefix) != nil
     }
-    
-    private func searchNode(_ word: String) -> TrieNode? {
-        var curr = root
+
+    private func search(word: String) -> TrieNode? {
+        var node: TrieNode = root
         for char in word {
-            guard let node = curr.node(for: char) else { return nil }
-            curr = node
+            if let next = node.next[char.nodeIndex] {
+                node = next
+            } else {
+                return nil
+            }
         }
-        return curr
+        return node
+    }
+}
+
+extension Trie {
+    final class TrieNode {
+        var isWord: Bool
+        var next: [TrieNode?]
+
+        init() {
+            isWord = false
+            next = Array(repeating: nil, count: 26)
+        }
+    }
+}
+
+extension Character {
+    var nodeIndex: Int {
+        Int(asciiValue! - Character("a").asciiValue!)
     }
 }
 
