@@ -103,3 +103,67 @@ extension Character {
  * let ret_3: Bool = obj.startsWith(prefix)
  */
 ```
+__HashMap:__
+```Swift
+class Trie {
+    private let root: TrieNode
+
+    init() {
+        root = TrieNode()
+    }
+    
+    func insert(_ word: String) {
+        var node: TrieNode = root
+        for char in word {
+            if let next = node.lookup[char] {
+                node = next
+            } else {
+                let next: TrieNode = TrieNode()
+                node.lookup[char] = next
+                node = next
+            }
+        }
+        node.isWord = true
+    }
+    
+    func search(_ word: String) -> Bool {
+        search(word: word)?.isWord == true
+    }
+    
+    func startsWith(_ prefix: String) -> Bool {
+        search(word: prefix) != nil
+    }
+
+    private func search(word: String) -> TrieNode? {
+        var node: TrieNode = root
+        for char in word {
+            if let next = node.lookup[char] {
+                node = next
+            } else {
+                return nil
+            }
+        }
+        return node
+    }
+}
+
+extension Trie {
+    final class TrieNode {
+        var isWord: Bool
+        var lookup: [Character: TrieNode]
+
+        init() {
+            isWord = false
+            lookup = [:]
+        }
+    }
+}
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * let obj = Trie()
+ * obj.insert(word)
+ * let ret_2: Bool = obj.search(word)
+ * let ret_3: Bool = obj.startsWith(prefix)
+ */
+```
