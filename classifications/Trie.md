@@ -7,7 +7,7 @@
 ### Medium
 ---
 [208. Implement Trie (Prefix Tree)](../solutions/0208-Implement%20Trie%20(Prefix%20Tree).md)</br>
-[211. Add and Search Word - Data structure design](../solutions/0211-Add%20and%20Search%20Word%20-%20Data%20structure%20design.md)</br>
+[211. Design Add and Search Words Data Structure](../solutions/0211-Design%20Add%20and%20Search%20Words%20Data%20Structure.md)</br>
 
 ### Hard
 ---

@@ -38,6 +38,7 @@
 [159. Longest Substring with At Most Two Distinct Characters](../solutions/0159-Longest%20Substring%20with%20At%20Most%20Two%20Distinct%20Characters.md)</br>
 [187. Repeated DNA Sequences](../solutions/0187-Repeated%20DNA%20Sequences.md)</br>
 [208. Implement Trie (Prefix Tree)](../solutions/0208-Implement%20Trie%20(Prefix%20Tree).md)</br>
+[211. Design Add and Search Words Data Structure](../solutions/0211-Design%20Add%20and%20Search%20Words%20Data%20Structure.md)</br>
 [274. H-Index](../solutions/0274-H-Index.md)</br>
 [347. Top K Frequent Elements](../solutions/0347-Top%20K%20Frequent%20Elements.md)</br>
 [388. Longest Absolute File Path](../solutions/0388-Longest%20Absolute%20File%20Path.md)</br>
