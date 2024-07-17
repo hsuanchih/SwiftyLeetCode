@@ -51,28 +51,29 @@ class Solution {
     }
 }
 ```
-__O(m\*n) Time, O(m\*n) Space - Recursive + Memoization:__
+__O(m * n) Time, O(m * n) Space - Recursive + Memoization:__
 ```Swift
 class Solution {
     func uniquePathsWithObstacles(_ obstacleGrid: [[Int]]) -> Int {
         guard !obstacleGrid.isEmpty else { return 0 }
-        var memo: [[Int?]] = Array(repeating: Array(repeating: nil, count: obstacleGrid.first!.count), count: obstacleGrid.count)
-        return paths(obstacleGrid, row: 0, col: 0, memo: &memo)
+        var paths: [[Int?]] = Array(repeating: Array(repeating: nil, count: obstacleGrid.first!.count), count: obstacleGrid.count)
+        return walk(obstacleGrid, 0, 0, &paths)
     }
 
-    func paths(_ grid: [[Int]], row: Int, col: Int, memo: inout [[Int?]]) -> Int {
+    func walk(_ grid: [[Int]], _ row: Int, _ col: Int, _ paths: inout [[Int?]]) -> Int {
         switch (row, col) {
-        case (grid.count - 1, grid.first!.count - 1):
-            return grid[row][col] == 1 ? 0 : 1
-        case (let row, let col) where row == grid.count || col == grid.first!.count || grid[row][col] == 1:
-            return 0
-        case (let row, let col):
-            if let result = memo[row][col] {
+        case (grid.count - 1, grid.first!.count - 1) where grid[row][col] == 0:
+            return 1
+        case (0 ..< grid.count, 0 ..< grid.first!.count) where grid[row][col] == 0:
+            if let result = paths[row][col] {
                 return result
             } else {
-                memo[row][col] = paths(grid, row: row + 1, col: col, memo: &memo) + paths(grid, row: row, col: col + 1, memo: &memo)
-                return memo[row][col]!
+                let result = walk(grid, row + 1, col, &paths) + walk(grid, row, col + 1, &paths)
+                paths[row][col] = result
+                return result
             }
+        default:
+            return 0
         }
     }
 }
