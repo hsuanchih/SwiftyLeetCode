@@ -19,6 +19,7 @@
 
 ### Medium
 ---
+[5. Longest Palindromic Substring](../solutions/0005-Longest%20Palindromic%20Substring.md)</br>
 [11. Container With Most Water](../solutions/0011-Container%20With%20Most%20Water.md)</br>
 [15. 3Sum](../solutions/0015-3Sum.md)</br>
 [16. 3Sum Closest](../solutions/0016-3Sum%20Closest.md)</br>

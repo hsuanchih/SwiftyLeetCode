@@ -1,20 +1,23 @@
 
 ### Longest Palindromic Substring
 
-Given a string __s__, find the longest palindromic substring in __s__.</br> 
-You may assume that the maximum length of __s__ is 1000.
+Given a string `s`, return the longest palindromic substring in `s`.
 
 __Example 1:__
 ```
-Input: "babad"
+Input: s = "babad"
 Output: "bab"
-Note: "aba" is also a valid answer.
+Explanation: "aba" is also a valid answer.
 ```
 __Example 2:__
 ```
-Input: "cbbd"
+Input: s = "cbbd"
 Output: "bb"
 ```
+
+__Constraints:__
+* `1 <= s.length <= 1000`
+* `s` consist of only digits and English letters.
 
 ### Solution
 __O(pow(s, 3)) Time, O(1) Space - Exhaustive Search:__
@@ -89,7 +92,7 @@ class Solution {
     }
 }
 ```
-__O((2s+1)*s) Time, O(1) Space - Middle-Out:__
+__O((2 * s + 1) * s) Time, O(1) Space - Middle-Out:__
 ```Swift
 class Solution {
     func longestPalindrome(_ s: String) -> String {
