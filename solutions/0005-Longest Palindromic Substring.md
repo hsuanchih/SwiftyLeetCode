@@ -92,6 +92,33 @@ class Solution {
     }
 }
 ```
+__String.Index Bottom-Up, TLE:__
+```Swift
+class Solution {
+    func longestPalindrome(_ s: String) -> String {
+        var isPalindrome: [String.Index: Set<String.Index>] = [:]
+        var result: Substring = ""
+        for right in s.indices {
+            for left in s.indices[s.startIndex ... right] where s[left] == s[right] {
+                if left == right || left == s.index(before: right) {
+                    isPalindrome[left, default: []].insert(right)
+                } else {
+                    if isPalindrome[s.index(after: left), default: []].contains(s.index(before: right)) {
+                        isPalindrome[left, default: []].insert(right)
+                    }
+                }
+                if isPalindrome[left, default: []].contains(right) {
+                    let substring: Substring = s[left ... right]
+                    if substring.count > result.count {
+                        result = substring
+                    }
+                }
+            }
+        }
+        return String(result)
+    }
+}
+```
 __O((2 * s + 1) * s) Time, O(1) Space - Middle-Out:__
 ```Swift
 class Solution {
