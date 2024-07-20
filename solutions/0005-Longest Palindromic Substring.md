@@ -157,3 +157,33 @@ class Solution {
     }
 }
 ```
+__String.Index Middle-Out:__
+```Swift
+class Solution {
+    func longestPalindrome(_ s: String) -> String {
+        guard !s.isEmpty else { return s }
+        var result: Substring = s[s.startIndex ... s.startIndex]
+        for index in s.indices where index > s.startIndex {
+            let centered = palindrome(s, index, index)
+            if centered.count > result.count {
+                result = centered
+            }
+            let mirrored = palindrome(s, s.index(before: index), index)
+            if mirrored.count > result.count {
+                result = mirrored
+            }
+        }
+        return String(result)
+    }
+
+    func palindrome(_ s: String, _ left: String.Index, _ right: String.Index) -> Substring {
+        var left: String.Index = left
+        var right: String.Index = right
+        while left > s.startIndex, right < s.index(before: s.endIndex), s[left] == s[right] {
+            left = s.index(before: left)
+            right = s.index(after: right)
+        }
+        return s[left] == s[right] ? s[left ... right] : s[s.index(after: left) ..< right]
+    }
+}
+```
