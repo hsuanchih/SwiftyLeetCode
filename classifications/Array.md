@@ -16,4 +16,9 @@
 [128. Longest Consecutive Sequence](../solutions/0128-Longest%20Consecutive%20Sequence.md)</br>
 [208. Implement Trie (Prefix Tree)](../solutions/0208-Implement%20Trie%20(Prefix%20Tree).md)</br>
 [209. Minimum Size Subarray Sum](../solutions/0209-Minimum%20Size%20Subarray%20Sum.md)</br>
+[221. Maximal Square](../solutions/0221-Maximal%20Square.md)</br>
 [452. Minimum Number of Arrows to Burst Balloons](../solutions/0452-Minimum%20Number%20of%20Arrows%20to%20Burst%20Balloons.md)</br>
+
+### Hard
+---
+[212. Word Search II](../solutions/0212-Word%20Search%20II.md)</br>
