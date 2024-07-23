@@ -1,12 +1,12 @@
 
 ### Edit Distance
 
-Given two words *word1* and *word2*, find the minimum number of operations required to convert *word1* to *word2*.
+Given two strings `word1` and `word2`, return the minimum number of operations required to convert `word1` to `word2`.
 
-You have the following 3 operations permitted on a word:
-1. Insert a character
-2. Delete a character
-3. Replace a character
+You have the following three operations permitted on a word:
+* Insert a character
+* Delete a character
+* Replace a character
 
 __Example 1:__
 ```
@@ -28,6 +28,10 @@ enention -> exention (replace 'n' with 'x')
 exention -> exection (replace 'n' with 'c')
 exection -> execution (insert 'u')
 ```
+
+__Constraints:__
+* `0 <= word1.length, word2.length <= 500`
+* `word1` and `word2` consist of lowercase English letters.
 
 ### Solution
 __O(pow(3, min(word1, word2))) Time, O(1) Space - Bottom-Up Recursive Brute-Force:__
@@ -64,7 +68,7 @@ class Solution {
     }
 }
 ```
-__O(word1\*word2) Time, O(word1\*word2) Space - Bottom-Up Recursive, Top-Down Memoization:__
+__O(word1 * word2) Time, O(word1 * word2) Space - Bottom-Up Recursive + Memoization:__
 ```Swift
 class Solution {
     func minDistance(_ word1: String, _ word2: String) -> Int {

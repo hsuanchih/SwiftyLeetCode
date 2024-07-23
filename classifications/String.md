@@ -18,5 +18,6 @@
 [5. Longest Palindromic Substring](../solutions/0005-Longest%20Palindromic%20Substring.md)</br>
 [8. String to Integer (atoi)](../solutions/0008-String%20to%20Integer%20(atoi).md)</br>
 [71. Simplify Path](../solutions/0071-Simplify%20Path.md)</br>
+[72. Edit Distance](../solutions/0072-Edit%20Distance.md)</br>
 [165. Compare Version Numbers](../solutions/0165-Compare%20Version%20Numbers.md)</br>
 [393. UTF-8 Validation](../solutions/0393-UTF-8%20Validation.md)</br>

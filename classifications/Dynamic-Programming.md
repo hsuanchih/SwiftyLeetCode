@@ -18,6 +18,7 @@
 [63. Unique Paths II](../solutions/0063-Unique%20Paths%20II.md)</br>
 [64. Minimum Path Sum](../solutions/0064-Minimum%20Path%20Sum.md)</br>
 [70. Climbing Stairs](../solutions/0070-Climbing%20Stairs.md)</br>
+[72. Edit Distance](../solutions/0072-Edit%20Distance.md)</br>
 [91. Decode Ways](../solutions/0091-Decode%20Ways.md)</br>
 [95. Unique Binary Search Trees II](../solutions/0095-Unique%20Binary%20Search%20Trees%20II.md)</br>
 [96. Unique Binary Search Trees](../solutions/0096-Unique%20Binary%20Search%20Trees.md)</br>
@@ -60,7 +61,6 @@
 ---
 [10. Regular Expression Matching](../solutions/0010-Regular%20Expression%20Matching.md)</br>
 [44. Wildcard Matching](../solutions/0044-Wildcard%20Matching.md)</br>
-[72. Edit Distance](../solutions/0072-Edit%20Distance.md)</br>
 [85. Maximal Rectangle](../solutions/0085-Maximal%20Rectangle.md)</br>
 [87. Scramble String](../solutions/0087-Scramble%20String.md)</br>
 [97. Interleaving String](../solutions/0097-Interleaving%20String.md)</br>
