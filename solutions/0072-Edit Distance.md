@@ -72,30 +72,37 @@ __O(word1 * word2) Time, O(word1 * word2) Space - Bottom-Up Recursive + Memoizat
 ```Swift
 class Solution {
     func minDistance(_ word1: String, _ word2: String) -> Int {
-        var memo : [[Int?]] = Array(repeating: Array(repeating: nil, count: word2.count), count: word1.count)
-        return minDistance(Array(word1), Array(word2), 0, 0, &memo)
+        var memo: [[Int?]] = Array(repeating: Array(repeating: nil, count: word2.count), count: word1.count)
+        return minD(Array(word1), Array(word2), 0, 0, &memo)
     }
-    
-    func minDistance(_ word1: [Character], _ word2: [Character], _ i: Int, _ j: Int, _ memo: inout [[Int?]]) -> Int {
-        switch (i, j) {
-            case (word1.count, _):
-            return word2.count-j
-            case (_, word2.count):
-            return word1.count-i
-            default:
-            break
+
+    func minD(_ word1: [Character], _ word2: [Character], _ index1: Int, _ index2: Int, _ memo: inout [[Int?]]) -> Int {
+        switch (index1, index2) {
+        case (word1.count, let index2):
+            return word2.count - index2
+        case (let index1, word2.count):
+            return word1.count - index1
+        case (let index1, let index2) where word1[index1] == word2[index2]:
+            if let result = memo[index1][index2] {
+                return result
+            } else {
+                memo[index1][index2] = minD(word1, word2, index1 + 1, index2 + 1, &memo)
+                return memo[index1][index2]!
+            }
+        case (let index1, let index2):
+            if let result = memo[index1][index2] {
+                return result
+            } else {
+                let insert = minD(word1, word2, index1, index2 + 1, &memo)
+                let delete = minD(word1, word2, index1 + 1, index2, &memo)
+                let replace = minD(word1, word2, index1 + 1, index2 + 1, &memo)
+                memo[index1][index2] = 1 + min(min(insert, delete), replace)
+                return memo[index1][index2]!
+            }
         }
-        if let result = memo[i][j] {
-            return result
-        }
-        switch word1[i] {
-            case word2[j]:
-            memo[i][j] = minDistance(word1, word2, i+1, j+1, &memo)
-            default:
-            memo[i][j] = 1+min(
-                minDistance(word1, word2, i+1, j+1, &memo),
-                min(minDistance(word1, word2, i+1, j, &memo), minDistance(word1, word2, i, j+1, &memo))
-            )
+    }
+}
+```
         }
         return memo[i][j]!
     }
