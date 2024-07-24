@@ -103,8 +103,30 @@ class Solution {
     }
 }
 ```
+__O(word1 * word2) Time, O(word1 * word2) Space - Top-Down Iterative + Memoization:__
+```Swift
+class Solution {
+    func minDistance(_ word1: String, _ word2: String) -> Int {
+        let word1: [Character] = Array(word1), word2: [Character] = Array(word2)
+        var minD: [[Int]] = Array(repeating: Array(repeating: 0, count: word2.count + 1), count: word1.count + 1)
+        for index1 in stride(from: word1.count, through: 0, by: -1) {
+            for index2 in stride(from: word2.count, through: 0, by: -1) {
+                switch (index1, index2) {
+                case (word1.count, let index2):
+                    minD[index1][index2] = word2.count - index2
+                case (let index1, word2.count):
+                    minD[index1][index2] = word1.count - index1
+                case (let index1, let index2) where word1[index1] == word2[index2]:
+                    minD[index1][index2] = minD[index1 + 1][index2 + 1]
+                case (let index1, let index2):
+                    let insert = minD[index1][index2 + 1]
+                    let delete = minD[index1 + 1][index2]
+                    let replace = minD[index1 + 1][index2 + 1]
+                    minD[index1][index2] = 1 + min(min(insert, delete), replace)
+                }
+            }
         }
-        return memo[i][j]!
+        return minD.first?.first ?? 0
     }
 }
 ```
