@@ -130,31 +130,29 @@ class Solution {
     }
 }
 ```
-__O(word1\*word2) Time, O(word1\*word2) Space - Bottom-Up Iterative, Bottom-Up Memoization:__
+__O(word1 * word2) Time, O(word1 * word2) Space - Bottom-Up Iterative + Memoization:__
 ```Swift
 class Solution {
     func minDistance(_ word1: String, _ word2: String) -> Int {
         let word1 = Array(word1), word2 = Array(word2)
-        var memo : [[Int]] = Array(repeating: Array(repeating: 0, count: word2.count+1), count: word1.count+1)
-        for i in 0...word1.count {
-            for j in 0...word2.count {
-                switch (i, j) {
-                    case (0, 0):
+        var minD: [[Int]] = Array(repeating: Array(repeating: 0, count: word2.count + 1), count: word1.count + 1)
+        for index1 in 0 ... word1.count {
+            for index2 in 0 ... word2.count {
+                switch (index1, index2) {
+                case (0, 0):
                     break
-                    case (0, _):
-                    memo[i][j] = j
-                    case (_, 0):
-                    memo[i][j] = i
-                    default:
-                    if word1[i-1] == word2[j-1] {
-                        memo[i][j] = memo[i-1][j-1]
-                    } else {
-                        memo[i][j] = 1 + min(memo[i-1][j-1], min(memo[i][j-1], memo[i-1][j]))
-                    }
+                case (0, let index2):
+                    minD[index1][index2] = index2 - index1
+                case (let index1, 0):
+                    minD[index1][index2] = index1 - index2
+                case (let index1, let index2) where word1[index1 - 1] == word2[index2 - 1]:
+                    minD[index1][index2] = minD[index1 - 1][index2 - 1]
+                case (let index1, let index2):
+                    minD[index1][index2] = 1 + min(minD[index1 - 1][index2 - 1], min(minD[index1][index2 - 1], minD[index1 - 1][index2]))
                 }
             }
         }
-        return memo.last?.last ?? 0
+        return minD.last?.last ?? 0
     }
 }
 ```
