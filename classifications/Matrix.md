@@ -17,6 +17,7 @@
 [59. Spiral Matrix II](../solutions/0059-Spiral%20Matrix%20II.md)</br>
 [63. Unique Paths II](../solutions/0063-Unique%20Paths%20II.md)</br>
 [73. Set Matrix Zeroes](../solutions/0073-Set%20Matrix%20Zeroes.md)</br>
+[79. Word Search](../solutions/0079-Word%20Search.md)</br>
 [130. Surrounded Regions](../solutions/0130-Surrounded%20Regions.md)</br>
 [200. Number of Islands](../solutions/0200-Number%20of%20Islands.md)</br>
 [221. Maximal Square](../solutions/0221-Maximal%20Square.md)</br>
