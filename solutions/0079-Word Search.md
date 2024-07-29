@@ -73,3 +73,40 @@ class Solution {
     }
 }
 ```
+__Constant Space:__
+```Swift
+class Solution {
+    func exist(_ board: [[Character]], _ word: String) -> Bool {
+        var board: [[Character]] = board
+        let word: [Character] = Array(word)
+        for row in 0 ..< board.count {
+            for col in 0 ..< board.first!.count where solve(&board, row, col, word, 0) {
+                return true
+            }
+        }
+        return false
+    }
+
+    func solve(_ board: inout [[Character]], _ row: Int, _ col: Int, _ word: [Character], _ index: Int) -> Bool {
+        if index == word.count {
+            return true
+        } else {
+            switch (row, col) {
+            case (0 ..< board.count, 0 ..< board.first!.count) where board[row][col] == word[index]:
+                let letter: Character = board[row][col]
+                board[row][col] = "*"
+                for offset in [-1, 1] {
+                    if solve(&board, row + offset, col, word, index + 1) || solve(&board, row, col + offset, word, index + 1) {
+                        board[row][col] = letter
+                        return true
+                    }
+                }
+                board[row][col] = letter
+                return false
+            default:
+                return false
+            }
+        }
+    }
+}
+```
