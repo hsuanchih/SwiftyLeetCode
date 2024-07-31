@@ -1,29 +1,37 @@
 
 ### Path Sum II
 
-Given a binary tree and a sum, find all root-to-leaf paths where each path's sum equals the given sum.
+Given the `root` of a binary tree and an integer `targetSum`, return all __root-to-leaf__ paths where the sum of the node values in the path equals `targetSum`. Each path should be returned as a list of the node values, not node references.
 
-__Note:__ A leaf is a node with no children.
+A __root-to-leaf__ path is a path starting from the root and ending at any leaf node. A __leaf__ is a node with no children.
 
-__Example:__
+__Example 1:__
 
-Given the below binary tree and `sum = 22`,
+![question_113-0.jpg](../images/question_113-0.jpg)
 ```
-      5
-     / \
-    4   8
-   /   / \
-  11  13  4
- /  \      \
-7    2      1
+Input: root = [5,4,8,11,null,13,4,7,2,null,null,5,1], targetSum = 22
+Output: [[5,4,11,2],[5,8,4,5]]
+Explanation: There are two paths whose sum equals targetSum:
+5 + 4 + 11 + 2 = 22
+5 + 8 + 4 + 5 = 22
 ```
-Return:
+__Example 2:__
+
+![question_113-1.jpg](../images/question_113-1.jpg)
 ```
-[
-   [5,4,11,2],
-   [5,8,4,5]
-]
+Input: root = [1,2,3], targetSum = 5
+Output: []
 ```
+__Example 3:__
+```
+Input: root = [1,2], targetSum = 0
+Output: []
+```
+
+__Constraints:__
+* The number of nodes in the tree is in the range `[0, 5000]`.
+* `-1000 <= Node.val <= 1000`
+* `-1000 <= targetSum <= 1000`
 
 ### Solution
 ```Swift
