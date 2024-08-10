@@ -16,19 +16,23 @@ __Follow up:__
 Could you optimize your algorithm to use only O(k) extra space?
 
 ### Solution
+__O(pow(rowIndex, 2)) Time, O(pow(rowIndex, 2)) Space:__
 ```Swift
 class Solution {
     func getRow(_ rowIndex: Int) -> [Int] {
-        var rowSum = Array(repeating: 1, count: rowIndex+1)
-        if rowIndex < 2 {
-            return rowSum
-        }
-        for row in 2...rowIndex {
-            for col in stride(from: row-1, through: 1, by: -1) {
-                rowSum[col] = rowSum[col-1] + rowSum[col]
+        var result: [[Int]] = []
+        for row in 0 ... rowIndex {
+            var temp: [Int] = []
+            for index in 0 ... row {
+                if index == 0 || index == row {
+                    temp.append(1)
+                } else {
+                    temp.append(result[row - 1][index - 1] + result[row - 1][index])
+                }
             }
+            result.append(temp)
         }
-        return rowSum
+        return result.last ?? [] 
     }
 }
 ```
