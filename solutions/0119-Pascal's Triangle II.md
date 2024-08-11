@@ -36,3 +36,23 @@ class Solution {
     }
 }
 ```
+__O(pow(rowIndex, 2)) Time, O(rowIndex) Space:__
+```Swift
+class Solution {
+    func getRow(_ rowIndex: Int) -> [Int] {
+        var result: [Int] = []
+        for row in 0 ... rowIndex {
+            var temp: [Int] = []
+            for index in 0 ... row {
+                if index == 0 || index == row {
+                    temp.append(1)
+                } else {
+                    temp.append(result[index - 1] + result[index])
+                }
+            }
+            result = temp
+        }
+        return result
+    }
+}
+```
