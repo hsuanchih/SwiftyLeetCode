@@ -78,7 +78,7 @@ class Solution {
     }
 }
 ```
-__O(m\*n) Time, O(m\*n) Space - Iterative + Memoization:__
+__O(m * n) Time, O(m * n) Space - Bottom Up Iterative + Memoization:__
 ```Swift
 class Solution {
     func uniquePathsWithObstacles(_ obstacleGrid: [[Int]]) -> Int {
@@ -99,6 +99,29 @@ class Solution {
             }
         }
         return memo.last?.last ?? 0
+    }
+}
+```
+__O(m * n) Time, O(m * n) Space - Top Down Iterative + Memoization:__
+```Swift
+class Solution {
+    func uniquePathsWithObstacles(_ obstacleGrid: [[Int]]) -> Int {
+        var paths: [[Int]] = Array(repeating: Array(repeating: 0, count: obstacleGrid.first!.count), count: obstacleGrid.count)
+        for row in stride(from: obstacleGrid.count - 1, through: 0, by: -1) {
+            for col in stride(from: obstacleGrid.first!.count - 1, through: 0, by: -1) where obstacleGrid[row][col] == 0 {
+                switch (row, col) {
+                    case (obstacleGrid.count - 1, obstacleGrid.first!.count - 1):
+                        paths[row][col] = 1
+                    case (let row, obstacleGrid.first!.count - 1):
+                        paths[row][col] = paths[row + 1][col]
+                    case (obstacleGrid.count - 1, let col):
+                        paths[row][col] = paths[row][col + 1]
+                    case (let row, let col):
+                        paths[row][col] = paths[row + 1][col] + paths[row][col + 1]
+                }
+            }
+        }
+        return paths.first?.first ?? 0
     }
 }
 ```
