@@ -7,21 +7,23 @@ If there is no common prefix, return an empty string `""`.
 
 __Example 1:__
 ```
-Input: ["flower","flow","flight"]
+Input: strs = ["flower","flow","flight"]
 Output: "fl"
 ```
 __Example 2:__
 ```
-Input: ["dog","racecar","car"]
+Input: strs = ["dog","racecar","car"]
 Output: ""
 Explanation: There is no common prefix among the input strings.
 ```
-__Note:__
 
-All given inputs are in lowercase letters `a-z`.
+__Constraints:__
+* `1 <= strs.length <= 200`
+* `0 <= strs[i].length <= 200`
+* `strs[i]` consists of only lowercase English letters.
 
 ### Solution
-__O((strs\*k)+(strs)+(strs\*k)):__
+__O(strs) Time:__
 ```Swift
 class Solution {
     func longestCommonPrefix(_ strs: [String]) -> String {
