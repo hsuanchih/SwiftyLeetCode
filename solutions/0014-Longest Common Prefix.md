@@ -46,35 +46,30 @@ class Solution {
     }
 }
 ```
-__O((strs\*k)+(strs\*k)):__
+__O(strs) Time:__
 ```Swift
 class Solution {
     func longestCommonPrefix(_ strs: [String]) -> String {
-        let strs = strs.map(Array.init)
-        var index = 0, result : String = ""
+        let strs: [[Character]] = strs.map(Array.init)
+        var index: Int = 0
+        var result: [Character] = []
         while true {
-            var curr : Character?
+            var char: Character?
             for str in strs {
-                if index == str.count {
-                    return result
-                }
-                switch curr {
-                    case .none:
-                    curr = str[index]
-                    case .some(str[index]):
-                    break
-                    default:
-                    return result
+                if index >= str.count || (char != nil && char != str[index]) {
+                    return String(result)
+                } else {
+                    char = str[index]
                 }
             }
-            if let curr = curr {
-                result.append(curr)
+            if let char {
+                result.append(char)
+                index += 1
             } else {
-                return result
+                fatalError()
             }
-            index+=1
         }
-        return result
+        fatalError()
     }
 }
 ```
