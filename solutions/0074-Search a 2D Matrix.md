@@ -1,34 +1,34 @@
 
 ### Search a 2D Matrix
 
-Write an efficient algorithm that searches for a value in an *m* x *n* matrix.</br>
-This matrix has the following properties:
-
-* Integers in each row are sorted from left to right.
+You are given an `m x n` integer matrix `matrix` with the following two properties:
+* Each row is sorted in non-decreasing order.
 * The first integer of each row is greater than the last integer of the previous row.
 
+Given an integer `target`, return `true` if target is in `matrix` or `false` otherwise.
+
+You must write a solution in `O(log(m * n))` time complexity.
+
 __Example 1:__
+
+![question_74-0.jpg](../images/question_74-0.jpg)
 ```
-Input:
-matrix = [
-  [1,   3,  5,  7],
-  [10, 11, 16, 20],
-  [23, 30, 34, 50]
-]
-target = 3
+Input: matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 3
 Output: true
 ```
 __Example 2:__
+
+![question_74-1.jpg](../images/question_74-1.jpg)
 ```
-Input:
-matrix = [
-  [1,   3,  5,  7],
-  [10, 11, 16, 20],
-  [23, 30, 34, 50]
-]
-target = 13
+Input: matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 13
 Output: false
 ```
+
+__Constraints:__
+* `m == matrix.length`
+* `n == matrix[i].length`
+* `1 <= m, n <= 100`
+* `-pow(10, 4) <= matrix[i][j], target <= pow(10, 4)`
 
 ### Solution
 __O(matrix) Time - Brute-Force:__
