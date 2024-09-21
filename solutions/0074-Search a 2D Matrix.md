@@ -35,11 +35,9 @@ __O(matrix) Time - Brute-Force:__
 ```Swift
 class Solution{
     func searchMatrix(_ matrix: [[Int]], _ target: Int) -> Bool {
-        for row in stride(from: 0, to: matrix.count, by: 1) {
-            for col in stride(from: 0, to: matrix.first!.count, by: 1) {
-                if matrix[row][col] == target {
-                    return true
-                }
+        for row in 0 ..< matrix.count {
+            for col in 0 ..< matrix.first!.count where matrix[row][col] == target {
+                return true
             }
         }
         return false
