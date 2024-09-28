@@ -44,30 +44,26 @@ class Solution{
     }
 }
 ```
-__O(log\[base 2\](matrix)) Time - Binary-Search:__
+__O(log(matrix)) Time - Binary-Search:__
 ```Swift
 class Solution {
     func searchMatrix(_ matrix: [[Int]], _ target: Int) -> Bool {
-        let rows = matrix.count, cols = matrix.first?.count ?? 0
-        if rows == 0 || cols == 0 {
-            return false
-        }
-        var start = 0, end = rows*cols-1
-        while start+1 < end {
-            let mid = start + (end-start)/2
-            switch matrix[mid/cols][mid%cols] {
-                case target:
+        let numCols: Int = matrix.first!.count
+        var start: Int = 0, end: Int = matrix.count * numCols - 1
+        while start + 1 < end {
+            let mid: Int = start + (end - start) / 2
+            switch matrix[mid / numCols][mid % numCols] {
+            case target:
                 return true
-                case Int.min..<target:
+            case (target + 1)...:
+                end = mid 
+            case ..<target:
                 start = mid
-                default:
-                end = mid
+            default:
+                fatalError()
             }
         }
-        if matrix[start/cols][start%cols] == target || matrix[end/cols][end%cols] == target {
-            return true
-        }
-        return false
+        return matrix[start / numCols][start % numCols] == target || matrix[end / numCols][end % numCols] == target
     }
 }
 ```
