@@ -1,9 +1,7 @@
 
 ### Add Binary
 
-Given two binary strings, return their sum (also a binary string).
-
-The input strings are both __non-empty__ and contains only characters `1` or `0`.
+Given two binary strings `a` and `b`, return their sum as a binary string.
 
 __Example 1:__
 ```
@@ -15,6 +13,11 @@ __Example 2:__
 Input: a = "1010", b = "1011"
 Output: "10101"
 ```
+
+__Constraints:__
+* `1 <= a.length, b.length <= pow(10, 4)`
+* `a` and `b` consist only of `'0'` or `'1'` characters.
+* Each string does not contain leading zeros except for the zero itself.
 
 ### Solution
 __O(n):__
