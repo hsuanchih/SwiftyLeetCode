@@ -20,34 +20,51 @@ __Constraints:__
 * Each string does not contain leading zeros except for the zero itself.
 
 ### Solution
-__O(n):__
+__O(max(a, b)) Time, O(max(a, b)) Space:__
 ```Swift
 class Solution {
     func addBinary(_ a: String, _ b: String) -> String {
-        var result : String = "", carry : Int = 0
-        
-        let a : [Character] = a.reversed(), 
-        b : [Character] = b.reversed(), 
-        length = max(a.count, b.count)
-        
-        for i in stride(from: 0, to: length, by: 1) {
-            let num1 = (i < a.count ? a[i] : "0"), 
-            num2 = (i < b.count ? b[i] : "0")
-            switch (num1, num2) {
-                case ("0", "0"):
-                result.append(carry == 1 ? "1" : "0")
-                carry = 0
-                case ("1", "1"):
-                result.append(carry == 1 ? "1" : "0")
-                carry = 1
-                default:
-                result.append(carry == 1 ? "0" : "1")
+        if a.isEmpty {
+            return b
+        } else if b.isEmpty {
+            return a
+        } else {
+            let a: [Character] = Array(a.reversed())
+            let b: [Character] = Array(b.reversed())
+            var carry: Character = "0"
+            var result: [Character] = []
+            let count: Int = max(a.count, b.count)
+            for i in 0 ..< count {
+                let charA: Character = i < a.count ? a[i] : "0"
+                let charB: Character = i < b.count ? b[i] : "0"
+                let (val, _carry) = add(charA, charB, carry)
+                result.append(val)
+                carry = _carry
             }
+            if carry == "1" {
+                result.append(carry)
+            }
+            return String(result.reversed())
         }
-        if carry == 1 {
-            result.append("1")
+    }
+
+    func add(_ charA: Character, _ charB: Character, _ carry: Character) -> (Character, Character) {
+        switch (charA, charB, carry) {
+        case ("0", "0", "0"):
+            return ("0", "0")
+        case ("1", "0", "0"), 
+             ("0", "1", "0"), 
+             ("0", "0", "1"):
+            return ("1", "0")
+        case ("1", "1", "0"), 
+             ("1", "0", "1"), 
+             ("0", "1", "1"):
+            return ("0", "1")
+        case ("1", "1", "1"):
+            return ("1", "1")
+        default:
+            fatalError()
         }
-        return String(result.reversed())
     }
 }
 ```
