@@ -1,9 +1,9 @@
 
 ### Word Search II
 
-Given a 2D board and a list of words from the dictionary, find all words in the board.
+Given an `m x n` `board` of characters and a list of strings `words`, return __all words on the board__.
 
-Each word must be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once in a word.
+Each word must be constructed from letters of sequentially __adjacent cells__, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once in a word.
 
 __Example:__
 ```
