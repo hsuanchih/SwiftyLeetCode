@@ -12,10 +12,23 @@ __Example 1:__
 Input: board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]], words = ["oath","pea","eat","rain"]
 Output: ["eat","oath"]
 ```
+__Example 2:__
 
-__Note:__
-1. All inputs are consist of lowercase letters a-z.
-2. The values of `words` are distinct.
+![question_212-1.jpg](../images/question_212-1.jpg)
+```
+Input: board = [["a","b"],["c","d"]], words = ["abcb"]
+Output: []
+```
+
+__Constraints:__
+* `m == board.length`
+* `n == board[i].length`
+* `1 <= m, n <= 12`
+* `board[i][j]` is a lowercase English letter.
+* `1 <= words.length <= 3 * pow(10, 4)`
+* `1 <= words[i].length <= 10`
+* `words[i]` consists of lowercase English letters.
+* All the strings of `words` are unique.
 
 ### Solution
 __O((row\*col)^2+k\*words) Time, O(k\*words) Space - Prefix Tree + DFS Traversal:__
