@@ -34,8 +34,8 @@ __Constraints:__
 __O((row\*col)^2+k\*words) Time, O(k\*words) Space - Prefix Tree + DFS Traversal:__
 ```Swift
 extension Character {
-    var offset : Int {
-        return Int(asciiValue!-Character("a").asciiValue!)
+    var offset: Int {
+        return Int(asciiValue! - Character("a").asciiValue!)
     }
 }
 
