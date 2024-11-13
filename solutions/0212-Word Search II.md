@@ -58,13 +58,15 @@ class Solution {
     }
     
     // Root node of the Trie
-    private var root = TrieNode()
+    private let root = TrieNode()
     
     func findWords(_ board: [[Character]], _ words: [String]) -> [String] {
-        var board = board, result : Set<String> = []
+        guard !board.isEmpty else { return [] }
+        var board: [[Character]] = board
+        var result: Set<String> = []
         words.forEach(add)
-        for row in 0..<board.count {
-            for col in 0..<(board.first?.count ?? 0) {
+        for row in 0 ..< board.count {
+            for col in 0 ..< board.first!.count {
                 walk(&board, row, col, root, &result)
             }
         }
@@ -74,7 +76,7 @@ class Solution {
     // Helper method to walk the board & record words seen
     private func walk(_ board: inout [[Character]], _ row: Int, _ col: Int, _ curr: TrieNode, _ result: inout Set<String>) {
         switch (row, col) {
-            case (0..<board.count, 0..<(board.first?.count ?? 0)) where board[row][col] != "%":
+            case (0 ..< board.count, 0 ..< board.first!.count) where board[row][col] != "%":
             let char = board[row][col]
             if let node = curr.nodes[char.offset] {
                 if let word = node.word {
@@ -82,8 +84,8 @@ class Solution {
                 }
                 board[row][col] = "%"
                 for next in [-1, 1] {
-                    walk(&board, row+next, col, node, &result)
-                    walk(&board, row, col+next, node, &result)
+                    walk(&board, row + next, col, node, &result)
+                    walk(&board, row, col + next, node, &result)
                 }
                 board[row][col] = char
             }
