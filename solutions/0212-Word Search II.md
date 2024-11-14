@@ -31,7 +31,45 @@ __Constraints:__
 * All the strings of `words` are unique.
 
 ### Solution
-__O((row\*col)^2+k\*words) Time, O(k\*words) Space - Prefix Tree + DFS Traversal:__
+__Brute Force DFS, TLE:__
+```Swift
+class Solution {
+    func findWords(_ board: [[Character]], _ words: [String]) -> [String] {
+        guard !board.isEmpty else { return [] }
+        let words: Set<String> = Set(words)
+        var board: [[Character]] = board
+        var result: Set<String> = []
+        for row in 0 ..< board.count {
+            for col in 0 ..< board.first!.count {
+                walk(&board, row, col, words, "", &result)
+            }
+        }
+        return Array(result)
+    }
+
+    func walk(_ board: inout [[Character]], _ row: Int, _ col: Int, _ words: Set<String>, _ temp: String, _ result: inout Set<String>) {
+        switch (row, col) {
+        case (0 ..< board.count, 0 ..< board.first!.count) where board[row][col] != ".":
+            let char: Character = board[row][col]
+            let temp: String = temp + [char]
+            if words.contains(temp) {
+                result.insert(temp)
+            } else if !words.contains(where: { $0.hasPrefix(temp) }) {
+                break
+            }
+            board[row][col] = "."
+            for offset in [-1, 1] {
+                walk(&board, row + offset, col, words, temp, &result)
+                walk(&board, row, col + offset, words, temp, &result)
+            }
+            board[row][col] = char
+        default:
+            break
+        }
+    }
+}
+```
+__O(pow(row * col, 2) + k * words) Time, O(k * words) Space - Prefix Tree + DFS Traversal:__
 ```Swift
 extension Character {
     var offset: Int {
