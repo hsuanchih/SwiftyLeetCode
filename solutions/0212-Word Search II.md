@@ -43,14 +43,16 @@ class Solution {
     
     // TrieNode data structure declaration
     private class TrieNode {
-        var nodes : [TrieNode?] = Array(repeating: nil, count: 26)
+        var nodes: [TrieNode?] = Array(repeating: nil, count: 26)
         var word: String?
     }
+
     // Helper method to add words to the Trie
     private func add(_ word: String) {
-        var curr = root
+        var curr: TrieNode = root
         for char in word {
-            let offset = char.offset, node = curr.nodes[offset] ?? TrieNode()
+            let offset: Int = char.offset
+            let node: TrieNode = curr.nodes[offset] ?? TrieNode()
             curr.nodes[offset] = node
             curr = node
         }
