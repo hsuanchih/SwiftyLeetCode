@@ -71,6 +71,71 @@ class Solution {
 ```
 __O(pow(row * col, 2) + k * words) Time, O(k * words) Space - Prefix Tree + DFS Traversal:__
 ```Swift
+class Solution {
+    func findWords(_ board: [[Character]], _ words: [String]) -> [String] {
+        guard !board.isEmpty else { return [] }
+        let trie: TrieNode = TrieNode()
+        words.forEach { addWord($0, to: trie) }
+        var board: [[Character]] = board
+        var result: Set<String> = []
+        for row in 0 ..< board.count {
+            for col in 0 ..< board.first!.count {
+                walk(&board, row, col, "", trie, &result)
+            }
+        }
+        return Array(result)
+    }
+
+    func walk(_ board: inout [[Character]], _ row: Int, _ col: Int, _ temp: String, _ node: TrieNode, _ result: inout Set<String>) {
+        switch (row, col) {
+        case (0 ..< board.count, 0 ..< board.first!.count) where board[row][col] != ".":
+            let char: Character = board[row][col]
+            if let next = node.lookup[char] {
+                let temp: String = temp + [char]
+                if next.isWord {
+                    result.insert(temp)
+                }
+                board[row][col] = "."
+                for offset in [-1, 1] {
+                    walk(&board, row + offset, col, temp, next, &result)
+                    walk(&board, row, col + offset, temp, next, &result)
+                }
+                board[row][col] = char
+            } else {
+                break
+            }
+        default:
+            break
+        }
+    }
+
+    func addWord(_ word: String, to trie: TrieNode) {
+        var node: TrieNode = trie
+        for char in word {
+            if let next = node.lookup[char] {
+                node = next
+            } else {
+                let next: TrieNode = TrieNode()
+                node.lookup[char] = next
+                node = next
+            }
+        }
+        node.isWord = true
+    }
+
+    final class TrieNode {
+        var isWord: Bool
+        var lookup: [Character: TrieNode]
+
+        init() {
+            isWord = false
+            lookup = [:]
+        }
+    }
+}
+```
+__O(pow(row * col, 2) + k * words) Time, O(k * words) Space - Prefix Tree + DFS Traversal:__
+```Swift
 extension Character {
     var offset: Int {
         return Int(asciiValue! - Character("a").asciiValue!)
