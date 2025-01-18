@@ -52,14 +52,17 @@ __O(n):__
 ```Swift
 class Solution {
     func removeElement(_ nums: inout [Int], _ val: Int) -> Int {
-        var end = 0
-        for i in stride(from: 0, to: nums.count, by: 1) {
-            if nums[i] != val {
-                nums.swapAt(i, end)
-                end+=1
+        // Elements up to & including k is not equal to val
+        var k: Int = 0
+
+        // Iterate through the array and swap element into k if the element is not equal to val
+        for i in 0 ..< nums.count where nums[i] != val {
+            if nums[i] != nums[k] {
+                nums.swapAt(i, k)
             }
+            k += 1
         }
-        return end
+        return k
     }
 }
 ```
