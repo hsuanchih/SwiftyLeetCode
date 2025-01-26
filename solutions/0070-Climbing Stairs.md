@@ -31,12 +31,9 @@ __O(pow(2, n)) Time, Brute-Force:__
 ```swift
 class Solution {
     func climbStairs(_ n: Int) -> Int {
-        switch n {
-        case Int.min ..< 0:
-            return 0
-        case 0:
-            return 1
-        case let n:
+        if n <= 2 {
+            return n
+        } else {
             return climbStairs(n - 1) + climbStairs(n - 2)
         }
     }
