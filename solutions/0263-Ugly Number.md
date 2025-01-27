@@ -1,9 +1,9 @@
 
 ### Ugly Number
 
-Write a program to check whether a given number is an ugly number.
+An __ugly number__ is a positive integer whose prime factors are limited to `2`, `3`, and `5`.
 
-Ugly numbers are __positive numbers__ whose prime factors only include `2, 3, 5`.
+Given an integer `n`, return `true` if `n` is an ugly number.
 
 __Example 1:__
 ```
