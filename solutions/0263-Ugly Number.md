@@ -32,20 +32,18 @@ __Note:__
 __Recursive:__
 ```Swift
 class Solution {
-    func isUgly(_ num: Int) -> Bool {
-        switch num {
-            case Int.min...0:
+    func isUgly(_ n: Int) -> Bool {
+        switch n {
+        case ...0:
             return false
-            case 1:
+        case 1:
             return true
-            default:
-            for factor in [2,3,5] {
-                if num%factor == 0 {
-                    return isUgly(num/factor)
-                }
+        case let n:
+            for factor in [2, 3, 5] where n % factor == 0 && isUgly(n / factor) {
+                return true
             }
+            return false
         }
-        return false
     }
 }
 ```
