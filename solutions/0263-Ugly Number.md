@@ -50,23 +50,21 @@ class Solution {
 __Iterative:__
 ```Swift
 class Solution {
-    func isUgly(_ num: Int) -> Bool {
-        switch num {
-            case Int.min...0:
+    func isUgly(_ n: Int) -> Bool {
+        switch n {
+        case ...0:
             return false
-            case 1:
+        case 1:
             return true
-            default:
-            var num = num
-            while num > 1 {
-                for factor in [2,3,5] {
-                    if num%factor == 0 {
-                        num/=factor
-                        break
-                    }
-                    if factor == 5 {
-                        return false
-                    }
+        case var n:
+            while n > 1 {
+                let prev: Int = n
+                for factor in [2, 3, 5] where n % factor == 0 {
+                    n /= factor
+                    break
+                }
+                if prev == n {
+                    return false
                 }
             }
             return true
