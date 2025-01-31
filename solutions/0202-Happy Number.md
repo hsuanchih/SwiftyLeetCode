@@ -1,13 +1,18 @@
 
 ### Happy Number
 
-Write an algorithm to determine if a number is "happy".
+Write an algorithm to determine if a number `n` is happy.
 
-A happy number is a number defined by the following process: Starting with any positive integer, replace the number by the sum of the squares of its digits, and repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1. Those numbers for which this process ends in 1 are happy numbers.
+A __happy number__ is a number defined by the following process:
+* Starting with any positive integer, replace the number by the sum of the squares of its digits.
+* Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1.
+* Those numbers for which this process ends in 1 are happy.
 
-__Example:__
+Return `true` if `n` is a happy number, and `false` if not.
+
+__Example 1:__
 ```
-Input: 19
+Input: n = 19
 Output: true
 Explanation:
 12 + 92 = 82
@@ -15,6 +20,14 @@ Explanation:
 62 + 82 = 100
 12 + 02 + 02 = 1
 ```
+__Example 2:__
+```
+Input: n = 2
+Output: false
+```
+
+__Constraints:__
+* `1 <= n <= pow(2, 31) - 1`
 
 ### Solution
 __Iterative:__
