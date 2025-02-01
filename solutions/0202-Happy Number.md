@@ -34,21 +34,20 @@ __Iterative:__
 ```Swift
 class Solution {
     func isHappy(_ n: Int) -> Bool {
-        var n = n, seen : Set<Int> = []
-        while !seen.contains(n) {
-            if n == 1 {
-                return true
-            }
+        var seen: Set<Int> = []
+        var n: Int = n
+        while n != 1 && !seen.contains(n) {
             seen.insert(n)
-            var temp = 0
-            while n > 0 {
-                let digit = n%10
-                temp+=digit*digit
-                n/=10
+            var temp: Int = n
+            var num: Int = 0
+            while temp > 0 {
+                let digit: Int = temp % 10
+                num += digit * digit
+                temp /= 10
             }
-            n = temp
+            n = num
         }
-        return false
+        return n == 1
     }
 }
 ```
