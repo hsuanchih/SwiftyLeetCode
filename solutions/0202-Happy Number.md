@@ -55,25 +55,26 @@ __Recursive:__
 ```Swift
 class Solution {
     func isHappy(_ n: Int) -> Bool {
-        var seen : Set<Int> = []
+        var seen: Set<Int> = []
         return isHappy(n, &seen)
     }
-    
+
     func isHappy(_ n: Int, _ seen: inout Set<Int>) -> Bool {
-        if n == 1 {
-            return true
-        }
-        if seen.contains(n) {
+        if n == 1 { 
+            return true 
+        } else if seen.contains(n) {
             return false
+        } else {
+            seen.insert(n)
+            var n: Int = n
+            var num: Int = 0
+            while n > 0 {
+                let digit: Int = n % 10
+                num += digit * digit
+                n /= 10
+            }
+            return isHappy(num, &seen)
         }
-        seen.insert(n)
-        var n = n, temp = 0
-        while n > 0 {
-            let digit = n%10
-            temp+=digit*digit
-            n/=10
-        }
-        return isHappy(temp, &seen)
     }
 }
 ```
