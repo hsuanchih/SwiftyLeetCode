@@ -75,7 +75,7 @@ class Solution {
     }
 }
 ```
-__O(n) Time, O(1) Space - Floyd's Tortoise and Hare:__
+__O(head) Time, O(1) Space - Floyd's Tortoise and Hare:__
 ```Swift
 /**
  * Definition for singly-linked list.
@@ -90,12 +90,14 @@ __O(n) Time, O(1) Space - Floyd's Tortoise and Hare:__
  */
 class Solution {
     func hasCycle(_ head: ListNode?) -> Bool {
-        var slow = head, fast = head
-        while let node = fast, let next = node.next {
-            slow = slow?.next
-            fast = fast?.next?.next
+        var slow: ListNode? = head
+        var fast: ListNode? = head?.next
+        while let node = fast {
             if slow === fast {
                 return true
+            } else {
+                slow = slow?.next
+                fast = node.next?.next
             }
         }
         return false
