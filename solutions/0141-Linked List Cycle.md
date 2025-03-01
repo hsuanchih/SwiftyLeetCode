@@ -63,13 +63,15 @@ extension ListNode : Hashable {
 
 class Solution {
     func hasCycle(_ head: ListNode?) -> Bool {
-        var curr = head, seen : Set<ListNode> = []
-        while let node = curr {
-            if seen.contains(node) {
+        var visited: Set<ListNode> = []
+        var head: ListNode? = head
+        while let node = head {
+            if visited.contains(node) {
                 return true
+            } else {
+                visited.insert(node)
+                head = node.next
             }
-            seen.insert(node)
-            curr = node.next
         }
         return false
     }
