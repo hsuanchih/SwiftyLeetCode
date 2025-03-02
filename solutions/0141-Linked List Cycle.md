@@ -51,13 +51,42 @@ __O(pow(head, 2)) Time, O(head) Space - Array:__
  *     }
  * }
  */
-
-extension ListNode : Hashable {
-    public static func == (lhs: ListNode, rhs: ListNode) -> Bool {
-        return lhs === rhs
+class Solution {
+    func hasCycle(_ head: ListNode?) -> Bool {
+        var visited: [ListNode] = []
+        var head: ListNode? = head
+        while let node = head {
+            if visited.contains(where: { $0 === node }) {
+                return true
+            } else {
+                visited.append(node)
+                head = node.next
+            }
+        }
+        return false
     }
+}
+```
+__O(head) Time, O(head) Space - HashSet:__
+```Swift
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public var val: Int
+ *     public var next: ListNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.next = nil
+ *     }
+ * }
+ */
+extension ListNode: Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(ObjectIdentifier(self))
+    }
+
+    public static func == (lhs: ListNode, rhs: ListNode) -> Bool {
+        lhs === rhs
     }
 }
 
