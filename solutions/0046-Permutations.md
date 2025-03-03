@@ -1,21 +1,28 @@
 
 ### Permutations
 
-Given a collection of __distinct__ integers, return all possible permutations.
+Given an array `nums` of distinct integers, return all the possible permutations. You can return the answer in __any order__.
 
-__Example:__
+__Example 1:__
 ```
-Input: [1,2,3]
-Output:
-[
-  [1,2,3],
-  [1,3,2],
-  [2,1,3],
-  [2,3,1],
-  [3,1,2],
-  [3,2,1]
-]
+Input: nums = [1,2,3]
+Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
 ```
+__Example 2:__
+```
+Input: nums = [0,1]
+Output: [[0,1],[1,0]]
+```
+__Example 3:__
+```
+Input: nums = [1]
+Output: [[1]]
+```
+
+__Constraints:__
+* `1 <= nums.length <= 6`
+* `-10 <= nums[i] <= 10`
+* All the integers of `nums` are __unique__.
 
 ### Solution
 __O(nums!*nums) Time - Exhaustive Search:__
