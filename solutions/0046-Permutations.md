@@ -25,24 +25,23 @@ __Constraints:__
 * All the integers of `nums` are __unique__.
 
 ### Solution
-__O(nums!*nums) Time - Exhaustive Search:__
+__O(nums! * nums) Time - Exhaustive Search:__
 ```Swift
 class Solution {
     func permute(_ nums: [Int]) -> [[Int]] {
-        var temp : [Int] = [], result : [[Int]] = []
-        solve(nums, &temp, &result)
+        var temp: [Int] = []
+        var result: [[Int]] = []
+        generate(nums, &temp, &result)
         return result
     }
-    
-    func solve(_ nums: [Int], _ temp: inout [Int], _ result: inout [[Int]]) {
+
+    func generate(_ nums: [Int], _ temp: inout [Int], _ result: inout [[Int]]) {
         if temp.count == nums.count {
             result.append(temp)
-            return
-        }
-        for num in nums {
-            if !temp.contains(num) {
+        } else {
+            for num in nums where !temp.contains(num) {
                 temp.append(num)
-                solve(nums,  &temp, &result)
+                generate(nums, &temp, &result)
                 temp.removeLast()
             }
         }
