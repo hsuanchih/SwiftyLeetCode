@@ -52,23 +52,23 @@ __O(nums!) Time - Exhaustive Search + HashSet:__
 ```Swift
 class Solution {
     func permute(_ nums: [Int]) -> [[Int]] {
-        var temp : [Int] = [], seen : Set<Int> = [], result : [[Int]] = []
-        solve(nums, &seen, &temp, &result)
+        var used: Set<Int> = []
+        var temp: [Int] = []
+        var result: [[Int]] = []
+        generate(nums, &used, &temp, &result)
         return result
     }
-    
-    func solve(_ nums: [Int], _ seen: inout Set<Int>, _ temp: inout [Int], _ result: inout [[Int]]) {
+
+    func generate(_ nums: [Int], _ used: inout Set<Int>, _ temp: inout [Int], _ result: inout [[Int]]) {
         if temp.count == nums.count {
             result.append(temp)
-            return
-        }
-        for num in nums {
-            if !seen.contains(num) {
-                seen.insert(num)
+        } else {
+            for num in nums where !used.contains(num) {
+                used.insert(num)
                 temp.append(num)
-                solve(nums, &seen, &temp, &result)
+                generate(nums, &used, &temp, &result)
                 temp.removeLast()
-                seen.remove(num)
+                used.remove(num)
             }
         }
     }
