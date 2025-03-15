@@ -28,20 +28,21 @@ __O(C(n,k)):__
 ```Swift
 class Solution {
     func combine(_ n: Int, _ k: Int) -> [[Int]] {
-        var temp : [Int] = [], result : [[Int]] = []
+        var temp: [Int] = []
+        var result: [[Int]] = []
         generate(n, k, 1, &temp, &result)
         return result
     }
-    
-    func generate(_ n: Int, _ k: Int, _ index: Int, _ temp: inout [Int], _ result: inout [[Int]]) {
+
+    func generate(_ n: Int, _ k: Int, _ i: Int, _ temp: inout [Int], _ result: inout [[Int]]) {
         if temp.count == k {
             result.append(temp)
-            return
-        }
-        for i in stride(from: index, through: n, by: 1) {
-            temp.append(i)
-            generate(n, k, i+1, &temp, &result)
-            temp.removeLast()
+        } else {
+            for index in stride(from: i, through: n, by: 1) {
+                temp.append(index)
+                generate(n, k, index + 1, &temp, &result)
+                temp.removeLast()
+            }
         }
     }
 }
