@@ -59,7 +59,7 @@ class Solution {
     }
 }
 ```
-__O(n) Time - Recursive (Alternative Solution):__
+__Recursive - Bottom Up:__
 ```Swift
 /**
  * Definition for a binary tree node.
@@ -76,16 +76,15 @@ __O(n) Time - Recursive (Alternative Solution):__
  */
 class Solution {
     func binaryTreePaths(_ root: TreeNode?) -> [String] {
-        guard let node = root else { return [] }
-        switch (node.left, node.right) {
-            case (.none, .none):
-            return ["\(node.val)"]
-            default:
-            var result = binaryTreePaths(node.left) + binaryTreePaths(node.right)
-            for i in 0..<result.count {
-                result[i] = "\(node.val)->" + result[i]
+        guard let root else { return [] }
+        if root.left == nil, root.right == nil {
+            return ["\(root.val)"]
+        } else {
+            var paths: [String] = binaryTreePaths(root.left) + binaryTreePaths(root.right)
+            for i in 0 ..< paths.count {
+                paths[i] = "\(root.val)->\(paths[i])"
             }
-            return result
+            return paths
         }
     }
 }
