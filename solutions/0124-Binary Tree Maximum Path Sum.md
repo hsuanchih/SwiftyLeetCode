@@ -37,25 +37,28 @@ __Recursive:__
  *     public var val: Int
  *     public var left: TreeNode?
  *     public var right: TreeNode?
- *     public init(_ val: Int) {
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
  *         self.val = val
- *         self.left = nil
- *         self.right = nil
+ *         self.left = left
+ *         self.right = right
  *     }
  * }
  */
 class Solution {
     func maxPathSum(_ root: TreeNode?) -> Int {
-        var result = Int.min
-        maxPathSum(root, &result)
-        return result
+        var maxSum: Int = .min
+        _ = pathSum(root, &maxSum)
+        return maxSum
     }
-    
-    func maxPathSum(_ node: TreeNode?, _ result: inout Int) -> Int {
-        guard let node = node else { return 0 }
-        let leftSum = max(0, maxPathSum(node.left, &result)), rightSum = max(0, maxPathSum(node.right, &result))
-        result = max(result, node.val+leftSum+rightSum)
-        return node.val+max(leftSum, rightSum)
+
+    func pathSum(_ node: TreeNode?, _ maxSum: inout Int) -> Int {
+        guard let node else { return .min }
+        let leftSum: Int = max(pathSum(node.left, &maxSum), 0)
+        let rightSum: Int = max(pathSum(node.right, &maxSum), 0)
+        maxSum = max(maxSum, leftSum + rightSum + node.val)
+        return max(leftSum, rightSum) + node.val
     }
 }
 ```
