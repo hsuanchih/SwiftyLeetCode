@@ -25,18 +25,16 @@ __Constraints:__
 * `0 <= nums[i] <= 400`
 
 ### Solution
-__O(2^nums) Time, O(1) Space - Brute-Force:__
+__O(pow(2, nums)) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func rob(_ nums: [Int]) -> Int {
-        return rob(nums, 0)
+        maxProfit(nums, 0)
     }
-    
-    func rob(_ nums: [Int], _ index: Int) -> Int {
-        if index >= nums.count {
-            return 0
-        }
-        return max(rob(nums, index+1), nums[index]+rob(nums, index+2))
+
+    func maxProfit(_ nums: [Int], _ house: Int) -> Int {
+        guard house < nums.count else { return 0 }
+        return max(nums[house] + maxProfit(nums, house + 2), maxProfit(nums, house + 1))
     }
 }
 ```
