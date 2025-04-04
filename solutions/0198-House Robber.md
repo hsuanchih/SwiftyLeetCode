@@ -38,23 +38,25 @@ class Solution {
     }
 }
 ```
-__O(nums) Time, O(nums) Space - Bottom-Up Recursive, Top-Down Memoization:__
+__O(nums) Time, O(nums) Space - Recursive + Memoization:__
 ```Swift
 class Solution {
     func rob(_ nums: [Int]) -> Int {
-        var memo : [Int?] = Array(repeating: nil, count: nums.count)
-        return rob(nums, 0, &memo)
+        var memo: [Int?] = Array(repeating: nil, count: nums.count)
+        return maxProfit(nums, 0, &memo)
     }
-    
-    func rob(_ nums: [Int], _ index: Int, _ memo: inout [Int?]) -> Int {
-        if index >= nums.count {
-            return 0
+
+    func maxProfit(_ nums: [Int], _ index: Int, _ memo: inout [Int?]) -> Int {
+        guard index < nums.count else { return 0 }
+        if let profit = memo[index] {
+            return profit
+        } else {
+            memo[index] = max(
+                nums[index] + maxProfit(nums, index + 2, &memo), 
+                maxProfit(nums, index + 1, &memo)
+            )
+            return memo[index]!
         }
-        if let result = memo[index] {
-            return result
-        }
-        memo[index] = max(rob(nums, index+1, &memo), nums[index]+rob(nums, index+2, &memo))
-        return memo[index]!
     }
 }
 ```
