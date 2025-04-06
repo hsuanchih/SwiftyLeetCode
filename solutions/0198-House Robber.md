@@ -60,22 +60,23 @@ class Solution {
     }
 }
 ```
-__O(nums) Time, O(nums) Space - Bottom-Up Iterative, Bottom-Up Memoization:__
+__O(nums) Time, O(nums) Space - Iterative + Memoization:__
 ```Swift
 class Solution {
     func rob(_ nums: [Int]) -> Int {
         var memo : [Int] = Array(repeating: 0, count: nums.count)
-        for index in stride(from: 0, to: nums.count, by: 1) {
+        for index in 0 ..< nums.count {
             switch index {
             case 0:
                 memo[index] = nums[index]
             case 1:
-                memo[index] = max(nums[index], nums[index-1])
+                memo[index] = max(nums[index], nums[index - 1])
             default:
-                memo[index] = max(memo[index-1], nums[index]+memo[index-2])
+                memo[index] = max(memo[index - 1], nums[index] + memo[index - 2])
             }
         }
         return memo.last ?? 0
     }
 }
+```
 ```
