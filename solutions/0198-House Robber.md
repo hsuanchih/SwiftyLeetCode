@@ -79,4 +79,17 @@ class Solution {
     }
 }
 ```
+__O(nums) Time, O(nums) Space - Bottom-Up Dynamic Programming:__
+```Swift
+class Solution {
+    func rob(_ nums: [Int]) -> Int {
+        guard !nums.isEmpty else { return 0 }
+        var dp: [Int] = Array(repeating: 0, count: nums.count + 2)
+        for house in stride(from: nums.count - 1, through: 0, by: -1) {
+            dp[house] = max(nums[house] + dp[house + 2], dp[house + 1])
+        }
+        return dp[0]
+    }
+}
+```
 ```
