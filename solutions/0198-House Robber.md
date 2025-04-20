@@ -122,4 +122,19 @@ class Solution {
     }
 }
 ```
+__O(nums) Time, O(1) Space - Top-Down Dynamic Programming:__
+```Swift
+class Solution {
+    func rob(_ nums: [Int]) -> Int {
+        guard !nums.isEmpty else { return 0 }
+        var minus1: Int = 0
+        var minus2: Int = 0
+        for house in 0 ..< nums.count {
+            let temp: Int = minus1
+            minus1 = max(nums[house] + minus2, minus1)
+            minus2 = temp
+        }
+        return minus1
+    }
+}
 ```
