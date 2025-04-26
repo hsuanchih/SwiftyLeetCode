@@ -1,21 +1,30 @@
 
 ### Minimum Path Sum
 
-Given a *m* x *n* grid filled with non-negative numbers, find a path from top left to bottom right which *minimizes* the sum of all numbers along its path.
+Given a `m x n` `grid` filled with non-negative numbers, find a path from top left to bottom right, which minimizes the sum of all numbers along its path.
 
-__Note:__ You can only move either down or right at any point in time.
+__Note:__ 
+You can only move either down or right at any point in time.
 
-__Example:__
+__Example 1:__
+
+![question_64.jpg](../images/question_64.jpg)
 ```
-Input:
-[
-  [1,3,1],
-  [1,5,1],
-  [4,2,1]
-]
+Input: grid = [[1,3,1],[1,5,1],[4,2,1]]
 Output: 7
-Explanation: Because the path 1→3→1→1→1 minimizes the sum.
+Explanation: Because the path 1 → 3 → 1 → 1 → 1 minimizes the sum.
 ```
+__Example 2:__
+```
+Input: grid = [[1,2,3],[4,5,6]]
+Output: 12
+```
+
+__Constraints:__
+* `m == grid.length`
+* `n == grid[i].length`
+* `1 <= m, n <= 200`
+* `0 <= grid[i][j] <= 200`
 
 ### Solution
 __O(pow(2, m*n)) Time, O(1) Space - Recursive Brute-Force:__
