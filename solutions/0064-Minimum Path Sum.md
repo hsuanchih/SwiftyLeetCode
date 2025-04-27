@@ -27,7 +27,7 @@ __Constraints:__
 * `0 <= grid[i][j] <= 200`
 
 ### Solution
-__O(pow(2, m*n)) Time, O(1) Space - Recursive Brute-Force:__
+__O(pow(2, grid)) Time, O(1) Space - Recursive Brute-Force:__
 ```Swift
 class Solution {
     func minPathSum(_ grid: [[Int]]) -> Int {
