@@ -73,7 +73,7 @@ class Solution {
     }
 }
 ```
-__O(m\*n) Time, O(m\*n) Space - Iterative + Memoization:__
+__O(grid) Time, O(grid) Space - Iterative + Memoization:__
 ```Swift
 class Solution {
     func minPathSum(_ grid: [[Int]]) -> Int {
