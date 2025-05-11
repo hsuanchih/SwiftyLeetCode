@@ -96,7 +96,7 @@ class Solution {
     }
 }
 ```
-__O(m\*n) Time, O(1) Space - Memoization:__
+__O(grid) Time, O(1) Space - Memoization:__
 ```Swift
 class Solution {
     func minPathSum(_ grid: [[Int]]) -> Int {
@@ -106,16 +106,20 @@ class Solution {
                 switch (row, col) {
                 case (0, 0):
                     break
-                case (0, _):
+                case (0, let col):
                     grid[row][col] += grid[row][col - 1]
-                case (_, 0):
+                case (let row, 0):
                     grid[row][col] += grid[row - 1][col]
                 case (let row, let col):
                     grid[row][col] += min(grid[row][col - 1], grid[row - 1][col])
                 }
             }
         }
-        return grid.last?.last ?? 0
+        if let minPathSum = grid.last?.last {
+            return minPathSum
+        } else {
+            fatalError()
+        }
     }
 }
 ```
