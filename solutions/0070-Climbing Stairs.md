@@ -71,16 +71,17 @@ __O(n) Time + O(n) Space, Bottom-Up Iterative + Memoization:__
 ```swift
 class Solution {
     func climbStairs(_ n: Int) -> Int {
-        guard n > 0 else { return 0 }
-        var ways: [Int] = Array(repeating: 1, count: n + 1)
-        for stair in 1 ... n {
-            if stair == 1 {
-                ways[stair] = ways[stair - 1]
+        var dp: [Int] = Array(repeating: 0, count: n + 1)
+        for i in 0 ... n {
+            if i == 0 {
+                dp[i] = 1
+            } else if i == 1 {
+                dp[i] = dp[i - 1]
             } else {
-                ways[stair] = ways[stair - 1] + ways[stair - 2]
+                dp[i] = dp[i - 1] + dp[i - 2]
             }
         }
-        return ways.last ?? 0
+        return dp.last ?? 0
     }
 }
 ```
