@@ -89,13 +89,19 @@ __O(n) Time + O(1) Space, Bottom-Up Iterative + Memoization Space Optimized:__
 ```swift
 class Solution {
     func climbStairs(_ n: Int) -> Int {
-        var minus1 = 1, minus2 = 1, result = 1
-        for stair in stride(from: 2, through: n, by: 1) {
-            result = minus1 + minus2
-            minus2 = minus1
-            minus1 = result
+        if n <= 1 {
+            return 1
+        } else {
+            var result: Int = 0
+            var minus1: Int = 1
+            var minus2: Int = 1
+            for _ in 2 ... n {
+                result = minus1 + minus2
+                minus2 = minus1
+                minus1 = result
+            }
+            return result
         }
-        return result
     }
 }
 ```
