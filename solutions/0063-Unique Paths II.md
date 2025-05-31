@@ -21,6 +21,8 @@ There are two ways to reach the bottom-right corner:
 2. Down -> Down -> Right -> Right
 ```
 __Example 2:__
+
+![question_63-1.jpg](../images/question_63-1.jpg)
 ```
 Input: obstacleGrid = [[0,1],[0,0]]
 Output: 1
