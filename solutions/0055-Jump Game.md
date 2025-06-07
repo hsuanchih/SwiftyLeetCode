@@ -23,7 +23,7 @@ __Constraints:__
 * `0 <= nums[i] <= pow(10, 5)`
 
 ### Solution
-__O(pow(nums, nums)) Time, O(1) Space - Bottom-Up Recursive, Brute-Force:__
+__O(nums!) Time, O(1) Space - Top-Down Recursive, Brute-Force:__
 ```Swift
 class Solution {
     func canJump(_ nums: [Int]) -> Bool {
