@@ -35,15 +35,16 @@ __O(nums) Time:__
 ```Swift
 class Solution {
     func rotate(_ nums: inout [Int], _ k: Int) {
-        let k: Int = k % nums.count
+        let k = k % nums.count
         guard k != 0 else { return }
-        reverse(&nums, 0 ... (nums.count - k - 1))
-        reverse(&nums, nums.count - k ... nums.count - 1)
-        reverse(&nums, 0 ... nums.count - 1)
+        reverse(&nums, 0, nums.count - 1)
+        reverse(&nums, 0, k - 1)
+        reverse(&nums, k, nums.count - 1)
     }
 
-    func reverse(_ nums: inout [Int], _ range: ClosedRange<Int>) {
-        var start: Int = range.lowerBound, end: Int = range.upperBound
+    func reverse(_ nums: inout [Int], _ start: Int, _ end: Int) {
+        var start: Int = start
+        var end: Int = end
         while start < end {
             nums.swapAt(start, end)
             start += 1
