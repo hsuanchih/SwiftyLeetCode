@@ -40,7 +40,7 @@ class Solution {
 }
 
 ```
-__O(pow(nums, 2)) Time, O(nums) Space - Bottom-Up Recursive + Memoization:__
+__O(pow(nums, 2)) Time, O(nums) Space - Top-Down Recursive + Memoization:__
 ```Swift
 class Solution {
     func canJump(_ nums: [Int]) -> Bool {
@@ -60,6 +60,25 @@ class Solution {
             memo[index] = false
             return false
         }
+    }
+}
+```
+__O(pow(nums, 2)) Time, O(nums) Space - Top-Down Iterative + Dynamic Programming:__
+```Swift
+class Solution {
+    func canJump(_ nums: [Int]) -> Bool {
+        var dp: [Bool] = Array(repeating: false, count: nums.count)
+        for start in stride(from: nums.count - 1, through: 0, by: -1) {
+            if start == nums.count - 1 {
+                dp[start] = true
+            } else {
+                for offset in stride(from: nums[start], through: 1, by: -1) where start + offset >= nums.count - 1 || dp[start + offset] {
+                    dp[start] = true
+                    break
+                }
+            }
+        }
+        return dp[0]
     }
 }
 ```
