@@ -57,9 +57,7 @@ class Solution {
 
         // Iterate through the array and swap element into k if the element is not equal to val
         for i in 0 ..< nums.count where nums[i] != val {
-            if nums[i] != nums[k] {
-                nums.swapAt(i, k)
-            }
+            nums.swapAt(i, k)
             k += 1
         }
         return k
