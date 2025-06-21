@@ -22,6 +22,11 @@ __Example 2:__
 Input: height = [1,1]
 Output: 1
 ```
+__Example 3:__
+```
+Input: height = [1,3,2,5,25,24,5]
+Output: 24
+```
 
 __Constraints:__
 * `n == height.length`
@@ -45,12 +50,13 @@ class Solution {
     }
 }
 ```
-__O(height) Time, O(1) Space - 2 Pointers:__
+__O(height) Time, O(1) Space - 2 Pointers, Greedy:__
 ```Swift
 class Solution {
     func maxArea(_ height: [Int]) -> Int {
         var result: Int = 0
-        var start: Int = 0, end: Int = height.count - 1
+        var start: Int = 0
+        var end: Int = height.count - 1
 
         // Move in from both ends of the array, retain the taller of the two endpoints
         // as we advance the next index
