@@ -29,16 +29,13 @@ __O(t) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func isSubsequence(_ s: String, _ t: String) -> Bool {
-        if s.isEmpty { return true }
-        let s = Array(s)
-        var i = 0
+        let s: [Character] = Array(s)
+        var i: Int = 0
 
         // Use i to keep track of sequence in s
         // Iterate through t, if s[i] matches element in t, advance i
-        for char in t {
-            if char == s[i] {
-                i+=1
-            }
+        for char in t where i < s.count && s[i] == char {
+            i += 1
 
             // If i reaches end of s before we finish iterating through t
             // then s is a subsequence of t
@@ -46,7 +43,7 @@ class Solution {
                 return true
             }
         }
-        return false
+        return i == s.count
     }
 }
 ```
