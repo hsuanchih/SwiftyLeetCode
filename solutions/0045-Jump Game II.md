@@ -1,22 +1,35 @@
 
 ### Jump Game II
 
-Given an array of non-negative integers, you are initially positioned at the first index of the array.
+You are given a `0`-indexed array of integers `nums` of length `n`. You are initially positioned at `nums[0]`.
 
-Each element in the array represents your maximum jump length at that position.
+Each element `nums[i]` represents the maximum length of a forward jump from index i. In other words, if you are at `nums[i]`, you can jump to any `nums[i + j]` where:
+* `0 <= j <= nums[i]` and
+* `i + j < n`
 
-Your goal is to reach the last index in the minimum number of jumps.
+Return the minimum number of jumps to reach `nums[n - 1]`. The test cases are generated such that you can reach `nums[n - 1]`.
 
-__Example:__
+__Example 1:__
 ```
-Input: [2,3,1,1,4]
+Input: nums = [2,3,1,1,4]
 Output: 2
-Explanation: The minimum number of jumps to reach the last index is 2.
-    Jump 1 step from index 0 to 1, then 3 steps to the last index.
+Explanation: The minimum number of jumps to reach the last index is 2. Jump 1 step from index 0 to 1, then 3 steps to the last index.
+```
+__Example 2:__
+```
+Input: nums = [2,3,0,1,4]
+Output: 2
+```
+__Example 3:__
+```
+Input: nums = [7,0,9,6,9,6,1,7,9,0,1,2,9,0,3]
+Output: 2
 ```
 
-__Note:__
-You can assume that you can always reach the last index.
+__Constraints:__
+* `1 <= nums.length <= pow(10, 4)`
+* `0 <= nums[i] <= 1000`
+* It's guaranteed that you can reach `nums[n - 1]`.
 
 ### Solution
 __O(pow(nums, nums)) Time, O(1) Space - Recursive Bottom-Up Brute Force:__
