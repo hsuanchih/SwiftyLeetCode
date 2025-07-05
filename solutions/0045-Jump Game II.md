@@ -25,6 +25,11 @@ __Example 3:__
 Input: nums = [7,0,9,6,9,6,1,7,9,0,1,2,9,0,3]
 Output: 2
 ```
+__Example 4:__
+```
+Input: nums = [1,1,1,1]
+Output: 3
+```
 
 __Constraints:__
 * `1 <= nums.length <= pow(10, 4)`
