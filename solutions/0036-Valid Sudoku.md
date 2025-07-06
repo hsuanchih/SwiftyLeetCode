@@ -55,6 +55,7 @@ __Constraints:__
 * `board[i][j]` is a digit `1-9` or `'.'`.
 
 ### Solution
+__O(board * (board + board.count + board.first!.count)) Time, O(1) Space:__
 ```Swift
 class Solution {
     func isValidSudoku(_ board: [[Character]]) -> Bool {
