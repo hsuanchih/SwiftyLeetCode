@@ -156,3 +156,41 @@ class Solution {
     }
 }
 ```
+__O(board) Time, O(board) Space:__
+```Swift
+class Solution {
+    func isValidSudoku(_ board: [[Character]]) -> Bool {
+        var seenByRow: [Set<Character>] = Array(repeating: [], count: board.count)
+        var seenByCol: [Set<Character>] = Array(repeating: [], count: board.first!.count)
+        for row in stride(from: 0, to: board.count, by: 3) {
+            for col in stride(from: 0, to: board.first!.count, by: 3) where !isValid(board, row, col, &seenByRow, &seenByCol) {
+                return false
+            }
+        }
+        return true
+    }
+
+    func isValid(
+        _ board: [[Character]], 
+        _ row: Int, 
+        _ col: Int, 
+        _ seenByRow: inout [Set<Character>], 
+        _ seenByCol: inout [Set<Character>]
+    ) -> Bool {
+        var seen: Set<Character> = []
+        for r in row ..< row + 3 {
+            for c in col ..< col + 3 where board[r][c] != "." {
+                let num: Character = board[r][c]
+                if seenByRow[r].contains(num) || seenByCol[c].contains(num) || seen.contains(num) {
+                    return false
+                } else {
+                    seenByRow[r].insert(num)
+                    seenByCol[c].insert(num)
+                    seen.insert(num)
+                }
+            }
+        }
+        return true
+    }
+}
+```
