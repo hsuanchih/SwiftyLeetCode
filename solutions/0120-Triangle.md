@@ -38,13 +38,18 @@ __O(pow(2, triangle)) Time, O(1) Space, Brute-Force Recursive:__
 ```Swift
 class Solution {
     func minimumTotal(_ triangle: [[Int]]) -> Int {
-        guard !triangle.isEmpty else { return .min }
-        return minSum(triangle, row: 0, col: 0)
+        minSum(0, 0, triangle)
     }
 
-    func minSum(_ triangle: [[Int]], row: Int, col: Int) -> Int {
-        if row == triangle.count - 1 {
-            return triangle[row][col]
+    func minSum(_ row: Int, _ col: Int, _ triangle: [[Int]]) -> Int {
+        if row == triangle.count {
+            return 0
+        } else {
+            return min(minSum(row + 1, col, triangle), minSum(row + 1, col + 1, triangle)) + triangle[row][col]
+        }
+    }
+}
+```
         } else {
             return triangle[row][col] + min(minSum(triangle, row: row + 1, col: col), minSum(triangle, row: row + 1, col: col + 1))
         }
