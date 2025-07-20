@@ -50,9 +50,28 @@ class Solution {
     }
 }
 ```
+__O(triangle) Time, O(triangle) Space, Recursive + Memoization:__
+```Swift
+class Solution {
+    func minimumTotal(_ triangle: [[Int]]) -> Int {
+        var memo: [[Int?]] = Array(repeating: Array(repeating: nil, count: triangle.count), count: triangle.count)
+        return minSum(0, 0, triangle, &memo)
+    }
+
+    func minSum(_ row: Int, _ col: Int, _ triangle: [[Int]], _ memo: inout [[Int?]]) -> Int {
+        let minPathSum: Int
+        if row == triangle.count {
+            minPathSum = 0
+        } else if let value = memo[row][col] {
+            minPathSum = value
         } else {
-            return triangle[row][col] + min(minSum(triangle, row: row + 1, col: col), minSum(triangle, row: row + 1, col: col + 1))
+            minPathSum = min(
+                minSum(row + 1, col, triangle, &memo),
+                minSum(row + 1, col + 1, triangle, &memo)
+            ) + triangle[row][col]
+            memo[row][col] = minPathSum
         }
+        return minPathSum
     }
 }
 ```
