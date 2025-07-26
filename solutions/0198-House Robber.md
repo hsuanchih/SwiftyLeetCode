@@ -46,17 +46,19 @@ class Solution {
         return maxProfit(nums, 0, &memo)
     }
 
-    func maxProfit(_ nums: [Int], _ index: Int, _ memo: inout [Int?]) -> Int {
-        guard index < nums.count else { return 0 }
-        if let profit = memo[index] {
-            return profit
+    func maxProfit(_ nums: [Int], _ house: Int, _ memo: inout [Int?]) -> Int {
+        guard house < nums.count else { return 0 }
+        let profit: Int
+        if let result = memo[house] {
+            profit = result
         } else {
-            memo[index] = max(
-                nums[index] + maxProfit(nums, index + 2, &memo), 
-                maxProfit(nums, index + 1, &memo)
+            profit = max(
+                nums[house] + maxProfit(nums, house + 2, &memo),
+                maxProfit(nums, house + 1, &memo)
             )
-            return memo[index]!
+            memo[house] = profit
         }
+        return profit
     }
 }
 ```
