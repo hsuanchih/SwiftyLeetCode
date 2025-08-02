@@ -36,35 +36,33 @@ __Constraints:__
 * `0 <= amount <= pow(10, 4)`
 
 ### Solution
-__O(amount^coins) - Top-Down Recursive:__
+__O(pow(coins, amount)) - Top-Down Recursive:__
 ```Swift
 class Solution {
     func coinChange(_ coins: [Int], _ amount: Int) -> Int {
-
         // If we don't find a solution with the coins we have making up to the current amount,
         // return -1
-        return findChange(coins, amount) ?? -1
+        minCoins(coins, amount) ?? -1
     }
-    
-    func findChange(_ coins: [Int], _ amount: Int) -> Int? {
 
-        // Base case:
-        // If we eventually reach amount 0 exactly, it means there
-        // is a valid solution - return 0
+    func minCoins(_ coins: [Int], _ amount: Int) -> Int? {
         if amount == 0 {
+            // Base case:
+            // If we eventually reach amount 0 exactly, it means there
+            // is a valid solution - return 0
             return 0
+        } else {
+            // We want to try all possible coins that are smaller
+            // than the current amount to find the minimum number of
+            // coins we need to make up the current amount
+            // Also, the conditional check guarantees that the amount will never
+            // go below zero
+            var minCoinsForAmount: Int = .max
+            for coin in coins where amount >= coin {
+                minCoinsForAmount = min(minCoinsForAmount, minCoins(coins, amount - coin) ?? .max)
+            }
+            return minCoinsForAmount == .max ? nil : minCoinsForAmount + 1
         }
-
-        // We want to try all possible coins that are smaller
-        // than the current amount to find the minimum number of
-        // coins we need to make up the current amount
-        // Also, the conditional check guarantees that the amount will never
-        // go below zero
-        var minCoins = Int.max
-        for coin in coins where amount >= coin {
-            minCoins = min(minCoins, findChange(coins, amount-coin) ?? Int.max)
-        }
-        return minCoins == Int.max ? nil : minCoins+1
     }
 }
 ```
