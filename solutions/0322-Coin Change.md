@@ -66,28 +66,29 @@ class Solution {
     }
 }
 ```
-__O(coins*amount) - Top-Down Recursive, Bottom-Up Memoization:__
+__O(coins * amount) Time, O(amount) Space - Recursive + Memoization:__
 ```Swift
 class Solution {
     func coinChange(_ coins: [Int], _ amount: Int) -> Int {
-        var memo : [Int?] = Array(repeating: nil, count: amount+1)
-        let result = findChange(coins, amount, &memo)
-        return result == Int.max ? -1 : result
+        var memo: [Int?] = Array(repeating: nil, count: amount + 1)
+        memo[0] = 0
+        let result = minCoins(coins, amount, &memo)
+        return result == .max ? -1 : result
     }
-    
-    func findChange(_ coins: [Int], _ amount: Int, _ memo: inout [Int?]) -> Int {
-        if amount == 0 {
-            memo[amount] = 0
+
+    func minCoins(_ coins: [Int], _ amount: Int, _ memo: inout [Int?]) -> Int {
+        let result: Int
+        if let minCoins = memo[amount] {
+            result = minCoins
+        } else {
+            var minCoinsForAmount: Int = .max
+            for coin in coins where amount >= coin {
+                minCoinsForAmount = min(minCoinsForAmount, minCoins(coins, amount - coin, &memo))
+            }
+            result = minCoinsForAmount == .max ? .max : minCoinsForAmount + 1
+            memo[amount] = result
         }
-        if let result = memo[amount] {
-            return min(result, Int.max)
-        }
-        var minCoins = Int.max
-        for coin in coins where amount >= coin {
-            minCoins = min(minCoins, findChange(coins, amount-coin, &memo))
-        }
-        memo[amount] = min(minCoins, Int.max-1)+1
-        return memo[amount]!
+        return result
     }
 }
 ```
