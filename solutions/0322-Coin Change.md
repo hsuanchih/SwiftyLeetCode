@@ -92,18 +92,24 @@ class Solution {
     }
 }
 ```
-__O(coins*amount) Bottom-Up Iterative, Bottom-Up Memoization:__
+__O(coins * amount) Time, O(amount) Space, Iterative + Dynamic Programming:__
 ```Swift
 class Solution {
     func coinChange(_ coins: [Int], _ amount: Int) -> Int {
-        var memo : [Int] = Array(repeating: amount+1, count: amount+1)
-        memo[0] = 0
-        for coin in coins {
-            for sum in stride(from: 0, through: amount, by: 1) where sum-coin >= 0 {
-                memo[sum] = min(memo[sum], memo[sum-coin]+1)
+        var dp: [Int] = Array(repeating: .max, count: amount + 1)
+        for i in 0 ... amount {
+            if i == 0 {
+                dp[i] = 0
+            } else {
+                for coin in coins where i - coin >= 0 {
+                    let minCoins = dp[i - coin]
+                    if minCoins != .max {
+                        dp[i] = min(dp[i], minCoins + 1)
+                    }
+                }
             }
         }
-        return memo.last! > amount ? -1 : memo.last!
+        return dp[amount] == .max ? -1 : dp[amount]
     }
 }
 ```
