@@ -101,7 +101,7 @@ class Solution {
     }
 }
 ```
-__O(triangle) Time, O(triangle) Space:__
+__O(triangle) Time, O(triangle) Space - Top-Down Dynamic Programming:__
 ```Swift
 class Solution {
     func minimumTotal(_ triangle: [[Int]]) -> Int {
