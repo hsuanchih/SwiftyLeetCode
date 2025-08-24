@@ -127,6 +127,23 @@ class Solution {
     }
 }
 ```
+__O(triangle) Time, O(triangle) Space - Bottom-Up Dynamic Programming:__
+```Swift
+class Solution {
+    func minimumTotal(_ triangle: [[Int]]) -> Int {
+        var minSum: [[Int]] = triangle
+        for row in stride(from: triangle.count - 2, through: 0, by: -1) {
+            for col in 0 ..< triangle[row].count {
+                minSum[row][col] = triangle[row][col] + min(
+                    minSum[row + 1][col], 
+                    minSum[row + 1][col + 1]
+                )
+            }
+        }
+        return minSum.first?.first ?? .max
+    }
+}
+```
 __O(triangle) Time, O(rows) Space:__
 ```Swift
 class Solution {
