@@ -23,10 +23,10 @@ Output: 4
 ```
 
 __Constraints:__
-* `1 <= nums.length <= 10^4`
-* `-10^4 <= nums[i] <= 10^4`
+* `1 <= nums.length <= pow(10, 4)`
+* `-pow(10, 4) <= nums[i] <= pow(10, 4)`
 * `nums` contains __distinct__ values sorted in __ascending__ order.
-* `-10^4 <= target <= 10^4`
+* `-pow(10, 4) <= target <= pow(10, 4)`
 
 ### Solution
 __O(nums) Time, O(1) Space - Brute-Force:__
