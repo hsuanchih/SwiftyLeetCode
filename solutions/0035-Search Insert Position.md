@@ -29,17 +29,12 @@ __Constraints:__
 * `-pow(10, 4) <= target <= pow(10, 4)`
 
 ### Solution
-__O(nums) Time, O(1) Space - Brute-Force:__
+__O(nums) Time, O(1) Space - Linear Search:__
 ```Swift
 class Solution {
     func searchInsert(_ nums: [Int], _ target: Int) -> Int {
-        for index in stride(from: 0, to: nums.count, by: 1) {
-            switch nums[index] {
-                case target...Int.max:
-                return index
-                default:
-                break
-            }
+        for i in 0 ..< nums.count where nums[i] >= target {
+            return i
         }
         return nums.count
     }
