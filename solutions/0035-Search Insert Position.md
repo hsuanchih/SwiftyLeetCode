@@ -40,31 +40,36 @@ class Solution {
     }
 }
 ```
-__O(log\[base 2\](nums)) Time, O(1) Space - Binary Search:__
+__O(log(nums)) Time, O(1) Space - Binary Search:__
 ```Swift
 class Solution {
     func searchInsert(_ nums: [Int], _ target: Int) -> Int {
         var start: Int = 0, end: Int = nums.count - 1
         while start + 1 < end {
-            let mid = start + (end - start) / 2
+            let mid: Int = start + (end - start) / 2
             switch nums[mid] {
             case target:
                 return mid
-            case Int.min ..< target:
+            case ..<target:
                 start = mid
-            case target + 1 ... Int.max:
+            case (target + 1)...:
                 end = mid
             default:
                 fatalError()
             }
         }
-        if nums[end] < target {
+
+        // Why use '>=' instead of '>'?
+        // Consider this test case:
+        // Input: nums = [1], target = 1
+        // Output: 0
+        if nums[start] >= target {
+            return start
+        } else if nums[end] >= target {
+            return end
+        } else {
             return end + 1
         }
-        if nums[start] < target {
-            return start + 1
-        }
-        return start
     }
 }
 ```
