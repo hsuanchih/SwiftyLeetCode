@@ -45,12 +45,12 @@ class Solution {
     func canCompleteCircuit(_ gas: [Int], _ cost: [Int]) -> Int {
         for start in 0 ..< gas.count {
             var tank: Int = 0
-            for offset in 0 ..< gas.count {
-                let index = (start + offset) % gas.count
-                tank = tank + gas[index] - cost[index]
+            for i in 0 ..< gas.count {
+                let stop: Int = (start + i) % gas.count
+                tank += gas[stop] - cost[stop]
                 if tank < 0 {
                     break
-                } else if offset == gas.count - 1 {
+                } else if i == gas.count - 1 {
                     return start
                 }
             }
