@@ -93,3 +93,25 @@ class Solution {
     }
 }
 ```
+__O(gas) Time, O(1) Space - Greedy:__
+```Swift
+class Solution {
+    func canCompleteCircuit(_ gas: [Int], _ cost: [Int]) -> Int {
+        var start: Int = 0
+        while start < gas.count {
+            var tank: Int = 0
+            for i in 0 ..< gas.count {
+                let stop: Int = (start + i) % gas.count
+                tank += gas[stop] - cost[stop]
+                if tank < 0 {
+                    start = start + i + 1
+                    break
+                } else if i == gas.count - 1 {
+                    return start
+                }
+            }
+        }
+        return -1
+    }
+}
+```
