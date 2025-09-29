@@ -73,50 +73,30 @@ class Solution {
     }
 }
 ```
-__O(grid) Time, O(grid) Space - Iterative + Memoization:__
+__O(grid) Time, O(grid) Space - Iterative Dynamic Programming:__
 ```Swift
 class Solution {
     func minPathSum(_ grid: [[Int]]) -> Int {
-        var memo: [[Int]] = Array(repeating: Array(repeating: 0, count: grid.first!.count), count: grid.count)
+        var minPath: [[Int]] = grid
         for row in 0 ..< grid.count {
             for col in 0 ..< grid.first!.count {
                 switch (row, col) {
                 case (0, 0):
-                    memo[row][col] = grid[row][col]
-                case (0, _):
-                    memo[row][col] = grid[row][col] + memo[row][col - 1]
-                case (_, 0):
-                    memo[row][col] = grid[row][col] + memo[row - 1][col]
-                case (let row, let col):
-                    memo[row][col] = grid[row][col] + min(memo[row][col - 1], memo[row - 1][col])
-                }
-            }
-        }
-        return memo.last?.last ?? 0
-    }
-}
-```
-__O(grid) Time, O(1) Space - Memoization:__
-```Swift
-class Solution {
-    func minPathSum(_ grid: [[Int]]) -> Int {
-        var grid: [[Int]] = grid
-        for row in 0 ..< grid.count {
-            for col in 0 ..< grid.first!.count {
-                switch (row, col) {
-                case (0, 0):
-                    break
+                    minPath[row][col] = grid[row][col]
                 case (0, let col):
-                    grid[row][col] += grid[row][col - 1]
+                    minPath[row][col] = minPath[row][col - 1] + grid[row][col]
                 case (let row, 0):
-                    grid[row][col] += grid[row - 1][col]
+                    minPath[row][col] = minPath[row - 1][col] + grid[row][col]
                 case (let row, let col):
-                    grid[row][col] += min(grid[row][col - 1], grid[row - 1][col])
+                    minPath[row][col] = min(
+                        minPath[row][col - 1],
+                        minPath[row - 1][col]
+                    ) + grid[row][col]
                 }
             }
         }
-        if let minPathSum = grid.last?.last {
-            return minPathSum
+        if let result = grid.last?.last {
+            return result
         } else {
             fatalError()
         }
