@@ -42,18 +42,20 @@ class Solution {
     }
 }
 ```
-__O(prices) Time, O(1) Space - Memoization:__
+__O(prices) Time, O(1) Space - Greedy:__
 ```Swift
 class Solution {
     func maxProfit(_ prices: [Int]) -> Int {
-        var lowest = Int.max, maxProfit = 0
+        guard !prices.isEmpty else { return 0 }
+        var minBuyPrice: Int = prices.first!
+        var maxProfit: Int = 0
 
         // Update the lowest buying price as we iterate through prices
         // We can sell on the same day or any day later, so we can safely
         // assume that any price minus the lowest buying price is a valid transaction
         for price in prices {
-            lowest = min(price, lowest)
-            maxProfit = max(maxProfit, price-lowest)
+            maxProfit = max(maxProfit, price - minBuyPrice)
+            minBuyPrice = min(minBuyPrice, price)
         }
         return maxProfit
     }
