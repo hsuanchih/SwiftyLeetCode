@@ -26,17 +26,24 @@ __Constraints:__
 * `0 <= prices[i] <= 10^4`
 
 ### Solution
-__O(prices^2) Time, O(1) Space - Brute-Force:__
+__O(pow(prices, 3)) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func maxProfit(_ prices: [Int]) -> Int {
-        var result = 0
-
-        // Compute the maximum profit that can be made from each buy
-        for buy in 0..<prices.count {
-            for sell in buy..<prices.count {
-                result = max(prices[sell]-prices[buy], result)
+        var result: Int = .min
+        for buy in 0 ..< prices.count {
+            for sell in buy ..< prices.count {
+                result = max(result, maxProfit(prices, buy ... sell))
             }
+        }
+        return result
+    }
+
+    func maxProfit(_ prices: [Int], _ transactionRange: ClosedRange<Int>) -> Int {
+        var result: Int = .min
+        let buy = transactionRange.lowerBound
+        for sell in transactionRange {
+            result = max(result, prices[sell] - prices[buy])
         }
         return result
     }
