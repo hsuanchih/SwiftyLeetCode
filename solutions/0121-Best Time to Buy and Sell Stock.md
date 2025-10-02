@@ -49,6 +49,21 @@ class Solution {
     }
 }
 ```
+__O(pow(prices, 2)) Time, O(1) Space - Brute-Force Improved:__
+```Swift
+class Solution {
+    func maxProfit(_ prices: [Int]) -> Int {
+        guard !prices.isEmpty else { return 0 }
+        var maxProfit: Int = 0
+        for buy in 0 ..< prices.count - 1 {
+            for sell in buy + 1 ..< prices.count where prices[sell] - prices[buy] > maxProfit {
+                maxProfit = prices[sell] - prices[buy]
+            }
+        }
+        return maxProfit
+    }
+}
+```
 __O(prices) Time, O(1) Space - Greedy:__
 ```Swift
 class Solution {
