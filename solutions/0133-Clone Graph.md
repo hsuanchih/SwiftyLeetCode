@@ -1,10 +1,11 @@
 
 ### Clone Graph
 
-Given a reference of a node in a connected undirected graph.</br>
+Given a reference of a node in a connected undirected graph.
+
 Return a deep copy (clone) of the graph.
 
-Each node in the graph contains a val (int) and a list (List[Node]) of its neighbors.
+Each node in the graph contains a value (`int`) and a list (`List[Node]`) of its neighbors.
 ```
 class Node {
     public int val;
@@ -49,13 +50,6 @@ __Example 3:__
 Input: adjList = []
 Output: []
 Explanation: This an empty graph, it does not have any nodes.
-```
-__Example 4:__
-
-![example4](images/question_133-2.png)
-```
-Input: adjList = [[2],[1]]
-Output: [[2],[1]]
 ```
 
 __Constraints:__
