@@ -27,7 +27,7 @@ You must return the copy of the given node as a reference to the cloned graph.
 
 __Example 1:__
 
-![example1](images/question_133-0.png)
+![question_133-0.png](../images/question_133-0.png)
 ```
 Input: adjList = [[2,4],[1,3],[2,4],[1,3]]
 Output: [[2,4],[1,3],[2,4],[1,3]]
@@ -39,7 +39,7 @@ Explanation: There are 4 nodes in the graph.
 ```
 __Example 2:__
 
-![example2](images/question_133-1.png)
+![question_133-1.png](../images/question_133-1.png)
 ```
 Input: adjList = [[]]
 Output: [[]]
