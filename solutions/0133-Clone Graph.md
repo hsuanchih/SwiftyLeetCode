@@ -60,7 +60,7 @@ __Constraints:__
 * The Graph is connected and all nodes can be visited starting from the given node.
 
 ### Solution
-__O(V+E) BFS:__
+__O(V+E) Iterative:__
 ```Swift
 /**
  * Definition for a Node.
@@ -80,7 +80,7 @@ class Solution {
         // Lookup table here serves 2 purposes:
         // 1. Tracking the visited nodes to prevent cycle, and
         // 2. Maintaining the assoication between the original & cloned nodes
-        var queue : [Node] = [node], lookup : [Int: Node] = [node.val : Node(node.val)]
+        var queue: [Node] = [node], lookup: [Int: Node] = [node.val: Node(node.val)]
 
         while !queue.isEmpty {
             let size = queue.count
