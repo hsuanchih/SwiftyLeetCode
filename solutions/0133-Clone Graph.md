@@ -111,3 +111,40 @@ class Solution {
     }
 }
 ```
+__O(V+E) Recursive:__
+```Swift
+/**
+ * Definition for a Node.
+ * public class Node {
+ *     public var val: Int
+ *     public var neighbors: [Node?]
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.neighbors = []
+ *     }
+ * }
+ */
+
+class Solution {
+    func cloneGraph(_ node: Node?) -> Node? {
+        guard let node else { return nil }
+        var lookup: [Int: Node] = [:]
+        return cloneNode(node, &lookup)
+    }
+
+    func cloneNode(_ node: Node, _ lookup: inout [Int: Node]) -> Node {
+        if let clone = lookup[node.val] {
+            return clone
+        } else {
+            let clone = Node(node.val)
+            lookup[clone.val] = clone
+            node.neighbors.forEach {
+                if let neighbor = $0 {
+                    clone.neighbors.append(cloneNode(neighbor, &lookup))
+                }
+            }
+            return clone
+        }
+    }
+}
+```
