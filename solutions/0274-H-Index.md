@@ -24,7 +24,7 @@ __Constraints:__
 * `0 <= citations[i] <= 1000`
 
 ### Solution
-__O(n^2) Time, O(1) Space - Brute-Force:__
+__O(pow(citations, 2)) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func hIndex(_ citations: [Int]) -> Int {
