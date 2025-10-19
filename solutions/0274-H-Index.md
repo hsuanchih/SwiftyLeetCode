@@ -28,15 +28,33 @@ __O(pow(citations, 2)) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func hIndex(_ citations: [Int]) -> Int {
-        for index in stride(from: citations.count-1, through: 0, by: -1) {
-            var count = 0
-            for citation in citations {
-                if citation >= index+1 {
-                    count+=1
+        guard citations.count > 0 else { return 0 }
+        var result: Int = 0
+        for papers in 1 ... citations.count {
+            var numCitationsGreaterThanOrEqualToPapers: Int = 0
+            for citation in citations where citation >= papers {
+                numCitationsGreaterThanOrEqualToPapers += 1
+                if numCitationsGreaterThanOrEqualToPapers == papers {
+                    result = papers
+                    break
                 }
             }
-            if count >= index+1 {
-                return index+1
+        }
+        return result
+    }
+}
+```
+__O(pow(citations, 2)) Time, O(1) Space - Brute-Force Optimized:__
+```Swift
+class Solution {
+    func hIndex(_ citations: [Int]) -> Int {
+        for papers in stride(from: citations.count, through: 1, by: -1) {
+            var numCitationsGreaterThanOrEqualToPapers: Int = 0
+            for citation in citations where citation >= papers {
+                numCitationsGreaterThanOrEqualToPapers += 1
+                if numCitationsGreaterThanOrEqualToPapers == papers {
+                    return papers
+                }
             }
         }
         return 0
