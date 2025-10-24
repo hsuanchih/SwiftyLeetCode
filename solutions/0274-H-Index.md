@@ -61,23 +61,45 @@ class Solution {
     }
 }
 ```
-__O(n) Time, O(n) Space - Bucket Sort:__
+__O(citations * log(citations) + 2 * citations) Time, O(1) Space - Sorted Input:__
 ```Swift
 class Solution {
     func hIndex(_ citations: [Int]) -> Int {
-        var count : [Int] = Array(repeating: 0, count: citations.count+1)
-        for citation in citations {
-            if citation >= citations.count {
-                count[citations.count]+=1
-            } else {
-                count[citation]+=min(1, citation)
-            }
+        let citations: [Int] = citations.sorted().reversed()
+        for i in 0 ..< citations.count where i >= citations[i] {
+            return i
         }
-        var citationCount : Int = 0
-        for index in stride(from: citations.count, through: 0, by: -1) {
-            citationCount+=count[index]
-            if citationCount >= index {
-                return index
+        return citations.count
+    }
+}
+```
+__O(citations * log(citations) + citations) Time, O(1) Space - Sorted Input:__
+```Swift
+class Solution {
+    func hIndex(_ citations: [Int]) -> Int {
+        let citations = citations.sorted()
+        var result: Int = 0
+        for i in stride(from: citations.count - 1, through: 0, by: -1) where citations[i] >= citations.count - i {
+            result = max(result, citations.count - i)
+        }
+        return result
+    }
+}
+```
+__O(2 * citations) Time, O(citations) Space - Bucket Sort:__
+```Swift
+class Solution {
+    func hIndex(_ citations: [Int]) -> Int {
+        var numPapersByCitation: [Int] = Array(repeating: 0, count: citations.count + 1)
+        for citation in citations {
+            numPapersByCitation[min(citation, citations.count)] += 1
+        }
+
+        var numCitations: Int = 0
+        for h in stride(from: citations.count, through: 0, by: -1) {
+            numCitations += numPapersByCitation[h]
+            if h <= numCitations {
+                return h
             }
         }
         return 0
