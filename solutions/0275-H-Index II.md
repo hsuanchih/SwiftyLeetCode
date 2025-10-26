@@ -1,29 +1,30 @@
 
 ### H-Index II
 
-Given an array of citations __sorted in ascending order__ (each citation is a non-negative integer) of a researcher,</br> 
-write a function to compute the researcher's h-index.
+Given an array of integers `citations` where `citations[i]` is the number of citations a researcher received for their `ith` paper and `citations` is __sorted in ascending order__, return the researcher's h-index.
 
-According to the definition of h-index on Wikipedia:</br> 
-"A scientist has index *h* if *h* of his/her *N* papers have __at least__ *h* citations each,</br> 
-and the other *N − h* papers have __no more than__ *h* citations each."
+According to the definition of h-index on Wikipedia: The h-index is defined as the maximum value of `h` such that the given researcher has published at least `h` papers that have each been cited at least `h` times.
 
-__Example:__
+You must write an algorithm that runs in logarithmic time.
+
+__Example 1:__
 ```
 Input: citations = [0,1,3,5,6]
-Output: 3 
-Explanation: [0,1,3,5,6] means the researcher has 5 papers in total and each of them had 
-             received 0, 1, 3, 5, 6 citations respectively. 
-             Since the researcher has 3 papers with at least 3 citations each and the remaining 
-             two with no more than 3 citations each, her h-index is 3.
+Output: 3
+Explanation: [0,1,3,5,6] means the researcher has 5 papers in total and each of them had received 0, 1, 3, 5, 6 citations respectively.
+Since the researcher has 3 papers with at least 3 citations each and the remaining two with no more than 3 citations each, their h-index is 3.
+```
+__Example 2:__
+```
+Input: citations = [1,2,100]
+Output: 2
 ```
 
-__Note:__
-If there are several possible values for *h*, the maximum one is taken as the h-index.
-
-__Follow up:__
-* This is a follow up problem to `H-Index`, where `citations` is now guaranteed to be sorted in ascending order.
-* Could you solve it in logarithmic time complexity?
+__Constraints:__
+* `n == citations.length`
+* `1 <= n <= pow(10, 5)`
+* `0 <= citations[i] <= 1000`
+* citations is __sorted in ascending order__.
 
 ### Solution
 __O(log\[base 2\](citations)):__
