@@ -27,21 +27,28 @@ __Constraints:__
 * citations is __sorted in ascending order__.
 
 ### Solution
-__O(log\[base 2\](citations)):__
+__O(citations) Time, Linear Search:__
 ```Swift
 class Solution {
     func hIndex(_ citations: [Int]) -> Int {
-        if citations.isEmpty { return 0 }
-
+        for i in 0 ..< citations.count where citations[i] >= citations.count - i {
+            return citations.count - i
+        }
+        return 0
+    }
+}
+```
+__O(log(citations)) Time, Binary Search:__
+```Swift
+class Solution {
+    func hIndex(_ citations: [Int]) -> Int {
         // Binary search elements in citations to find the maximum H-Index
-        var start = 0, end = citations.count-1
-        while start+1 < end {
-            let mid = start + (end-start)/2, hIndex = citations.count-mid
-
-            // If all (citations.count-mid) publications have more than (citations.count-mid) citations,
-            // we've found a valid H-Index (citations.count-mid)
-            // But we want the maximum valid H-Index, so continue search to the left
-            if citations[mid] >= hIndex {
+        var start: Int = 0, end: Int = citations.count - 1
+        while start + 1 < end {
+            let mid: Int = start + (end - start) / 2
+            // If all citations.count - mid publications have more than citations[mid] citations,
+            // we've found a valid H-Index, but we want the maximum valid H-Index, so continue search to the left
+            if citations[mid] >= citations.count - mid {
                 end = mid
             } else {
                 start = mid
@@ -50,12 +57,11 @@ class Solution {
 
         // Prioritize the larger H-Index over the smaller H-Index:
         // check start before end
-        switch (citations[start], citations[end]) {
-            case (citations.count-start...Int.max, _):
-            return citations.count-start
-            case (_, citations.count-end...Int.max):
-            return citations.count-end
-            default:
+        if citations[start] >= citations.count - start {
+            return citations.count - start
+        } else if citations[end] >= citations.count - end {
+            return citations.count - end
+        } else {
             return 0
         }
     }
