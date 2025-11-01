@@ -32,37 +32,32 @@ A solution set is:
 ```
 
 ### Solution
-__O(2^candidates):__
+__O(pow(candidates, target)):__
 ```Swift
 class Solution {
     func combinationSum(_ candidates: [Int], _ target: Int) -> [[Int]] {
-        var result : [[Int]] = []
-        findSum(candidates, 0, target, [], &result)
+        var temp: [Int] = []
+        var result: [[Int]] = []
+        findSum(candidates, target, 0, &temp, &result)
         return result
     }
-    
-    func findSum(_ candidates: [Int], _ index: Int, _ target: Int, _ temp: [Int], _ result: inout [[Int]]) {
-        
-        // Base case: we have a solution
-        // add the current combination to result
+
+    func findSum(_ candidates: [Int], _ target: Int, _ start: Int, _ temp: inout [Int], _ result: inout [[Int]]) {
         if target == 0 {
+
+            // Base case: we have a solution
+            // add the current combination to result
             result.append(temp)
-            return
-        }
+        } else {
 
-        // For each number in candidates starting at index
-        // exhaustively search of a solution
-        var curr = temp
-        for i in index..<candidates.count {
-            let num = candidates[i]
-
-            // Pruning the search space:
-            // We only want to continue the search if the current number is less than or equal
-            // to the remaining sum
-            if target >= num {
-                curr.append(num)
-                findSum(candidates, i, target-num, curr, &result)
-                curr.removeLast()
+            // For each number in candidates starting at `start`
+            // exhaustively search of a solution while pruning the search space.
+            // We only want to continue the search if the current candidate is less than or equal
+            // to `target`
+            for i in start ..< candidates.count where target >= candidates[i] {
+                temp.append(candidates[i])
+                findSum(candidates, target - candidates[i], i, &temp, &result)
+                temp.removeLast()
             }
         }
     }
