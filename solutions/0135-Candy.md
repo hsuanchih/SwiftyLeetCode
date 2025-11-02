@@ -65,24 +65,16 @@ __O(pow(ratings, 2)) Time, O(ratings) Space - Iterative Brute-Force:__
 ```Swift
 class Solution {
     func candy(_ ratings: [Int]) -> Int {
-        var candy: [Int] = Array(repeating: 1, count: ratings.count)
-        for target in 0 ..< ratings.count {
-            for i in stride(from: target - 1, through: 0, by: -1) {
-                if ratings[i] > ratings[i + 1] && candy[i] <= candy[i + 1] {
-                    candy[i] += 1
-                } else {
-                    break
-                }
+        var candies: [Int] = Array(repeating: 1, count: ratings.count)
+        for i in 0 ..< ratings.count {
+            for j in stride(from: i, to: 0, by: -1) where ratings[j - 1] > ratings[j] && candies[j - 1] <= candies[j] {
+                candies[j - 1] += 1
             }
-            for j in stride(from: target + 1, to: ratings.count, by: 1) {
-                if ratings[j] > ratings[j - 1] && candy[j] <= candy[j - 1] {
-                    candy[j] += 1
-                } else {
-                    break
-                }
+            for k in stride(from: i, to: ratings.count - 1, by: 1) where ratings[k + 1] > ratings[k] && candies[k + 1] <= candies[k] {
+                candies[k + 1] += 1
             }
         }
-        return candy.reduce(into: 0, +=)
+        return candies.reduce(into: 0, +=)
     }
 }
 ```
