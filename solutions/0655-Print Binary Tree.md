@@ -53,7 +53,7 @@ Output:
 __Note:__ The height of binary tree is in the range of `[1, 10]`.
 
 ### Solution
-__O(n):__
+__O(nodes) Time, O(width * height) Space:__
 ```Swift
 /**
  * Definition for a binary tree node.
@@ -61,10 +61,12 @@ __O(n):__
  *     public var val: Int
  *     public var left: TreeNode?
  *     public var right: TreeNode?
- *     public init(_ val: Int) {
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
  *         self.val = val
- *         self.left = nil
- *         self.right = nil
+ *         self.left = left
+ *         self.right = right
  *     }
  * }
  */
