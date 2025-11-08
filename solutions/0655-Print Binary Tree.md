@@ -72,23 +72,24 @@ __O(nodes) Time, O(width * height) Space:__
  */
 class Solution {
     func printTree(_ root: TreeNode?) -> [[String]] {
-        let height = maxHeight(root), width = (1 << height)-1
-        var result : [[String]] = Array(repeating: Array(repeating: "", count: width), count: height)
-        populate(root, 0, 0, result.first!.count-1, &result)
+        let height: Int = findHeight(root)
+        let width: Int = (1 << height) - 1
+        var result: [[String]] = Array(repeating: Array(repeating: "", count: width), count: height)
+        printNode(root, 0, ClosedRange(uncheckedBounds: (0, width - 1)), &result)
         return result
     }
-    
-    func maxHeight(_ root: TreeNode?) -> Int {
-        guard let node = root else { return 0 }
-        return max(maxHeight(node.left), maxHeight(node.right))+1
+
+    func printNode(_ node: TreeNode?, _ row: Int, _ range: ClosedRange<Int>, _ result: inout [[String]]) {
+        guard let node else { return }
+        let mid: Int = range.lowerBound + (range.upperBound - range.lowerBound) / 2
+        result[row][mid] = "\(node.val)"
+        printNode(node.left, row + 1, ClosedRange(uncheckedBounds: (range.lowerBound, mid - 1)), &result)
+        printNode(node.right, row + 1, ClosedRange(uncheckedBounds: (mid + 1, range.upperBound)), &result)
     }
-    
-    func populate(_ node: TreeNode?, _ level: Int, _ start: Int, _ end: Int, _ result: inout [[String]]) {
-        guard let node = node else { return }
-        let mid = start + (end-start)/2
-        result[level][mid] = "\(node.val)"
-        populate(node.left, level+1, start, mid-1, &result)
-        populate(node.right, level+1, mid+1, end, &result)
+
+    func findHeight(_ node: TreeNode?) -> Int {
+        guard let node else { return 0 }
+        return max(findHeight(node.left), findHeight(node.right)) + 1
     }
 }
 ```
