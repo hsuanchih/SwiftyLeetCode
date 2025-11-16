@@ -39,15 +39,14 @@ __O(log(tree)) Time - Recursive:__
  * }
  */
 class Solution {
-    func rangeSumBST(_ root: TreeNode?, _ L: Int, _ R: Int) -> Int {
-        guard let node = root else { return 0 }
-        switch node.val {
-            case Int.min..<L:
-            return rangeSumBST(node.right, L, R)
-            case R+1...Int.max:
-            return rangeSumBST(node.left, L, R)
-            default:
-            return node.val + rangeSumBST(node.left, L, R) + rangeSumBST(node.right, L, R)
+    func rangeSumBST(_ root: TreeNode?, _ low: Int, _ high: Int) -> Int {
+        guard let root else { return 0 }
+        if root.val > high {
+            return rangeSumBST(root.left, low, high)
+        } else if root.val < low {
+            return rangeSumBST(root.right, low, high)
+        } else {
+            return root.val + rangeSumBST(root.left, low, high) + rangeSumBST(root.right, low, high)
         }
     }
 }
