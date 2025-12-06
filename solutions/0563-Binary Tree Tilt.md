@@ -28,7 +28,7 @@ __Note:__
 2. All the tilt values won't exceed the range of 32-bit integer.
 
 ### Solution
-__O(n):__
+__Recursive:__
 ```Swift
 /**
  * Definition for a binary tree node.
@@ -36,10 +36,12 @@ __O(n):__
  *     public var val: Int
  *     public var left: TreeNode?
  *     public var right: TreeNode?
- *     public init(_ val: Int) {
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
  *         self.val = val
- *         self.left = nil
- *         self.right = nil
+ *         self.left = left
+ *         self.right = right
  *     }
  * }
  */
