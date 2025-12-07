@@ -47,16 +47,17 @@ __Recursive:__
  */
 class Solution {
     func findTilt(_ root: TreeNode?) -> Int {
-        var tilt = 0
-        solve(root, &tilt)
+        var tilt: Int = 0
+        traverse(root, &tilt)
         return tilt
     }
 
-    func solve(_ node: TreeNode?, _ tilt: inout Int) -> Int {
-        guard let node = node else { return 0 }
-        let left = solve(node.left, &tilt), right = solve(node.right, &tilt)
-        tilt += abs(left-right)
-        return node.val+left+right
+    func traverse(_ node: TreeNode?, _ tilt: inout Int) -> Int {
+        guard let node else { return 0 }
+        let left: Int = traverse(node.left, &tilt)
+        let right: Int = traverse(node.right, &tilt)
+        tilt += abs(left - right)
+        return node.val + left + right
     }
 }
 ```
