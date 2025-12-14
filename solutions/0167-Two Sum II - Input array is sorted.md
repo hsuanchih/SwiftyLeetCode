@@ -34,12 +34,13 @@ __O(numbers) Time, O(1) Space:__
 ```Swift
 class Solution {
     func twoSum(_ numbers: [Int], _ target: Int) -> [Int] {
-        var start: Int = 0, end: Int = numbers.count - 1
+        var start: Int = 0
+        var end: Int = numbers.count - 1
         while start < end {
             switch numbers[start] + numbers[end] {
             case target:
                 return [start + 1, end + 1]
-            case ..<target:
+            case ...(target - 1):
                 start += 1
             case (target + 1)...:
                 end -= 1
