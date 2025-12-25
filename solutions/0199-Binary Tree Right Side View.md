@@ -1,20 +1,29 @@
 
 ### Binary Tree Right Side View
 
-Given a binary tree, imagine yourself standing on the *right* side of it, return the values of the nodes you can see ordered from top to bottom.
+Given the `root` of a binary tree, imagine yourself standing on the __right side__ of it, return the values of the nodes you can see ordered from top to bottom.
 
-__Example:__
-```
-Input: [1,2,3,null,5,null,4]
-Output: [1, 3, 4]
-Explanation:
+__Example 1:__
 
-   1            <---
- /   \
-2     3         <---
- \     \
-  5     4       <---
+![question_199.jpg](../images/question_199.jpg)
 ```
+Input: root = [1,2,3,null,5,null,4]
+Output: [1,3,4]
+```
+__Example 2:__
+```
+Input: root = [1,null,3]
+Output: [1,3]
+```
+__Example 3:__
+```
+Input: root = []
+Output: []
+```
+
+__Constraints:__
+* The number of nodes in the tree is in the range `[0, 100]`.
+* `-100 <= Node.val <= 100`
 
 ### Solution
 __Recursive:__
