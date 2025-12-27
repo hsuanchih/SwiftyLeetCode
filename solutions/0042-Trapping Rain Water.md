@@ -52,25 +52,30 @@ class Solution {
     func trap(_ height: [Int]) -> Int {
         
         // Use maxHeightSoFar to track the maximum bar height to the left of height[i]
-        var maxHeightSoFar = 0
-        var result = 0
+        var maxHeightSoFar: Int = 0
+        var result: Int = 0
         
         // Iterate through each element of the input
-        for i in 0..<height.count {
+        for i in 0 ..< height.count {
             
             // Update maxHeightSoFar
             defer { maxHeightSoFar = max(maxHeightSoFar, height[i]) }
             
             // Ignore indices 0 & input.count-1 as they cannot trap any water
-            guard i > 0 && i < height.count-1 else { continue }
+            guard i > 0 && i < height.count - 1 else { continue }
             
             // The water that can trapped at height[i] is:
             // min(tallest bar to the left of i, tallest bar to the right of i) - height[i]
-            let heightOfWater = min(maxHeightSoFar, height[i+1..<height.count].max() ?? 0)
+            let heightOfWater = min(maxHeightSoFar, height[(i + 1) ..< height.count].max() ?? 0)
             
             // If we cannot find a pair of bars to the left & right of height[i] that are both taller than
             // height[i], then the amount of water height[i] can trap is 0
-            result += max(heightOfWater-height[i], 0)
+            result += max(heightOfWater - height[i], 0)
+        }
+        return result
+    }
+}
+```
         }
         return result
     }
