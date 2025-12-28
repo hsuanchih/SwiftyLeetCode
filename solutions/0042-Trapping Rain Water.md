@@ -76,6 +76,27 @@ class Solution {
     }
 }
 ```
+__(2 * height) Time, (2 * height) Space:__
+```Swift
+class Solution {
+    func trap(_ height: [Int]) -> Int {
+        var maxLeft: [Int] = Array(repeating: 0, count: height.count)
+        var maxRight: [Int] = Array(repeating: 0, count: height.count)
+        var maxHeight: Int = 0
+        for i in 0 ..< height.count {
+            maxLeft[i] = maxHeight
+            maxHeight = max(maxHeight, height[i])
+        }
+        
+        maxHeight = 0
+        for i in stride(from: height.count - 1, through: 0, by: -1) {
+            maxRight[i] = maxHeight
+            maxHeight = max(maxHeight, height[i])
+        }
+
+        var result: Int = 0
+        for i in 0 ..< height.count {
+            result += max(min(maxLeft[i], maxRight[i]) - height[i], 0)
         }
         return result
     }
