@@ -102,7 +102,7 @@ class Solution {
     }
 }
 ```
-__O(height*2) Time, O(height) Space - Prefix Maximum + Memoized Postfix Maximum:__
+__(2 * height) Time, (height) Space - Prefix Maximum + Memoized Postfix Maximum:__
 ```Swift
 class Solution {
     func trap(_ height: [Int]) -> Int {
