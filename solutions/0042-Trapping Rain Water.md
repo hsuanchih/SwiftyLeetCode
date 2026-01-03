@@ -109,28 +109,29 @@ class Solution {
         
         // Use maxHeightSoFar to track the maximum bar height to the left of height[i]
         // Use maxHeightAfterIndex to track the maximum bar height to the right of index i
-        var maxHeightSoFar = 0, maxHeightAfterIndex: [Int] = Array(repeating: 0, count: height.count)
-        var result = 0
+        var maxHeightSoFar: Int = 0
+        var maxHeightAfterIndex: [Int] = Array(repeating: 0, count: height.count)
+        var result: Int = 0
         
         // Compute maxHeightAfterIndex for every index i
         for i in stride(from: height.count, through: 0, by: -1) {
             
             // The max height after index height.count-1 should be 0 since
             // it is the last element of the input
-            if i >= height.count-1 {
+            if i >= height.count - 1 {
                 continue
             }
-            maxHeightAfterIndex[i] = max(height[i+1], maxHeightAfterIndex[i+1])
+            maxHeightAfterIndex[i] = max(height[i + 1], maxHeightAfterIndex[i + 1])
         }
         
         // Iterate through each element of the input
-        for i in 0..<height.count {
+        for i in 0 ..< height.count {
             
             // Update maxHeightSoFar
             defer { maxHeightSoFar = max(maxHeightSoFar, height[i]) }
             
             // Ignore indices 0 & input.count-1 as they cannot trap any water
-            guard i > 0 && i < height.count-1 else { continue }
+            guard i > 0 && i < height.count - 1 else { continue }
             
             // The water that can trapped at height[i] is:
             // min(tallest bar to the left of i, tallest bar to the right of i) - height[i]
@@ -138,7 +139,7 @@ class Solution {
             
             // If we cannot find a pair of bars to the left & right of height[i] that are both taller than
             // height[i], then the amount of water height[i] can trap is 0
-            result += max(heightOfWater-height[i], 0)
+            result += max(heightOfWater - height[i], 0)
         }
         return result
     }
