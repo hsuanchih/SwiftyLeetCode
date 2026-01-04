@@ -145,7 +145,7 @@ class Solution {
     }
 }
 ```
-__O(height) Time, O(1) Space - Two Pointer:__
+__(height) Time, (1) Space - Two Pointer:__
 ```Swift
 class Solution {
     func trap(_ height: [Int]) -> Int {
