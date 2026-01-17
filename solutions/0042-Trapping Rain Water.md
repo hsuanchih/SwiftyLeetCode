@@ -152,11 +152,13 @@ class Solution {
         guard !height.isEmpty else { return 0 }
         
         // Use left & right indices to track the left & right pointers
-        var left = 0, right = height.count-1
+        var left: Int = 0
+        var right: Int = height.count - 1
         
         // Use maxHeightLeft & maxHeightRight to track the max bar heights up to 
         // indices left & right from both ends
-        var maxHeightLeft = height[left], maxHeightRight = height[right]
+        var maxHeightLeft: Int = height[left]
+        var maxHeightRight: Int = height[right]
         
         var result = 0
         
