@@ -166,13 +166,13 @@ class Solution {
         // as the current height[i] only depends on the smaller of the two
         while left < right {
             if maxHeightLeft < maxHeightRight {
-                result += maxHeightLeft-height[left]
-                maxHeightLeft = max(maxHeightLeft, height[left+1])
-                left+=1
+                result += maxHeightLeft - height[left]
+                maxHeightLeft = max(maxHeightLeft, height[left + 1])
+                left += 1
             } else {
-                result += maxHeightRight-height[right]
-                maxHeightRight = max(maxHeightRight, height[right-1])
-                right-=1
+                result += maxHeightRight - height[right]
+                maxHeightRight = max(maxHeightRight, height[right - 1])
+                right -= 1
             }
         }
         return result
