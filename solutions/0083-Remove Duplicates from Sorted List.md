@@ -16,6 +16,11 @@ Input: head = [1,1,2,3,3]
 Output: [1,2,3]
 ```
 
+__Constraints:__
+* The number of nodes in the list is in the range `[0, 300]`.
+* `-100 <= Node.val <= 100`
+* The list is guaranteed to be __sorted__ in ascending order.
+
 ### Solution
 __O(n):__
 ```Swift
