@@ -36,12 +36,12 @@ __O(n):__
  */
 class Solution {
     func deleteDuplicates(_ head: ListNode?) -> ListNode? {
-        var curr = head
-        while let node = curr, let next = node.next {
-            if node.val == next.val {
-                curr?.next = next.next
+        var curr: ListNode? = head
+        while let node = curr {
+            if node.val == node.next?.val {
+                node.next = node.next?.next
             } else {
-                curr = curr?.next
+                curr = node.next
             }
         }
         return head
