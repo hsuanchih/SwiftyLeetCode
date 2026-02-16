@@ -1,11 +1,13 @@
 
 ### Search in Rotated Sorted Array II
 
-Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
+There is an integer array `nums` sorted in non-decreasing order (not necessarily with distinct values).
 
-(i.e., `[0,0,1,2,2,5,6]` might become `[2,5,6,0,0,1,2]`).
+Before being passed to your function, `nums` is rotated at an unknown pivot index `k` (`0 <= k < nums.length`) such that the resulting array is `[nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]` (__0-indexed__). For example, `[0,1,2,4,4,4,5,6,6,7]` might be rotated at pivot index `5` and become `[4,5,6,6,7,0,1,2,4,4]`.
 
-You are given a target value to search. If found in the array return `true`, otherwise return `false`.
+Given the array `nums` after the rotation and an integer `target`, return `true` if target is in `nums`, or `false` if it is not in `nums`.
+
+You must decrease the overall operation steps as much as possible.
 
 __Example 1:__
 ```
