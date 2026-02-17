@@ -19,6 +19,13 @@ __Example 2:__
 Input: nums = [2,5,6,0,0,1,2], target = 3
 Output: false
 ```
+
+__Constraints:__
+* `1 <= nums.length <= 5000`
+* `-pow(10, 4) <= nums[i] <= pow(10, 4)`
+* `nums` is guaranteed to be rotated at some pivot.
+* `-pow(10, 4) <= target <= pow(10, 4)`
+
 __Follow up:__
 * This is a follow up problem to Search in Rotated Sorted Array, where `nums` may contain duplicates.
 * Would this affect the run-time complexity? How and why?
