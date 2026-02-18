@@ -35,10 +35,8 @@ __O(nums) Time:__
 ```Swift
 class Solution {
     func search(_ nums: [Int], _ target: Int) -> Bool {
-        for num in nums {
-            if num == target {
-                return true
-            }
+        for num in nums where num == target {
+            return true
         }
         return false
     }
