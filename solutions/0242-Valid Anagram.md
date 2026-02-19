@@ -1,7 +1,9 @@
 
 ### Valid Anagram
 
-Given two strings *s* and *t* , write a function to determine if *t* is an anagram of *s*.
+Given two strings `s` and `t`, return `true` if `t` is an anagram of `s`, and `false` otherwise.
+
+An __Anagram__ is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
 
 __Example 1:__
 ```
