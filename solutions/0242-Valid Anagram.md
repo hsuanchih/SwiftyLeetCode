@@ -16,11 +16,12 @@ Input: s = "rat", t = "car"
 Output: false
 ```
 
-__Note:__
-You may assume the string contains only lowercase alphabets.
+__Constraints:__
+* `1 <= s.length, t.length <= 5 * pow(10, 4)`
+* `s` and `t` consist of lowercase English letters.
 
-__Follow up:__
-What if the inputs contain unicode characters? How would you adapt your solution to such case?
+__Follow up:__ 
+* What if the inputs contain Unicode characters? How would you adapt your solution to such a case?
 
 ### Solution
 __O(s+t) Time, O(s) Space:__
