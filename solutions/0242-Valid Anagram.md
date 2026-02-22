@@ -24,23 +24,26 @@ __Follow up:__
 * What if the inputs contain Unicode characters? How would you adapt your solution to such a case?
 
 ### Solution
-__O(s+t) Time, O(s) Space:__
+__O(s + t) Time, O(s) Space:__
 ```Swift
 class Solution {
     func isAnagram(_ s: String, _ t: String) -> Bool {
-        var sMap = s.reduce(into: [Character: Int]()) { $0[$1, default: 0]+=1 }
+        var lookup: [Character: Int] = s.reduce(into: [Character: Int]()) { lookup, char in
+            lookup[char, default: 0] += 1
+        }
+
         for char in t {
-            if let count = sMap[char] {
+            if let count = lookup[char] {
                 if count > 1 {
-                    sMap[char] = count-1
+                    lookup[char] = count - 1
                 } else {
-                    sMap.removeValue(forKey: char)
+                    lookup.removeValue(forKey: char)
                 }
             } else {
                 return false
             }
         }
-        return sMap.isEmpty
+        return lookup.isEmpty
     }
 }
 ```
