@@ -32,13 +32,15 @@ __Follow up:__
 * Could you implement a solution using only `O(1)` extra space complexity and `O(n)` runtime complexity?
 
 ### Solution
-__O(nums) Time, O(nums) Space - HashMap:__
+__O(nums * log(nums) + nums) Time, O(1) Space - Sorted Input:__
 ```Swift
 class Solution {
     func missingNumber(_ nums: [Int]) -> Int {
-        var seen : [Bool] = Array(repeating: false, count: nums.count+1)
-        nums.forEach { seen[$0] = true }
-        return seen.firstIndex(of: false)!
+        let nums: [Int] = nums.sorted()
+        for i in 0 ..< nums.count where i != nums[i] {
+            return i
+        }
+        return nums.count
     }
 }
 ```
