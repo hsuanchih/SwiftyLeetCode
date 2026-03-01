@@ -44,11 +44,20 @@ class Solution {
     }
 }
 ```
-__O(n) Time, O(1) Space - Arithmetic Sequence:__
+__O(2 * nums) Time, O(nums) Space - Array:__
 ```Swift
 class Solution {
     func missingNumber(_ nums: [Int]) -> Int {
-        return nums.count*(nums.count+1)/2 - nums.reduce(0) { $0+$1 }
+        var seen: [Bool] = Array(repeating: false, count: nums.count + 1)
+        for num in nums {
+            seen[num] = true
+        }
+
+        if let index = seen.firstIndex(where: { !$0 }) {
+            return index
+        } else {
+            fatalError()
+        }
     }
 }
 ```
