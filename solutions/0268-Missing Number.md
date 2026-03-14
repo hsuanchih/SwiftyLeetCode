@@ -61,3 +61,13 @@ class Solution {
     }
 }
 ```
+__O(nums) Time, O(1) Space - Arithmetic Sequence:__
+```Swift
+class Solution {
+    func missingNumber(_ nums: [Int]) -> Int {
+        let totalSum: Int = (0 + nums.count) * (nums.count + 1) / 2
+        return totalSum - nums.reduce(into: 0, +=)
+    }
+}
+```
+```
