@@ -70,4 +70,18 @@ class Solution {
     }
 }
 ```
+__O(nums) Time, O(1) Space - XOR:__
+```Swift
+class Solution {
+    func missingNumber(_ nums: [Int]) -> Int {
+        var result: Int = 0
+        for i in 0 ... nums.count {
+            result ^= i
+        }
+        for num in nums {
+            result ^= num
+        }
+        return result
+    }
+}
 ```
