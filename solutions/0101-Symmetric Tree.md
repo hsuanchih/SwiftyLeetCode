@@ -26,7 +26,7 @@ __Follow up:__
 * Could you solve it both recursively and iteratively?
 
 ### Solution
-__O(n) Time, O(1) Space - Recursive:__
+__Recursive:__
 ```Swift
 /**
  * Definition for a binary tree node.
@@ -34,10 +34,12 @@ __O(n) Time, O(1) Space - Recursive:__
  *     public var val: Int
  *     public var left: TreeNode?
  *     public var right: TreeNode?
- *     public init(_ val: Int) {
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
  *         self.val = val
- *         self.left = nil
- *         self.right = nil
+ *         self.left = left
+ *         self.right = right
  *     }
  * }
  */
