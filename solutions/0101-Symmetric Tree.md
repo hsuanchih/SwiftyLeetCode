@@ -45,17 +45,17 @@ __Recursive:__
  */
 class Solution {
     func isSymmetric(_ root: TreeNode?) -> Bool {
-        return isMirror(root?.left, root?.right)
+        isMirror(root?.left, root?.right)
     }
-    
-    func isMirror(_ lhs: TreeNode?, _ rhs: TreeNode?) -> Bool {
-        switch (lhs?.val, rhs?.val) {
-            case (.none, .none):
+
+    func isMirror(_ left: TreeNode?, _ right: TreeNode?) -> Bool {
+        switch (left, right) {
+        case (.none, .none):
             return true
-            case let (left, right) where left == right:
-            return isMirror(lhs?.left, rhs?.right) && isMirror(lhs?.right, rhs?.left)
-            default:
+        case (.none, .some), (.some, .none):
             return false
+        case (.some(let left), .some(let right)):
+            return left.val == right.val && isMirror(left.left, right.right) && isMirror(left.right, right.left)
         }
     }
 }
