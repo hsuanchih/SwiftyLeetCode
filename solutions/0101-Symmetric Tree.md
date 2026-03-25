@@ -82,9 +82,9 @@ class Solution {
 
         // Run level order traversal, stub a dummy node if the left or right child is nil
         while !queue.isEmpty {
-            let size: Int = queue.count
+            let count: Int = queue.count
             var temp: [Int] = []
-            for _ in 0 ..< size {
+            for _ in 0 ..< count {
                 let node = queue.removeFirst()
                 temp.append(node.val)
 
