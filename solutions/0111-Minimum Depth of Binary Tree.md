@@ -52,7 +52,7 @@ class Solution {
     }
 }
 ```
-__O(n) Time, O(n/2) Space - Iterative:__
+__Iterative:__
 ```Swift
 /**
  * Definition for a binary tree node.
