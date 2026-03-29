@@ -38,17 +38,23 @@ __Recursive:__
  */
 class Solution {
     func minDepth(_ root: TreeNode?) -> Int {
-        guard let node = root else { return 0 }
-        var curr = 0
+        guard let root else { return 0 }
+        return depth(root)
+    }
+
+    func depth(_ node: TreeNode) -> Int {
+        let height: Int
         switch (node.left, node.right) {
-            case (.some(_), .none):
-            curr = minDepth(node.left)
-            case (.none, .some(_)):
-            curr = minDepth(node.right)
-            default:
-            curr = min(minDepth(node.left), minDepth(node.right))
+        case (.none, .none):
+            height = 0
+        case (.some(let left), .none):
+            height = depth(left)
+        case (.none, .some(let right)):
+            height = depth(right)
+        case (.some(let left), .some(let right)):
+            height = min(depth(left), depth(right))
         }
-        return curr + 1
+        return height + 1
     }
 }
 ```
