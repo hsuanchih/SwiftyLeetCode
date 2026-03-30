@@ -77,23 +77,24 @@ __Iterative:__
  */
 class Solution {
     func minDepth(_ root: TreeNode?) -> Int {
-        guard let root = root else { return 0 }
-        var queue = [root], depth = 0
+        guard let root else { return 0 }
+        var queue: [TreeNode] = [root]
+        var depth: Int = 0
         while !queue.isEmpty {
-            let length = queue.count
+            let count: Int = queue.count
             depth += 1
-            for _ in 0..<length {
-                let curr = queue.removeFirst()
-                switch (curr.left, curr.right) {
-                    case (.some(let left), .none):
-                    queue.append(left)
-                    case (.none, .some(let right)):
-                    queue.append(right)
-                    case let (.some(left), .some(right)):
-                    queue.append(left)
-                    queue.append(right)
-                    default:
+            for _ in 0 ..< count {
+                let node = queue.removeFirst()
+                switch (node.left, node.right) {
+                case (.none, .none):
                     return depth
+                case (.some(let left), .none):
+                    queue.append(left)
+                case (.none, .some(let right)):
+                    queue.append(right)
+                case (.some(let left), .some(let right)):
+                    queue.append(left)
+                    queue.append(right)
                 }
             }
         }
