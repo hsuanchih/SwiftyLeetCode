@@ -46,31 +46,24 @@ __O(nums * log(nums)~pow(nums, 2)) Time:__
  */
 class Solution {
     func constructMaximumBinaryTree(_ nums: [Int]) -> TreeNode? {
-        return construct(nums, 0, nums.count-1)
+        build(nums, ClosedRange(uncheckedBounds: (0, nums.count - 1)))
     }
-    
-    func construct(_ nums: [Int], _ start: Int, _ end: Int) -> TreeNode? {
 
-        // Base case
-        if start > end {
+    func build(_ nums: [Int], _ range: ClosedRange<Int>) -> TreeNode? {
+        if range.lowerBound > range.upperBound {
             return nil
-        }
-
-        // Find the index of the largest item in the array
-        var maxIndex = start
-        for i in start...end {
-            if nums[i] > nums[maxIndex] {
+        } else if range.lowerBound == range.upperBound {
+            return TreeNode(nums[range.lowerBound])
+        } else {
+            var maxIndex: Int = range.lowerBound
+            for i in range where nums[i] > nums[maxIndex] {
                 maxIndex = i
             }
+            let node: TreeNode = TreeNode(nums[maxIndex])
+            node.left = build(nums, ClosedRange(uncheckedBounds: (range.lowerBound, maxIndex - 1)))
+            node.right = build(nums, ClosedRange(uncheckedBounds: (maxIndex + 1, range.upperBound)))
+            return node
         }
-
-        // Construct tree node from element
-        // Left subtree consists of elements before the largest element
-        // Right subtree consists of elements after the largest element
-        let curr = TreeNode(nums[maxIndex])
-        curr.left = construct(nums, start, maxIndex-1)
-        curr.right = construct(nums, maxIndex+1, end)
-        return curr
     }
 }
 ```
