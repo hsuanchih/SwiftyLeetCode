@@ -1,9 +1,9 @@
 
 ### Middle of the Linked List
 
-Given a non-empty, singly linked list with head node `head`, return a middle node of linked list.
+Given the `head` of a singly linked list, return the middle node of the linked list.
 
-If there are two middle nodes, return the second middle node.
+If there are two middle nodes, return the __second middle__ node.
 
 __Example 1:__
 ```
