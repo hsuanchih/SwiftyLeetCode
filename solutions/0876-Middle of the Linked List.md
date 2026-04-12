@@ -6,12 +6,11 @@ Given the `head` of a singly linked list, return the middle node of the linked l
 If there are two middle nodes, return the __second middle__ node.
 
 __Example 1:__
+![question_876-0.jpg](../images/question_876-0.jpg)
 ```
-Input: [1,2,3,4,5]
-Output: Node 3 from this list (Serialization: [3,4,5])
-The returned node has value 3.  (The judge's serialization of this node is [3,4,5]).
-Note that we returned a ListNode object ans, such that:
-ans.val = 3, ans.next.val = 4, ans.next.next.val = 5, and ans.next.next.next = NULL.
+Input: head = [1,2,3,4,5]
+Output: [3,4,5]
+Explanation: The middle node of the list is node 3.
 ```
 __Example 2:__
 ```
