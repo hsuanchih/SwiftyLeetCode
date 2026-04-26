@@ -13,14 +13,16 @@ Output: [3,4,5]
 Explanation: The middle node of the list is node 3.
 ```
 __Example 2:__
+![question_876-1.jpg](../images/question_876-1.jpg)
 ```
-Input: [1,2,3,4,5,6]
-Output: Node 4 from this list (Serialization: [4,5,6])
-Since the list has two middle nodes with values 3 and 4, we return the second one.
+Input: head = [1,2,3,4,5,6]
+Output: [4,5,6]
+Explanation: Since the list has two middle nodes with values 3 and 4, we return the second one.
 ```
 
-__Note:__
-* The number of nodes in the given list will be between `1` and `100`.
+__Constraints:__
+* The number of nodes in the list is in the range `[1, 100]`.
+* `1 <= Node.val <= 100`
 
 ### Solution
 __O(n):__
