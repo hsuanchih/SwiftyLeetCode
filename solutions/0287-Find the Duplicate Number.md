@@ -51,7 +51,7 @@ class Solution {
     }
 }
 ```
-__O(nums) Time, O(1) Space - Pigoen-Hole:__
+__O(nums) Time, O(1) Space - Pigeon-Hole:__
 ```Swift
 class Solution {
     func findDuplicate(_ nums: [Int]) -> Int {
