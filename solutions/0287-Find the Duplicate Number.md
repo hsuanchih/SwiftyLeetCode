@@ -21,18 +21,16 @@ __Note:__
 4. There is only one duplicate number in the array, but it could be repeated more than once.
 
 ### Solution
-__O(nums^2) Time, O(1) Space - Brute-Force:__
+__O(pow(nums, 2)) Time, O(1) Space - Brute-Force:__
 ```Swift
 class Solution {
     func findDuplicate(_ nums: [Int]) -> Int {
-        for start in 0..<nums.count {
-            for i in start+1..<nums.count {
-                if nums[i] == nums[start] {
-                    return nums[i]
-                }
+        for i in 0 ..< nums.count {
+            for j in i + 1 ..< nums.count where nums[i] == nums[j] {
+                return nums[i]
             }
         }
-        return -1
+        fatalError()
     }
 }
 ```
