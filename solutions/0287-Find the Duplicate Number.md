@@ -38,14 +38,32 @@ __O(nums) Time, O(nums) Space - HashSet:__
 ```Swift
 class Solution {
     func findDuplicate(_ nums: [Int]) -> Int {
-        var set : Set<Int> = []
+        var seen: Set<Int> = []
         for num in nums {
-            if set.contains(num) {
+            if seen.contains(num) {
                 return num
+            } else {
+                seen.insert(num)
             }
-            set.insert(num)
         }
-        return -1
+        fatalError()
+    }
+}
+```
+__O(nums) Time, O(1) Space - Pigeon-Hole:__
+```Swift
+class Solution {
+    func findDuplicate(_ nums: [Int]) -> Int {
+        var nums: [Int] = nums
+        for index in 0 ..< nums.count {
+            while nums[index] != index + 1, nums[index] != nums[nums[index] - 1] {
+                nums.swapAt(index, nums[index] - 1)
+            }
+            if nums[index] == nums[nums[index] - 1], index != nums[index] - 1 {
+                return nums[index]
+            }
+        }
+        fatalError()
     }
 }
 ```
