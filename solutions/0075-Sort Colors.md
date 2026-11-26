@@ -19,7 +19,7 @@ __Follow up:__
 * Could you come up with a one-pass algorithm using only constant space?
 
 ### Solution
-__O(n) Time, O(range) Space - Counting Sort:__
+__O(nums) Time, O(1) Space - Counting Sort, 2 Pass:__
 ```Swift
 class Solution {
     func sortColors(_ nums: inout [Int]) {
