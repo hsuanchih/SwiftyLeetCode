@@ -36,7 +36,7 @@ class Solution {
     }
 }
 ```
-__O(n) Time, O(1) Space - 2 Pointers:__
+__O(nums) Time, O(1) Space - 2 Pointers, 1 Pass:__
 ```Swift
 class Solution {
     func sortColors(_ nums: inout [Int]) {
