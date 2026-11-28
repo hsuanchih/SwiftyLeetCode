@@ -23,14 +23,16 @@ __O(nums) Time, O(1) Space - Counting Sort, 2 Pass:__
 ```Swift
 class Solution {
     func sortColors(_ nums: inout [Int]) {
-        var count : [Int] = Array(repeating: 0, count: 3)
-        nums.forEach { count[$0]+=1 }
-        var curr = 0
-        for index in stride(from: 0, to: count.count, by: 1) {
-            let num = count[index]
-            for _ in 0..<num {
-                nums[curr] = index
-                curr+=1
+        var lookup: [Int] = Array(repeating: 0, count: 3)
+        for num in nums {
+            lookup[num] += 1
+        }
+
+        var i: Int = 0
+        for index in 0 ..< lookup.count {
+            for _ in 0 ..< lookup[index] {
+                nums[i] = index
+                i += 1
             }
         }
     }
